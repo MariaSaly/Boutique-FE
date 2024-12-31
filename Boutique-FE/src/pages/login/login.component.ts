@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../shared/authService';
 
 @Component({
   selector: 'app-login',
@@ -7,15 +8,21 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  username: string = '';
+  email: string = '';
   password: string = '';
-  constructor(private router: Router) {}
+  constructor(private router: Router , private authService:AuthService) {}
   onLogin() {
-    if (this.username && this.password) {
-      alert('Login Successful');
-    } else {
-      alert('Please fill out all fields');
+    if(this.email == '' ){
+      alert("Please Enter the Email");
+      return;
     }
+    if(this.password == '' ){
+      alert("Please Enter the Password");
+      return;
+    }
+  this.authService.login( this.email, this.password);
+  this.email = '';
+  this.password = '';
   }
 
   goToSignup() {
