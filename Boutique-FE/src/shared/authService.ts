@@ -1,51 +1,53 @@
-import { Injectable } from "@angular/core";
-import { AngularFireAuth} from "@angular/fire/compat/auth"
-import { Router } from "@angular/router";
-
+import { inject, Inject, Injectable } from '@angular/core';
+import { Auth ,createUserWithEmailAndPassword ,signInWithCredential,signInWithEmailAndPassword,UserCredential} from '@angular/fire/auth';
+import { Router } from '@angular/router';
+//import { createUserWithEmailAndPassword } from 'firease/auth';
+import { from, Observable } from 'rxjs';
 
 @Injectable({
-    providedIn:'root'
+  providedIn: 'root',
 })
+export class AuthService {
+  constructor( private router: Router) {}
+  firebaseAuth = inject(Auth)
+  // login method
+   login(email: string, password: string):Observable<void> {
+    // try {
+    //   await this.firebaseAuth.si(email, password);
+    //   localStorage.setItem('token', 'true');
+    //   this.router.navigate(['dashboard']);
+    // } catch (err) {
+    //     alert(`Error in signup${err}`);
+    //   this.router.navigate(['/login']);
+    // }
+    const promise = signInWithEmailAndPassword(this.firebaseAuth,email,password).then(() => {});
+    return from(promise);
+  }
 
-export class AuthService{
-    constructor( private fireAuth:AngularFireAuth , private router:Router){
+  // register method
+   signup(email: string, password: string):Observable<void> {
+    // try {
+    //   await this.fireAuth.createUserWithEmailAndPassword(email, password);
+    //   alert('Registered user successfully');
+    //   this.router.navigate(['/login']);
+    // } catch (err) {
+    //   alert(`Error in signup${err}`);
+    //   this.router.navigate(['/signup']);
+    // }
+    console.log("email:",email);
+    console.log("password:",password);
+    const promise = createUserWithEmailAndPassword(this.firebaseAuth,email,password).then(()=>{})
+    return from(promise)
+  }
 
-    }
-// login method
-    login( email: string , password:string){
-        this.fireAuth.signInWithEmailAndPassword(email,password).then(()=> {
-           localStorage.setItem('token','true');
-           this.router.navigate(['dashboard']);
-        },
-        err => {
-            alert(err.message);
-            this.router.navigate(['/login']);
-        }
-    )
-    }
-
-    // register method
-
-    signup( email:string,password:string){
-     this.fireAuth.createUserWithEmailAndPassword(email,password).then(()=>{
-        alert("Regsitered user sucessfully");
-        this.router.navigate(['/login']);
-     }, 
-     err => {
-        alert(err.message);
-        this.router.navigate(['/signup']);
-     })
-    }
-    //logout
-
-    logout(){
-        this.fireAuth.signOut().then(()=>{
-            localStorage.removeItem('token');
-            this.router.navigate(['/login']);
-        }, err => {
-            alert(err.message)
-        })
-    }
-
+  // logout method
+  // async logout() {
+  //   try {
+  //     await this.fireAuth.signOut();
+  //     localStorage.removeItem('token');
+  //     this.router.navigate(['/login']);
+  //   } catch (err) {
+  //       alert(`Error in signup${err}`);
+  //   }
+  // }
 }
-

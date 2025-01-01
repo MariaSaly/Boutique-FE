@@ -1,19 +1,42 @@
-
 <div class="login-container">
-    <h2>Login</h2>
-    <form (ngSubmit)="onLogin()">
-      <div>
-        <label for="email">Email</label>
-        <input type="email" class="form-control" name="email" required>
+  <h2>Login</h2>
+  <form [formGroup]="loginform" (ngSubmit)="onLogin()">
+    
+    <!-- Email Field -->
+    <div>
+      <label for="email">Email</label>
+      <input 
+        type="email" 
+        class="form-control" 
+        formControlName="email"
+        name="email" 
+        required>
+      
+      <!-- Display Validation Errors for Email -->
+      <div *ngIf="loginform.get('email')?.invalid && loginform.get('email')?.touched">
+        <p *ngIf="loginform.get('email')?.hasError('required')">Email is required</p>
+        <p *ngIf="loginform.get('email')?.hasError('email')">Enter a valid email</p>
       </div>
-      <div>
-        <label for="password">Password</label>
-        <input type="password"  class="password" name="password"   required>
+    </div>
+    
+    <!-- Password Field -->
+    <div>
+      <label for="password">Password</label>
+      <input 
+        type="password" 
+        class="form-control" 
+        formControlName="password"
+        name="password" 
+        required>
+      
+      <!-- Display Validation Errors for Password -->
+      <div *ngIf="loginform.get('password')?.invalid && loginform.get('password')?.touched">
+        <p *ngIf="loginform.get('password')?.hasError('required')">Password is required</p>
+        <p *ngIf="loginform.get('password')?.hasError('minlength')">Password must be at least 6 characters long</p>
       </div>
-      <button type="submit">Login</button>
-    </form>
-    <p>Don't have an account? <button (click)="goToSignup()">Sign Up</button></p>
-
-    <!-- <p>Don't have an account? <a routerLink="/signup">Sign Up</a></p> -->
-  </div>
-  
+    </div>
+    
+    <button type="submit" [disabled]="loginform.invalid">Login</button>
+  </form>
+  <p id="navigate">Don't have an account? <button (click)="goToSignUp()">Sign Up</button></p>
+</div>

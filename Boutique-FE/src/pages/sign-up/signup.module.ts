@@ -24,5 +24,5 @@ import { RouterModule } from '@angular/router';
     bootstrap: [SignUpComponent]
  
   })
-  export class LoginModule { }
+  export class SignUpModule { }
   

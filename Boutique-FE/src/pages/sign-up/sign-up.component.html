@@ -1,17 +1,27 @@
 
 <div class="signup-container">
     <h2>Sign Up</h2>
-    <form (ngSubmit)="onSignup()">
-    <div>
+    <form [formGroup]="signup" (ngSubmit)="onSignUp()">
+     <div>
         <label for="email">Email</label>
-        <input type="email" id="email"  name="email" required>
+        <input type="email" id="email"  name="email"  formControlName="email" required>
+        <!-- Display Validation Errors for Email -->
+      <div *ngIf="signup.get('email')?.invalid && signup.get('email')?.touched">
+        <p *ngIf="signup.get('email')?.hasError('required')">Email is required</p>
+        <p *ngIf="signup.get('email')?.hasError('email')">Enter a valid email</p>
+      </div>
+        
       </div>
       <div>
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="password"  formControlName="password" required>
+        <div *ngIf="signup.get('password')?.invalid && signup.get('password')?.touched">
+          <p *ngIf="signup.get('password')?.hasError('required')">Password is required</p>
+          <p *ngIf="signup.get('password')?.hasError('minlength')">Password must be at least 6 characters long</p>
+        </div>
       </div>
       <button type="submit" >Sign Up</button>
     </form>
-    <p>Don't have an account? <button (click)="goTologin()">Login </button></p>
+    <p id="navigate">Don't have an account? <button (click)="goTologin()">Login </button></p>
     
   

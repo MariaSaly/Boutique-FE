@@ -42,10 +42,13 @@
   
   p {
     text-align: center;
+    color:red
   }
   
   a {
     color: #007bff;
     text-decoration: none;
   }
-  
+  #navigate{
+    color:blue;
+  }
