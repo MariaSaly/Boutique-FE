@@ -31,7 +31,7 @@ export class LoginComponent {
       this.authService.login(email, password).subscribe({
         next:(response)=>{
           alert("Logged in Sucessfully !");
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/MoksheDestination']);
         },
         error:(error)=>{
           alert(` Error in logging in ${error}`);
