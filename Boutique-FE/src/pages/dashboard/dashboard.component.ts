@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { HomepageComponent } from '../homepage/homepage.component';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
-  //imports: [],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
+  constructor(private route:Router,){}
   selectedContent: { title: string, description: string } | null = null;
   leftContent = {
     title: 'Customizable Material',
@@ -26,5 +31,8 @@ export class DashboardComponent {
       // Handle non-customizable content click
       alert('Non-Customizable content clicked');
     }
+  }
+  custom(){
+    this.route.navigate(['/home'])
   }
 }

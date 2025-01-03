@@ -1,10 +1,20 @@
 /* Container to hold both images and buttons */
+.maincontainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;  /* Align images and buttons at the bottom */
+  height: 100vh;
+  background-image: url('../images/miyaa.png');
+  /* padding: 50px; */
+  /* width: 100%; */
+}
 .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-end;  /* Align images and buttons at the bottom */
-    height: 100vh;
-    padding: 20px;
+
+width: 900px;
+height: 90%;
   }
   
   /* Styling for each image container */
@@ -14,7 +24,7 @@
     height: 100%; /* Ensure the div takes up full height */
     background-size: cover; /* Cover the div with the image */
     background-position: center; /* Center the image */
-    border-radius: 10px; /* Optional: rounded corners */
+    /* border-radius: 10px;  */
     display: flex;
     justify-content: center;
     align-items: flex-end; /* Align the button at the bottom */
@@ -26,13 +36,14 @@
   }
   
   .img {
-    background-image: url('../images/Miya.png'); /* Add your image path here */
-    margin-right: 10px;
-    gap: 5px;
+    background-image: url('../images/Miya1.png'); /* Add your image path here */
+    background-color: rgb(255, 218, 185);
+  
   }
   
   .img2 {
-    background-image: url('../images/Miya.png'); /* Add your image path here */
+    background-image: url('../images/Miya1.png'); /* Add your image path here */
+    background-color:rgb(229, 129, 109);
   }
   
   /* Button Styling */
@@ -40,11 +51,11 @@
     background-size: cover;
     background-position: center;
     color: white;
-    background-color: cornflowerblue;
+    background-color: #4169E1;
     border: none;
     font-size: 20px;
     padding: 15px 30px; /* Size of the button */
-    border-radius: 30px; /* Rounded edges for the button */
+    border-radius: 30px; 
     text-transform: uppercase; /* Uppercase text */
     font-weight: bold;
     cursor: pointer;
