@@ -35,7 +35,7 @@ export class LoginComponent {
         next: () => {
           console.log('Login Successful');
           this.showPopupMessage('Success', 'Logged in Successfully!');
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/MoksheDestination']);
         },
         error: (error) => {
           console.log('Login Error:', error);

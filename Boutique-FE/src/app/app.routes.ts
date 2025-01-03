@@ -7,7 +7,7 @@ import { DashboardComponent } from '../pages/dashboard/dashboard.component';
      {path:'',redirectTo:'login',pathMatch:'full'},
      {path:'login', component:LoginComponent},
      {path:'signup', component:SignUpComponent},
-     {path:'moksherentaldestination', component:DashboardComponent}
+     {path:'MoksheDestination', component:DashboardComponent}
 
  ];
 

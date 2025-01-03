@@ -17,6 +17,8 @@ import { getFirestore,provideFirestore} from "@angular/fire/firestore"
 // Firebase Authentication and Firestore Services
 import { AuthService } from '../shared/authService';
 import { LoginModule } from '../pages/login/login.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '../service/httpInterceptorService';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { LoginModule } from '../pages/login/login.module';
     // Initialize Firebase with the provided config
    
   ],
-  providers: [],
+  providers: [{
+    provide:HTTP_INTERCEPTORS ,useClass:AuthInterceptor,multi:true
+  } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
