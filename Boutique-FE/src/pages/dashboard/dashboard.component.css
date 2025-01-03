@@ -1,0 +1,71 @@
+/* Container to hold both images and buttons */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;  /* Align images and buttons at the bottom */
+    height: 100vh;
+    padding: 20px;
+  }
+  
+  /* Styling for each image container */
+  .img, .img2 {
+    position: relative; /* Position relative to place the button inside */
+    flex: 1;
+    height: 100%; /* Ensure the div takes up full height */
+    background-size: cover; /* Cover the div with the image */
+    background-position: center; /* Center the image */
+    border-radius: 10px; /* Optional: rounded corners */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Align the button at the bottom */
+    overflow: hidden;
+    cursor: pointer; /* Make the image clickable */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    gap: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .img {
+    background-image: url('../images/Miya.png'); /* Add your image path here */
+    margin-right: 10px;
+    gap: 5px;
+  }
+  
+  .img2 {
+    background-image: url('../images/Miya.png'); /* Add your image path here */
+  }
+  
+  /* Button Styling */
+  .custom-btn {
+    background-size: cover;
+    background-position: center;
+    color: white;
+    background-color: cornflowerblue;
+    border: none;
+    font-size: 20px;
+    padding: 15px 30px; /* Size of the button */
+    border-radius: 30px; /* Rounded edges for the button */
+    text-transform: uppercase; /* Uppercase text */
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Add shadow for a floating effect */
+  }
+  
+  /* Button Hover Effect */
+  .custom-btn:hover {
+    transform: scale(1.1); /* Make button slightly larger on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Add a larger shadow */
+  }
+  
+  /* Button Focus Styling (for accessibility) */
+  .custom-btn:focus {
+    outline: none;
+  }
+  
+  /* Add text shadow to make the text stand out more */
+  .custom-btn {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+  

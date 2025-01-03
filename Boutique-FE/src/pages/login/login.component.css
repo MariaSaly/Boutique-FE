@@ -1,55 +1,112 @@
-.login-container, .signup-container {
-    width: 300px;
-    margin: 100px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* General Container Styling */
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Logo Styling */
+.logo-container {
+  margin-bottom: 20px;
+}
+
+.logo {
+  max-width: 120px;
+  height: auto;
+  background-image: url('../images/mo1.png');
+}
+
+/* Form Styling */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Adds space between form elements */
+}
+
+.form-group {
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+input.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input.form-control:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Error Messages */
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Buttons */
+.login-button {
+  padding: 10px;
+  font-size: 16px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.login-button:disabled {
+  background-color: #ccc;
+}
+
+.signup-button {
+  color: #007bff;
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.signup-button:hover {
+  color: #0056b3;
+}
+
+/* Spacing for the "Don't have an account" section */
+#navigate {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .login-container {
+    padding: 15px;
   }
-  
-  .login-container h2, .signup-container h2 {
-    text-align: center;
+
+  .form-container {
+    gap: 15px;
   }
-  
-  form div {
-    margin-bottom: 15px;
-  }
-  
-  form label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  form input {
-    width: 100%;
+
+  .login-button {
     padding: 8px;
-    box-sizing: border-box;
+    font-size: 14px;
   }
-  
-  form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  form button:hover {
-    background-color: #0056b3;
-  }
-  
-  p {
-    text-align: center;
-    color: red;
-  }
-  
-  a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  #navigate{
-    color:blue;
-  }
-  
+}
