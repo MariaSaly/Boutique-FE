@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-items',
+  standalone:true,
   imports: [CommonModule],
   templateUrl: './list-items.component.html',
   styleUrl: './list-items.component.css'
