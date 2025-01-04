@@ -15,20 +15,22 @@ import { ListItemsComponent } from './list-items/list-items.component';
 @NgModule({
   declarations: [
 
-    AddItemsComponent,ListItemsComponent
+   
 
   ],
   imports: [
-    BrowserModule,
+    
     CommonModule,
     
-    AppRoutingModule,
+    
     FormsModule,
-    SignUpModule,
+    
     ReactiveFormsModule,
     RouterModule.forChild([
       { path: '', component: ListItemsComponent },
-      {path:'add',component:AddItemsComponent}
+      {path:'add',component:AddItemsComponent},
+      {path:':id/view' ,component:AddItemsComponent},
+      {path:':id/edit' ,component:AddItemsComponent}
 
     ]),
   ],

@@ -59,7 +59,7 @@ export class AuthService {
     const promise = createUserWithEmailAndPassword(this.firebaseAuth,email,password).then( async (UserCredential)=>{
       const token = await UserCredential.user.getIdToken();
       console.log("token:",token);
-       localStorage.setItem('token',token);
+       localStorage.setItem('token',JSON.stringify(token));
     })
     return from(promise)
   }

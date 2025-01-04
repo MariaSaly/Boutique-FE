@@ -12,8 +12,27 @@ import { ListItemsComponent } from '../pages/adminpage/list-items/list-items.com
      {path:'signup', component:SignUpComponent},
      {path:'MoksheDestination', component:DashboardComponent},
      {path:'home',component:HomepageComponent},
-     {path:'add',component:AddItemsComponent},
-     {path:'list',component:ListItemsComponent},
+    //  {
+    //     path:'admin',
+    //     loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule)
+    //  },
+     {
+        path:'item',
+        loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule)
+     },
+     {
+        path:'item/add',
+        loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule)
+     },
+     {
+        path:'item/:id/view',
+        loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule)
+     },
+     {
+        path:'item/:id/edit',
+        loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule)
+     },
+
 
  ];
 
