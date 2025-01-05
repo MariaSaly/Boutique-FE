@@ -5,9 +5,9 @@ import { PopupMessageComponent } from '../pages/popupmessage/popup-message/popup
 
 
 @NgModule({
-  declarations: [PopupMessageComponent],
+  declarations: [],
   exports:[
-    PopupMessageComponent
+    
   ],
   imports: [
     CommonModule
