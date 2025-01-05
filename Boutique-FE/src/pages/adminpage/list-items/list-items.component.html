@@ -27,7 +27,7 @@
       <button class="icon-btn edit-btn" title="Edit" (click)="onCardClick(item.id, 'edit'); $event.stopPropagation()">
         <i class="fas fa-edit"></i>
       </button>
-      <button class="icon-btn delete-btn" title="Delete" (click)="item.actions.delete()">
+      <button class="icon-btn delete-btn" title="Delete" (click)="confirmDelete(item)">
         <i class="fas fa-trash"></i>
       </button>
     </div>

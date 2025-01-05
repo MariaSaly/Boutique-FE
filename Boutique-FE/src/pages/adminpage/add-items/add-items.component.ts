@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import{ HTTP_INTERCEPTORS, HttpClient, HttpClientModule, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import { environment } from '../../../environment'; 
@@ -34,11 +34,15 @@ export class AddItemsComponent implements OnInit {
   itemId: any;
   showSubmitButton: boolean = false;
   items: unknown;
-  constructor(private router:Router ,private http:HttpService,private activatedRoute: ActivatedRoute){}
+  constructor(private router:Router ,private cdr: ChangeDetectorRef,private http:HttpService,private activatedRoute: ActivatedRoute){}
   ngOnInit(): void {
+    
     if(this.router.url.endsWith('view')){
+    
       this.viewMode = true;
+     
     }
+    
     this.itemId = this.activatedRoute.snapshot.paramMap.get('id');
     console.log("itemid:", this.itemId);
     this.activatedRoute.url.subscribe( urlSegments => {
@@ -63,18 +67,54 @@ export class AddItemsComponent implements OnInit {
   }
 
   onsubmit(form:any){
+    console.log("Iam in onsubmit method");
+    console.log("Form Validity:", form.valid);
+    console.log("Form Data ID:", this.formData.id);
     if(form.valid){
       this.submitButton.nativeElement.disabled = true; 
       if(this.isSubmitting)
         return
       this.isSubmitting = true;
       if(this.formData.id){
-
+      console.log("Iam here to updatemethod:");
+      this.updateItem();
       }
       else{
         this.createItem();
       }
     }
+  }
+  updateItem(){
+    const formData = new FormData();
+
+     // Append form values directly from the component properties
+     formData.append('name', this.name);
+     console.log("Name added to formData:", this.name);
+     formData.append('price', this.price.toString()); // Ensure it's a string
+     formData.append('description', this.description);
+     formData.append('isCustomizable', this.isCustomizable.toString()); // Ensure it's a string
+     formData.append('category', this.category);
+     formData.append('stock', this.stock.toString()); // Ensure it's a string
+
+     // Append image file
+     const imageFile = (document.getElementById('imageUpload') as HTMLInputElement).files?.[0];
+     console.log("Image file:", imageFile);
+     if (imageFile) {
+       formData.append('image', imageFile);
+     }
+     this.itemId = this.activatedRoute.snapshot.paramMap.get('id');
+      // Send data to server
+      console.log("Sending data to server:", formData);
+      this.http.patch<any>(`${this.url}/api/items/updateItem/${this.itemId}`, formData).subscribe({
+        next: (response) => {
+          console.log("Product created successfully:", response);
+          this.router.navigate(['/item']);
+        },
+        error: (error) => {
+          console.log("Error in creating product:", error);
+        },
+      });
+ 
   }
   createItem() {
     console.log("Iam in onsubmit method");
@@ -105,7 +145,7 @@ export class AddItemsComponent implements OnInit {
       this.http.post<any>(`${this.url}/api/items/createItem`, formData).subscribe({
         next: (response) => {
           console.log("Product created successfully:", response);
-          this.router.navigate(['/admin/list']);
+          this.router.navigate(['/item']);
         },
         error: (error) => {
           console.log("Error in creating product:", error);

@@ -64,6 +64,20 @@ constructor(private router:Router, private http:HttpService,private cdr: ChangeD
       );
     
   }
+  confirmDelete( item:any){
+    const confirmDelete = window.confirm("Are you sure you want to Delete!");
+    if(confirmDelete){
+      this.deleteItem(item.id);
+    }
+  }
+deleteItem(itemId:any){
+this.http.delete(`${this.url}/api/items/deleteItem/${itemId}`).subscribe( response => {
+  if(response){
+    alert(`${itemId} deleted sucessfully`);
+    this.getItem();
+  }
+})
+}
   onCardClick(id: string, action: 'view' | 'edit'): void {
     const route = action === 'view' ? `item/${id}/view` : `item/${id}/edit`;
     this.router.navigate([route]);

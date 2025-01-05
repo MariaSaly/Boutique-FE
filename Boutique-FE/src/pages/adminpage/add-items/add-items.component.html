@@ -67,10 +67,11 @@
         <img id="imagePreview" src="" alt="Image Preview" />
       </div>
     </div>
-
+    
     <!-- Submit Button -->
     <div class="form-group">
-      <button #submitBtn type="submit" class="submit-btn" (click)="onsubmit(productform)">Submit</button>
+     
+      <button #submitBtn type="submit" class="submit-btn" [disabled]="viewMode" (click)="onsubmit(productform)">Submit</button>
     </div>
   </form>
 </div>
