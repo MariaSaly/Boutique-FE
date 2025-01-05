@@ -4,11 +4,12 @@ import { AuthService } from '../../shared/authService';
 import { Validators, FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PopupMessageComponent } from '../popupmessage/popup-message/popup-message.component';
+import { SharedModule } from '../../app/shared.module';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, PopupMessageComponent],
+  imports: [ReactiveFormsModule, CommonModule,SharedModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })

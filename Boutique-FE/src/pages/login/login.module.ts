@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AuthService } from '../../shared/authService';
 import { CommonModule } from '@angular/common';
 import { SignUpModule } from '../sign-up/signup.module';
+import { SharedModule } from '../../app/shared.module';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { SignUpModule } from '../sign-up/signup.module';
   imports: [
     BrowserModule,
     CommonModule,
-    
+    SharedModule,
     AppRoutingModule,
     FormsModule,
     SignUpModule,
