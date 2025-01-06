@@ -6,6 +6,8 @@ import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { HomepageComponent } from '../pages/homepage/homepage.component';
 import { AddItemsComponent } from '../pages/adminpage/add-items/add-items.component';
 import { ListItemsComponent } from '../pages/adminpage/list-items/list-items.component';
+import { AddUserComponent } from '../pages/userpage/add-user/add-user.component';
+import { ListUserComponent } from '../pages/userpage/list-user/list-user.component';
  export const routes: Routes = [
      {path:'',redirectTo:'login',pathMatch:'full'},
      {path:'login', component:LoginComponent},
@@ -14,6 +16,8 @@ import { ListItemsComponent } from '../pages/adminpage/list-items/list-items.com
      {path:'home',component:HomepageComponent},
      {path:'add',component:AddItemsComponent},
      {path:'list',component:ListItemsComponent},
+     {path:'user',component:ListUserComponent},
+     {path:'adduser',component:AddUserComponent},
 
  ];
 

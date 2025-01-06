@@ -33,7 +33,7 @@ export class DashboardComponent {
       alert('Non-Customizable content clicked');
     }
   }
-  custom(){
+  cutomize(){
     this.route.navigate(['/home'])
   }
 }

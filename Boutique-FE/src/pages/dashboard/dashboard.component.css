@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-image: url("../images/bg1.png"); /* Main background image */
+  background-image: url("../images/bg3.png"); /* Main background image */
   background-size: cover; /* Cover the container */
   background-position: center;
   background-repeat: no-repeat;
@@ -20,7 +20,7 @@
   justify-content: space-between;
   border-radius: 8px;
   position: relative;
-  overflow: hidden; /* Ensure the blur doesn't exceed container bounds */
+  overflow: hidden; /* Ensure nothing spills out of the container */
 
   .sec1,
   .sec2 {
@@ -31,77 +31,43 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    position: relative; /* For layering */
+    position: relative;
 
-    /* Background images for each section */
-    &.sec1 {
-      background-image: url("../images/customize.png");
-      background-size: cover; /* Make the image cover the section */
-      background-position: center;
-      background-repeat: no-repeat;
+    /* White blur background */
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari support */
+    border-radius: 8px;
 
-      &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5); /* Add a semi-transparent black overlay */
-        z-index: 1; /* Below the content but above the image */
-      }
-    }
-
-    &.sec2 {
-      background-image: url("../images/bg3.png");
-      background-size: cover; /* Make the image cover the section */
-      background-position: center;
-      background-repeat: no-repeat;
-
-      &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.1); /* Add a semi-transparent white overlay */
-        z-index: 1; /* Below the content but above the image */
-      }
-    }
-
-    /* Ensure content is above the overlay */
+    /* Ensure content is properly styled */
     p,
-    h1,
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: black; /* Adjust color for better visibility over white blur */
+      text-align: center;
+      z-index: 1; /* Ensure text is on top */
+    }
+
     .btn {
-      position: relative;
-      z-index: 2;
-      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 20px;
+      margin: 20px 0;
+      background-color: transparent;
+      border: 2px solid black; /* Adjust button border for contrast */
+      color: black; /* Button text color */
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      z-index: 1; /* Above all other elements */
+      transition: background-color 0.3s ease, color 0.3s ease;
+
+      &:hover {
+        background-color: black;
+        color: white;
+      }
     }
-
-    p {
-      font-weight: 700;
-      font-size: medium;
-    }
-  }
-}
-
-.btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 20px;
-  margin: 20px 0;
-  background-color: transparent;
-  /* border: 1px solid white; */
-  font-weight: 600;
-  cursor: pointer;
-  z-index: 3; /* Above all other elements */
-  text-decoration: none;
-
-  &:hover {
-    background-color: white;
-    /* color: black; */
-    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
