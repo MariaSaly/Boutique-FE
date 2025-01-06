@@ -19,6 +19,7 @@ import { AuthService } from '../shared/authService';
 import { LoginModule } from '../pages/login/login.module';
 import { HTTP_INTERCEPTORS, HttpClientModule,provideHttpClient,withInterceptorsFromDi } from '@angular/common/http';
 import { AuthInterceptor } from '../service/httpInterceptorService';
+import { AdminAuthGuard } from './admin-auth.guard';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { AuthInterceptor } from '../service/httpInterceptorService';
    
   ],
   providers: [{
-  
+    
     provide:HTTP_INTERCEPTORS ,useClass:AuthInterceptor,multi:true
   }
  ],

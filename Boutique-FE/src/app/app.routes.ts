@@ -6,6 +6,7 @@ import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { HomepageComponent } from '../pages/homepage/homepage.component';
 import { AddItemsComponent } from '../pages/adminpage/add-items/add-items.component';
 import { ListItemsComponent } from '../pages/adminpage/list-items/list-items.component';
+import { AdminAuthGuard } from './admin-auth.guard';
  export const routes: Routes = [
      {path:'',redirectTo:'login',pathMatch:'full'},
      {path:'login', component:LoginComponent},
@@ -18,19 +19,24 @@ import { ListItemsComponent } from '../pages/adminpage/list-items/list-items.com
     //  },
      {
         path:'item',
-        loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule)
+        loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule),
+        canActivate: [AdminAuthGuard],
+
      },
      {
         path:'item/add',
-        loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule)
+        loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule),
+        canActivate: [AdminAuthGuard],
      },
      {
         path:'item/:id/view',
-        loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule)
+        loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule),
+        canActivate: [AdminAuthGuard],
      },
      {
         path:'item/:id/edit',
-        loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule)
+        loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule),
+        canActivate: [AdminAuthGuard],
      },
 
 

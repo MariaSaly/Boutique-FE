@@ -3,6 +3,7 @@ import { Auth ,createUserWithEmailAndPassword ,signInWithCredential,signInWithEm
 import { Router } from '@angular/router';
 //import { createUserWithEmailAndPassword } from 'firease/auth';
 import { from, Observable } from 'rxjs';
+import {jwtDecode} from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,16 @@ export class AuthService {
 
     // Get the ID token and automatically refresh it if expired
     const token = await user.getIdToken(true); // Passing 'true' forces a refresh
+    
     return token;
+  }
+
+  isLoggedIn():boolean{
+    return !!localStorage.getItem('token');
+  }
+  isAdmin():boolean{
+    const userRole = localStorage.getItem('userRole');
+    return this.isLoggedIn() && userRole === 'admin'
   }
 
   // login method
@@ -37,6 +47,8 @@ export class AuthService {
     const promise = signInWithEmailAndPassword(this.firebaseAuth,email,password).then( async(UserCredential) => {
     const token = await UserCredential.user.getIdToken(true);
     console.log("token:",token);
+    const decodedToken = jwtDecode<any>(token);
+    console.log("decodedToken:",decodedToken);
     localStorage.setItem('token',token);
 
 

@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { SignUpModule } from '../sign-up/signup.module';
 import { AddItemsComponent } from './add-items/add-items.component';
 import { ListItemsComponent } from './list-items/list-items.component';
+import { AdminAuthGuard } from '../../app/admin-auth.guard';
 
 
 
