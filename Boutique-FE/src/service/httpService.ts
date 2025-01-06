@@ -36,7 +36,10 @@ export class HttpService {
     console.log("url:",url);
     return this.http.post(url, body, { headers: this.getHeaders() });
   }
-
+  postRole<T>(url: string, body: any): Observable<any> {
+    console.log("url:",url);
+    return this.http.post(url, body, { headers: this.getHeaders() });
+  }
   patch<T>(url: string, body: any): Observable<any> {
     return this.http.patch(url, body, { headers: this.getHeaders() });
   }
