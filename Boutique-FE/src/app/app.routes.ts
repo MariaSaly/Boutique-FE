@@ -15,8 +15,8 @@ import { AdminAuthGuard } from './admin-auth.guard';
      {path:'signup', component:SignUpComponent},
      {path:'MoksheDestination', component:DashboardComponent},
      {path:'home',component:HomepageComponent},
-     {path:'user',component:ListUserComponent},
-     {path:'adduser',component:AddUserComponent},
+     {path:'user',component:ListUserComponent, canActivate: [AdminAuthGuard]},
+     {path:'adduser',component:AddUserComponent, canActivate: [AdminAuthGuard]},
     //  {
     //     path:'admin',
     //     loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule)
