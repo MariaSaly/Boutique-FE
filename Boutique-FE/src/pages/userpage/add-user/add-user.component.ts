@@ -46,6 +46,7 @@ export class AddUserComponent {
     const password = this.addUser.get('password')?.value;
     const role = this.addUser.get('role')?.value;
       const promise = createUserWithEmailAndPassword(this.firebaseAuth,email,password).then( async (UserCredential)=>{
+        
         const uuid = UserCredential.user.uid;
         this.http.post<any>(`${this.url}/api/add-role`,{uid:uuid,role:role}).subscribe( response => {
           console.log(" added role and created user sucessfully")
