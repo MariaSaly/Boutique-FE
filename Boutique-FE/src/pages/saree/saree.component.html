@@ -56,15 +56,13 @@
   
         <!-- Quantity Selection -->
         <div class="quantity">
-          <label for="quantity">Quantity:</label>
-          <input
-            type="number"
-            id="quantity"
-            min="1"
-            [(ngModel)]="quantity"
-            value="1"
-          />
-        </div>
+            <label for="quantity">Quantity:</label>
+            <div class="quantity-controls">
+              <button class="decrease" (click)="decreaseQuantity()">-</button>
+              <span class="quantity-display">{{ quantity }}</span>
+              <button class="increase" (click)="increaseQuantity()">+</button>
+            </div>
+          </div>
   
         <!-- Action Buttons -->
         <div class="action-buttons">

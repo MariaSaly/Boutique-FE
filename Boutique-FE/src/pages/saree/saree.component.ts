@@ -50,7 +50,16 @@ export class SareeComponent {
   selectSize(size: string): void {
     this.selectedSize = size;
   }
-
+  increaseQuantity(): void {
+    this.quantity++;
+  }
+  
+  decreaseQuantity(): void {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
+  }
+  
   // Add to cart action
   addToCart(): void {
     alert(

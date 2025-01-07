@@ -147,4 +147,43 @@
       }
     }
   }
+  .quantity {
+    margin: 20px 0;
   
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: block;
+    }
+  
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+  
+      button {
+        width: 30px;
+        height: 30px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        background-color: #fff;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #f60;
+          color: #fff;
+        }
+      }
+  
+      .quantity-display {
+        font-size: 1.2rem;
+        font-weight: bold;
+        min-width: 40px;
+        text-align: center;
+      }
+    }
+  }
+   
