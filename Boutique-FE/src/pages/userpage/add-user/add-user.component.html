@@ -1,23 +1,23 @@
 
 <div class="form-container">
     <h2>User Form</h2>
-    <form>
+    <form [formGroup]="addUser" (ngSubmit)="onsubmit()">
       <!-- Name Field -->
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder=" " required />
+        <input type="email" id="email" name="email" formControlName="email" placeholder=" " required />
       </div>
   
       <!-- Price Field -->
       <div class="form-group">
         <label for="Password">Password</label>
-        <input type="Password" id="Password" name="Password" placeholder="" required />
+        <input type="Password" id="Password" name="Password"  formControlName="password" placeholder="" required />
       </div>
   
       <!-- Description Field -->
       <div class="form-group">
         <label for="role">Role</label>
-        <input id="role" name="role" placeholder=""  required/>
+        <input id="role" name="role" placeholder="" formControlName="role"  required/>
       </div>
   
     

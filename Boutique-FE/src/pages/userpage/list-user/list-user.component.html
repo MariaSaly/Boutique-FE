@@ -1,34 +1,36 @@
-
 <div class="main-container">
-    <!-- Heading Section -->
-    <div class="heading">
-      <h1>User Management</h1>
-      <div class="btn">
-        <button class="add-btn" (click)="addUser()">Add User</button>
-      </div>
-    </div>
-  
-    <!-- Table Section -->
-    <div class="table-container">
-      <table class="user-table">
-        <thead>
-          <tr>
-            
-            <th>Email</th>
-            <th>Password</th>
-            <th>Role</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody id="user-table-body">
-          <!-- Dynamic rows will be inserted here -->
-        </tbody>
-      </table>
+  <!-- Heading Section -->
+  <div class="heading">
+    <h1>User Management</h1>
+    <div class="btn">
+      <button class="add-btn" (click)="addUser()">Add User</button>
     </div>
   </div>
-  
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    rel="stylesheet"
-  />
-  
+
+  <!-- Table Section -->
+  <div class="table-container">
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>UID</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Loop through the users array -->
+        <tr *ngFor="let user of users">
+          <td>{{ user.email }}</td>
+          <td>{{ user.uid }}</td>
+          <td>{{ user.role ?? '-'}}</td>
+          <td>
+            <!-- Add action buttons -->
+            <button class="edit-btn"><i class="fas fa-edit"></i></button>
+            <button class="delete-btn"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
