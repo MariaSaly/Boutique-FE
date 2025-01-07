@@ -44,6 +44,7 @@ export class SareeComponent {
     this.selectedSize = null; // Reset size selection
     this.customText = ''; // Reset customization text
     this.quantity = 1; // Reset quantity
+    
   }
 
   // Select size

@@ -33,10 +33,18 @@ export class LoginComponent {
       const password = this.loginform.get('password')?.value;
 
       this.authService.login(email, password).subscribe({
-        next: () => {
+        next: (response) => {
+          console.log("response:",response);
           console.log('Login Successful');
           this.showPopupMessage('Success', 'Logged in Successfully!');
-          this.router.navigate(['/MoksheDestination']);
+          if(response.role === "admin"){
+            this.router.navigate(['/item']);
+          }
+          else{
+            this.router.navigate(['/MoksheDestination']);
+          }
+          
+        
         },
         error: (error) => {
           console.log('Login Error:', error);

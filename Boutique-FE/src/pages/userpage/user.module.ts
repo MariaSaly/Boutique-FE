@@ -28,7 +28,7 @@ import { ListUserComponent } from './list-user/list-user.component';
     SignUpModule,
     ReactiveFormsModule,
     RouterModule.forChild([
-      { path: '', component: ListUserComponent },
+      { path: '', component: ListUserComponent},
       {path:'adduser',component:AddUserComponent}
 
     ]),
