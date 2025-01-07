@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CartService } from '../../app/cart.service';
 
 @Component({
   selector: 'app-saree',
@@ -10,24 +11,31 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './saree.component.css'
 })
 export class SareeComponent {
+  constructor( private cartService:CartService){
+
+  }
   products = [
-    {
+    { id:1,
       imageUrl: 'path/to/image1.jpg',
       title: 'Saree',
       description: 'A beautiful saree for special occasions.',
       price: 99.99,
+      stock:3
     },
     {
+      id:2,
       imageUrl: 'path/to/image2.jpg',
       title: 'Kurthi Top',
       description: 'Comfortable and stylish Kurthi Top.',
       price: 49.99,
+      stock:5
     },
-    {
+    { id:3,
       imageUrl: 'path/to/image3.jpg',
       title: 'Lehenga',
       description: 'Elegant Lehenga for weddings.',
       price: 149.99,
+      stock:8
     },
   ];
 
@@ -52,6 +60,9 @@ export class SareeComponent {
     this.selectedSize = size;
   }
   increaseQuantity(): void {
+    if(this.quantity === this.selectedProduct.stock){
+      return
+    }
     this.quantity++;
   }
   
@@ -63,11 +74,12 @@ export class SareeComponent {
   
   // Add to cart action
   addToCart(): void {
-    alert(
-      `Added to cart: ${this.selectedProduct.title}\nSize: ${this.selectedSize || 'None'}\nQuantity: ${
-        this.quantity
-      }\nCustomization: ${this.customText}`
-    );
+    console.log("Im in add to cart function");
+    const newCartItem = {
+      product: this.selectedProduct,
+      qty:this.quantity
+    }
+    this.cartService.addItem(newCartItem);
   }
 
   // Buy now action

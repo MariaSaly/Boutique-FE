@@ -1,0 +1,45 @@
+
+
+<div class="cart-container" >
+    <h1>Total Cart Items:{{this.cartCount}}</h1>
+  
+    <!-- Cart Items Section -->
+    <div class="cart-items" *ngFor=" let item of cartItems">
+      <div class="cart-item">
+        <img src="item-image.jpg" alt="Item Image" class="item-image" />
+        <div class="item-details">
+          <h3 class="item-title">{{item.product.title}}</h3>
+          <p class="item-description">{{item.product.description}}</p>
+          <div class="quantity-controls">
+            <button class="quantity-btn decrement" (click)="decreaseQty(item.product.id)">-</button>
+            <span class="quantity-value">{{item.qty}}</span>
+            <button class="quantity-btn increment" (click)="increaseQty(item.product.id)">+</button>
+          </div>
+          <p class="item-rate">{{item.product.price}}</p>
+          <button class="delete-btn" (click)="deleteItem(item.product.id)">Delete</button>
+        </div>
+      </div>
+      <!-- Repeat for more items -->
+    </div>
+    <!-- <ng-template #emptyCart>
+      <div class="emptyCart">
+      <p>Your Cart is Empty.</p>
+      </div>
+
+    </ng-template> -->
+  
+    <!-- Order Summary Section -->
+    <div class="order-summary">
+      <h2>Order Summary</h2>
+      <div class="summary-row">
+        <span>Total Quantity:</span>
+        <span class="summary-qty">{{totalQuantity}}</span>
+      </div>
+      <div class="summary-row">
+        <span>Total Price:</span>
+        <span class="summary-price">₹{{this.totalPrice}}</span>
+      </div>
+      <button class="checkout-btn">Proceed to Checkout</button>
+    </div>
+  </div>
+  

@@ -1,7 +1,8 @@
 <div class="header">
     <div class="brand">Miya Designers</div>
     <div class="icons">
-      <button class="cart">🛒 Add to Cart</button>
+      <button class="cart" (click)="goToCart()">🛒 Add to Cart</button>
+      <span>{{cartCount}}</span>
       <button class="profile">👤 Profile</button>
     </div>
   </div>

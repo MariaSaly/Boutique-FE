@@ -11,6 +11,7 @@ import { AddUserComponent } from '../pages/userpage/add-user/add-user.component'
 import { ListUserComponent } from '../pages/userpage/list-user/list-user.component';
 import { AdminAuthGuard } from './admin-auth.guard';
 import { SareeComponent } from '../pages/saree/saree.component';
+import { CartComponent } from '../pages/cart/cart.component';
 
 export const routes: Routes = [
   // Default route redirects to login
@@ -20,6 +21,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'MoksheDestination', component: DashboardComponent },
+  { path:'cart',component:CartComponent},
   // Protected routes under Layout
   {
     path: '',
