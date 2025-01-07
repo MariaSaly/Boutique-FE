@@ -1,0 +1,77 @@
+<div class="main-container">
+    <div
+      class="card"
+      *ngFor="let product of products; let i = index"
+      (click)="selectCard(i)"
+    >
+      <div class="card-image">
+        <img [src]="product.imageUrl" alt="Product Image" />
+      </div>
+      <div class="card-description">
+        <h3 class="title">{{ product.title }}</h3>
+        <p class="description">{{ product.description }}</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">{{ product.price | currency }}</span>
+      </div>
+    </div>
+  
+    <!-- Sliding Expanded View -->
+    <div
+      class="expanded-card"
+      [class.show]="selectedProduct"
+      *ngIf="selectedProduct"
+    >
+      <div class="expanded-image">
+        <img [src]="selectedProduct.imageUrl" alt="Selected Product Image" />
+      </div>
+      <div class="expanded-details">
+        <h2>{{ selectedProduct.title }}</h2>
+        <p>{{ selectedProduct.description }}</p>
+        <p class="price">Price: {{ selectedProduct.price | currency }}</p>
+  
+        <!-- Size Selection -->
+        <div class="size-selection">
+          <label for="size">Select Size:</label>
+          <div class="sizes">
+            <button
+              *ngFor="let size of sizes"
+              [class.selected]="size === selectedSize"
+              (click)="selectSize(size)"
+            >
+              {{ size }}
+            </button>
+          </div>
+        </div>
+  
+        <!-- Customization -->
+        <div class="customization">
+          <label for="customText">Customization:</label>
+          <textarea
+            id="customText"
+            [(ngModel)]="customText"
+            placeholder="Enter customization details..."
+          ></textarea>
+        </div>
+  
+        <!-- Quantity Selection -->
+        <div class="quantity">
+          <label for="quantity">Quantity:</label>
+          <input
+            type="number"
+            id="quantity"
+            min="1"
+            [(ngModel)]="quantity"
+            value="1"
+          />
+        </div>
+  
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <button (click)="addToCart()">Add to Cart</button>
+          <button (click)="buyNow()">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

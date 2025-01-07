@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-homepage',
@@ -10,5 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrl: './homepage.component.css'
 })
 export class HomepageComponent {
-
+  constructor(private router:Router){}
+saree(){
+  this.router.navigate(['saree'])
+}
 }
