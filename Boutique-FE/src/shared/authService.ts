@@ -46,7 +46,7 @@ export class AuthService {
   }
 
   // login method
-   login(email: string, password: string):Observable<void> {
+   login(email: string, password: string):Observable<{ role :string}> {
     // try {
     //   await this.firebaseAuth.si(email, password);
     //   localStorage.setItem('token', 'true');
@@ -62,6 +62,7 @@ export class AuthService {
     
     console.log("decodedToken:",decodedToken);
     localStorage.setItem('token',token);
+    return { role: decodedToken.role }; // Ensure the response includes 'role'
 
 
     });
