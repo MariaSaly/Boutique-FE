@@ -9,6 +9,7 @@ import { AddItemsComponent } from '../pages/adminpage/add-items/add-items.compon
 import { ListItemsComponent } from '../pages/adminpage/list-items/list-items.component';
 import { AddUserComponent } from '../pages/userpage/add-user/add-user.component';
 import { ListUserComponent } from '../pages/userpage/list-user/list-user.component';
+import { AdminAuthGuard } from './admin-auth.guard';
 
 export const routes: Routes = [
   // Default route redirects to login
@@ -31,7 +32,27 @@ export const routes: Routes = [
       { path: 'adduser', component: AddUserComponent },
     ],
   },
+  {
+    path:'item',
+    loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule),
+    canActivate: [AdminAuthGuard],
 
+ },
+ {
+    path:'item/add',
+    loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule),
+    canActivate: [AdminAuthGuard],
+ },
+ {
+    path:'item/:id/view',
+    loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule),
+    canActivate: [AdminAuthGuard],
+ },
+ {
+    path:'item/:id/edit',
+    loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule),
+    canActivate: [AdminAuthGuard],
+ },
   // Wildcard route for 404
   { path: '**', redirectTo: 'login' },
 ];

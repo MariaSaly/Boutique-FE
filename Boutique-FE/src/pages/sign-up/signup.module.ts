@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 @NgModule({
     declarations: [
   
-        SignUpComponent,
+        
      
     ],
     imports: [
@@ -21,7 +21,7 @@ import { RouterModule } from '@angular/router';
       ]),
     ],
     providers: [],
-    bootstrap: [SignUpComponent]
+    bootstrap: []
  
   })
   export class SignUpModule { }

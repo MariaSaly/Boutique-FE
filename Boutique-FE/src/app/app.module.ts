@@ -17,7 +17,7 @@ import { getFirestore,provideFirestore} from "@angular/fire/firestore"
 // Firebase Authentication and Firestore Services
 import { AuthService } from '../shared/authService';
 import { LoginModule } from '../pages/login/login.module';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule,provideHttpClient,withInterceptorsFromDi } from '@angular/common/http';
 import { AuthInterceptor } from '../service/httpInterceptorService';
 import { LayoutModule } from '../layout/layout.module';
 import { LayoutzzComponent } from '../layout/layoutzz/layoutzz.component';
@@ -33,6 +33,7 @@ import { LayoutzzComponent } from '../layout/layoutzz/layoutzz.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     LayoutModule,
     AppRoutingModule,
     
@@ -40,8 +41,10 @@ import { LayoutzzComponent } from '../layout/layoutzz/layoutzz.component';
    
   ],
   providers: [{
+    
     provide:HTTP_INTERCEPTORS ,useClass:AuthInterceptor,multi:true
-  } ],
+  }
+ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

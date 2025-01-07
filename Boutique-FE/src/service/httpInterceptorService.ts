@@ -24,7 +24,7 @@ export class AuthInterceptor implements HttpInterceptor{
                 if(error.status === 410  ||  error.status === 403){
                     this.authService.makeApiCall().then((newToken: any) => {
                         const clonedRetry = req.clone({
-                            headers:req.headers.set('Authorizationn',`Bearer ${newToken}`)
+                            headers:req.headers.set('Authorization',`Bearer ${newToken}`)
                         });
                         return next.handle(clonedRetry);
                     })
