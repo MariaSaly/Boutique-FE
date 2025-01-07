@@ -29,9 +29,20 @@ export class AuthService {
   isLoggedIn():boolean{
     return !!localStorage.getItem('token');
   }
-  isAdmin():boolean{
-    const userRole = localStorage.getItem('userRole');
-    return this.isLoggedIn() && userRole === 'admin'
+  isAdmin(): boolean {
+    const token = localStorage.getItem('token');
+  
+    // Check if the token is not null
+    if (!token) {
+      return false; // or handle the case where there is no token
+    }
+  
+    // Parse the token and decode
+    const decodedToken = jwtDecode<any>(token);
+  
+    // Assuming userRole is extracted from decodedToken
+    const userRole = decodedToken?.role; // Adjust this depending on your token structure
+    return this.isLoggedIn() && userRole === 'admin';
   }
 
   // login method
@@ -48,6 +59,7 @@ export class AuthService {
     const token = await UserCredential.user.getIdToken(true);
     console.log("token:",token);
     const decodedToken = jwtDecode<any>(token);
+    
     console.log("decodedToken:",decodedToken);
     localStorage.setItem('token',token);
 
