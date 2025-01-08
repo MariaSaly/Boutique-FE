@@ -12,7 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 export class SareeComponent {
   products = [
     {
-      imageUrl: 'path/to/image1.jpg',
+      imageUrl: '',
       title: 'Saree',
       description: 'A beautiful saree for special occasions.',
       price: 99.99,

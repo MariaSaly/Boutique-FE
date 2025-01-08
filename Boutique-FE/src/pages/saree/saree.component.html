@@ -1,22 +1,23 @@
 <div class="main-container">
     <div
-      class="card"
-      *ngFor="let product of products; let i = index"
-      (click)="selectCard(i)"
-    >
-      <div class="card-image">
-        <img [src]="product.imageUrl" alt="Product Image" />
-      </div>
-      <div class="card-description">
-        <h3 class="title">{{ product.title }}</h3>
-        <p class="description">{{ product.description }}</p>
-      </div>
-      <div class="card-footer">
-        <span class="price">{{ product.price | currency }}</span>
-      </div>
+    class="card"
+    *ngFor="let product of products; let i = index"
+    (click)="selectCard(i)"
+  >
+    <!-- Card Image -->
+    <div class="card-image">
+      <img [src]="product.imageUrl" alt="Product Image" />
     </div>
+
+    <!-- Card Details -->
+    <div class="card-details">
+      <h3 class="title">{{ product.title }}</h3>
+      <p class="description">{{ product.description }}</p>
+      <span class="price">{{ product.price | currency }}</span>
+    </div>
+  </div>
   
-    <!-- Sliding Expanded View -->
+    <!-- Expanded View -->
     <div
       class="expanded-card"
       [class.show]="selectedProduct"
@@ -29,7 +30,6 @@
         <h2>{{ selectedProduct.title }}</h2>
         <p>{{ selectedProduct.description }}</p>
         <p class="price">Price: {{ selectedProduct.price | currency }}</p>
-  
         <!-- Size Selection -->
         <div class="size-selection">
           <label for="size">Select Size:</label>
@@ -43,7 +43,6 @@
             </button>
           </div>
         </div>
-  
         <!-- Customization -->
         <div class="customization">
           <label for="customText">Customization:</label>
@@ -53,18 +52,16 @@
             placeholder="Enter customization details..."
           ></textarea>
         </div>
-  
-        <!-- Quantity Selection -->
+        <!-- Quantity -->
         <div class="quantity">
-            <label for="quantity">Quantity:</label>
-            <div class="quantity-controls">
-              <button class="decrease" (click)="decreaseQuantity()">-</button>
-              <span class="quantity-display">{{ quantity }}</span>
-              <button class="increase" (click)="increaseQuantity()">+</button>
-            </div>
+          <label for="quantity">Quantity:</label>
+          <div class="quantity-controls">
+            <button class="decrease" (click)="decreaseQuantity()">-</button>
+            <span class="quantity-display">{{ quantity }}</span>
+            <button class="increase" (click)="increaseQuantity()">+</button>
           </div>
-  
-        <!-- Action Buttons -->
+        </div>
+        <!-- Buttons -->
         <div class="action-buttons">
           <button (click)="addToCart()">Add to Cart</button>
           <button (click)="buyNow()">Buy Now</button>
