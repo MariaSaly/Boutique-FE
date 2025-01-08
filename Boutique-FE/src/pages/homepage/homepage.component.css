@@ -30,19 +30,19 @@
 }
 
 .saree {
-    background-image: url('../images/saree.png');
+    background-image: url('../../assets/images/saree.png');
 }
 
 .kurthi {
-    background-image: url('../images/kurtha.png');
+    background-image: url('../../assets/images/kurtha.png');
 }
 
 .lehenga {
-    background-image: url('../images/lehanga.png');
+    background-image: url('../../assets/images/lehanga.png');
 }
 
 .kurtha-sets {
-    background-image: url('../images/kurtha.png');
+    background-image: url('../../assets/images/kurtha.png');
 }
 
 .category-name {
@@ -57,10 +57,75 @@
 
 .main-image {
     width: 100%;
-    height: 300px;
-    background-image: url('../images/bg3.png');
+    height: 500px;
+    background-image: url('../../assets/images/bg3.png');
     background-size: cover;
     background-position: center;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+.newarrivals {
+    text-align: center;
+    padding: 20px;
+}
+
+.arrivalcard {
+    background-image: url('../../assets/images/bg3.png');
+    width: 240px;
+    height: 280px;
+    overflow: hidden; /* Prevent the image from overflowing */
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+.card-image img {
+    width: 100%; /* Ensure the image fills the width */
+    height: 100%; /* Ensure the image fills the height */
+    object-fit: contain; /* Makes sure the image covers the entire area without distortion */
+    transition: transform 0.1s ease-in-out; 
+}
+
+.arrivalcard:hover {
+    transform: scale(1.1); /* Slightly zoom in the image */
+    cursor: pointer; /* Change cursor to pointer to indicate interactivity */
+  }
+
+.card-details {
+    padding: 10px;
+    text-align: start;
+    font-size: 14px;
+    color: #333;
+}
+
+.card-details h2 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.card-details p {
+    font-size: 14px;
+    color: #777;
+}
+
+.card-details .price {
+    font-size: 14px;
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+button {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #666;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px 15px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: black;
+      color:white;
+    }
+  }
