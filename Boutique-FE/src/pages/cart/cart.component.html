@@ -1,45 +1,83 @@
+<div class="cart-container">
+  <h1 class="cart-title">Shopping Cart</h1>
 
+  <div class="cart-content">
+    <!-- Product Section -->
+    <div class="cart-products" *ngIf="cartItems.length > 0; else emptyCart">
+      <!-- Titles -->
+      <div class="cart-titles">
+        <div class="title-item">Product</div>
+        <div class="title-item">Name & Description</div>
+        <div class="title-item">Quantity</div>
+        <div class="title-item">Price</div>
+      </div>
+      <hr class="section-divider">
 
-<div class="cart-container" >
-    <h1>Total Cart Items:{{this.cartCount}}</h1>
-  
-    <!-- Cart Items Section -->
-    <div class="cart-items" *ngFor=" let item of cartItems">
-      <div class="cart-item">
-        <img src="item-image.jpg" alt="Item Image" class="item-image" />
-        <div class="item-details">
-          <h3 class="item-title">{{item.product.title}}</h3>
-          <p class="item-description">{{item.product.description}}</p>
-          <div class="quantity-controls">
-            <button class="quantity-btn decrement" (click)="decreaseQty(item.product.id)">-</button>
-            <span class="quantity-value">{{item.qty}}</span>
-            <button class="quantity-btn increment" (click)="increaseQty(item.product.id)">+</button>
+      <!-- Cart Items -->
+      <div class="cart-items">
+        <div class="cart-item" *ngFor="let item of cartItems">
+          <!-- Product Image -->
+          <div class="cart-item-product">
+            <img src="src/pages/images/lehanga.png" alt="{{ item.product.title }}" class="item-image">
           </div>
-          <p class="item-rate">{{item.product.price}}</p>
-          <button class="delete-btn" (click)="deleteItem(item.product.id)">Delete</button>
-        </div>
-      </div>
-      <!-- Repeat for more items -->
-    </div>
-    <!-- <ng-template #emptyCart>
-      <div class="emptyCart">
-      <p>Your Cart is Empty.</p>
-      </div>
 
-    </ng-template> -->
-  
-    <!-- Order Summary Section -->
-    <div class="order-summary">
+          <!-- Product Name and Description -->
+          <div class="cart-item-details">
+            <h3 class="item-title">{{ item.product.title }}</h3>
+            <p class="item-description">{{ item.product.description }}</p>
+          </div>
+
+          <!-- Quantity Controls -->
+          <div class="cart-item-quantity">
+            <div class="quantity-controls">
+              <button class="quantity-btn decrement" (click)="decreaseQty(item.product.id)">-</button>
+              <span class="quantity-value">{{ item.qty }}</span>
+              <button class="quantity-btn increment" (click)="increaseQty(item.product.id)">+</button>
+            </div>
+            <hr class="remove-line">
+            <a href="javascript:void(0)" class="remove-link" (click)="deleteItem(item.product.id)">Remove</a>
+          </div>
+
+          <!-- Price -->
+          <div class="cart-item-price">
+            <p class="price">₹<strong>{{ item.product.price }}</strong></p>
+          </div>
+        </div>
+        <hr class="section-divider">
+      </div>
+    </div>
+
+    <!-- Empty Cart -->
+    <ng-template #emptyCart>
+      <div class="empty-cart">
+        <p>Your cart is empty. Start shopping!</p>
+      </div>
+    </ng-template>
+
+    <!-- Order Summary -->
+    <div class="order-summary" *ngIf="cartItems.length > 0">
       <h2>Order Summary</h2>
       <div class="summary-row">
-        <span>Total Quantity:</span>
-        <span class="summary-qty">{{totalQuantity}}</span>
+        <span>Total Items:</span>
+        <span class="summary-value">{{ totalQuantity }}</span>
       </div>
       <div class="summary-row">
         <span>Total Price:</span>
-        <span class="summary-price">₹{{this.totalPrice}}</span>
+        <span class="summary-value">₹{{ totalPrice }}</span>
+      </div>
+      <div class="summary-row">
+        <span>Estimated Shipping:</span>
+        <span class="summary-value">Calulated at checkout</span>
+      </div>
+      <div class="summary-row">
+        <span>Estimated Taxes:</span>
+        <span class="summary-value">Calulated at checkout</span>
+      </div>
+      <div class="summary-row">
+        <span>Notes:</span>
+        <textarea class="notes-input" placeholder="Add any special instructions"></textarea>
       </div>
       <button class="checkout-btn">Proceed to Checkout</button>
     </div>
   </div>
-  
+</div>

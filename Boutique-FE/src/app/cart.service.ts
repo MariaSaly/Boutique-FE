@@ -10,6 +10,7 @@ export class CartService {
   itemSource = new BehaviorSubject([]);
   currentItems = this.itemSource.asObservable();
   cartItems:any = [];
+  
 
 
   addItem(newCartItem:any){
@@ -34,4 +35,6 @@ export class CartService {
     this.cartItems = items;
     this.itemSource.next(this.cartItems);
   }
+  // Toggle cart visibility
+  
 }

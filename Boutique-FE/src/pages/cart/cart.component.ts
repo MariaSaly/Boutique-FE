@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../app/cart.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -14,11 +15,15 @@ export class CartComponent implements OnInit{
   totalQuantity:number =0;
   totalPrice:number = 0;
   cartItems:any[] =[];
+  isMobileView: boolean = false; 
 
 constructor( private cartService:CartService){
   
 }
 ngOnInit(): void {
+ 
+ 
+
   this.cartService.currentItems.subscribe( (data:any) => {
     console.log("data:", data);
     this.cartItems = data;
@@ -56,8 +61,10 @@ decreaseQty(id:string){
 }
 increaseQty(id:string){
   const previousCartItem= this.cartItems.find((item:any)=> item.product.id == id);
+  console.log("previouscaritem:",previousCartItem.product.stock);
   let qty = previousCartItem.qty;
-  if(qty === previousCartItem.stock){
+  console.log("qty:",qty);
+  if(qty === previousCartItem.product.stock){
     return
   }
   qty = qty + 1;
@@ -82,4 +89,5 @@ calculateCartItems(){
    return acc + (current.product.price * current.qty)
    },0)
 }
+
 }
