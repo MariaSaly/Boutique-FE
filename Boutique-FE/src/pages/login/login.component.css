@@ -1,31 +1,116 @@
-/* General Container Styling */
-.login-container {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
+/* General Styling */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f0f4f8;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0 15px;
 }
 
-/* Logo Styling */
+/* Login Container */
+.login-container {
+  max-width: 420px;
+  width: 100%;
+  padding: 35px;
+  background: linear-gradient(145deg, #ffffff, #f0f4f8);
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  margin: 0 auto;
+}
+
+/* Centering the container in Web View */
+@media (min-width: 601px) {
+  .login-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Mobile View Adjustments */
+@media (max-width: 600px) {
+  .login-container {
+    margin: 90px auto 20px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-container {
+    gap: 20px;
+  }
+}
+
+/* Logo Section with Animation */
 .logo-container {
-  margin-bottom: 20px;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 25px;
+  background-color: transparent;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Adding Glow and Rotation Effect on Hover */
+.logo-container:hover {
+  animation: rotateGlow 2s ease-in-out infinite;
 }
 
 .logo {
-  max-width: 120px;
-  height: auto;
-  background-image: url('../../assets/images/mo1.png');
+  width: 100px;
+  height: 100px;
+  background-image: url('../../assets/images/mo1.png'); /* Replace with your logo image */
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  border: 5px solid #fff;
 }
 
-/* Form Styling */
+/* Floating Animation */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Glowing and Rotating Effect */
+@keyframes rotateGlow {
+  0% {
+    transform: rotate(0deg);
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+  }
+  50% {
+    transform: rotate(180deg);
+    box-shadow: 0 0 20px rgba(0, 123, 255, 1);
+  }
+  100% {
+    transform: rotate(360deg);
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+  }
+}
+
+/* Form Container */
 .form-container {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Adds space between form elements */
+  gap: 25px;
 }
 
 .form-group {
@@ -33,46 +118,45 @@
 }
 
 label {
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
   display: block;
 }
 
 input.form-control {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   box-sizing: border-box;
+  transition: all 0.3s ease;
 }
 
 input.form-control:focus {
   border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
   outline: none;
 }
 
-/* Error Messages */
-.error {
-  color: red;
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-/* Buttons */
+/* Button Styling */
 .login-button {
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
   color: white;
   background-color: #007bff;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   width: 100%;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
 }
 
-.login-button:disabled {
-  background-color: #ccc;
+.login-button:hover {
+  background-color: #0056b3;
 }
 
 .signup-button {
@@ -88,25 +172,24 @@ input.form-control:focus {
   color: #0056b3;
 }
 
-/* Spacing for the "Don't have an account" section */
+/* Spacing for "Don't have an account?" */
 #navigate {
   margin-top: 20px;
   font-size: 14px;
   color: #555;
 }
 
-/* Responsive Design */
+/* Responsive Design for Mobile */
 @media (max-width: 600px) {
   .login-container {
-    padding: 15px;
+    padding: 25px;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
   }
 
   .form-container {
-    gap: 15px;
-  }
-
-  .login-button {
-    padding: 8px;
-    font-size: 14px;
+    gap: 20px;
   }
 }

@@ -1,27 +1,48 @@
-
 <div class="signup-container">
-    <h2>Sign Up</h2>
-    <form [formGroup]="signup" (ngSubmit)="onSignUp()">
-     <div>
-        <label for="email">Email</label>
-        <input type="email" id="email"  name="email"  formControlName="email" required>
-        <!-- Display Validation Errors for Email -->
-      <div *ngIf="signup.get('email')?.invalid && signup.get('email')?.touched">
+  <!-- Logo Section -->
+  <div class="logo-container">
+    <img src="./media/mo1.png" class="logo" />
+  </div>
+
+  <h2>Sign Up</h2>
+
+  <form [formGroup]="signup" (ngSubmit)="onSignUp()" class="form-container">
+    <!-- Email Field -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input 
+        type="email" 
+        class="form-control" 
+        formControlName="email" 
+        name="email" 
+        required />
+      
+      <!-- Display Validation Errors for Email -->
+      <div *ngIf="signup.get('email')?.invalid && signup.get('email')?.touched" class="error">
         <p *ngIf="signup.get('email')?.hasError('required')">Email is required</p>
         <p *ngIf="signup.get('email')?.hasError('email')">Enter a valid email</p>
       </div>
-        
+    </div>
+
+    <!-- Password Field -->
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input 
+        type="password" 
+        class="form-control" 
+        formControlName="password"
+        name="password" 
+        required />
+      
+      <!-- Display Validation Errors for Password -->
+      <div *ngIf="signup.get('password')?.invalid && signup.get('password')?.touched" class="error">
+        <p *ngIf="signup.get('password')?.hasError('required')">Password is required</p>
+        <p *ngIf="signup.get('password')?.hasError('minlength')">Password must be at least 6 characters long</p>
       </div>
-      <div>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password"  formControlName="password" required>
-        <div *ngIf="signup.get('password')?.invalid && signup.get('password')?.touched">
-          <p *ngIf="signup.get('password')?.hasError('required')">Password is required</p>
-          <p *ngIf="signup.get('password')?.hasError('minlength')">Password must be at least 6 characters long</p>
-        </div>
-      </div>
-      <button type="submit" >Sign Up</button>
-    </form>
-    <p id="navigate">Don't have an account? <button (click)="goTologin()">Login </button></p>
-    
-  
+    </div>
+
+    <button type="submit" [disabled]="signup.invalid" class="signup-button">Sign Up</button>
+  </form>
+
+  <p id="navigate">Already have an account? <button class="login-button" (click)="goTologin()">Login</button></p>
+</div>
