@@ -12,6 +12,7 @@ import { ListUserComponent } from '../pages/userpage/list-user/list-user.compone
 import { AdminAuthGuard } from './admin-auth.guard';
 import { SareeComponent } from '../pages/saree/saree.component';
 import { CartComponent } from '../pages/cart/cart.component';
+import { AdmindashboardComponent } from '../pages/admindashboard/admindashboard.component';
 
 export const routes: Routes = [
   // Default route redirects to login
@@ -33,6 +34,7 @@ export const routes: Routes = [
       { path: 'list', component: ListItemsComponent },
       { path: 'user', component: ListUserComponent },
       { path: 'adduser', component: AddUserComponent },
+      {path:'admindashboard',component:AdmindashboardComponent}
     ],
   },
   {

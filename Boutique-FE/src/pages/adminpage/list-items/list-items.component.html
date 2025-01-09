@@ -1,7 +1,7 @@
 <div class="main-container">
   <!-- Heading Section -->
   <div class="heading">
-    <h1>Page Title</h1>
+    <h1 class="page-title">Item Maintenace</h1>
     <div class="btn">
       <button class="add-btn" (click)="add()">Add</button>
     </div>
@@ -21,7 +21,7 @@
 
     <!-- Icons Section -->
     <div class="card-icons">
-      <button class="icon-btn view-btn" title="View"  (click)="onCardClick(item.id, 'view'); $event.stopPropagation()">
+      <button class="icon-btn view-btn" title="View" (click)="onCardClick(item.id, 'view'); $event.stopPropagation()">
         <i class="fas fa-eye"></i>
       </button>
       <button class="icon-btn edit-btn" title="Edit" (click)="onCardClick(item.id, 'edit'); $event.stopPropagation()">
@@ -34,4 +34,4 @@
   </div>
 </div>
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
