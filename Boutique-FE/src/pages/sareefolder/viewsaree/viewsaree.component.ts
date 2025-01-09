@@ -16,9 +16,9 @@ export class ViewsareeComponent {
     price: 99.99
   };
 
-  selectedImage = 'assets/images/bg1.png';  // default large image
+  selectedImage = 'assets/mo11.png';  // default large image
   smallImages = [
-    'assets/images/bg1.png',
+    'assets/mo11.png',
     'assets/images/bg2.png',
     'assets/images/bg3.png',
     // Add more image paths here

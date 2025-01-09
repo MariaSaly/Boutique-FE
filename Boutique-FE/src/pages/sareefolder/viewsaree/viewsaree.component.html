@@ -1,23 +1,23 @@
 <div class="product-container">
     <!-- Left Side: Large Image and Small Image Cards -->
     <div class="left-side">
-      <!-- Big Card -->
-      <div class="big-card">
-        <img [src]="selectedImage" alt="Selected Image" class="big-image" />
-      </div>
-  
-      <!-- Small Cards (Image selection) -->
-      <div class="small-cards">
-        <div *ngFor="let image of smallImages" class="small-card">
-          <img
-            [src]="image"
-            alt="Thumbnail"
-            class="small-image"
+        <!-- Big Card -->
+        <div class="big-card">
+          <img [src]="selectedImage" alt="Selected Image" class="big-image" />
+        </div>
+    
+        <!-- Small Cards (Image Selection) -->
+        <div class="small-cards">
+          <div
+            *ngFor="let image of smallImages"
+            class="small-card"
             (click)="selectImage(image)"
-          />
+            [class.selected]="image === selectedImage"
+          >
+            <img [src]="image" alt="Thumbnail" class="small-image" />
+          </div>
         </div>
       </div>
-    </div>
   
     <!-- Right Side: Product Details and Controls -->
     <div class="right-side">

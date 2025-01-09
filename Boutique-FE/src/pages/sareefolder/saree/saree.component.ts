@@ -14,7 +14,7 @@ export class SareeComponent {
   constructor(private router:Router){}
   products = [
     {
-      imageUrl: 'assets/images/bg2.png',
+      imageUrl: '',
       title: 'Saree',
       description: 'A beautiful saree for special occasions.',
       price: 99.99,

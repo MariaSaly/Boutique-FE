@@ -39,7 +39,7 @@ app-footer {
 
   /* Fix for footer positioning on small screens */
   app-footer {
-    position: absolute; /* Positioning the footer at the bottom */
+    position: relative; /* Positioning the footer at the bottom */
     bottom: 0;
     width: 100%;
     background-color: #fff; /* Background color for footer */
@@ -64,7 +64,7 @@ app-footer {
 
   /* Footer adjustments for mobile */
   app-footer {
-    position: absolute; /* Ensure it's fixed at the bottom of the viewport */
+    position: relative; /* Ensure it's fixed at the bottom of the viewport */
     bottom: 0;
     width: 100%;
     background-color: #fff;
