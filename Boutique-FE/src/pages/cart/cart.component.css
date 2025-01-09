@@ -26,7 +26,6 @@
   overflow-y: auto; /* Allow scrolling within the products section */
 }
 
-/* Cart Titles for Desktop */
 .cart-titles {
   display: flex;
   justify-content: space-between;
@@ -51,10 +50,9 @@
 .cart-item {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   padding: 20px 0;
   border-bottom: 1px solid #ddd;
-  flex-wrap: wrap; /* Allow wrapping content in the cart item */
 }
 
 .cart-item:last-child {
@@ -62,7 +60,7 @@
 }
 
 .cart-item-product {
-  flex: 1 1 100px;
+  flex: 1;
   text-align: center;
 }
 
@@ -74,9 +72,8 @@
 }
 
 .cart-item-details {
-  flex: 2 1 200px;
-  text-align: left;
-  margin-left: 10px;
+  flex: 2;
+  text-align: center;
 }
 
 .item-title {
@@ -95,10 +92,6 @@
 .cart-item-quantity {
   flex: 1;
   text-align: center;
-  margin-left: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .quantity-controls {
@@ -245,56 +238,22 @@
   background-color: #45a049;
 }
 
-/* Mobile-Friendly Layout */
+
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .cart-content {
     flex-direction: column;
     align-items: center;
   }
 
-  /* Product Section for Mobile */
   .cart-products {
     width: 100%;
   }
 
-  /* Cart Items as cards */
-  .cart-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-    padding: 15px;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    margin-bottom: 15px;
-  }
-
-  .cart-item-product img {
-    width: 100px;
-    height: 100px;
-  }
-
-  .cart-item-details {
-    text-align: left;
-    width: 100%;
-  }
-
-  .cart-item-quantity,
-  .cart-item-price {
-    text-align: left;
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  /* Adjust order summary for mobile */
   .order-summary {
     margin-left: 0;
     margin-top: 20px;
     width: 100%;
-  }
-
-  /* Button Adjustments for Mobile */
-  .checkout-btn {
-    font-size: 18px;
-    padding: 14px;
   }
 }
