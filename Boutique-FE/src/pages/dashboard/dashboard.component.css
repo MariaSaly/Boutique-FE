@@ -6,12 +6,13 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-image: url("../../assets/images/bg3.png"); /* Main background image */
+  position: relative; /* To apply absolute positioning on background */
+  background-image: url("../../assets/images/bg3.png"), linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)); /* Dark gradient overlay on image */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0; /* Hide on load */
-  animation: fadeIn 1s forwards; /* Fade in animation */
+  animation: fadeIn 1s forwards; /* Fade-in animation */
+  overflow: hidden;
 }
 
 /* Fade-in animation for main container */
@@ -33,7 +34,7 @@
   border-radius: 12px;
   overflow: hidden;
   position: relative;
-  animation: slideUp 1.5s ease-out forwards; /* Slide up animation */
+  animation: slideUp 1.5s ease-out forwards; /* Slide-up animation */
 }
 
 /* Slide-up animation for sections */
@@ -57,20 +58,12 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  background: rgba(255, 255, 255, 0.2); /* Transparent mirror-like effect */
-  backdrop-filter: blur(15px); /* Blurring background */
-  -webkit-backdrop-filter: blur(15px);
+  background: rgba(0, 0, 0, 0.5); /* Darker semi-transparent background */
+  backdrop-filter: blur(10px); /* Blur effect */
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 8px;
-  opacity: 0; /* Hide elements initially */
-  animation: fadeInUp 1s ease-in forwards; /* Fade-in & slide-up */
-}
-
-.sec1 {
-  animation-delay: 0.5s; /* Delay for first section */
-}
-
-.sec2 {
-  animation-delay: 1s; /* Delay for second section */
+  opacity: 0;
+  animation: fadeInUp 1s ease-in forwards;
 }
 
 /* Fade-in and slide-up animation for sections */
@@ -85,29 +78,30 @@
   }
 }
 
-/* Title Styling with Fantastic Font */
+/* Title Styling with Strong Font Contrast */
 .title {
-  font-family: 'Fantastic Font', sans-serif; /* Replace with actual font */
-  font-size: 3rem;
-  color: #111;
+  font-family: 'Fantastic Font', sans-serif;
+  font-size: 3.5rem;
+  color: #fff; /* White text color for high contrast */
   text-transform: uppercase;
   margin-bottom: 20px;
   font-weight: bold;
-  letter-spacing: 1.5px;
-  opacity: 0; /* Hide initially */
-  animation: fadeInUp 1s ease-in 1s forwards; /* Fade-in & slide-up */
+  letter-spacing: 2px;
+  opacity: 0;
+  animation: fadeInUp 1s ease-in 1s forwards;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9); /* Stronger text shadow for contrast */
 }
 
 /* Paragraph Styling */
 p {
-  font-size: 1.3rem;
-  color: #444; /* Slightly darker text color for better contrast */
+  font-size: 1.5rem;
+  color: #fff; /* White text color */
   margin-bottom: 30px;
   max-width: 80%;
-  line-height: 1.6;
-  opacity: 0; /* Hide initially */
-  animation: fadeInUp 1s ease-in 1.5s forwards; /* Fade-in & slide-up */
-  transition: opacity 0.3s ease;
+  line-height: 1.7;
+  opacity: 0;
+  animation: fadeInUp 1s ease-in 1.5s forwards;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7); /* Text shadow for better readability */
 }
 
 /* Button Styling with Animation */
@@ -116,32 +110,32 @@ p {
 }
 
 .btn1 {
-  padding: 12px 30px;
+  padding: 14px 35px;
   font-size: 1.2rem;
-  background-color: #ffc107; /* Yellow */
-  color: #111;
+  background-color: #ff6600; /* Warm orange color */
+  color: #fff;
   border: none;
   border-radius: 30px;
   cursor: pointer;
   text-transform: uppercase;
   font-weight: bold;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-  opacity: 0; /* Hide initially */
-  animation: fadeInUp 1s ease-in 2s forwards; /* Fade-in & slide-up */
+  opacity: 0;
+  animation: fadeInUp 1s ease-in 2s forwards;
 }
 
 /* Hover Animation with Glow Effect */
 .btn1:hover {
-  background-color: #ffb300; /* Slightly darker yellow */
-  transform: scale(1.1); /* Slight zoom */
-  box-shadow: 0 0 25px rgba(255, 193, 7, 0.6); /* Glowing effect */
-  animation: none; /* Remove bounce */
+  background-color: #e65c00; /* Slightly darker orange */
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(255, 101, 0, 0.7); /* Glow effect */
+  animation: none;
 }
 
 /* Active Button State */
 .btn1:active {
-  transform: scale(0.95); /* Slight shrink on click */
-  box-shadow: none; /* Remove glow on click */
+  transform: scale(0.95);
+  box-shadow: none;
 }
 
 /* Section specific spacing */
