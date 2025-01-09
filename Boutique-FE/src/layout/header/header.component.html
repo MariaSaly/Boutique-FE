@@ -1,8 +1,43 @@
 <div class="header">
-    <div class="brand">Miya Designers</div>
+  <!-- First Row: Logo, Brand, Cart, Profile, and Search Icon -->
+  <div class="header-top">
+    <div class="logo-container">
+      <img src="./media/mo1.png" alt="Miya Designers Logo" class="logo" />
+    </div>
     <div class="icons">
-      <button class="cart" (click)="goToCart()">🛒 Add to Cart</button>
-      <span>{{cartCount}}</span>
-      <button class="profile">👤 Profile</button>
+      <!-- Search Icon -->
+      <button mat-icon-button aria-label="Search" (click)="toggleSearchBar()">
+        <mat-icon>search</mat-icon>
+      </button>
+      <!-- Shopping Cart Icon with Count Notification -->
+      <button mat-icon-button aria-label="Shopping Cart" class="cart-icon">
+        <mat-icon (click)="goToCart()">shopping_cart</mat-icon>
+        <!-- Cart Count Notification -->
+        <div class="cart-count" *ngIf="cartCount > 0">
+          {{ cartCount}}
+        </div>
+      </button>
+      <!-- Profile Icon -->
+      <button mat-icon-button aria-label="Profile">
+        <mat-icon>account_circle</mat-icon>
+      </button>
     </div>
   </div>
+
+  <!-- Search Bar (Initially Hidden) -->
+  <div class="search-bar" *ngIf="showSearchBar">
+    <input type="text" placeholder="Search for products..." />
+    <button mat-icon-button aria-label="Close Search" (click)="toggleSearchBar()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Second Row: Navigation Links -->
+  <div class="header-bottom">
+    <button mat-button>New Arrivals</button>
+    <button mat-button>Best Seller</button>
+    <button mat-button>Lehenga</button>
+    <button mat-button>Kurthi</button>
+    <button mat-button>Saree</button>
+  </div>
+</div>

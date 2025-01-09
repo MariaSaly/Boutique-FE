@@ -15,8 +15,9 @@ export class SareeComponent {
 
   }
   products = [
-    { id:1,
-      imageUrl: 'path/to/image1.jpg',
+    {
+      id:1,
+      imageUrl: 'images/bg2.png',
       title: 'Saree',
       description: 'A beautiful saree for special occasions.',
       price: 99.99,

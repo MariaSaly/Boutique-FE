@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LayoutzzComponent } from './layoutzz/layoutzz.component';
 import { HomepageComponent } from '../pages/homepage/homepage.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { HomepageComponent } from '../pages/homepage/homepage.component';
   imports: [
     BrowserModule,
     CommonModule,
+    MatIconModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([

@@ -7,12 +7,13 @@ import { routes } from './app.routes';
 import { environment } from '../environment';
 import { HttpService } from '../service/httpService';
 import { HttpClientModule } from '@angular/common/http';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(()=> getAuth()),
     HttpService,
-    importProvidersFrom(HttpClientModule)
+    importProvidersFrom(HttpClientModule), provideAnimationsAsync()
   ]
 };

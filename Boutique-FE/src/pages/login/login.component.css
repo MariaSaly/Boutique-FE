@@ -18,7 +18,7 @@
 .logo {
   max-width: 120px;
   height: auto;
-  background-image: url('../images/mo1.png');
+  background-image: url('../../assets/images/mo1.png');
 }
 
 /* Form Styling */

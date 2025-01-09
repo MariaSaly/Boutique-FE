@@ -2,10 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../app/cart.service';
 import { Subscription } from 'rxjs';
+import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
-  imports: [CommonModule],
+  imports: [CommonModule,MatIconModule],
   standalone:true,
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
@@ -17,7 +19,7 @@ export class CartComponent implements OnInit{
   cartItems:any[] =[];
   isMobileView: boolean = false; 
 
-constructor( private cartService:CartService){
+constructor( private cartService:CartService, private router:Router){
   
 }
 ngOnInit(): void {
@@ -88,6 +90,9 @@ calculateCartItems(){
    this.totalPrice = this.cartItems.reduce((acc:any,current:any)=>{
    return acc + (current.product.price * current.qty)
    },0)
+}
+goToShop(){
+  this.router.navigate(['/home']);
 }
 
 }

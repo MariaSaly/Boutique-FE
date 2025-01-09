@@ -1,46 +1,74 @@
 .main-container {
     display: flex;
-    position: relative;
+    flex-wrap: wrap;
+    gap: 16px;
   
-    .card {
-      width: 200px;
-      margin: 10px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      cursor: pointer;
-      text-align: center;
-      transition: transform 0.3s ease;
-  
-      &:hover {
-        transform: scale(1.05);
-      }
-  
-      .card-image img {
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-      }
-  
-      .card-description {
-        margin-top: 10px;
-  
-        .title {
-          font-size: 1.2rem;
-          font-weight: bold;
-        }
-  
-        .description {
-          color: #666;
-        }
-      }
-  
-      .card-footer {
-        margin-top: 10px;
-        font-size: 1.1rem;
-        font-weight: bold;
-      }
+    .newarrivals {
+      text-align: center; /* Center the text */
+      margin-top: 20px;
     }
+    
+    .arrivalcard {
+      width: 280px;
+      height: 340px;
+      margin: 10px;
+      display: inline-block;
+     
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+    
+ 
+    .card-image {
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      width: 280px;
+      height: 240px; /* Fixed height for the image */
+      overflow: hidden;
+      transition: transform 0.1s ease-in-out;
+    }
+    
+    .card-image img {
+      width: 100%; /* Make sure image fills the width */
+      height: 100%; /* Make sure image fills the height */
+      object-fit: cover; /* Ensures the image fills the space without distortion */
+      transition: transform 0.1s ease-in-out;
+    }
+    
+    /* Hover effect on the image */
+     .card-image img:hover {
+      transform: scale(1.1); /* Slightly zoom in the image */
+      cursor: pointer; 
+     
+    }
+    
+    .card-details {
+      padding: 10px;
+      text-align: left; /* Align text to the left */
+      font-size: 14px;
+      color: #333;
+    
+    }
+    
+    .card-details h2 {
+      font-size: 18px;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+    
+    .card-details p {
+      font-size: 14px;
+      color: #777;
+    }
+    
+    .card-details .price {
+      font-size: 14px;
+      color: #e74c3c; /* Red color for the price */
+      font-weight: bold;
+    }
+    
   
     .expanded-card {
       position: absolute;
@@ -147,43 +175,4 @@
       }
     }
   }
-  .quantity {
-    margin: 20px 0;
   
-    label {
-      font-weight: bold;
-      margin-bottom: 5px;
-      display: block;
-    }
-  
-    .quantity-controls {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-  
-      button {
-        width: 30px;
-        height: 30px;
-        border: 1px solid #ccc;
-        border-radius: 50%;
-        background-color: #fff;
-        font-size: 1.2rem;
-        font-weight: bold;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-  
-        &:hover {
-          background-color: #f60;
-          color: #fff;
-        }
-      }
-  
-      .quantity-display {
-        font-size: 1.2rem;
-        font-weight: bold;
-        min-width: 40px;
-        text-align: center;
-      }
-    }
-  }
-   
