@@ -1,0 +1,67 @@
+<div class="product-container">
+    <!-- Left Side: Large Image and Small Image Cards -->
+    <div class="left-side">
+      <!-- Big Card -->
+      <div class="big-card">
+        <img [src]="selectedImage" alt="Selected Image" class="big-image" />
+      </div>
+  
+      <!-- Small Cards (Image selection) -->
+      <div class="small-cards">
+        <div *ngFor="let image of smallImages" class="small-card">
+          <img
+            [src]="image"
+            alt="Thumbnail"
+            class="small-image"
+            (click)="selectImage(image)"
+          />
+        </div>
+      </div>
+    </div>
+  
+    <!-- Right Side: Product Details and Controls -->
+    <div class="right-side">
+      <div class="expanded-details">
+        <h2>{{ selectedProduct.title }}</h2>
+        <p>{{ selectedProduct.description }}</p>
+        <p class="price">{{ selectedProduct.price | currency }}</p>
+        <!-- Size Selection -->
+        <div class="size-selection">
+          <label for="size">Select Size:</label>
+          <div class="sizes">
+            <button
+              *ngFor="let size of sizes"
+              [class.selected]="size === selectedSize"
+              (click)="selectSize(size)"
+            >
+              {{ size }}
+            </button>
+          </div>
+        </div>
+        <!-- Customization -->
+        <div class="customization">
+          <label for="customText">Customization:</label>
+          <textarea
+            id="customText"
+            [(ngModel)]="customText"
+            placeholder="Enter customization details..."
+          ></textarea>
+        </div>
+        <!-- Quantity -->
+        <div class="quantity">
+          <label for="quantity">Quantity:</label>
+          <div class="quantity-controls">
+            <button class="decrease" (click)="decreaseQuantity()">-</button>
+            <span class="quantity-display">{{ quantity }}</span>
+            <button class="increase" (click)="increaseQuantity()">+</button>
+          </div>
+        </div>
+        <!-- Buttons -->
+        <div class="action-buttons">
+          <button (click)="addToCart()">Add to Cart</button>
+          <button (click)="buyNow()">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

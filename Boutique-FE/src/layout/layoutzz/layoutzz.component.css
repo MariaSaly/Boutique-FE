@@ -1,22 +1,78 @@
 .layout {
-    display: flex;
-    flex-direction: column;
-    height: 100vh; 
-  
-   
-    app-header {
-      flex-shrink: 0; 
-    }
- 
-    .main-content {
-      flex-grow: 1; 
-      overflow-y: auto; 
-      padding: 20px; 
-      background-color: #f9f9f9; 
-    }
-  
-    app-footer {
-      flex-shrink: 0; 
-    }
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Ensure the layout takes up the full screen height */
+}
+
+app-header {
+  flex-shrink: 0; /* Header remains fixed at the top */
+}
+
+.main-content {
+  flex-grow: 1; /* Main content takes up the remaining space */
+  overflow-y: auto;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+app-footer {
+  margin: 0;
+  flex-shrink: 0; /* Footer remains at the bottom */
+  position: relative; /* Make sure footer stays in its place */
+}
+
+/* For devices with a width of 768px (tablets) and below */
+@media (max-width: 768px) {
+  .layout {
+    padding: 0 10px;
   }
-  
+
+  .main-content {
+    padding: 8px;
+  }
+
+  /* Optional: Adjust header or footer styles for smaller screens */
+  app-header, app-footer {
+    /* padding: 10px 0; */
+    text-align: center;
+  }
+
+  /* Fix for footer positioning on small screens */
+  app-footer {
+    position: absolute; /* Positioning the footer at the bottom */
+    bottom: 0;
+    width: 100%;
+    background-color: #fff; /* Background color for footer */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for footer */
+  }
+}
+
+/* For mobile devices with a width of 480px (or below) */
+@media (max-width: 480px) {
+  .layout {
+    padding: 0 5px;
+  }
+
+  .main-content {
+    padding: 5px;
+  }
+
+  app-header, app-footer {
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  /* Footer adjustments for mobile */
+  app-footer {
+    position: absolute; /* Ensure it's fixed at the bottom of the viewport */
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Optional adjustments for other elements (like cards) */
+  .card {
+    width: 100%;  /* Full-width cards on mobile */
+  }
+}

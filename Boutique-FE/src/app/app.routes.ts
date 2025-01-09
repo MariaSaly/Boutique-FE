@@ -10,7 +10,8 @@ import { ListItemsComponent } from '../pages/adminpage/list-items/list-items.com
 import { AddUserComponent } from '../pages/userpage/add-user/add-user.component';
 import { ListUserComponent } from '../pages/userpage/list-user/list-user.component';
 import { AdminAuthGuard } from './admin-auth.guard';
-import { SareeComponent } from '../pages/saree/saree.component';
+import { SareeComponent } from '../pages/sareefolder/saree/saree.component';
+import { ViewsareeComponent } from '../pages/sareefolder/viewsaree/viewsaree.component';
 
 export const routes: Routes = [
   // Default route redirects to login
@@ -26,6 +27,7 @@ export const routes: Routes = [
     component: LayoutzzComponent,
     children: [
         { path: 'saree', component: SareeComponent },
+        { path: 'viewsaree', component: ViewsareeComponent },
       { path: 'home', component: HomepageComponent },
       { path: 'add', component: AddItemsComponent },
       { path: 'list', component: ListItemsComponent },

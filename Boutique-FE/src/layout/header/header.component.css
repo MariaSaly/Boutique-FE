@@ -4,103 +4,159 @@
   background-color: white;
   padding: 10px 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-  .header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    .logo-container {
-       width: auto;
-        height: 100px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      
-      .logo {
-        
-        width: auto;
-        height: 100px;
-        /* border-radius: 50%; */
-      }
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-      .brand {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #333;
-      }
-    }
+.logo {
+  width: auto;
+  height: 100px;
+}
 
-    .icons {
-      display: flex;
-      align-items: center;
-      gap: 15px;
+.brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
 
-      button {
-        background: none;
-        border: none;
-        cursor: pointer;
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 
-        mat-icon {
-          font-size: 24px;
-        }
+.icons button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 
-        &:hover {
-          color: black;
-        }
-      }
-    }
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.search-bar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.header-bottom {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.header-bottom button {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #666;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px 15px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.header-bottom button:hover {
+  background-color: black;
+  color: white;
+}
+
+/* Tablet View */
+@media (max-width: 768px) {
+  .header {
+    padding: 10px;
   }
 
-  .search-bar {
-    display: flex;
-    align-items: center;
+  .header-top {
+    flex-wrap: wrap;
     gap: 10px;
-    margin: 10px 0;
+  }
 
-    input {
-      flex: 1;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
-    }
+  .logo-container {
+    justify-content: center;
+  }
 
-    button {
-      background: none;
-      border: none;
-      cursor: pointer;
+  .logo {
+    height: 80px;
+  }
 
-      mat-icon {
-        font-size: 24px;
-      }
-
-      &:hover {
-        color: #007bff;
-      }
-    }
+  .icons {
+    justify-content: center;
+    gap: 10px;
   }
 
   .header-bottom {
-    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
+  }
 
-    button {
-      font-size: 1rem;
-      font-weight: bold;
-      color: #666;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 5px 15px;
-      border-radius: 4px;
-      transition: all 0.3s ease;
+  .header-bottom button {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+  }
+}
 
-      &:hover {
-        background-color: black;
-        color:white;
-      }
-    }
+/* Mobile View */
+@media (max-width: 480px) {
+  .header {
+    padding: 5px;
+  }
+
+  .header-top {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .logo-container {
+    justify-content: center;
+  }
+
+  .logo {
+    height: 60px;
+  }
+
+  .icons {
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .search-bar input {
+    font-size: 0.9rem;
+  }
+
+  .header-bottom {
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+  }
+
+  .header-bottom button {
+    font-size: 0.8rem;
+    padding: 3px 8px;
   }
 }

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-saree',
@@ -10,9 +11,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './saree.component.css'
 })
 export class SareeComponent {
+  constructor(private router:Router){}
   products = [
     {
-      imageUrl: 'images/bg2.png',
+      imageUrl: 'assets/images/bg2.png',
       title: 'Saree',
       description: 'A beautiful saree for special occasions.',
       price: 99.99,
@@ -44,6 +46,7 @@ export class SareeComponent {
     this.selectedSize = null; // Reset size selection
     this.customText = ''; // Reset customization text
     this.quantity = 1; // Reset quantity
+    this.router.navigate(['/viewsaree'])
     
   }
 
