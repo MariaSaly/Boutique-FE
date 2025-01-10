@@ -14,7 +14,7 @@
         <mat-icon (click)="goToCart()">shopping_cart</mat-icon>
         <!-- Cart Count Notification -->
         <div class="cart-count" *ngIf="cartCount > 0">
-          {{ cartCount}}
+          {{ cartCount }}
         </div>
       </button>
       <!-- Profile Icon -->
@@ -25,8 +25,8 @@
   </div>
 
   <!-- Search Bar (Initially Hidden) -->
-  <div class="search-bar" *ngIf="showSearchBar">
-    <input type="text" placeholder="Search for products..." />
+  <div class="search-bar" [ngClass]="{ 'show': showSearchBar }">
+    <input type="text" placeholder="Search for products..." #searchinput (input)="onSearch(searchinput.value)" />
     <button mat-icon-button aria-label="Close Search" (click)="toggleSearchBar()">
       <mat-icon>close</mat-icon>
     </button>

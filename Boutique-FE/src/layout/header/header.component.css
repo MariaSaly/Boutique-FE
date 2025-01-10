@@ -4,159 +4,184 @@
   background-color: white;
   padding: 10px 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: padding 0.3s ease-in-out;
+}
 
-  .header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    .logo-container {
-      width: auto;
-      height: 100px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-
-      .logo {
-        width: auto;
-        height: 100px;
-      }
-
-      .brand {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #333;
-      }
-    }
-
-    .icons {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-
-      button {
-        background: none;
-        border: none;
-        cursor: pointer;
-
-        mat-icon {
-          font-size: 24px;
-        }
-
-        &:hover {
-          color: black;
-        }
-      }
-
-      /* Cart Icon with Count Animation */
-      .cart-icon {
-        position: relative;
-      }
-
-      .cart-count {
-        position: absolute;
-        top: -8px;
-        right: -8px;
-        background-color: #f44336;
-        color: white;
-        border-radius: 50%;
-        width: 20px;
-        height: 20px;
-        font-size: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        animation: pop-in 0.5s ease-out, pulse 1s infinite;
-      }
-
-      /* Pop-in Animation */
-      @keyframes pop-in {
-        0% {
-          transform: scale(0);
-        }
-        50% {
-          transform: scale(1.2);
-        }
-        100% {
-          transform: scale(1);
-        }
-      }
-
-      /* Pulse Animation */
-      @keyframes pulse {
-        0% {
-          transform: scale(1);
-          opacity: 1;
-        }
-        50% {
-          transform: scale(1.1);
-          opacity: 0.8;
-        }
-        100% {
-          transform: scale(1);
-          opacity: 1;
-        }
-      }
-
-      /* Hover Effect on Cart Icon */
-      .cart-icon:hover .cart-count {
-        background-color: #ff5722;
-        animation: none;
-        animation: pulse 1s infinite, pop-in 0.5s ease-out;
-      }
-    }
-  }
-
-  .search-bar {
+  .logo-container {
+    width: auto;
+    height: 100px;
     display: flex;
     align-items: center;
     gap: 10px;
-    margin: 10px 0;
 
-    input {
-      flex: 1;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
-    }
-
-    button {
-      background: none;
-      border: none;
-      cursor: pointer;
-
-      mat-icon {
-        font-size: 24px;
-      }
-
-      &:hover {
-        color: #007bff;
-      }
+    .logo {
+      width: auto;
+      height: 100px;
     }
   }
 
-  .header-bottom {
+  .icons {
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    align-items: center;
+    gap: 15px;
 
     button {
-      font-size: 1rem;
-      font-weight: bold;
-      color: #666;
       background: none;
       border: none;
       cursor: pointer;
-      padding: 5px 15px;
-      border-radius: 4px;
-      transition: all 0.3s ease;
-
+      mat-icon {
+        font-size: 24px;
+      }
       &:hover {
-        background-color: black;
-        color: white;
+        color: black;
       }
     }
+
+    /* Cart Icon with Count Animation */
+    .cart-icon {
+      position: relative;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: #f44336;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      animation: pop-in 0.5s ease-out, pulse 1s infinite;
+    }
+
+    /* Pop-in Animation */
+    @keyframes pop-in {
+      0% {
+        transform: scale(0);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* Pulse Animation */
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Hover Effect on Cart Icon */
+    .cart-icon:hover .cart-count {
+      background-color: #ff5722;
+      animation: none;
+      animation: pulse 1s infinite, pop-in 0.5s ease-out;
+    }
+  }
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+  transition: all 0.3s ease-out;
+  position: relative;
+  opacity: 0;
+  visibility: hidden;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: all 0.3s ease-in-out;
+  }
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    mat-icon {
+      font-size: 24px;
+    }
+
+    &:hover {
+      color: #007bff;
+    }
+  }
+}
+
+.header-bottom {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+
+  button {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #666;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px 15px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-top {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .icons {
+    justify-content: space-around;
+    gap: 10px;
+  }
+
+  .search-bar {
+    margin-top: 20px;
+  }
+
+  .header-bottom {
+    flex-direction: column;
+    gap: 10px;
   }
 }

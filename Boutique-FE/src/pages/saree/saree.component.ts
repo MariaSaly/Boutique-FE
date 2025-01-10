@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartService } from '../../app/cart.service';
+import { SearchService } from '../../service/searchService';
 
 @Component({
   selector: 'app-saree',
@@ -10,10 +11,12 @@ import { CartService } from '../../app/cart.service';
   templateUrl: './saree.component.html',
   styleUrl: './saree.component.css'
 })
-export class SareeComponent {
-  constructor( private cartService:CartService){
+export class SareeComponent implements OnInit{
+  
+  constructor( private cartService:CartService , private searchService:SearchService ){
 
   }
+
   products = [
     {
       id:1,
@@ -39,7 +42,17 @@ export class SareeComponent {
       stock:8
     },
   ];
-
+  filteredData: any =[...this.products];
+  ngOnInit(): void {
+    this.searchService.searchQuery$.subscribe((query) => {
+      console.log('query:', query);
+      this.filteredData = this.products.filter((item) => {
+        return Object.values(item).some((val) =>
+          val.toString().toLowerCase().includes(query.toLowerCase())
+        );
+      });
+    });
+  }
   // State management
   selectedProduct: any = null;
   selectedSize: string | null = null;
