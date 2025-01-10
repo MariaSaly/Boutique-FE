@@ -15,4 +15,15 @@ export class HomepageComponent {
 saree(){
   this.router.navigate(['saree'])
 }
+smallImages = [
+  './assets/images/bg1.png',
+  './assets/images/bg1.png',
+  './assets/images/bg1.png',
+  './assets/images/bg1.png',
+]; // Add your image paths here
+selectedImage = this.smallImages[0]; // Default to the first image
+
+selectImage(image: string): void {
+  this.selectedImage = image;
+}
 }

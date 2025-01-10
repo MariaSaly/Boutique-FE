@@ -15,20 +15,20 @@ export class SareeComponent {
   products = [
     {
       imageUrl: '',
-      title: 'Saree',
-      description: 'A beautiful saree for special occasions.',
+      title: 'Banarass',
+      description: 'Banarass.',
       price: 99.99,
     },
     {
       imageUrl: 'assets/images/bg1.png',
-      title: 'Kurthi Top',
-      description: 'Comfortable and stylish Kurthi Top.',
+      title: 'Silky Cotton',
+      description: 'Comfortable and stylish .',
       price: 49.99,
     },
     {
       imageUrl: 'path/to/image3.jpg',
-      title: 'Lehenga',
-      description: 'Elegant Lehenga for weddings.',
+      title: 'Silk',
+      description: 'Elegant  for weddings.',
       price: 149.99,
     },
   ];

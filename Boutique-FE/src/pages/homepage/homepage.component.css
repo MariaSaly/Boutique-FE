@@ -64,56 +64,69 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .newarrivals {
     text-align: center;
     padding: 20px;
-}
-
-.arrivalcard {
-    background-image: url('../../assets/images/bg3.png');
+  }
+  
+  .cards-container {
+    display: flex; /* Flexbox for a single-row layout */
+    flex-wrap: nowrap; /* Prevent wrapping to a new row */
+    gap: 20px; /* Space between cards */
+    justify-content: center; /* Center the cards horizontally */
+    overflow-x: auto; /* Allow horizontal scrolling if necessary */
+  }
+  
+  .arrivalcard-wrapper {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    width: 240px; 
+  }
+  
+  .arrivalcard {
+    background-image: url('../../assets/images/saree.png');
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
     width: 240px;
     height: 280px;
-    overflow: hidden; /* Prevent the image from overflowing */
-    margin: 0 auto;
+    overflow: hidden;
     border-radius: 8px;
-}
-
-.card-image img {
-    width: 100%; /* Ensure the image fills the width */
-    height: 100%; /* Ensure the image fills the height */
-    object-fit: contain; /* Makes sure the image covers the entire area without distortion */
-    transition: transform 0.1s ease-in-out; 
-}
-
-.arrivalcard:hover {
-    transform: scale(1.1); /* Slightly zoom in the image */
+    display: flex;
+    transition: transform 0.3s ease-in-out; /* Smooth animation */
+  }
+  
+  .arrivalcard:hover {
+    transform: scale(1.1); /* Slightly zoom in the card */
     cursor: pointer; /* Change cursor to pointer to indicate interactivity */
   }
-
-.card-details {
+  
+  .card-details {
     padding: 10px;
     text-align: start;
     font-size: 14px;
     color: #333;
-}
-
-.card-details h2 {
+  }
+  
+  .card-details h2 {
     font-size: 18px;
     margin: 10px 0;
-}
-
-.card-details p {
+  }
+  
+  .card-details p {
     font-size: 14px;
     color: #777;
-}
-
-.card-details .price {
+  }
+  
+  .card-details .price {
     font-size: 14px;
     color: #e74c3c;
     font-weight: bold;
-}
-
-button {
+  }
+  
+  button {
     font-size: 1rem;
     font-weight: bold;
     color: #666;
@@ -123,9 +136,10 @@ button {
     padding: 5px 15px;
     border-radius: 4px;
     transition: all 0.3s ease;
-
-    &:hover {
-      background-color: black;
-      color:white;
-    }
   }
+  
+  button:hover {
+    background-color: black;
+    color: white;
+  }
+  
