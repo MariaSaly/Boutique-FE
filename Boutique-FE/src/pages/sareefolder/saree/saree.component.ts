@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CartService } from '../../app/cart.service';
-import { SearchService } from '../../service/searchService';
+import { Router } from '@angular/router';
+import { SearchService } from '../../../service/searchService';
+import { CartService } from '../../../app/cart.service';
 
 @Component({
   selector: 'app-saree',
@@ -11,35 +12,27 @@ import { SearchService } from '../../service/searchService';
   templateUrl: './saree.component.html',
   styleUrl: './saree.component.css'
 })
-export class SareeComponent implements OnInit{
-  
-  constructor( private cartService:CartService , private searchService:SearchService ){
-
-  }
+export class SareeComponent  implements OnInit{
+  constructor(private router:Router , private searchService:SearchService, private cartService:CartService){}
 
   products = [
     {
-      id:1,
-      imageUrl: 'images/bg2.png',
-      title: 'Saree',
-      description: 'A beautiful saree for special occasions.',
+      imageUrl: '',
+      title: 'Banarass',
+      description: 'Banarass.',
       price: 99.99,
-      stock:3
     },
     {
-      id:2,
-      imageUrl: 'path/to/image2.jpg',
-      title: 'Kurthi Top',
-      description: 'Comfortable and stylish Kurthi Top.',
+      imageUrl: 'assets/images/bg1.png',
+      title: 'Silky Cotton',
+      description: 'Comfortable and stylish .',
       price: 49.99,
-      stock:5
     },
-    { id:3,
+    {
       imageUrl: 'path/to/image3.jpg',
-      title: 'Lehenga',
-      description: 'Elegant Lehenga for weddings.',
+      title: 'Silk',
+      description: 'Elegant  for weddings.',
       price: 149.99,
-      stock:8
     },
   ];
   filteredData: any =[...this.products];
@@ -53,6 +46,7 @@ export class SareeComponent implements OnInit{
       });
     });
   }
+
   // State management
   selectedProduct: any = null;
   selectedSize: string | null = null;
@@ -66,6 +60,7 @@ export class SareeComponent implements OnInit{
     this.selectedSize = null; // Reset size selection
     this.customText = ''; // Reset customization text
     this.quantity = 1; // Reset quantity
+    this.router.navigate(['/viewsaree'])
     
   }
 
@@ -95,7 +90,6 @@ export class SareeComponent implements OnInit{
     }
     this.cartService.addItem(newCartItem);
   }
-
   // Buy now action
   buyNow(): void {
     alert(

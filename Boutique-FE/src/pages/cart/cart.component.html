@@ -7,8 +7,8 @@
       <div class="cart-items">
         <div class="cart-item" *ngFor="let item of cartItems">
           <!-- Product Image -->
-          <div class="cart-item-product">
-            <img src="src/assets/product1.jpg" alt="{{ item.product.title }}" class="item-image">
+          <div class="cart-item-product" >
+            <!-- <img src="src/assets/product1.jpg" alt="{{ item.product.title }}" class="item-image"> -->
           </div>
 
           <!-- Product Name and Description -->
@@ -73,10 +73,10 @@
         <span>Estimated Taxes:</span>
         <span class="summary-value">Calculated at checkout</span>
       </div>
-      <div class="summary-row">
+      <!-- <div class="summary-row">
         <span>Notes:</span>
         <textarea class="notes-input" placeholder="Add any special instructions"></textarea>
-      </div>
+      </div> -->
       <button class="checkout-btn">Proceed to Checkout</button>
     </div>
   </div>

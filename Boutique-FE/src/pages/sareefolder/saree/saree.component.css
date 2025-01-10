@@ -9,10 +9,11 @@
     }
     
     .arrivalcard {
-      width: 280px;
+      width: 260px;
       height: 340px;
       margin: 10px;
       display: inline-block;
+    
      
       overflow: hidden;
       cursor: pointer;
@@ -24,10 +25,14 @@
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       width: 100%;
-      width: 280px;
+      width: 260px;
       height: 240px; /* Fixed height for the image */
       overflow: hidden;
       transition: transform 0.1s ease-in-out;
+      background-image: url('../../../assets/images/saree2.png');
+      background-size: contain; /* Ensures the image covers the container fully */
+     background-position: center; /* Centers the image */
+     background-repeat: no-repeat; /* Prevents the image from repeating */
     }
     
     .card-image img {
