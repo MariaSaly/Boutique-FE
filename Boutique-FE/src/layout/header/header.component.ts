@@ -15,14 +15,25 @@ import { SearchService } from '../../service/searchService';
 export class HeaderComponent implements OnInit {
   showSearchBar = false;
   cartCount:number =0;
+  userId: any;
   constructor( private cartService:CartService , private router:Router , private searchService:SearchService){
 
   }
   ngOnInit(): void {
-    this.cartService.currentItems.subscribe( data => {
-     console.log("data:", data);
-     this.cartCount = data.length;
+    // this.cartService.currentItems.subscribe( data => {
+    //  console.log("data:", data);
+    //  this.cartCount = data.length;
+    // })
+    // const data = localStorage.getItem('userData');
+    // if(data){
+    //   const userData = JSON.parse(data);
+    //   this.userId = userData.user_id
+    // }
+    // this.cartService.loadCart(this.userId)
+    this.cartService.cartCount$.subscribe( data => {
+      this.cartCount = data;
     })
+   
    }
   toggleSearchBar() {
     this.showSearchBar = !this.showSearchBar;

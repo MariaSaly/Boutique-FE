@@ -48,9 +48,11 @@ export class HttpService {
   get<T>(url: string, params?: any): Observable<T> {
     return this.http.get<T>(url, { headers: this.getHeaders() });
   }
-  delete<T>(url: string): Observable<T> {
+  delete<T>(url: string ): Observable<T> {
     return this.http.delete<T>(url, { headers: this.getHeaders() });
   }
+
+
 
   getById<T>(url: string, id: string | number, params?: any): Observable<T> {
     // Construct URL with ID. It assumes your URL does not end with a slash.

@@ -12,83 +12,103 @@ import { Router } from '@angular/router';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
+
+
+
 export class CartComponent implements OnInit{
   cartCount:number = 0;
   totalQuantity:number =0;
   totalPrice:number = 0;
   cartItems:any[] =[];
   isMobileView: boolean = false; 
+  userId: any;
 
 constructor( private cartService:CartService, private router:Router){
   
 }
 ngOnInit(): void {
- 
+  this.loadCart();
  
 
-  this.cartService.currentItems.subscribe( (data:any) => {
-    console.log("data:", data);
-    this.cartItems = data;
-  })
+  // this.cartService.currentItems.subscribe( (data:any) => {
+  //   console.log("data:", data);
+  //   this.cartItems = data;
+  // })
+
   this.calculateCartItems();
 }
 deleteItem(id:any){
-  const previousItem= this.cartItems.find((item:any)=> item.product.id == id);
-  if(previousItem){
-    const filteredItems = this.cartItems.filter((item:any)=> item.product.id !== id);
-    //this.cartItems = filteredItems;
-    this.cartService.updateCart(filteredItems);
-  }
+  const previousItem= this.cartItems.find((item:any)=> item.cartId == id);
+ 
+   this.cartService.deleteCart(this.userId,id).subscribe( data => {
+    if(data){
+      console.log("deleted sucessfully:");
+      this.loadCart();
+      this.cartService.loadCart(this.userId);
+    }
+   })
+  
   this.calculateCartItems();
 }
+loadCart(){
+  const data = localStorage.getItem('userData');
+  console.log("data:",data);
+  if(data){
+    const userData = JSON.parse(data);
+    this.userId   = userData.user_id;
+    console.log("userId:",this.userId);
 
-decreaseQty(id:string){
-  const previousCartItem= this.cartItems.find((item:any)=> item.product.id == id);
-  let qty = previousCartItem.qty;
+  }
+
+    
+  this.cartService.getCart(this.userId).subscribe( data => {
+     console.log ("data:", data);
+     this.cartItems = data;
+  })
+}
+decreaseQty(item:any){
+  //const previousCartItem= this.cartItems.find((item:any)=> item.cartId== id);
+  let qty = item.quantity;
   if(qty === 1){
     return
   }
   qty = qty -1;
-  if(previousCartItem){
-    this.cartItems = this.cartItems.map((item:any)=>{
-     if(item.product.id === previousCartItem.product.id){
-       item.qty = qty;
-     }
-     return item;
-   })
- }
- this.cartService.updateCart(this.cartItems);
+ 
+     this.cartService.updateCart(this.userId,item.productId,qty).subscribe(()=>{
+      this.loadCart();
+     })
+
+     
+ 
+//  this.cartService.updateCart(this.cartItems);
  this.calculateCartItems();
 
 }
-increaseQty(id:string){
-  const previousCartItem= this.cartItems.find((item:any)=> item.product.id == id);
-  console.log("previouscaritem:",previousCartItem.product.stock);
-  let qty = previousCartItem.qty;
+increaseQty(item:any){
+
+  
+  let qty = item.quantity;
   console.log("qty:",qty);
-  if(qty === previousCartItem.product.stock){
+  if(qty === item.stock){
     return
   }
   qty = qty + 1;
-  if(previousCartItem){
-    this.cartItems = this.cartItems.map((item:any)=>{
-     if(item.product.id === previousCartItem.product.id){
-       item.qty = qty;
-     }
-     return item;
-   })
- }
- this.cartService.updateCart(this.cartItems);
+ 
+    this.cartService.updateCart(this.userId,item.productId,qty).subscribe(()=> {
+      this.loadCart();
+    })
+ 
+//  this.cartService.updateCart(this.cartItems);
  this.calculateCartItems();
 
 }
 calculateCartItems(){
   this.cartCount = this.cartItems.length;
   this.totalQuantity = this.cartItems.reduce((acc:any,current:any)=>{
-    return acc+current.qty;
+    return acc+current.quantity;
    },0)
    this.totalPrice = this.cartItems.reduce((acc:any,current:any)=>{
-   return acc + (current.product.price * current.qty)
+   return acc + (current.price * current.quantity)
    },0)
 }
 goToShop(){

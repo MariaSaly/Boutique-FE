@@ -88,7 +88,7 @@ export class SareeComponent  implements OnInit{
       product: this.selectedProduct,
       qty:this.quantity
     }
-    this.cartService.addItem(newCartItem);
+    // this.cartService.addItem(newCartItem);
   }
   // Buy now action
   buyNow(): void {

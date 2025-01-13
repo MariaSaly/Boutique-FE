@@ -1,40 +1,47 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpService } from '../service/httpService';
+import { environment } from '../environment';
+import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
+import { user } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+ private url= environment.localUrl;
+ private cartCountSubject = new BehaviorSubject<number>(0);
+ cartCount$ = this.cartCountSubject.asObservable();
+  userId: any;
 
-  constructor() { }
-  itemSource = new BehaviorSubject([]);
-  currentItems = this.itemSource.asObservable();
-  cartItems:any = [];
-  
+  constructor(private http:HttpService) { }
 
+  //load the cart ad update the count 
 
-  addItem(newCartItem:any){
+  loadCart(userId:string):void{
     
-    const previousCartItem = this.cartItems.find( (el:any)=> el.product.id === newCartItem.product.id);
-    if(previousCartItem){
-       this.cartItems = this.cartItems.map((item:any)=>{
-        if(item.product.id === previousCartItem.product.id){
-          item.qty = item.qty + 1;
-        }
-        return item;
-      })
-    }
-    else{
-      this.cartItems.push(newCartItem);
-    }
-  
-    this.itemSource.next(this.cartItems);
+    this.getCart(userId).subscribe( data => {
+      this.cartCountSubject.next(data.length);
+    })
+
   }
 
-  updateCart( items:any[]){
-    this.cartItems = items;
-    this.itemSource.next(this.cartItems);
+  // get the cart item 
+
+  getCart(userId:string):Observable<any>{
+     return this.http.get(`${this.url}/api/cart/getCart/${userId}`);
   }
-  // Toggle cart visibility
-  
+
+  //create cart 
+  addToCart( userId:string,productId:string,quantity:number):Observable<any>{
+    return this.http.post(`${this.url}/api/cart/addCart`,{userId,productId,quantity})
+  }
+  //updateCart
+  updateCart(userId:string,productId:string,quantity:number):Observable<any>{
+    return this.http.patch(`${this.url}/api/cart/updateCart`,{userId,productId,quantity})
+  }
+  //deletecart
+  deleteCart(userId:string,productId:string){
+    return this.http.delete(`${this.url}/api/cart/deleteCart/${userId}/${productId}`)
+  }
 }

@@ -13,27 +13,27 @@
 
           <!-- Product Name and Description -->
           <div class="cart-item-details">
-            <h3 class="item-title">{{ item.product.title }}</h3>
-            <p class="item-description">{{ item.product.description }}</p>
+            <h3 class="item-title">{{ item.name }}</h3>
+            <p class="item-description">{{ item.description }}</p>
           </div>
 
           <!-- Quantity Controls & Remove Link -->
           <div class="cart-item-quantity">
             <!-- Quantity Controls -->
             <div class="quantity-controls">
-              <button class="quantity-btn decrement" (click)="decreaseQty(item.product.id)">-</button>
-              <span class="quantity-value">{{ item.qty }}</span>
-              <button class="quantity-btn increment" (click)="increaseQty(item.product.id)">+</button>
+              <button class="quantity-btn decrement" (click)="decreaseQty(item)">-</button>
+              <span class="quantity-value">{{ item.quantity }}</span>
+              <button class="quantity-btn increment" (click)="increaseQty(item)">+</button>
             </div>
 
             <!-- Remove Button below Quantity -->
             <hr class="remove-line">
-            <a href="javascript:void(0)" class="remove-link" (click)="deleteItem(item.product.id)">Remove</a>
+            <a href="javascript:void(0)" class="remove-link" (click)="deleteItem(item.productId)">Remove</a>
           </div>
 
           <!-- Price -->
           <div class="cart-item-price">
-            <p class="price">₹<strong>{{ item.product.price }}</strong></p>
+            <p class="price">₹<strong>{{ item.price }}</strong></p>
           </div>
         </div>
         <hr class="section-divider">

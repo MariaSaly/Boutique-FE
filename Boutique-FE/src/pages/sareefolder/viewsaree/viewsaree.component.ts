@@ -11,6 +11,7 @@ import { CartService } from '../../../app/cart.service';
   styleUrl: './viewsaree.component.css'
 })
 export class ViewsareeComponent {
+  userId: any;
   constructor( private cartService:CartService){
 
   }
@@ -58,11 +59,23 @@ export class ViewsareeComponent {
 
   addToCart(): void {
     console.log("Im in add to cart function");
-    const newCartItem = {
-      product: this.selectedProduct,
-      qty:this.quantity
+    // const newCartItem = {
+    //   product: this.selectedProduct,
+    //   qty:this.quantity
+    // }
+    const productId = "B5EqhzNXignmJs2Ordt4";
+    const qty = this.quantity;
+    const data = localStorage.getItem('userData');
+    if(data){
+      const userData = JSON.parse(data);
+      this.userId = userData.user_id;
+      console.log("userid:", this.userId);
     }
-    this.cartService.addItem(newCartItem);
+    this.cartService.addToCart(this.userId,productId,qty).subscribe( data => {
+      this.cartService.loadCart(this.userId)
+      console.log("user added sucessfully !");
+    })
+    // this.cartService.addItem(newCartItem);
   }
 
   buyNow() {

@@ -62,6 +62,7 @@ export class AuthService {
     
     console.log("decodedToken:",decodedToken);
     localStorage.setItem('token',token);
+    localStorage.setItem('userData',JSON.stringify(decodedToken));
     return { role: decodedToken.role }; // Ensure the response includes 'role'
 
 
