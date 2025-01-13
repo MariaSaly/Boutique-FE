@@ -24,14 +24,16 @@ export class HeaderComponent implements OnInit {
      this.cartCount = data.length;
     })
    }
-  toggleSearchBar() {
-    this.showSearchBar = !this.showSearchBar;
+   toggleSearchBar() {
+    this.showSearchBar = !this.showSearchBar; // Toggles the search bar visibility
   }
-  goToCart(){
-    this.router.navigate(['/cart'])
+
+  goToCart() {
+    this.router.navigate(['/cart']);
   }
-  onSearch(query:string):void{
-    console.log("Iam in searcg query",query)
+
+  onSearch(query: string): void {
+    console.log("I am in search query", query);
     this.searchService.updateSearchQuery(query);
   }
 }

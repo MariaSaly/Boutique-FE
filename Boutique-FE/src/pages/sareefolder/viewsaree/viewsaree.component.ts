@@ -33,7 +33,7 @@ export class ViewsareeComponent {
   selectedSize: string = 'M';
 
   customText: string = '';
-  quantity: number = 1;
+  quantity: number = 0;
 
   selectImage(image: string) {
     this.selectedImage = image;

@@ -1,67 +1,78 @@
 <div class="boutique-container">
-    <!-- Left Side: Image Gallery -->
-    <div class="image-gallery">
-      <!-- Large Display Image -->
-      <div class="featured-image">
-        <img [src]="selectedImage" alt="" class="featured-img" />
-      </div>
-  
-      <!-- Thumbnail Gallery -->
-      <div class="thumbnails">
-        <div
-          *ngFor="let image of smallImages"
-          class="thumbnail"
-          (click)="selectImage(image)"
-          [class.active]="image === selectedImage"
-        >
-          <img [src]="image" alt="" class="thumbnail-img" />
-        </div>
-      </div>
+  <!-- Left Side: Image Gallery -->
+  <div class="image-gallery">
+    <!-- Large Display Image -->
+    <div class="featured-image">
+      <img [src]="selectedImage" alt="" class="featured-img" />
+      <a href="https://app.epatrolz.com" class="hover-link" target="_blank">https://app.epatrolz.com</a>
     </div>
-  
-    <!-- Right Side: Product Details -->
-    <div class="product-details">
-      <!-- Product Info -->
-      <h1 class="product-title">{{ selectedProduct.title }}</h1>
-      <p class="product-description">{{ selectedProduct.description }}</p>
-      <p class="price">{{ selectedProduct.price | currency }}</p>
-  
-      <!-- Size Selection -->
-      <div class="size-options">
-        <h3>Select Size</h3>
-        <div class="size-buttons">
-          <button
-            *ngFor="let size of sizes"
-            class="size-btn"
-            [class.selected]="size === selectedSize"
-            (click)="selectSize(size)"
-          >
-            {{ size }}
-          </button>
-        </div>
-      </div>
-  
-      <!-- Customization -->
-      <div class="customization">
-        <h3>Customization</h3>
-        <textarea
-          [(ngModel)]="customText"
-          placeholder="Enter customization details..."
-        ></textarea>
-      </div>
-  
-      <!-- Quantity & Actions -->
-      <div class="actions">
-        <div class="quantity-control">
-          <button class="qty-btn" (click)="decreaseQuantity()">-</button>
-          <span>{{ quantity }}</span>
-          <button class="qty-btn" (click)="increaseQuantity()">+</button>
-        </div>
-        <div class="action-buttons">
-          <button class="btn add-to-cart" (click)="addToCart()">Add to Cart</button>
-          <button class="btn buy-now" (click)="buyNow()">Buy Now</button>
-        </div>
+
+    <!-- Thumbnail Gallery -->
+    <div class="thumbnails">
+      <div
+        *ngFor="let image of smallImages"
+        class="thumbnail"
+        (click)="selectImage(image)"
+        [class.active]="image === selectedImage"
+      >
+        <img [src]="image" alt="" class="thumbnail-img" />
       </div>
     </div>
   </div>
-  
+
+  <!-- Right Side: Product Details -->
+  <div class="product-details">
+    <!-- Product Info -->
+    <h1 class="product-title">{{ selectedProduct.title }}</h1>
+    <p class="product-description">{{ selectedProduct.description }}</p>
+    <p class="price">{{ selectedProduct.price | currency }}</p>
+
+    <!-- Stock Status -->
+    <p class="stock-status" [class.in-stock]="selectedProduct.stock > 0" [class.out-of-stock]="selectedProduct.stock <= 0">
+      {{ selectedProduct.stock > 0 ? ('In Stock (' + selectedProduct.stock + ' pieces available)') : 'Out of Stock' }}
+    </p>
+
+    <!-- Size Selection -->
+    <div class="size-options" *ngIf="selectedProduct.stock > 0">
+      <h3>Select Size</h3>
+      <div class="size-buttons">
+        <button
+          *ngFor="let size of sizes"
+          class="size-btn"
+          [class.selected]="size === selectedSize"
+          (click)="selectSize(size)"
+        >
+          {{ size }}
+        </button>
+      </div>
+    </div>
+
+    <div class="sizeguide" *ngIf="selectedProduct.stock > 0">
+      <a href="/saree" class="sizeguide">
+        <h3>Size Guide</h3>
+      </a>
+    </div>
+
+    <!-- Customization -->
+    <div class="customization" *ngIf="selectedProduct.stock > 0">
+      <h3>Customization</h3>
+      <textarea
+        [(ngModel)]="customText"
+        placeholder="Enter customization details..."
+      ></textarea>
+    </div>
+
+    <!-- Quantity & Actions -->
+    <div class="actions" *ngIf="selectedProduct.stock > 0">
+      <div class="quantity-control">
+        <button class="qty-btn" (click)="decreaseQuantity()">-</button>
+        <span>{{ quantity }}</span>
+        <button class="qty-btn" (click)="increaseQuantity()">+</button>
+      </div>
+      <div class="action-buttons">
+        <button class="btn add-to-cart" (click)="addToCart()" [disabled]="selectedProduct.stock <= 0">Add to Cart</button>
+        <button class="btn buy-now" (click)="buyNow()"  [disabled]="selectedProduct.stock <= 0">Buy Now</button>
+      </div>
+    </div>
+  </div>
+</div>

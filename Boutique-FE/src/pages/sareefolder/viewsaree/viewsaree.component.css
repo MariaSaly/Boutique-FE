@@ -1,203 +1,262 @@
 /* Global Styles */
 body {
-    font-family: 'Lora', serif; /* Elegant serif font for headings */
-    font-size: 16px;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f8f6; /* Neutral background */
-    color: #333;
-  }
+  font-family: 'Lora', serif; /* Elegant serif font for headings */
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
   
+  color: #FFD700; /* Gold text */
+}
+
+.boutique-container {
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+/* Left Side: Image Gallery */
+.image-gallery {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.featured-image {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 500px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2); /* Gold-tinted shadow */
+  background-image: url('../../../assets/images/lehanga.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 3px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.featured-img {
+  display: block;
+  width: 100%;
+  height: 100%; /* Match the height of the container */
+  object-fit: cover; /* Ensure the image fits properly */
+  pointer-events: none; /* Allow hover events to pass through the image */
+}
+
+.hover-link {
+  display: none; /* Hide by default */
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  word-break: break-all;
+  max-width: 90%; /* Optional: to make sure the link doesn't overflow */
+}
+
+.featured-image:hover .hover-link {
+  display: flex; /* Show the link on hover */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+
+.thumbnails {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.thumbnail {
+  width: 70px;
+  height: 70px;
+  border: 2px solid #000; /* Gold border for thumbnails */
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+  background-image: url('../../../assets/images/saree.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+  border-color: #FFD700; /* White border on hover */
+  transform: scale(1.1);
+}
+
+/* Right Side: Product Details */
+.product-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-title {
+  font-size: 2rem;
+  color: black; /* Gold text for title */
+  margin: 0;
+  font-weight: bold;
+}
+
+.product-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: black; /* Gold for description */
+}
+
+.price {
+  font-size: 1.5rem;
+  color: black; /* Gold price for luxury */
+  font-weight: bold;
+}
+
+.size-options h3,
+.sizeguide h3,
+.customization h3 {
+  font-size: 1.2rem;
+  color: black; /* Gold headings */
+  margin-bottom: 10px;
+}
+
+.size-buttons {
+  display: flex;
+  gap: 10px;
+}
+.sizeguide {
+text-decoration: dashed;
+  color: inherit; /* Inherit the current color */
+  cursor: pointer; /* Show pointer cursor */
+}
+.sizeguide:hover h3 {
+  color: #FFD700; /* Optional hover effect */
+}
+.sizeguide::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px; /* Offset to place below the text */
+  width: 0; /* Hidden by default */
+  height: 2px; /* Thickness of the underline */
+  background-color: #FFD700; /* Gold underline */
+  transition: width 0.3s ease; /* Smooth transition */
+}
+
+.size-btn {
+  padding: 10px 20px;
+  border: 1px solid #FFD700; /* Gold border */
+  border-radius: 5px;
+  background: #000000; /* Black background */
+  color: #FFD700; /* Gold text */
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.size-btn.selected {
+  background-color: #FFD700; /* Gold for selected size */
+  color: #000; /* Black text */
+}
+
+.customization textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #FFD700; /* Gold border */
+  border-radius: 5px;
+  font-family: 'Lora', serif;
+
+  color: #FFD700; /* Gold text */
+  resize: none;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qty-btn {
+  padding: 5px 15px;
+  font-size: 1.2rem;
+  border: none;
+  background-color: #FFD700; /* Gold background for buttons */
+  color: #000; /* Black text */
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.qty-btn:hover {
+  background-color: #B38C28; /* Darker gold on hover */
+}
+
+.action-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  flex: 1;
+  padding: 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.add-to-cart {
+  background: #1A1A1A; /* Black background */
+  color: #FFD700; /* Gold text */
+  border: 1px solid #FFD700; /* Gold border */
+}
+
+.buy-now {
+  background: #FFD700; /* Gold background for buy now */
+  color: #000; /* Black text */
+}
+
+.buy-now:hover {
+  background-color: #B38C28; /* Darker gold on hover */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
   .boutique-container {
-    display: flex;
-    gap: 40px;
-    padding: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  /* Left Side: Image Gallery */
-  .image-gallery {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .featured-image {
-    width: 100%;
-    max-width: 500px;
-    height: 500px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background-image: url('../../../assets/images/lehanga.png');
-    background-size: cover; /* Ensures the image covers the container fully */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-  }
-  
-  .featured-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-  }
-  
-  .thumbnails {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-   
-  }
-  
-  .thumbnail {
-    width: 70px;
-    height: 70px;
-    border: 2px solid transparent;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-    cursor: pointer;
-    background-image: url('../../../assets/images/saree.png');
-    background-size: contain; /* Ensures the image covers the container fully */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-  }
-  
-  .thumbnail:hover,
-  .thumbnail.active {
-    border-color: #d4af37; /* Luxurious gold accent */
-    transform: scale(1.1);
-  }
-  
-  .thumbnail-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  /* Right Side: Product Details */
-  .product-details {
-    flex: 1;
-    display: flex;
     flex-direction: column;
     gap: 20px;
   }
-  
-  .product-title {
-    font-size: 2rem;
-    color: #444;
-    margin: 0;
-    font-weight: bold;
-  }
-  
-  .product-description {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #555;
-  }
-  
-  .price {
-    font-size: 1.5rem;
-    color: #d9534f; /* Eye-catching price color */
-    font-weight: bold;
-  }
-  
-  .size-options h3,
-  .customization h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
-  
-  .size-buttons {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .size-btn {
-    padding: 10px 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .size-btn.selected {
-    background-color: #d4af37; /* Gold for selected size */
-    color: #fff;
-    border-color: #d4af37;
-  }
-  
-  .customization textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-family: 'Lora', serif;
-    resize: none;
-  }
-  
-  .actions {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .quantity-control {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .qty-btn {
-    padding: 5px 15px;
-    font-size: 1.2rem;
-    border: none;
-    background-color: #d4af37;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .qty-btn:hover {
-    background-color: #b38c28;
-  }
-  
-  .action-buttons {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .btn {
-    flex: 1;
-    padding: 15px;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .add-to-cart {
-    background: #444;
-    color: #fff;
-  }
-  
-  .buy-now {
-    background: #d4af37;
-    color: #fff;
-  }
-  
-  .buy-now:hover {
-    background-color: #b38c28;
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .boutique-container {
-      flex-direction: column;
-      gap: 20px;
-    }
-  }
-  
+}
+.stock-status {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.stock-status.in-stock {
+  color: #28a745; /* Green for in stock */
+}
+
+.stock-status.out-of-stock {
+  color: #dc3545; /* Red for out of stock */
+}

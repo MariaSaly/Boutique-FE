@@ -26,11 +26,17 @@
 
   <!-- Search Bar (Initially Hidden) -->
   <div class="search-bar" [ngClass]="{ 'show': showSearchBar }">
-    <input type="text" placeholder="Search for products..." #searchinput (input)="onSearch(searchinput.value)" />
-    <button mat-icon-button aria-label="Close Search" (click)="toggleSearchBar()">
+    <input
+      type="text"
+      placeholder="Search for products..."
+      #searchinput
+      (input)="onSearch(searchinput.value)"
+    />
+    <button mat-icon-button aria-label="Close Search" >
       <mat-icon>close</mat-icon>
     </button>
   </div>
+  
 
   <!-- Second Row: Navigation Links -->
   <div class="header-bottom">
@@ -39,5 +45,10 @@
     <button mat-button>Lehenga</button>
     <button mat-button>Kurthi</button>
     <button mat-button>Saree</button>
+  </div>
+  <div class="scroll-container">
+    <div class="scroll-text">
+      Contact us at: +1234567890 | Address: 123 Main St, City, Country
+    </div>
   </div>
 </div>
