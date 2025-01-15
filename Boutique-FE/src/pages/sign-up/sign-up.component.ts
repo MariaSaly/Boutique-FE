@@ -16,10 +16,13 @@ export class SignUpComponent {
   email: string = '';
   password: string = '';
   signup: FormGroup ;
+  name:string ='';
 constructor(private router:Router, private authService:AuthService){
   this.signup = new FormGroup({
     email: new FormControl('',[Validators.email,Validators.required]),
-    password:new FormControl('', [Validators.required,Validators.minLength(5)])
+    password:new FormControl('', [Validators.required,Validators.minLength(5)]),
+    phonenumber:new FormControl('', [Validators.required,Validators.minLength(10)]),
+    name:new FormControl('')
   })
 }
 onSignUp(): void {
@@ -27,9 +30,12 @@ onSignUp(): void {
     // Access email and password separately
     const email = this.signup.get('email')?.value;
     const password = this.signup.get('password')?.value;
+    const phonenumber = this.signup.get('phonenumber')?.value;
+    const name = this.signup.get('name')?.value;
+  
 
     // Call the login service with separate email and password
-    this.authService.signup(email, password).subscribe({
+    this.authService.signup(name,email, password,phonenumber).subscribe({
       next:(response) =>{
         alert("Signed In sucessfully");
         this.router.navigate(['/login']);

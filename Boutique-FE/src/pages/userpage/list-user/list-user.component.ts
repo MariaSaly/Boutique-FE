@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpService } from '../../../service/httpService';
 import { environment } from '../../../environment';
 import { CommonModule } from '@angular/common';
+import { userService } from '../../../service/userService';
 
 @Component({
   selector: 'app-list-user',
@@ -14,13 +15,13 @@ import { CommonModule } from '@angular/common';
 export class ListUserComponent implements OnInit {
   users:any;
   private url = environment.localUrl;
-  constructor(private router:Router, private http:HttpService){}
+  constructor(private router:Router, private http:HttpService , private userService:userService){}
   ngOnInit(): void {
    this.getUsers();
   }
  
   getUsers(){
-    this.http.get<any>(`${this.url}/api/list-users`).subscribe( data => {
+    this.userService.getAllUser().subscribe( data => {
       this.users = data;
       console.log("users:",this.users);
     })

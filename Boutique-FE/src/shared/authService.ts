@@ -4,13 +4,16 @@ import { Router } from '@angular/router';
 //import { createUserWithEmailAndPassword } from 'firease/auth';
 import { from, Observable } from 'rxjs';
 import {jwtDecode} from 'jwt-decode';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { userService } from '../service/userService';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor( private router: Router) {}
+  constructor( private router: Router , private userService:userService ) {}
   firebaseAuth = inject(Auth)
+   
 
    // Method to check and refresh token if expired
    private async getValidToken(): Promise<string> {
@@ -46,7 +49,7 @@ export class AuthService {
   }
 
   // login method
-   login(email: string, password: string):Observable<{ role :string}> {
+   login(email: string, password: string ):Observable<{ role :string}> {
     // try {
     //   await this.firebaseAuth.si(email, password);
     //   localStorage.setItem('token', 'true');
@@ -63,15 +66,16 @@ export class AuthService {
     console.log("decodedToken:",decodedToken);
     localStorage.setItem('token',token);
     localStorage.setItem('userData',JSON.stringify(decodedToken));
+  
     return { role: decodedToken.role }; // Ensure the response includes 'role'
-
+    
 
     });
     return from(promise);
   }
 
   // register method
-   signup(email: string, password: string):Observable<void> {
+   signup(name:string,email: string, password: string,phonenumber:number):Observable<void> {
     // try {
     //   await this.fireAuth.createUserWithEmailAndPassword(email, password);
     //   alert('Registered user successfully');
@@ -85,7 +89,29 @@ export class AuthService {
     const promise = createUserWithEmailAndPassword(this.firebaseAuth,email,password).then( async (UserCredential)=>{
       const token = await UserCredential.user.getIdToken();
       console.log("token:",token);
+      
        localStorage.setItem('token',JSON.stringify(token));
+       const userDocument = {
+        name:name,
+        email:email,
+        password:password,
+        phonenumber:phonenumber,
+
+      }
+      try{
+           this.userService.createUser(userDocument).subscribe( 
+            (data)=>{
+              console.log("user created sucessfuly");
+            },
+            (error)=>{
+              console.log(`Error in creating user :${error}`);
+            }
+           )
+           console.log(`sucessfully stored the user data!`)
+      }
+      catch(err){
+        console.error(`Error in storing the user data in firestore : ${err}`)
+      }
     })
     return from(promise)
   }
