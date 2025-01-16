@@ -5,12 +5,13 @@ import { environment } from '../../../environment';
 import { HttpService } from '../../../service/httpService';
 import { FormsModule } from '@angular/forms';
 import { AuthInterceptor } from '../../../service/httpInterceptorService';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-add-items',
   standalone:true,
-  imports: [FormsModule ],
+  imports: [FormsModule ,CommonModule],
   
   
   templateUrl: './add-items.component.html',
@@ -20,6 +21,7 @@ export class AddItemsComponent implements OnInit {
   formData: any = {};
   name: string = '';
   price: number = 0;
+  files:any[] = []
   description: string = '';
   isCustomizable: boolean = false;
   @ViewChild('submitBtn')
@@ -34,6 +36,8 @@ export class AddItemsComponent implements OnInit {
   itemId: any;
   showSubmitButton: boolean = false;
   items: unknown;
+  selectedFiles:File[]=[];
+  filenames:any[]=[];
   constructor(private router:Router ,private cdr: ChangeDetectorRef,private http:HttpService,private activatedRoute: ActivatedRoute){}
   ngOnInit(): void {
     
@@ -84,6 +88,20 @@ export class AddItemsComponent implements OnInit {
       }
     }
   }
+  onFilesselected(event: any): void {
+    console.log("I am in onFilesselected method:");
+    const newFiles:File[]= Array.from(event.target.files); // Convert FileList to array
+    
+    // Append newly selected files to the existing array
+    this.selectedFiles = [...this.selectedFiles, ...newFiles];
+    
+    console.log("Selected files after appending:", this.selectedFiles);
+  }
+  
+
+  removefile(index:number){
+    this.selectedFiles.splice(index,1);
+  }
   updateItem(){
     const formData = new FormData();
 
@@ -97,11 +115,14 @@ export class AddItemsComponent implements OnInit {
      formData.append('stock', this.stock.toString()); // Ensure it's a string
 
      // Append image file
-     const imageFile = (document.getElementById('imageUpload') as HTMLInputElement).files?.[0];
-     console.log("Image file:", imageFile);
-     if (imageFile) {
-       formData.append('image', imageFile);
-     }
+    //  const imageFile = (document.getElementById('imageUpload') as HTMLInputElement).files?.[0];
+    //  console.log("Image file:", imageFile);
+    //  if (imageFile) {
+    //    formData.append('image', imageFile);
+    //  }
+    for( const file of this.selectedFiles){
+      formData.append('image', file, file.name)
+    }
      this.itemId = this.activatedRoute.snapshot.paramMap.get('id');
       // Send data to server
       console.log("Sending data to server:", formData);
@@ -134,10 +155,14 @@ export class AddItemsComponent implements OnInit {
       formData.append('stock', this.stock.toString()); // Ensure it's a string
   
       // Append image file
-      const imageFile = (document.getElementById('imageUpload') as HTMLInputElement).files?.[0];
-      console.log("Image file:", imageFile);
-      if (imageFile) {
-        formData.append('image', imageFile);
+      // const imageFile = (document.getElementById('imageUpload') as HTMLInputElement).files?.[0];
+      // console.log("Image file:", imageFile);
+      // if (imageFile) {
+      //   formData.append('image', imageFile);
+      // }
+      for( const file of this.selectedFiles){
+        console.log("iamgesfiles:",file);
+        formData.append('image', file)
       }
   
       // Send data to server

@@ -52,16 +52,24 @@
 
     <!-- Image Upload Field -->
     <div class="form-group">
-      <label for="imageUpload">Upload or Capture Image</label>
+      <label for="files">Upload or Capture Image</label>
       <input 
         type="file" 
-        id="imageUpload" 
-        name="image" 
-        accept="image/*" 
-        capture="environment" 
-        onchange="previewImage(event)" 
+        (change)="onFilesselected($event)"
+        id="files" 
+        name="files[]"
+        multiple
+       [(ngModel)]="files"
+        
         required
       />
+      <div *ngIf="selectedFiles.length > 0">
+        <ul>
+          <li *ngFor="let file of selectedFiles let i = index" >{{i+1}}.SelectedFile:{{file.name}}
+            <span class="delete-icon" (click)="removefile(i)">&#x2715;</span>
+          </li>
+        </ul>
+      </div>
       <!-- Preview Section -->
       <div class="image-preview">
         <img id="imagePreview" src="" alt="Image Preview" />

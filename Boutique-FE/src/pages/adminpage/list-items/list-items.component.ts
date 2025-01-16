@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './list-items.component.css'
 })
 export class ListItemsComponent implements OnInit {
-  private url = environment.localUrl;
+  public url = environment.localUrl;
 constructor(private router:Router, private http:HttpService,private cdr: ChangeDetectorRef,private httpclient:HttpClient){}
   ngOnInit(): void {
     this.getItem();
@@ -23,9 +23,9 @@ constructor(private router:Router, private http:HttpService,private cdr: ChangeD
     next:(response)=>{
       console.log("data:", response);
       this.items = response;
-      this.items.forEach((items)=>{
-        this.fetchImageForItems(items);
-      })
+      // this.items.forEach((items)=>{
+      //   this.fetchImageForItems(items);
+      // })
     },
     error:(error)=>{
       console.log(`Error in getting the Data:${error}`);

@@ -11,7 +11,7 @@
   <div *ngFor="let item of items" class="card">
     <!-- Image Section -->
     <div class="card-image">
-      <img [src]="item.imageDataUrl" [alt]="item.title" />
+      <img [src]=" url + item.imageUrl" [alt]="item.title" />
     </div>
 
     <!-- Description Section -->
