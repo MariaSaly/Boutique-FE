@@ -18,22 +18,34 @@ import { HttpClient } from '@angular/common/http';
 export class SareeComponent  implements OnInit{
   public url = environment.localUrl;
   filteredData: any[] =[];
-  items: unknown;
+  items: any[]= [];
   constructor(private router:Router , private searchService:SearchService,private cdr: ChangeDetectorRef, private cartService:CartService , private httpservice:HttpService , private httpClient:HttpClient){}
   ngOnInit(): void {
     this.getSareeItems();
     this.searchService.searchQuery$.subscribe((query) => {
       console.log('query:', query);
-      this.filteredData = this.products.filter((item) => {
-        return Object.values(item).some((val) =>
-          val.toString().toLowerCase().includes(query.toLowerCase())
-        );
+      this.filteredData = this.items.filter((item) => {
+        return Object.values(item).some((val: any) => {
+          // Check if val is an array or an object
+          if (Array.isArray(val)) {
+            // Handle arrays: you can join array elements or just return a relevant string
+            return val.join(' ').toLowerCase().includes(query.toLowerCase());
+          } else if (val && typeof val === 'object') {
+            // Handle objects: convert object to a string or you can further inspect the object
+            return JSON.stringify(val).toLowerCase().includes(query.toLowerCase());
+          } else if (val != null) {
+            // Handle strings, numbers, and other primitives
+            return val.toString().toLowerCase().includes(query.toLowerCase());
+          }
+          return false; // Return false if val is null or undefined
+        });
       });
     });
   }
   getSareeItems(){
-    this.httpservice.get(`${this.url}/api/items/getItem`).subscribe( data => {
+    this.httpservice.get(`${this.url}/api/items/getItem`).subscribe( (data:any) => {
      console.log("data:", data);
+     this.items = data;
      const items:any = data;
     
      this.filteredData = [...items];
