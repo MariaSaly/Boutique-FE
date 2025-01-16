@@ -8,13 +8,14 @@
     >
       <!-- Card Image -->
       <div class="card-image">
-        <img src="/assets/images/bg3.png" alt="" />
+        <img [src]=" url + product.imageUrl"   class="product-image" />
+
 
       </div>
   
       <!-- Card Details (Placed below the image) -->
       <div class="card-details">
-        <h2>{{ product.title }}</h2>
+        <h2>{{ product.name }}</h2>
         <p>{{ product.description }}</p>
         <p class="price">{{ product.price | currency }}</p>
       </div>

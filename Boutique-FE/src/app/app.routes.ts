@@ -31,7 +31,7 @@ export const routes: Routes = [
     component: LayoutzzComponent,
     children: [
         { path: 'saree', component: SareeComponent },
-        { path: 'viewsaree', component: ViewsareeComponent },
+        { path: 'viewsaree/:id', component: ViewsareeComponent },
       { path: 'home', component: HomepageComponent },
       { path: 'add', component: AddItemsComponent },
       { path: 'list', component: ListItemsComponent },

@@ -1,7 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartService } from '../../../app/cart.service';
+import { HttpService } from '../../../service/httpService';
+import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../../environment';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-viewsaree',
@@ -10,10 +14,61 @@ import { CartService } from '../../../app/cart.service';
   templateUrl: './viewsaree.component.html',
   styleUrl: './viewsaree.component.css'
 })
-export class ViewsareeComponent {
+export class ViewsareeComponent implements OnInit {
   userId: any;
-  constructor( private cartService:CartService){
+  itemId: string | null = '';
+  public url = environment.localUrl;
+  itemData: any;
+  constructor( private cartService:CartService , private http:HttpService  ,private cdr: ChangeDetectorRef, private route:ActivatedRoute , private httpClient:HttpClient , ){
 
+  }
+  ngOnInit(): void {
+    this.itemId = this.route.snapshot.paramMap.get('id');
+    console.log("id:", this.itemId);
+    if(this.itemId){
+      this.getItemByID();
+    }
+  }
+  getItemByID(){
+    this.http.get(`${this.url}/api/items/getItemById/${this.itemId}`).subscribe( data => {
+      console.log("data:", data);
+      this.itemData = data;
+    
+    
+       
+    })
+  }
+  fetchImageForItems(Item: any): void {
+    
+    let imagePath = Item.imageUrl;
+
+    // Ensure no duplicate slashes in the URL
+    const normalizedUrl = `${this.url.replace(/\/$/, '')}/${imagePath.replace(/^\//, '')}`;
+    
+    console.log("Fetching image from:", normalizedUrl);
+    
+    this.httpClient.get(normalizedUrl, { responseType: 'blob' })
+      .subscribe(
+        (imageBlob: Blob) => { 
+          const reader = new FileReader();
+          reader.readAsDataURL(imageBlob);
+          reader.onload = () => {
+            if (reader.result) {
+              Item.imageDataUrl = reader.result as string;
+              this.cdr.markForCheck();
+            } else {
+              console.error('FileReader result is empty');
+            }
+          };
+          reader.onerror = () => {
+            console.error('FileReader error occurred');
+          };
+        },
+        error => {
+          console.error(`Error fetching image for item ${Item.id}:`, error);
+        }
+      );
+    
   }
   selectedProduct = {
     title: 'Aamina Saree',
@@ -63,7 +118,8 @@ export class ViewsareeComponent {
     //   product: this.selectedProduct,
     //   qty:this.quantity
     // }
-    const productId = "B5EqhzNXignmJs2Ordt4";
+    const productId = this.itemData.id;
+    console.log("productId:", productId);
     const qty = this.quantity;
     const data = localStorage.getItem('userData');
     if(data){

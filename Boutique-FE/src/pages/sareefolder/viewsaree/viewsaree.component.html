@@ -1,9 +1,9 @@
-<div class="boutique-container">
+<div class="boutique-container" >
     <!-- Left Side: Image Gallery -->
     <div class="image-gallery">
       <!-- Large Display Image -->
       <div class="featured-image">
-        <img [src]="selectedImage" alt="" class="featured-img" />
+        <img [src]=" url + itemData.imageUrl" alt="" class="featured-img" />
       </div>
   
       <!-- Thumbnail Gallery -->
@@ -22,9 +22,9 @@
     <!-- Right Side: Product Details -->
     <div class="product-details">
       <!-- Product Info -->
-      <h1 class="product-title">{{ selectedProduct.title }}</h1>
-      <p class="product-description">{{ selectedProduct.description }}</p>
-      <p class="price">{{ selectedProduct.price | currency }}</p>
+      <h1 class="product-title">{{ itemData.name}}</h1>
+      <p class="product-description">{{ itemData.description }}</p>
+      <p class="price">{{ itemData.price | currency }}</p>
   
       <!-- Size Selection -->
       <div class="size-options">

@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CartService } from '../../app/cart.service';
 import { Subscription } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { razorPayService } from '../../service/razorpayService';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environment';
 declare var Razorpay:any
 
 @Component({
@@ -24,9 +26,10 @@ export class CartComponent implements OnInit{
   cartItems:any[] =[];
   isMobileView: boolean = false; 
   userId: any;
+  public url = environment.localUrl;
   
 
-constructor( private cartService:CartService, private router:Router , private razorpayService:razorPayService){
+constructor( private cartService:CartService, private router:Router ,private cdr: ChangeDetectorRef, private razorpayService:razorPayService ,private httpClient:HttpClient){
   
 }
 ngOnInit(): void {
@@ -76,8 +79,43 @@ loadCart(){
   this.cartService.getCart(this.userId).subscribe( data => {
      console.log ("data:", data);
      this.cartItems = data;
+    //  this.cartItems.forEach((item)=>{
+    //   this.fetchImageForItems(item);
+    //  })
      this.calculateCartItems();
   })
+}
+fetchImageForItems(Item: any): void {
+    
+  let imagePath = Item.imageUrl;
+
+  // Ensure no duplicate slashes in the URL
+  const normalizedUrl = `${this.url.replace(/\/$/, '')}/${imagePath.replace(/^\//, '')}`;
+  
+  console.log("Fetching image from:", normalizedUrl);
+  
+  this.httpClient.get(normalizedUrl, { responseType: 'blob' })
+    .subscribe(
+      (imageBlob: Blob) => { 
+        const reader = new FileReader();
+        reader.readAsDataURL(imageBlob);
+        reader.onload = () => {
+          if (reader.result) {
+            Item.imageDataUrl = reader.result as string;
+            this.cdr.markForCheck();
+          } else {
+            console.error('FileReader result is empty');
+          }
+        };
+        reader.onerror = () => {
+          console.error('FileReader error occurred');
+        };
+      },
+      error => {
+        console.error(`Error fetching image for item ${Item.id}:`, error);
+      }
+    );
+  
 }
 decreaseQty(item:any){
   //const previousCartItem= this.cartItems.find((item:any)=> item.cartId== id);

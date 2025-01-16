@@ -56,7 +56,7 @@
   justify-content: center;
   align-items: center;
   background-color: #f0f0f0; /* Placeholder background */
-  background-image: url('../../assets/images/lehanga.png');
+  /* background-image: url('../../assets/images/lehanga.png'); */
   /* remove when getting image from url */
   background-size: cover;
   background-position: center;
