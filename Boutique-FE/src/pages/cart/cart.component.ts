@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { razorPayService } from '../../service/razorpayService';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environment';
+import { user } from '@angular/fire/auth';
 declare var Razorpay:any
 
 @Component({
@@ -45,12 +46,20 @@ ngOnInit(): void {
 }
 deleteItem(id:any){
   const previousItem= this.cartItems.find((item:any)=> item.cartId == id);
+  let userId:string = '';
+  if(this.userId){
+    userId = this.userId;
+  }
+  else{
+    const guestData = localStorage.getItem('guestId');
+    userId = guestData || ''
+  }
  
-   this.cartService.deleteCart(this.userId,id).subscribe( data => {
+   this.cartService.deleteCart(userId,id).subscribe( data => {
     if(data){
       console.log("deleted sucessfully:");
       this.loadCart();
-      this.cartService.loadCart(this.userId);
+      this.cartService.loadCart(userId);
     }
    })
   
@@ -66,24 +75,46 @@ private loadRazorpayScript():Promise<void>{
   })
 }
 loadCart(){
+  let userId:string= '';
   const data = localStorage.getItem('userData');
+  const guestData = localStorage.getItem('guestId');
   console.log("data:",data);
+ 
   if(data){
     const userData = JSON.parse(data);
     this.userId   = userData.user_id;
+     userId = this.userId;
     console.log("userId:",this.userId);
 
   }
+  else{
+    
+    userId = guestData || ''
+    
+  }
+  if ( data && guestData){
+
+    this.cartService.getCartGuest(userId,guestData).subscribe( data => {
+      console.log ("data:", data);
+      this.cartItems = data;
+     //  this.cartItems.forEach((item)=>{
+     //   this.fetchImageForItems(item);
+     //  })
+      this.calculateCartItems();
+   })
+  }else{
+    this.cartService.getCart(userId).subscribe( data => {
+      console.log ("data:", data);
+      this.cartItems = data;
+     //  this.cartItems.forEach((item)=>{
+     //   this.fetchImageForItems(item);
+     //  })
+      this.calculateCartItems();
+   })
+  }
 
     
-  this.cartService.getCart(this.userId).subscribe( data => {
-     console.log ("data:", data);
-     this.cartItems = data;
-    //  this.cartItems.forEach((item)=>{
-    //   this.fetchImageForItems(item);
-    //  })
-     this.calculateCartItems();
-  })
+  
 }
 fetchImageForItems(Item: any): void {
     
@@ -124,8 +155,17 @@ decreaseQty(item:any){
     return
   }
   qty = qty -1;
+
+  let userId:string = '';
+  if(this.userId){
+    userId = this.userId;
+  }
+  else{
+    const guestData = localStorage.getItem('guestId');
+    userId = guestData || ''
+  }
  
-     this.cartService.updateCart(this.userId,item.productId,qty).subscribe(()=>{
+     this.cartService.updateCart(userId,item.productId,qty).subscribe(()=>{
       this.loadCart();
      })
 
@@ -144,8 +184,16 @@ increaseQty(item:any){
     return
   }
   qty = qty + 1;
+  let userId:string = '';
+  if(this.userId){
+    userId = this.userId;
+  }
+  else{
+    const guestData = localStorage.getItem('guestId');
+    userId = guestData || ''
+  }
  
-    this.cartService.updateCart(this.userId,item.productId,qty).subscribe(()=> {
+    this.cartService.updateCart(userId,item.productId,qty).subscribe(()=> {
       this.loadCart();
     })
  
@@ -168,7 +216,9 @@ goToShop(){
   this.router.navigate(['/home']);
 }
 proceedToCheckout(){
-  const amount = this.totalPrice;
+  const data = localStorage.getItem('token');
+  if(data){
+    const amount = this.totalPrice;
    this.razorpayService.createOrder(amount).subscribe( (order:any)=>{
     const options = {
       key:"rzp_test_EoH3hlWAoDxXig",
@@ -208,6 +258,11 @@ proceedToCheckout(){
     const rzp = new Razorpay(options);
     rzp.open()
    })
+  }
+  else{
+    alert('please login to complete the order');
+  }
+  
 }
 
 }

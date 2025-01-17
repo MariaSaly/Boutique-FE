@@ -4,6 +4,7 @@ import { HttpService } from '../service/httpService';
 import { environment } from '../environment';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import { user } from '@angular/fire/auth';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class CartService {
  cartCount$ = this.cartCountSubject.asObservable();
   userId: any;
 
-  constructor(private http:HttpService) { }
+  constructor(private http:HttpService , private httpClient:HttpClient) { }
 
   //load the cart ad update the count 
 
@@ -31,10 +32,16 @@ export class CartService {
   getCart(userId:string):Observable<any>{
      return this.http.get(`${this.url}/api/cart/getCart/${userId}`);
   }
+  getCartGuest(userId:string, guest:string):Observable<any>{
+    return this.http.get(`${this.url}/api/cart/getCart/${userId}`,guest);
+ }
 
   //create cart 
   addToCart( userId:string,productId:string,quantity:number):Observable<any>{
     return this.http.post(`${this.url}/api/cart/addCart`,{userId,productId,quantity})
+  }
+  addToCartGuestUser( userId:string,productId:string,quantity:number):Observable<any>{
+    return this.httpClient.post(`${this.url}/api/cart/addCart`,{userId,productId,quantity})
   }
   //updateCart
   updateCart(userId:string,productId:string,quantity:number):Observable<any>{

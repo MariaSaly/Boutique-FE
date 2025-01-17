@@ -57,27 +57,39 @@
     <!-- Order Summary -->
     <div class="order-summary" *ngIf="cartItems.length > 0">
       <h2>Order Summary</h2>
-      <div class="summary-row">
-        <span>Total Items:</span>
-        <span class="summary-value">{{ totalQuantity }}</span>
+    
+      <!-- Summary Details -->
+      <div class="summary-details">
+        <div class="summary-row">
+          <span class="icon-text">
+            <i class="fas fa-shopping-cart"></i>
+            Total Items
+          </span>
+          <span class="summary-value">{{ totalQuantity }}</span>
+        </div>
+        <div class="summary-row">
+          <span class="icon-text">
+            <i class="fas fa-rupee-sign"></i>
+            Total Price
+          </span>
+          <span class="summary-value">₹{{ totalPrice }}</span>
+        </div>
       </div>
-      <div class="summary-row">
-        <span>Total Price:</span>
-        <span class="summary-value">₹{{ totalPrice }}</span>
+    
+      <!-- Notes Section -->
+      <div class="order-notes">
+        <p class="note-title">Important Notes</p>
+        <ul class="notes-list">
+          <li><i class="fas fa-info-circle"></i> Orders are non-refundable once placed.</li>
+          <li><i class="fas fa-redo"></i> Reorder may require additional charges.</li>
+        </ul>
       </div>
-      <div class="summary-row">
-        <span>Estimated Shipping:</span>
-        <span class="summary-value">Calculated at checkout</span>
-      </div>
-      <div class="summary-row">
-        <span>Estimated Taxes:</span>
-        <span class="summary-value">Calculated at checkout</span>
-      </div>
-      <!-- <div class="summary-row">
-        <span>Notes:</span>
-        <textarea class="notes-input" placeholder="Add any special instructions"></textarea>
-      </div> -->
-      <button class="checkout-btn" (click)="proceedToCheckout()">Proceed to Checkout</button>
+    
+      <!-- Checkout Button -->
+      <button class="checkout-btn animated" (click)="proceedToCheckout()">Proceed to Checkout</button>
     </div>
+    
+    
+    
   </div>
 </div>

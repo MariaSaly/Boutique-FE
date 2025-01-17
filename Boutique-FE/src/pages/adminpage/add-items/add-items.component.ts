@@ -31,6 +31,7 @@ export class AddItemsComponent implements OnInit {
   stock: number = 0;
   image: File | null = null;
   isSubmitting = false;
+  vedioUrl:string = '';
   private url = environment.localUrl;
   viewMode: boolean = false;
   itemId: any;
@@ -66,6 +67,7 @@ export class AddItemsComponent implements OnInit {
         this.category = items.category;
         this.stock = items.stock;
         this.image = items.image;
+        this.vedioUrl = items.vedioLink
       })
     }
   }
@@ -113,6 +115,7 @@ export class AddItemsComponent implements OnInit {
      formData.append('isCustomizable', this.isCustomizable.toString()); // Ensure it's a string
      formData.append('category', this.category);
      formData.append('stock', this.stock.toString()); // Ensure it's a string
+     formData.append('vedioLink', this.vedioUrl);
 
      // Append image file
     //  const imageFile = (document.getElementById('imageUpload') as HTMLInputElement).files?.[0];
@@ -153,6 +156,7 @@ export class AddItemsComponent implements OnInit {
       formData.append('isCustomizable', this.isCustomizable.toString()); // Ensure it's a string
       formData.append('category', this.category);
       formData.append('stock', this.stock.toString()); // Ensure it's a string
+      formData.append('vedioLink', this.vedioUrl);
   
       // Append image file
       // const imageFile = (document.getElementById('imageUpload') as HTMLInputElement).files?.[0];

@@ -24,12 +24,21 @@ export class HeaderComponent implements OnInit {
     //  console.log("data:", data);
     //  this.cartCount = data.length;
     // })
+      let userId:string = '';
     const data = localStorage.getItem('userData');
     if(data){
       const userData = JSON.parse(data);
       this.userId = userData.user_id
     }
-    this.cartService.loadCart(this.userId)
+  
+    if(this.userId){
+      userId = this.userId;
+    }
+    else{
+      const guestData = localStorage.getItem('guestId');
+      userId = guestData || ''
+    }
+    this.cartService.loadCart(userId)
     this.cartService.cartCount$.subscribe( data => {
       this.cartCount = data;
     })

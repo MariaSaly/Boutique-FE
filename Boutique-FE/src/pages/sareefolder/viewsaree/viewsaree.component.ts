@@ -6,6 +6,7 @@ import { HttpService } from '../../../service/httpService';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../environment';
 import { HttpClient } from '@angular/common/http';
+import { user } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-viewsaree',
@@ -126,13 +127,34 @@ export class ViewsareeComponent implements OnInit {
       const userData = JSON.parse(data);
       this.userId = userData.user_id;
       console.log("userid:", this.userId);
-    }
+    
     this.cartService.addToCart(this.userId,productId,qty).subscribe( data => {
       this.cartService.loadCart(this.userId)
       console.log("user added sucessfully !");
     })
     // this.cartService.addItem(newCartItem);
+  }else{
+    const guestId = this.generateGuestId();
+    console.log("guestId:", guestId);
+    const productId = this.itemData.id;
+    const qty = this.quantity;
+    
+    this.cartService.addToCartGuestUser(guestId,productId,qty).subscribe( data => {
+      this.cartService.loadCart(guestId)
+      console.log("user added sucessfully !");
+    })
+    alert('please login to addtoCart');
   }
+  }
+  generateGuestId() {
+    let guestId = localStorage.getItem('guestId');
+    if (!guestId) {
+      guestId = 'guest_' + Math.random().toString(36).substring(2) + Date.now();
+      localStorage.setItem('guestId', guestId);
+    }
+    return guestId;
+  }
+  
 
   buyNow() {
     // Buy now logic
