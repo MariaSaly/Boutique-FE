@@ -26,6 +26,14 @@ export class CartService {
     })
 
   }
+  loadCartGuest(userId:string,guest:string):void{
+    
+    this.getCartGuest(userId,guest).subscribe( data => {
+      this.cartCountSubject.next(data.length);
+    })
+
+  }
+  
 
   // get the cart item 
 
@@ -33,7 +41,7 @@ export class CartService {
      return this.http.get(`${this.url}/api/cart/getCart/${userId}`);
   }
   getCartGuest(userId:string, guest:string):Observable<any>{
-    return this.http.get(`${this.url}/api/cart/getCart/${userId}`,guest);
+    return this.http.get(`${this.url}/api/cart/getCart/${userId}?guestId=${guest}`);
  }
 
   //create cart 

@@ -93,10 +93,20 @@ loadCart(){
     
   }
   if ( data && guestData){
-
+    console.log("guestData:", guestData);
+     console.log("iam going to implement the get cart guest ");
     this.cartService.getCartGuest(userId,guestData).subscribe( data => {
       console.log ("data:", data);
       this.cartItems = data;
+      const guestId = localStorage.getItem('guestId');
+      if(guestId){
+        localStorage.removeItem('guestId');
+        console.log("guestId removed from local storage sucessfully");
+      }
+
+  
+  
+
      //  this.cartItems.forEach((item)=>{
      //   this.fetchImageForItems(item);
      //  })

@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
     //  this.cartCount = data.length;
     // })
       let userId:string = '';
+      const guestData = localStorage.getItem('guestId');
     const data = localStorage.getItem('userData');
     if(data){
       const userData = JSON.parse(data);
@@ -35,13 +36,22 @@ export class HeaderComponent implements OnInit {
       userId = this.userId;
     }
     else{
-      const guestData = localStorage.getItem('guestId');
+     
       userId = guestData || ''
     }
-    this.cartService.loadCart(userId)
-    this.cartService.cartCount$.subscribe( data => {
-      this.cartCount = data;
-    })
+    if(this.userId && guestData){
+      this.cartService.loadCartGuest(this.userId,guestData);
+      this.cartService.cartCount$.subscribe( data => {
+        this.cartCount = data;
+      })
+    }
+    else{
+      this.cartService.loadCart(userId)
+      this.cartService.cartCount$.subscribe( data => {
+        this.cartCount = data;
+      })
+    }
+    
    
    }
   toggleSearchBar() {
