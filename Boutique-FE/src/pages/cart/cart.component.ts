@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule,Location } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CartService } from '../../app/cart.service';
 import { Subscription } from 'rxjs';
@@ -8,6 +8,8 @@ import { razorPayService } from '../../service/razorpayService';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environment';
 import { user } from '@angular/fire/auth';
+import { MatDialog } from '@angular/material/dialog';
+import { DeliveryAddresssModelComponent } from '../../app/delivery-addresss-model/delivery-addresss-model.component';
 declare var Razorpay:any
 
 @Component({
@@ -30,7 +32,7 @@ export class CartComponent implements OnInit{
   public url = environment.localUrl;
   
 
-constructor( private cartService:CartService, private router:Router ,private cdr: ChangeDetectorRef, private razorpayService:razorPayService ,private httpClient:HttpClient){
+constructor( private location: Location,private cartService:CartService, private router:Router ,private cdr: ChangeDetectorRef, private razorpayService:razorPayService ,private httpClient:HttpClient,private dialog:MatDialog){
   
 }
 ngOnInit(): void {
@@ -225,29 +227,52 @@ calculateCartItems(){
 goToShop(){
   this.router.navigate(['/home']);
 }
-proceedToCheckout(){
-  const data = localStorage.getItem('token');
-  if(data){
-    const amount = this.totalPrice;
-   this.razorpayService.createOrder(amount).subscribe( (order:any)=>{
+
+openDeliveryAddressModel(){
+  const dialogRef = this.dialog.open(DeliveryAddresssModelComponent);
+  dialogRef.afterClosed().subscribe( address => {
+    if(address){
+      console.log("address:",address);
+      this.proceedToCheckout(address);
+    }
+  })
+}
+
+proceedToCheckout(address:any){
+  
+  const data ={
+    userId:this.userId,
+    totalAmount:this.totalPrice,
+    paymentStatus:'pending',
+    deliveryAddress:address,
+    currency:'INR'
+
+
+  }
+
+   this.razorpayService.createOrder(data).subscribe( (order:any)=>{
+    console.log("order:",order);
     const options = {
       key:"rzp_test_EoH3hlWAoDxXig",
       amount:order.amount,
       currency:order.currency,
       name:"Mokshe Rental Destination",
       description:"order payment ",
-      order_id:order.id,
+      order_id:order.razorpayOrderId,
       handler:(response:any)=> {
         const paymentData = {
-          order_id: order.id,
+          order_id: order.razorpayOrderId,
           razorpay_payment_id:response.razorpay_payment_id,
           razorpay_signature:response.razorpay_signature,
+          orderId:order.orderId,
+          userId:this.userId
           
         };
         console.log("paymentdeatils:", paymentData);
         this.razorpayService.verifyOrder(paymentData).subscribe(
           (verificationResponse) => {
             alert("payment Sucessfull!");
+            this.refreshComponent();
             console.log("verificationResponse:", verificationResponse);
           },
           (error)=>{
@@ -268,11 +293,10 @@ proceedToCheckout(){
     const rzp = new Razorpay(options);
     rzp.open()
    })
-  }
-  else{
-    alert('please login to complete the order');
-  }
-  
 }
 
+refreshComponent() {
+  this.location.go('/some-route'); // You can update this with your actual route
+  setTimeout(() => this.location.go(this.router.url), 0); // Re-navigate to the current route to trigger refresh
+}
 }

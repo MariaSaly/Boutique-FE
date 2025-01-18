@@ -1,0 +1,19 @@
+<h3>Enter Delivery Address</h3>
+<form (ngSubmit)="submitAddress()">
+  <label for="addressLine1">Address Line 1</label>
+  <input type="text" id="addressLine1" [(ngModel)]="deliveryAddress.addressLine1" name="addressLine1" required>
+
+  <label for="addressLine2">Address Line 2</label>
+  <input type="text" id="addressLine2" [(ngModel)]="deliveryAddress.addressLine2" name="addressLine2">
+
+  <label for="city">City</label>
+  <input type="text" id="city" [(ngModel)]="deliveryAddress.city" name="city" required>
+
+  <label for="postalCode">Postal Code</label>
+  <input type="text" id="postalCode" [(ngModel)]="deliveryAddress.postalCode" name="postalCode" required>
+
+  <label for="country">Country</label>
+  <input type="text" id="country" [(ngModel)]="deliveryAddress.country" name="country" required>
+
+  <button type="submit">Save Address</button>
+</form>
