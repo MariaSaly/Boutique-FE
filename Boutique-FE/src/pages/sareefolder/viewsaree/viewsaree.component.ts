@@ -90,7 +90,7 @@ export class ViewsareeComponent implements OnInit {
   selectedSize: string = 'M';
 
   customText: string = '';
-  quantity: number = 1;
+  quantity: number = 0;
 
   selectImage(image: string) {
     this.selectedImage = image;
@@ -158,5 +158,23 @@ export class ViewsareeComponent implements OnInit {
 
   buyNow() {
     // Buy now logic
+  }
+ 
+  images: string[] = [
+   
+  ];
+  currentIndex: number = 0;
+
+  nextImage() {
+    if (this.images.length > 0) {
+      this.currentIndex = (this.currentIndex + 1) % this.images.length;
+    }
+  }
+
+  previousImage() {
+    if (this.images.length > 0) {
+      this.currentIndex =
+        (this.currentIndex - 1 + this.images.length) % this.images.length;
+    }
   }
 }

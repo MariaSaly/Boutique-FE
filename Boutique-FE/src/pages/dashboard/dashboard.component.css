@@ -1,167 +1,407 @@
-/* Main Container */
-.main {
-  width: 100%;
-  height: 100vh;
+.layout {
   display: flex;
-  align-items: center;
+  flex-direction: row; /* Stack .mokshe and .samepinch vertically */
+  gap: 20px; /* Space between .mokshe and .samepinch */
   justify-content: center;
+  align-items: center;
   text-align: center;
-  position: relative; /* To apply absolute positioning on background */
-  background-image: url("../../assets/images/bg3.png"), linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)); /* Dark gradient overlay on image */
+  padding: 50px;
+  height: 100%;
+  background: linear-gradient(135deg, #1A1A1A 10%, #4A4A4A 30%, #FFD700 100%);
+  /* Dark gray transition for smoother blend */
+  
+}
+
+.mokshe, .samepinch {
+  display: flex;
+  justify-content: space-between; /* Space out image and logo containers */
+ border-radius: 10px;
+  align-items: center; /* Vertically align content */
+  width: 100%; /* Full width of the parent container */
+  max-width: 500px; /* Optional: Limit the maximum width */
+  margin: 0 auto; /* Center-align horizontally */
+  border: 1px solid white; /* Optional: Add a border for better visibility */
+  padding: 10px; /* Optional: Add padding for inner spacing */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background: linear-gradient(to right, #f9f9f9, #ffffff); /* Light gradient background */
+}
+
+.image-container, .logo-container, .image-container1, .logo-container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Ensures images don't overflow their containers */
+}
+
+/*  */
+.image-container {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  overflow: hidden; /* Ensures no overflow outside the container */
+  content: url('../../assets/bg1.png');
+  object-fit: fill;
+  border-radius: 8px;
+}
+
+
+
+.logo-container {
+  width: 350px;
+  height: 400px;
+  /* background-color: #e9e9e9;  */
+  flex-direction: column;
+}
+/* .container{
+  width:200px;
+  height: 200px;
+  border: 1px solid black;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  content: url('../../assets/images/Miya1.png');
+} */
+.container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  content: url('../../assets/images/Miya.png');
+}
+
+.image {
+  position: absolute;
+  width: 200px; /* Initial size (smaller) */
+  height: 200px;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  animation: fadeIn 1s forwards; /* Fade-in animation */
-  overflow: hidden;
+  border-radius: 50%;
+  opacity: 0; /* Initially hidden */
+  transform: scale(0); /* Start completely scaled down */
+  animation: none; /* No animation initially */
 }
 
-/* Fade-in animation for main container */
-@keyframes fadeIn {
-  from {
+/* Image-specific backgrounds */
+.image1 {
+  background-image: url('../../assets/images/bg2.png');
+}
+
+.image2 {
+  background-image: url('../../assets/images/bg3.png');
+}
+
+.image3 {
+  background-image: url('../../assets/images/Miya.png');
+}
+
+.image4 {
+  background-image: url('../../assets/images/saree2.png');
+}
+.container:hover{
+  content: none;
+}
+/* Hover Effect */
+.container:hover .image {
+  
+  animation: imageSequence 8s ease-in-out infinite;
+}
+
+/* Animation */
+@keyframes imageSequence {
+  0% {
+    transform: scale(0);
     opacity: 0;
   }
-  to {
+  10% {
+    transform: scale(1.5);
     opacity: 1;
+  }
+  20%, 40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  60% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
   }
 }
 
-/* Split Screen Container */
-.sec {
-  display: flex;
-  flex-direction: row;
-  width: 80%;
-  height: 70%;
-  border-radius: 12px;
-  overflow: hidden;
+/* Specific delays for images to sequence them */
+.container:hover .image1 {
+  animation-delay: 0s;
+}
+
+.container:hover .image2 {
+  animation-delay: 2s;
+}
+
+.container:hover .image3 {
+  animation-delay: 4s;
+}
+
+.container:hover .image4 {
+  animation-delay: 6s;
+}
+
+
+.container1 {
   position: relative;
-  animation: slideUp 1.5s ease-out forwards; /* Slide-up animation */
-}
-
-/* Slide-up animation for sections */
-@keyframes slideUp {
-  from {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Individual Sections (Sec1 & Sec2) */
-.sec1,
-.sec2 {
-  width: 50%;
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  border-radius: 50%;
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
-  background: rgba(0, 0, 0, 0.5); /* Darker semi-transparent background */
-  backdrop-filter: blur(10px); /* Blur effect */
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 8px;
-  opacity: 0;
-  animation: fadeInUp 1s ease-in forwards;
+  background-color: #f0f0f0;
+  content: url('../../assets/images/Miya.png');
+}
+.container1:hover{
+  content: none;
+}
+/* Initially hide images */
+.image1 {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  opacity: 0; /* Initially hidden */
+  transform: scale(0); /* Start completely scaled down */
 }
 
-/* Fade-in and slide-up animation for sections */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
+/* Image-specific backgrounds */
+.image5 {
+  background-image: url('../../assets/images/bg2.png');
+}
+
+.image6 {
+  background-image: url('../../assets/images/bg3.png');
+}
+
+.image7 {
+  background-image: url('../../assets/images/Miya.png');
+}
+
+.image8 {
+  background-image: url('../../assets/images/saree2.png');
+}
+
+/* Hover Effect */
+.container1:hover .image1 {
+  animation: moveImage 4s ease-in-out forwards;
+}
+
+/* Animation */
+@keyframes moveImage {
+  0% {
+    transform: scale(0); /* Start completely scaled down */
+    opacity: 0; /* Initially hidden */
   }
-  to {
+  25% {
     opacity: 1;
-    transform: translateY(0);
+  }
+  50% {
+    transform: scale(1); /* Fit image inside container */
+    opacity: 1;
+  }
+  75% {
+    transform: scale(1); /* Maintain size */
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0); /* Shrink back */
+    opacity: 0;
   }
 }
 
-/* Title Styling with Strong Font Contrast */
-.title {
-  font-family: 'Fantastic Font', sans-serif;
-  font-size: 3.5rem;
-  color: #fff; /* White text color for high contrast */
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  font-weight: bold;
-  letter-spacing: 2px;
-  opacity: 0;
-  animation: fadeInUp 1s ease-in 1s forwards;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9); /* Stronger text shadow for contrast */
+/* Specific directions and delays for images to move from top, right, bottom, left */
+.container1:hover .image5 {
+  animation-delay: 0s;
+  animation-name: moveFromTop;
 }
 
-/* Paragraph Styling */
-p {
-  font-size: 1.5rem;
-  color: #fff; /* White text color */
-  margin-bottom: 30px;
-  max-width: 80%;
-  line-height: 1.7;
-  opacity: 0;
-  animation: fadeInUp 1s ease-in 1.5s forwards;
-  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7); /* Text shadow for better readability */
+.container1:hover .image6 {
+  animation-delay: 1s;
+  animation-name: moveFromRight;
 }
 
-/* Button Styling with Animation */
-.btn {
-  margin-top: 30px;
+.container1:hover .image7 {
+  animation-delay: 2s;
+  animation-name: moveFromBottom;
 }
 
-.btn1 {
-  padding: 14px 35px;
-  font-size: 1.2rem;
-  background-color: #ff6600; /* Warm orange color */
-  color: #fff;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  text-transform: uppercase;
-  font-weight: bold;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-  opacity: 0;
-  animation: fadeInUp 1s ease-in 2s forwards;
+.container1:hover .image8 {
+  animation-delay: 3s;
+  animation-name: moveFromLeft;
 }
 
-/* Hover Animation with Glow Effect */
-.btn1:hover {
-  background-color: #e65c00; /* Slightly darker orange */
-  transform: scale(1.1);
-  box-shadow: 0 0 25px rgba(255, 101, 0, 0.7); /* Glow effect */
-  animation: none;
+/* Move from Top */
+@keyframes moveFromTop {
+  0% {
+    transform: translateY(-200px) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
 }
 
-/* Active Button State */
-.btn1:active {
-  transform: scale(0.95);
-  box-shadow: none;
+/* Move from Right */
+@keyframes moveFromRight {
+  0% {
+    transform: translateX(200px) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
 }
 
-/* Section specific spacing */
-.sec1 .btn1, .sec2 .btn1 {
-  padding: 14px 35px;
+/* Move from Bottom */
+@keyframes moveFromBottom {
+  0% {
+    transform: translateY(200px) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
 }
 
-/* Ensuring Responsive Layout */
-@media (max-width: 768px) {
-  .sec {
+/* Move from Left */
+@keyframes moveFromLeft {
+  0% {
+    transform: translateX(-200px) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.btn{
+  margin-top: 10px;
+
+}
+.btn1{
+  background:black ;
+  color: white;
+  font-size: large;
+}
+
+.image-container1 {
+  width: 300px;
+  height: 400px;
+  content: url('../../assets/images/saree.png');
+  border-radius: 8px;
+  background-color: #f9f9f9; /* Optional: Placeholder background */
+}
+
+.logo-container1 {
+  flex-direction: column;
+  width: 350px;
+  height: 400px;
+  /* background-color: #e9e9e9;  */
+}
+
+.image-container img, 
+.logo-container img, 
+.image-container1 img, 
+.logo-container1 img {
+  max-width: 100%; /* Ensures the image fits within the container */
+  max-height: 100%; /* Maintains aspect ratio */
+  object-fit: cover; /* Ensures the image covers the container */
+}
+.image-container img{
+ 
+  width: 300px;
+  height: 400px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.image-container1 img{
+  background-image: url('../../assets/images/saree2.png');
+  width: 300px;
+  height: 400px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+}
+@media(max-width:680px){
+  .layout {
+    display: flex;
+    flex-direction: column; /* Stack .mokshe and .samepinch vertically */
+    gap: 20px; /* Space between .mokshe and .samepinch */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+  }  
+}
+@media(max-width:400px){
+  .layout {
+    display: flex;
+    flex-direction: column; /* Stack .mokshe and .samepinch vertically */
+    gap: 20px; /* Space between .mokshe and .samepinch */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px !important;
+  }
+  .image-container, .image-container1{
+    width: 250px;
+    height: 400px;
+    background-color: #f9f9f9; /* Optional: Placeholder background */
+  }
+  .logo-container1,.logo-container {
     flex-direction: column;
-    width: 90%;
-    height: auto;
-    margin-top: 20px;
-  }
-
-  .sec1, .sec2 {
-    width: 100%;
-    padding: 20px;
-  }
-
-  .title {
-    font-size: 2.5rem;
-  }
-
-  p {
-    font-size: 1.2rem;
+    width: 300px;
+    height: 400px;
+    /* background-color: #e9e9e9;  */
+  } 
+  .container,.container1{
+    width:150px;
+    height: 150px;
+    border: 1px solid black;
+    border-radius: 50%;
+    margin-bottom: 10px;
   }
 }

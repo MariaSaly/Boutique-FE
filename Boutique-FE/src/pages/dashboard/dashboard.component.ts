@@ -14,6 +14,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class DashboardComponent {
   constructor(private route:Router,){}
   selectedContent: { title: string, description: string } | null = null;
+
+
+  
   leftContent = {
     title: 'Customizable Material',
     description: 'This content explains how you can customize the material to suit your needs.'

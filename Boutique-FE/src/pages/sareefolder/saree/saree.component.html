@@ -1,6 +1,5 @@
 <div class="main-container">
   <div class="newarrivals">
-   
     <div
       class="arrivalcard"
       *ngFor="let product of filteredData; let i = index"
@@ -12,8 +11,8 @@
 
 
       </div>
-  
-      <!-- Card Details (Placed below the image) -->
+
+      <!-- Card Details -->
       <div class="card-details">
         <h2>{{ product.name }}</h2>
         <p>{{ product.description }}</p>
@@ -21,4 +20,4 @@
       </div>
     </div>
   </div>
-  
+</div>

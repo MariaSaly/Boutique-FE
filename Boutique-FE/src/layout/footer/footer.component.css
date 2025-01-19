@@ -13,6 +13,7 @@
 /* For devices with a width of 768px (tablets) and below */
 @media (max-width: 768px) {
   .footer {
+    position: relative;
     padding: 10px 15px; /* Adjust padding for tablet view */
     font-size: 1rem; /* Slightly increase font size for readability */
     height: 40px; /* Adjust height for tablet */
@@ -22,6 +23,7 @@
 /* For mobile devices with a width of 480px (or below) */
 @media (max-width: 480px) {
   .footer {
+    position: relative;
     padding: 10px 10px; /* Reduce padding on mobile */
     font-size: 0.8rem; /* Slightly reduce font size for mobile */
     height: 50px; /* Adjust footer height on mobile */
