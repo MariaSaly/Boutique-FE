@@ -3,12 +3,15 @@
   <div class="image-gallery">
     <!-- Large Display Image -->
     <div class="featured-image">
-      <img [src]="selectedImage" alt="" class="featured-img" />
+      <button (click)="previousImage()" class="arrow prev-arrow">❮</button>
+      <img [src]="images[currentIndex]" alt="Featured Image" class="featured-img" />
+      <button (click)="nextImage()" class="arrow next-arrow">❯</button>
       <a href="https://app.epatrolz.com" class="hover-link" target="_blank">https://app.epatrolz.com</a>
     </div>
+    
 
     <!-- Thumbnail Gallery -->
-    <div class="thumbnails">
+    <!-- <div class="thumbnails">
       <div
         *ngFor="let image of smallImages"
         class="thumbnail"
@@ -17,7 +20,7 @@
       >
         <img [src]="image" alt="" class="thumbnail-img" />
       </div>
-    </div>
+    </div> -->
   </div>
 
   <!-- Right Side: Product Details -->

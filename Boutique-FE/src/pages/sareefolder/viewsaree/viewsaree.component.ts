@@ -68,4 +68,22 @@ export class ViewsareeComponent {
   buyNow() {
     // Buy now logic
   }
+ 
+  images: string[] = [
+   
+  ];
+  currentIndex: number = 0;
+
+  nextImage() {
+    if (this.images.length > 0) {
+      this.currentIndex = (this.currentIndex + 1) % this.images.length;
+    }
+  }
+
+  previousImage() {
+    if (this.images.length > 0) {
+      this.currentIndex =
+        (this.currentIndex - 1 + this.images.length) % this.images.length;
+    }
+  }
 }

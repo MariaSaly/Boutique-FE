@@ -1,6 +1,5 @@
 <div class="main-container">
   <div class="newarrivals">
-   
     <div
       class="arrivalcard"
       *ngFor="let product of filteredData; let i = index"
@@ -8,11 +7,31 @@
     >
       <!-- Card Image -->
       <div class="card-image">
-        <img src="/assets/images/bg3.png" alt="" />
+        <!-- Show arrows only if more than one image is present -->
+        <button 
+          *ngIf="product.images?.length > 1" 
+          (click)="previousImage(i, product.images)" 
+          class="arrow prev-arrow"
+        >
+          ❮
+        </button>
 
+        <img 
+          [src]="product.images[currentIndexes[i]]" 
+          alt="Card Image" 
+          class="card-img" 
+        />
+
+        <button 
+          *ngIf="product.images?.length > 1" 
+          (click)="nextImage(i, product.images)" 
+          class="arrow next-arrow"
+        >
+          ❯
+        </button>
       </div>
-  
-      <!-- Card Details (Placed below the image) -->
+
+      <!-- Card Details -->
       <div class="card-details">
         <h2>{{ product.title }}</h2>
         <p>{{ product.description }}</p>
@@ -20,4 +39,4 @@
       </div>
     </div>
   </div>
-  
+</div>

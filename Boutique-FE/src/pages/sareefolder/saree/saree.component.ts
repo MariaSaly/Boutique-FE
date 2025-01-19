@@ -17,24 +17,19 @@ export class SareeComponent  implements OnInit{
 
   products = [
     {
-      imageUrl: '',
-      title: 'Banarass',
-      description: 'Banarass.',
-      price: 99.99,
+      title: 'Product 1',
+      description: 'Description for product 1',
+      price: 100,
+      images: ['assets/images/bg1.png', 'assets/images/bg2.png', 'assets/images/bg3.png']
     },
     {
-      imageUrl: 'assets/images/bg1.png',
-      title: 'Silky Cotton',
-      description: 'Comfortable and stylish .',
-      price: 49.99,
-    },
-    {
-      imageUrl: 'path/to/image3.jpg',
-      title: 'Silk',
-      description: 'Elegant  for weddings.',
-      price: 149.99,
+      title: 'Product 2',
+      description: 'Description for product 2',
+      price: 150,
+      images: ['assets/images/bg4.png']
     },
   ];
+
   filteredData: any =[...this.products];
   ngOnInit(): void {
     this.searchService.searchQuery$.subscribe((query) => {
@@ -98,4 +93,23 @@ export class SareeComponent  implements OnInit{
       }\nCustomization: ${this.customText}`
     );
   }
+  currentIndexes: number[] = [];
+
+  nextImage(cardIndex: number, images: string[]) {
+    if (images.length > 0) {
+      this.currentIndexes[cardIndex] = (this.currentIndexes[cardIndex] + 1) % images.length;
+    }
+  }
+
+  previousImage(cardIndex: number, images: string[]) {
+    if (images.length > 0) {
+      this.currentIndexes[cardIndex] =
+        (this.currentIndexes[cardIndex] - 1 + images.length) % images.length;
+    }
+  }
+  images: string[] = [
+    'assets/images/bg1.png',
+    'assets/images/bg2.png',
+    'assets/images/bg3.png' // Add more image URLs as needed
+  ];
 }
