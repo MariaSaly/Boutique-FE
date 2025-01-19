@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CartService } from '../../app/cart.service';
 import { Router } from '@angular/router';
 import { SearchService } from '../../service/searchService';
+import { SharedService } from '../../service/sharedService';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,7 @@ export class HeaderComponent implements OnInit {
   showSearchBar = false;
   cartCount:number =0;
   userId: any;
-  constructor( private cartService:CartService , private router:Router , private searchService:SearchService){
+  constructor( private SharedService:SharedService,private cartService:CartService , private router:Router , private searchService:SearchService){
 
   }
   ngOnInit(): void {
@@ -24,6 +25,8 @@ export class HeaderComponent implements OnInit {
     //  console.log("data:", data);
     //  this.cartCount = data.length;
     // })
+
+   
       let userId:string = '';
       const guestData = localStorage.getItem('guestId');
     const data = localStorage.getItem('userData');
@@ -51,7 +54,9 @@ export class HeaderComponent implements OnInit {
         this.cartCount = data;
       })
     }
-    
+    this.SharedService.refreshCart$.subscribe( () =>{
+      this.cartService.loadCart(userId)
+    })
    
    }
   toggleSearchBar() {

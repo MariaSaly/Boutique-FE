@@ -10,6 +10,7 @@ import { environment } from '../../environment';
 import { user } from '@angular/fire/auth';
 import { MatDialog } from '@angular/material/dialog';
 import { DeliveryAddresssModelComponent } from '../../app/delivery-addresss-model/delivery-addresss-model.component';
+import { SharedService } from '../../service/sharedService';
 declare var Razorpay:any
 
 @Component({
@@ -32,7 +33,7 @@ export class CartComponent implements OnInit{
   public url = environment.localUrl;
   
 
-constructor( private location: Location,private cartService:CartService, private router:Router ,private cdr: ChangeDetectorRef, private razorpayService:razorPayService ,private httpClient:HttpClient,private dialog:MatDialog){
+constructor(private sharedService:SharedService, private location: Location,private cartService:CartService, private router:Router ,private cdr: ChangeDetectorRef, private razorpayService:razorPayService ,private httpClient:HttpClient,private dialog:MatDialog){
   
 }
 ngOnInit(): void {
@@ -273,6 +274,8 @@ proceedToCheckout(address:any){
           (verificationResponse) => {
             alert("payment Sucessfull!");
             this.refreshComponent();
+            this.cartService.loadCart(this.userId);
+            
             console.log("verificationResponse:", verificationResponse);
           },
           (error)=>{
@@ -296,7 +299,7 @@ proceedToCheckout(address:any){
 }
 
 refreshComponent() {
-  this.location.go('/some-route'); // You can update this with your actual route
-  setTimeout(() => this.location.go(this.router.url), 0); // Re-navigate to the current route to trigger refresh
+  console.log("iam in refresh component");
+  this.router.navigate(['/home']);
 }
 }
