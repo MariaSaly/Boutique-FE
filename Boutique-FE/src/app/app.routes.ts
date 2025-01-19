@@ -14,6 +14,8 @@ import { SareeComponent } from '../pages/sareefolder/saree/saree.component';
 import { ViewsareeComponent } from '../pages/sareefolder/viewsaree/viewsaree.component';
 import { AdmindashboardComponent } from '../pages/admindashboard/admindashboard.component';
 import { CartComponent } from '../pages/cart/cart.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { OrderListingComponent } from './order-listing/order-listing.component';
 
 
 export const routes: Routes = [
@@ -39,6 +41,8 @@ export const routes: Routes = [
       { path: 'adduser', component: AddUserComponent },
       {path:'admindashboard',component:AdmindashboardComponent},
       { path:'cart',component:CartComponent},
+      {path:'order/:id', component:OrderDetailsComponent},
+      {path:'order-listing', component:OrderListingComponent}
     ],
   },
   {
