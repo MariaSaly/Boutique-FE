@@ -5,6 +5,7 @@ import { Validators, FormGroup, FormControl, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { PopupMessageComponent } from '../popupmessage/popup-message/popup-message.component';
 import { SharedModule } from '../../app/shared.module';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-login',
@@ -36,9 +37,11 @@ export class LoginComponent {
         next: (response) => {
           console.log("response:",response);
           console.log('Login Successful');
+          const userRole = response.role?.trim().toLowerCase();
+          console.log("userrole:",userRole);
           this.showPopupMessage('Success', 'Logged in Successfully!');
-          if(response.role === "admin"){
-            this.router.navigate(['/item']);
+          if(userRole === "superAdmin" || userRole === "admin"){
+            this.router.navigate(['/admindashboard']);
           }
           else{
             this.router.navigate(['/MoksheDestination']);
