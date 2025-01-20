@@ -6,7 +6,7 @@
   align-items: center;
   text-align: center;
   padding: 50px;
-  height: 100%;
+  height: 100vh;
   background: linear-gradient(135deg, #1A1A1A 10%, #4A4A4A 30%, #FFD700 100%);
   /* Dark gray transition for smoother blend */
   
@@ -20,12 +20,17 @@
   width: 100%; /* Full width of the parent container */
   max-width: 500px; /* Optional: Limit the maximum width */
   margin: 0 auto; /* Center-align horizontally */
-  border: 1px solid white; /* Optional: Add a border for better visibility */
+  border: 1px solid transparent; /* Optional: Add a border for better visibility */
   padding: 10px; /* Optional: Add padding for inner spacing */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  background: linear-gradient(to right, #f9f9f9, #ffffff); /* Light gradient background */
+  /* background: linear-gradient(to right, #f9f9f9, #ffffff);  */
 }
-
+.mokshe{
+  background-color: #ffd900bd;
+}
+.samepinch{
+  background-color: rgba(0, 0, 0, 0.466);
+}
 .image-container, .logo-container, .image-container1, .logo-container1 {
   display: flex;
   justify-content: center;
@@ -156,163 +161,105 @@
 }
 
 
+.logo-container1 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 50%;
+  
+}
+
+/* Container Styling */
 .container1 {
   position: relative;
   width: 200px;
   height: 200px;
-  border: 1px solid black;
   border-radius: 50%;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f0f0f0;
-  content: url('../../assets/images/Miya.png');
+  background-image: url('../../assets/images/Miya.png'); /* Initial image */
+ 
+  background-position: center;
+  background-size: contain;  /* Ensure the entire background image fits within the container */
+  background-position: center;
+  background-repeat: no-repeat;
 }
-.container1:hover{
-  content: none;
-}
-/* Initially hide images */
+
+/* Hidden images that will be shown sequentially */
 .image1 {
   position: absolute;
   width: 200px;
   height: 200px;
-  background-size: cover;
-  background-position: center;
   border-radius: 50%;
+  background-size: cover; /* Ensure full image is visible */
+  background-position: center;
+  background-repeat: no-repeat;
+
   opacity: 0; /* Initially hidden */
-  transform: scale(0); /* Start completely scaled down */
+  animation: fadeInOut 20s ease-in-out infinite; /* Infinite animation with adjusted timing */
 }
 
-/* Image-specific backgrounds */
+/* Individual images with specific backgrounds */
 .image5 {
-  background-image: url('../../assets/images/bg2.png');
+  background-image: url('../../assets/images/cod1.jpg');
 }
 
 .image6 {
-  background-image: url('../../assets/images/bg3.png');
+  background-image: url('../../assets/images/le1.jpg');
 }
 
 .image7 {
-  background-image: url('../../assets/images/Miya.png');
+  background-image: url('../../assets/images/halfsaree.jpg');
 }
 
 .image8 {
   background-image: url('../../assets/images/saree2.png');
 }
 
-/* Hover Effect */
-.container1:hover .image1 {
-  animation: moveImage 4s ease-in-out forwards;
-}
-
-/* Animation */
-@keyframes moveImage {
-  0% {
-    transform: scale(0); /* Start completely scaled down */
-    opacity: 0; /* Initially hidden */
+/* Fade-in and fade-out animation */
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0;
   }
-  25% {
+  20% {
     opacity: 1;
   }
-  50% {
-    transform: scale(1); /* Fit image inside container */
+  40% {
+    opacity: 0;
+  }
+  60% {
     opacity: 1;
   }
-  75% {
-    transform: scale(1); /* Maintain size */
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(0); /* Shrink back */
+  80% {
     opacity: 0;
   }
 }
 
-/* Specific directions and delays for images to move from top, right, bottom, left */
-.container1:hover .image5 {
-  animation-delay: 0s;
-  animation-name: moveFromTop;
+/* Delay for each image to create sequential fade */
+.image5 {
+  animation-delay: 0s; /* First image fades in immediately */
 }
 
-.container1:hover .image6 {
-  animation-delay: 1s;
-  animation-name: moveFromRight;
+.image6 {
+  animation-delay: 5s; /* Second image fades in after 5s */
 }
 
-.container1:hover .image7 {
-  animation-delay: 2s;
-  animation-name: moveFromBottom;
+.image7 {
+  animation-delay: 10s; /* Third image fades in after 10s */
 }
 
-.container1:hover .image8 {
-  animation-delay: 3s;
-  animation-name: moveFromLeft;
+.image8 {
+  animation-delay: 15s; /* Fourth image fades in after 15s */
 }
 
-/* Move from Top */
-@keyframes moveFromTop {
-  0% {
-    transform: translateY(-200px) scale(0);
-    opacity: 0;
-  }
-  50% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-}
 
-/* Move from Right */
-@keyframes moveFromRight {
-  0% {
-    transform: translateX(200px) scale(0);
-    opacity: 0;
-  }
-  50% {
-    transform: translateX(0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(0) scale(1);
-    opacity: 1;
-  }
-}
 
-/* Move from Bottom */
-@keyframes moveFromBottom {
-  0% {
-    transform: translateY(200px) scale(0);
-    opacity: 0;
-  }
-  50% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-}
 
-/* Move from Left */
-@keyframes moveFromLeft {
-  0% {
-    transform: translateX(-200px) scale(0);
-    opacity: 0;
-  }
-  50% {
-    transform: translateX(0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(0) scale(1);
-    opacity: 1;
-  }
-}
+
 
 .btn{
   margin-top: 10px;
@@ -368,12 +315,13 @@
 @media(max-width:680px){
   .layout {
     display: flex;
-    flex-direction: column; /* Stack .mokshe and .samepinch vertically */
+    flex-direction: row; /* Stack .mokshe and .samepinch vertically */
     gap: 20px; /* Space between .mokshe and .samepinch */
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 10px;
+    height: 100%;
   }  
 }
 @media(max-width:400px){

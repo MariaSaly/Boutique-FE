@@ -1,19 +1,65 @@
-<h3>Enter Delivery Address</h3>
-<form (ngSubmit)="submitAddress()">
-  <label for="addressLine1">Address Line 1</label>
-  <input type="text" id="addressLine1" [(ngModel)]="deliveryAddress.addressLine1" name="addressLine1" required>
+<div class="form-container">
+  <h3 class="form-title">Enter Delivery Address</h3>
+  <form class="delivery-form" (ngSubmit)="submitAddress()">
+    <div class="form-group">
+      <label for="addressLine1">Address Line 1</label>
+      <input
+        type="text"
+        id="addressLine1"
+        [(ngModel)]="deliveryAddress.addressLine1"
+        name="addressLine1"
+        required
+        placeholder="Enter Address Line 1"
+      />
+    </div>
 
-  <label for="addressLine2">Address Line 2</label>
-  <input type="text" id="addressLine2" [(ngModel)]="deliveryAddress.addressLine2" name="addressLine2">
+    <div class="form-group">
+      <label for="addressLine2">Address Line 2</label>
+      <input
+        type="text"
+        id="addressLine2"
+        [(ngModel)]="deliveryAddress.addressLine2"
+        name="addressLine2"
+        placeholder="Enter Address Line 2"
+      />
+    </div>
 
-  <label for="city">City</label>
-  <input type="text" id="city" [(ngModel)]="deliveryAddress.city" name="city" required>
+    <div class="form-group">
+      <label for="city">City</label>
+      <input
+        type="text"
+        id="city"
+        [(ngModel)]="deliveryAddress.city"
+        name="city"
+        required
+        placeholder="Enter City"
+      />
+    </div>
 
-  <label for="postalCode">Postal Code</label>
-  <input type="text" id="postalCode" [(ngModel)]="deliveryAddress.postalCode" name="postalCode" required>
+    <div class="form-group">
+      <label for="postalCode">Postal Code</label>
+      <input
+        type="text"
+        id="postalCode"
+        [(ngModel)]="deliveryAddress.postalCode"
+        name="postalCode"
+        required
+        placeholder="Enter Postal Code"
+      />
+    </div>
 
-  <label for="country">Country</label>
-  <input type="text" id="country" [(ngModel)]="deliveryAddress.country" name="country" required>
+    <div class="form-group">
+      <label for="country">Country</label>
+      <input
+        type="text"
+        id="country"
+        [(ngModel)]="deliveryAddress.country"
+        name="country"
+        required
+        placeholder="Enter Country"
+      />
+    </div>
 
-  <button type="submit">Save Address</button>
-</form>
+    <button type="submit" class="submit-btn">Save Address</button>
+  </form>
+</div>

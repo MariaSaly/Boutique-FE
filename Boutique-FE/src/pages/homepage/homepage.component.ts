@@ -26,4 +26,32 @@ selectedImage = this.smallImages[0]; // Default to the first image
 selectImage(image: string): void {
   this.selectedImage = image;
 }
+images: string[] = [
+  '../../assets/images/bg2.png',
+  '../../assets/images/saree.png',
+  '../../assets/images/saree2.png',
+  '../../assets/images/halfsaree.jpg'
+];
+currentIndex: number = 0;
+
+ngOnInit(): void {
+  this.updateImage();
+}
+
+updateImage(): void {
+  const mainImage = document.getElementById('mainImage');
+  if (mainImage) {
+    mainImage.style.backgroundImage = `url(${this.images[this.currentIndex]})`;
+  }
+}
+
+prevImage(): void {
+  this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+  this.updateImage();
+}
+
+nextImage(): void {
+  this.currentIndex = (this.currentIndex + 1) % this.images.length;
+  this.updateImage();
+}
 }

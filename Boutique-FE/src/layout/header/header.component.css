@@ -46,7 +46,7 @@
         }
 
         &:hover {
-          color: black;
+          color: white;
         }
       }
     }
@@ -88,7 +88,26 @@
       }
     }
   }
+  .cart-icon {
+    position: relative;
+  }
 
+  .cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #FFD700;
+    color: black;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    animation: pop-in 0.5s ease-out, pulse 1s infinite;
+  }
   .header-bottom {
     display: flex;
     justify-content: center;
@@ -138,5 +157,30 @@
   }
   to {
     transform: translateX(-100%); /* Move entirely out of view */
+  }
+}
+@media(max-width:480px){
+  .header-bottom {
+    display: flex;
+    justify-content: start;
+    overflow-x: auto;
+    white-space: nowrap; /* Prevent wrapping */
+    scrollbar-width: thin; /* For Firefox */
+  }
+  .header-bottom button {
+    flex: none; /* Prevent buttons from shrinking */
+    margin-right: 10px; /* Add space between buttons */
+  }
+  
+  /* Optional: Style the scrollbar for WebKit browsers */
+  .header-bottom::-webkit-scrollbar {
+    height: 6px; /* Height of the horizontal scrollbar */
+  }
+  .header-bottom::-webkit-scrollbar-thumb {
+    background: #FFD700; /* Thumb color */
+    border-radius: 3px; /* Rounded edges */
+  }
+  .header-bottom::-webkit-scrollbar-track {
+    background: #333; /* Track color */
   }
 }
