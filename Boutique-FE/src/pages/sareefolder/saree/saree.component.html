@@ -7,9 +7,35 @@
     >
       <!-- Card Image -->
       <div class="card-image">
-        <img [src]=" url + product.imageUrl"   class="product-image" />
+        <div *ngIf="product.images?.length > 1" class="carousel">
+          <img
+            [src]="url + product.images[currentIndexes[i]]"
+            class="product-image"
+            alt="Product image"
+          />
+          <!-- Navigation buttons -->
+          <button
+            class="prev-btn"
+            (click)="previousImage(i, product.images); $event.stopPropagation()"
+          >
+            &#10094;
+          </button>
+          <button
+            class="next-btn"
+            (click)="nextImage(i, product.images); $event.stopPropagation()"
+          >
+            &#10095;
+          </button>
+        </div>
 
-
+        <!-- Single image display -->
+        <div *ngIf="!product.images || product.images.length === 1">
+          <img
+            [src]="url + (product.images?.[0] || product.imageUrl)"
+            class="product-image"
+            alt="Product image"
+          />
+        </div>
       </div>
 
       <!-- Card Details -->
