@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { environment } from "../environment";
 import { HttpClient } from "@angular/common/http";
+import { HttpService } from "./httpService";
 
 @Injectable({
     providedIn:'root'
@@ -8,7 +9,8 @@ import { HttpClient } from "@angular/common/http";
 
 export class razorPayService{
     private url = environment.localUrl;
-    constructor( private http:HttpClient){
+    constructor( private http:HttpService){
+
 
     }
 

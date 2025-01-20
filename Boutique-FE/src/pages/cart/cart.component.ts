@@ -31,6 +31,7 @@ export class CartComponent implements OnInit{
   isMobileView: boolean = false; 
   userId: any;
   public url = environment.localUrl;
+  email: any;
   
 
 constructor(private sharedService:SharedService, private location: Location,private cartService:CartService, private router:Router ,private cdr: ChangeDetectorRef, private razorpayService:razorPayService ,private httpClient:HttpClient,private dialog:MatDialog){
@@ -86,7 +87,9 @@ loadCart(){
   if(data){
     const userData = JSON.parse(data);
     this.userId   = userData.user_id;
-     userId = this.userId;
+    this.email = userData.email;
+    console.log("email:", this.email);
+     userId = this.userId
     console.log("userId:",this.userId);
 
   }
@@ -246,7 +249,8 @@ proceedToCheckout(address:any){
     totalAmount:this.totalPrice,
     paymentStatus:'pending',
     deliveryAddress:address,
-    currency:'INR'
+    currency:'INR',
+    email:this.email
 
 
   }

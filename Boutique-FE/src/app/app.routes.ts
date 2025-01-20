@@ -14,6 +14,8 @@ import { SareeComponent } from '../pages/sareefolder/saree/saree.component';
 import { ViewsareeComponent } from '../pages/sareefolder/viewsaree/viewsaree.component';
 import { AdmindashboardComponent } from '../pages/admindashboard/admindashboard.component';
 import { CartComponent } from '../pages/cart/cart.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import { OrderListingComponent } from './order-listing/order-listing.component';
 
 
 export const routes: Routes = [
@@ -33,12 +35,14 @@ export const routes: Routes = [
         { path: 'saree', component: SareeComponent },
         { path: 'viewsaree/:id', component: ViewsareeComponent },
       { path: 'home', component: HomepageComponent },
-      { path: 'add', component: AddItemsComponent },
-      { path: 'list', component: ListItemsComponent },
-      { path: 'user', component: ListUserComponent },
-      { path: 'adduser', component: AddUserComponent },
-      {path:'admindashboard',component:AdmindashboardComponent},
+      { path: 'add',canActivate:[AdminAuthGuard], component: AddItemsComponent },
+      { path: 'list',canActivate:[AdminAuthGuard], component: ListItemsComponent },
+      { path: 'user',canActivate:[AdminAuthGuard], component: ListUserComponent },
+      { path: 'adduser',canActivate:[AdminAuthGuard], component: AddUserComponent },
+      {path:'admindashboard',canActivate:[AdminAuthGuard],component:AdmindashboardComponent},
       { path:'cart',component:CartComponent},
+      {path:'order/:id',canActivate:[AdminAuthGuard], component:OrderDetailsComponent},
+      {path:'order-listing', canActivate:[AdminAuthGuard],component:OrderListingComponent}
     ],
   },
   {

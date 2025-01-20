@@ -18,16 +18,21 @@ export class AuthService {
    // Method to check and refresh token if expired
    private async getValidToken(): Promise<string> {
     const user = this.firebaseAuth.currentUser;
-
+  
     if (!user) {
+      this.router.navigate(['/login']); // Redirect to login if user is not authenticated
       throw new Error('User is not authenticated');
     }
-
-    // Get the ID token and automatically refresh it if expired
-    const token = await user.getIdToken(true); // Passing 'true' forces a refresh
-    
-    return token;
+  
+    try {
+      const token = await user.getIdToken(true);
+      return token;
+    } catch (err) {
+      console.error('Error refreshing token:', err);
+      throw new Error('Failed to refresh token');
+    }
   }
+  
 
   isLoggedIn():boolean{
     return !!localStorage.getItem('token');
@@ -45,7 +50,7 @@ export class AuthService {
   
     // Assuming userRole is extracted from decodedToken
     const userRole = decodedToken?.role; // Adjust this depending on your token structure
-    return this.isLoggedIn() && userRole === 'admin';
+    return this.isLoggedIn() && userRole === 'admin' || userRole === 'superAdmin';
   }
 
   // login method

@@ -20,6 +20,11 @@
           <span class="icon">&#128221;</span>
           <span class="btn-text" (click)="goToItem()">Item Maintenance</span>
         </button>
+
+        <button class="action-btn item-maintenance" *ngIf="isSuperAdmin">
+          <span class="icon">&#128221;</span>
+          <span class="btn-text" (click)="goToOrder()">order Maintenance</span>
+        </button>
       </div>
     </div>
   </div>

@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .order-list-header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .order-card {
+    background-color: #f9f9f9;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .order-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .order-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .order-card-header h3 {
+    margin: 0;
+  }
+  
+  .order-status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+  
+  .order-status.delivered {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  .order-status.shipped {
+    background-color: #fff3cd;
+    color: #856404;
+  }
+  
+  .order-status.pending {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  .order-card-body {
+    margin: 10px 0;
+  }
+  
+  .order-card-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-view {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .btn-view:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-edit {
+    background-color: #ffc107;
+    color: white;
+  }
+  
+  .btn-edit:hover {
+    background-color: #e0a800;
+  }
+  
+  .btn-delete {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .btn-delete:hover {
+    background-color: #c82333;
+  }
+  
+  .no-orders {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    margin-top: 20px;
+  }
+  
