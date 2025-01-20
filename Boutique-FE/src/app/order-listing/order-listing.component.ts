@@ -45,5 +45,19 @@ export class OrderListingComponent implements OnInit {
   viewOrder(id:string){
     this.router.navigate([`/order/${id}`])
   }
-
+  confirmDelete(id:string){
+    const confirmDelete = window.confirm(`Are you sure you want to delete order:${id}`);
+    if(confirmDelete){
+      this.deleteOrder(id)
+    }
+    else{
+      alert("order deleted request is rewind !");
+    }
+  }
+   deleteOrder(id:string){
+    this.http.delete<any>(`${this.url}/api/orders/deleteOrder/${id}`).subscribe(()=>{
+         alert(`order-${id} deleted sucessfully`);
+         this.getOrderDetails();
+    })
+   }
 }

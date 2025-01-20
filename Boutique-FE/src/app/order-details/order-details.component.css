@@ -58,4 +58,21 @@ body {
       align-items: flex-start;
     }
   }
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 50px;
+    background-color: pink
+  }
   
+  .btn-view {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .btn-view:hover {
+    background-color: #0056b3;
+  }

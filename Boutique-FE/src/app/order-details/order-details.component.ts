@@ -4,10 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '../../service/httpService';
 import { environment } from '../../environment';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-order-details',
-  imports: [ CommonModule],
+  imports: [ CommonModule ,FormsModule],
   standalone:true,
   templateUrl: './order-details.component.html',
   styleUrl: './order-details.component.css'
@@ -20,6 +21,7 @@ export class OrderDetailsComponent implements OnInit {
   userData: any;
   itemsData: any;
   paymentDate!: Date;
+  isEditing: boolean = false;
   
   constructor( private activatedRoute:ActivatedRoute , private http:HttpService){
 
@@ -88,7 +90,17 @@ export class OrderDetailsComponent implements OnInit {
     return allItemsArray;
   }
   
-
+  editStatus() {
+    this.isEditing = true;
+  }
   
+  saveStatus(id: string) {
+    const status = { status: this.orders.status };
+    console.log('Updated status:', status);
+  
+    this.http.patch<any>(`${this.url}/api/orders/${id}`, status).subscribe(() => {
+      this.isEditing = false;
+    });
+  }
   
 }

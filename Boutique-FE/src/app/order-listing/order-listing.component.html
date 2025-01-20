@@ -15,8 +15,8 @@
         </div>
         <div class="order-card-footer">
           <button (click)="viewOrder(order.id)" class="btn btn-view">View</button>
-          <button  class="btn btn-edit">Edit</button>
-          <button  class="btn btn-delete">Delete</button>
+          <!-- <button  class="btn btn-edit">Edit</button> -->
+          <button   (click)="confirmDelete(order.id)"class="btn btn-delete">Delete</button>
         </div>
       </div>
     </section>
