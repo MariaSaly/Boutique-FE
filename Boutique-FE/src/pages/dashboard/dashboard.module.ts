@@ -32,4 +32,4 @@ import { DashboardComponent } from './dashboard.component';
   providers: [],
   bootstrap: []
 })
-export class LoginModule { }
+export class dashboardModule { }

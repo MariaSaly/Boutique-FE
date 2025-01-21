@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SharedService } from '../../service/homesharedservice';
 
 @Component({
   selector: 'app-homepage',
@@ -11,7 +12,10 @@ import { Router } from '@angular/router';
   styleUrl: './homepage.component.css'
 })
 export class HomepageComponent {
-  constructor(private router:Router){}
+  showCategoryContent = false;
+  showSamePinchContent = false;
+  
+  constructor(private router:Router,private sharedService: SharedService){}
 saree(){
   this.router.navigate(['saree'])
 }
@@ -43,6 +47,13 @@ updateImage(): void {
   if (mainImage) {
     mainImage.style.backgroundImage = `url(${this.images[this.currentIndex]})`;
   }
+  this.sharedService.categoryContent$.subscribe((value) => {
+    this.showCategoryContent = value;
+  });
+  this.sharedService.samePinchContent$.subscribe((value) => {
+    this.showSamePinchContent = value;
+  });
+
 }
 
 prevImage(): void {

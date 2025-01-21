@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HomepageComponent } from '../homepage/homepage.component';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedService } from '../../service/homesharedservice';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,11 +12,13 @@ import { ReactiveFormsModule } from '@angular/forms';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
+
 export class DashboardComponent {
-  constructor(private route:Router,){}
+  constructor(private route:Router,private sharedService: SharedService){}
   selectedContent: { title: string, description: string } | null = null;
 
-
+  showCategoryContent: boolean = false; // For "Customize" button in mokshe
+  showCategoryContent1: boolean = false; // For "Explore" button in samepinch
   
   leftContent = {
     title: 'Customizable Material',
@@ -37,6 +40,13 @@ export class DashboardComponent {
     }
   }
   cutomize(){
+    this.sharedService.setCategoryContentFlag(true);
+    this.sharedService.setSamePinchFlag(false); // Ensure this is reset
+    this.route.navigate(['/home'])
+  }
+  samepinch(){
+    this.sharedService.setSamePinchFlag(true);
+    this.sharedService.setCategoryContentFlag(false); 
     this.route.navigate(['/home'])
   }
 }

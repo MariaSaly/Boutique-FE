@@ -4,7 +4,12 @@
     align-items: center;
     padding: 20px;
 }
-
+.category-container1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
 .category-items {
   display: flex;
   justify-content: space-evenly;
@@ -53,7 +58,34 @@
   background-size: cover;
   background-position: center;
 }
+.Plussize {
+  background-image: url('../../assets/images/md1.jpeg');
+}
+.nine{
+  background-image: url('../../assets/images/md1.jpeg');
+}
+.Coords{
+  background-image: url('../../assets/images/cod1.jpg');
+}
+.Officewear {
+  background-image: url('../../assets/images/ow1.jpg');
+}
 
+.Saree {
+  background-image: url('../../assets/images/saree2.png');
+}
+
+.HalfSaree {
+  background-image: url('../../assets/images/halfsaree.jpg');
+}
+
+.Leggings {
+  background-image: url('../../assets/images/le1.jpg');
+}
+
+.mens {
+  background-image: url('../../assets/images/mens.jpeg');
+}
 .MomDaughterCombo {
   background-image: url('../../assets/images/md1.jpeg');
 }

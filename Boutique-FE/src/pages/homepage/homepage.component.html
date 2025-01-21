@@ -1,4 +1,4 @@
-<div class="category-container">
+<div class="category-container"  *ngIf="showCategoryContent">
     <div class="category-items">
         <div class="category-item">
             <div class="category-image MomDaughterCombo" (click)="saree()"></div>
@@ -78,14 +78,105 @@
           </div>
           
         
-          <!-- Repeat as needed -->
+          
         </div>
       </div>
       
-    <!-- <div class="btn">
-        <button mat-button >View More</button>
-    </div> -->
+ 
     
     
     
+</div>
+<div class="category-container1" *ngIf="showSamePinchContent">
+  <div class="category-items ">
+      <div class="category-item">
+          <div class="category-image nine" (click)="saree()"></div>
+          <div class="category-name">999</div>
+      </div>
+      <div class="category-item">
+          <div class="category-image Plussize"></div>
+          <div class="category-name">Plus Size</div>
+      </div>
+      <div class="category-item">
+          <div class="category-image Coords"></div>
+          <div class="category-name">Co-ords</div>
+      </div>
+      <div class="category-item">
+          <div class="category-image Officewear"></div>
+          <div class="category-name">Office wear</div>
+      </div>
+      <div class="category-item">
+        <div class="category-image Saree"></div>
+        <div class="category-name">Saree</div>
+    </div>
+    <div class="category-item">
+      <div class="category-image HalfSaree"></div>
+      <div class="category-name">Half Saree</div>
+  </div>
+  <div class="category-item">
+    <div class="category-image Leggings"></div>
+    <div class="category-name">Leggings</div>
+</div>
+  </div>
+  <div class="image-container">
+    <button class="prev-btn" onclick="prevImage()">&#10094;</button>
+    <div class="main-image" id="mainImage"></div>
+    <button class="next-btn" onclick="nextImage()">&#10095;</button>
+</div>
+
+  <div class="newarrivals">
+      <h1>New Arrivals</h1>
+      <div class="cards-container">
+        <!-- Card 1 -->
+        <div class="arrivalcard-wrapper">
+          <div class="arrivalcard">
+            <div class="card-image"></div>
+          </div>
+          <div class="card-details">
+            <h2>Product Name</h2>
+            <p>Description of the product goes here.</p>
+            <p class="price">$49.99</p>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="arrivalcard-wrapper">
+          <div class="arrivalcard">
+            <div class="card-image"></div>
+          </div>
+          <div class="card-details">
+            <h2>Product Name</h2>
+            <p>Description of the product goes here.</p>
+            <p class="price">$49.99</p>
+          </div>
+        </div>
+        <div class="arrivalcard-wrapper">
+          <div class="arrivalcard">
+            <div class="card-image"></div>
+          </div>
+          <div class="card-details">
+            <h2>Product Name</h2>
+            <p>Description of the product goes here.</p>
+            <p class="price">$49.99</p>
+          </div>
+        </div>
+        <div class="arrivalcard-wrapper">
+          <div class="arrivalcard">
+            <div class="card-image"></div>
+          </div>
+          <div class="card-details">
+            <h2>Product Name</h2>
+            <p>Description of the product goes here.</p>
+            <p class="price">$49.99</p>
+          </div>
+        </div>
+        
+      
+        
+      </div>
+    </div>
+    
+
+  
+  
+  
 </div>
