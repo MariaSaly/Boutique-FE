@@ -5,15 +5,14 @@
       *ngFor="let product of filteredData; let i = index"
       (click)="selectCard(i)"
     >
-      <!-- Card Image -->
       <div class="card-image">
+        <!-- Image Carousel -->
         <div *ngIf="product.images?.length > 1" class="carousel">
           <img
             [src]="url + product.images[currentIndexes[i]]"
             class="product-image"
             alt="Product image"
           />
-          <!-- Navigation buttons -->
           <button
             class="prev-btn"
             (click)="previousImage(i, product.images); $event.stopPropagation()"
@@ -28,10 +27,10 @@
           </button>
         </div>
 
-        <!-- Single image display -->
+        <!-- Single Image -->
         <div *ngIf="!product.images || product.images.length === 1">
           <img
-            [src]="url + (product.images?.[0] || product.imageUrl)"
+            [src]="url + (product.images?.[0] || '/path/to/default/image.jpg')"
             class="product-image"
             alt="Product image"
           />
