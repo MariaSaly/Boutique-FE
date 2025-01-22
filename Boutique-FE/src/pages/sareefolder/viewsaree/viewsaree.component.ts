@@ -3,10 +3,11 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartService } from '../../../app/cart.service';
 import { HttpService } from '../../../service/httpService';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../../environment';
 import { HttpClient } from '@angular/common/http';
 import { user } from '@angular/fire/auth';
+import { customizationTextService } from '../../../service/customizationtextService';
 
 @Component({
   selector: 'app-viewsaree',
@@ -20,7 +21,7 @@ export class ViewsareeComponent implements OnInit {
   itemId: string | null = '';
   public url = environment.localUrl;
   itemData: any;
-  constructor( private cartService:CartService , private http:HttpService  ,private cdr: ChangeDetectorRef, private route:ActivatedRoute , private httpClient:HttpClient , ){
+  constructor(private customTextService:customizationTextService, private router:Router,private cartService:CartService , private http:HttpService  ,private cdr: ChangeDetectorRef, private route:ActivatedRoute , private httpClient:HttpClient , ){
 
   }
   ngOnInit(): void {
@@ -113,7 +114,8 @@ export class ViewsareeComponent implements OnInit {
     }
   }
 
-  addToCart(): void {
+  addToCart( ): void {
+   
     console.log("Im in add to cart function");
     // const newCartItem = {
     //   product: this.selectedProduct,
@@ -131,6 +133,7 @@ export class ViewsareeComponent implements OnInit {
     this.cartService.addToCart(this.userId,productId,qty).subscribe( data => {
       this.cartService.loadCart(this.userId)
       console.log("user added sucessfully !");
+      this.router.navigate(['/cart']);
     })
     // this.cartService.addItem(newCartItem);
   }else{
@@ -142,9 +145,15 @@ export class ViewsareeComponent implements OnInit {
     this.cartService.addToCartGuestUser(guestId,productId,qty).subscribe( data => {
       this.cartService.loadCart(guestId)
       console.log("user added sucessfully !");
+      this.router.navigate(['/cart']);
     })
     alert('please login to addtoCart');
   }
+  }
+  onCustomizationChange(){
+    localStorage.setItem('customData',JSON.stringify(this.customText));
+    
+  
   }
   generateGuestId() {
     let guestId = localStorage.getItem('guestId');
@@ -158,6 +167,35 @@ export class ViewsareeComponent implements OnInit {
 
   buyNow() {
     // Buy now logic
+    const productId = this.itemData.id;
+    console.log("productId:", productId);
+    const qty = this.quantity;
+    const data = localStorage.getItem('userData');
+    if(data){
+      const userData = JSON.parse(data);
+      this.userId = userData.user_id;
+      console.log("userid:", this.userId);
+    
+    this.cartService.addToCart(this.userId,productId,qty).subscribe( data => {
+      this.cartService.loadCart(this.userId)
+      console.log("user added sucessfully !");
+      this.router.navigate(['/cart']);
+
+    })
+    // this.cartService.addItem(newCartItem);
+  }else{
+    const guestId = this.generateGuestId();
+    console.log("guestId:", guestId);
+    const productId = this.itemData.id;
+    const qty = this.quantity;
+    
+    this.cartService.addToCartGuestUser(guestId,productId,qty).subscribe( data => {
+      this.cartService.loadCart(guestId)
+      console.log("user added sucessfully !");
+      this.router.navigate(['/cart']);
+    })
+    alert('please login to addtoCart');
+  }
   }
  
   images: string[] = [

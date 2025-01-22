@@ -16,6 +16,18 @@ import { AdmindashboardComponent } from '../pages/admindashboard/admindashboard.
 import { CartComponent } from '../pages/cart/cart.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { OrderListingComponent } from './order-listing/order-listing.component';
+import { BridalcostumesComponent } from './bridalCostumesFolder/bridalcostumes/bridalcostumes.component';
+import { ViewBridalCostumesComponent } from './bridalCostumesFolder/view-bridal-costumes/view-bridal-costumes.component';
+import { BridesquadComponent } from './brideSquadeFolder/bridesquad/bridesquad.component';
+import { ViewBrideSquadeComponent } from './brideSquadeFolder/view-bride-squade/view-bride-squade.component';
+import { CousinsSquardComponent } from './cousinsSquardFolder/cousins-squard/cousins-squard.component';
+import { ViewCousinsSquardComponent } from './cousinsSquardFolder/view-cousins-squard/view-cousins-squard.component';
+import { FamilyComboComponent } from './familyComboFolder/family-combo/family-combo.component';
+import { ViewFamilyComboComponent } from './familyComboFolder/view-family-combo/view-family-combo.component';
+import { MensWearComponent } from './mensWearFolder/mens-wear/mens-wear.component';
+import { ViewMensWearComponent } from './mensWearFolder/view-mens-wear/view-mens-wear.component';
+import { MomandDaughterComponent } from './momAndDaughterFolder/momand-daughter/momand-daughter.component';
+import { ViewMomandDaughterComponent } from './momAndDaughterFolder/view-momand-daughter/view-momand-daughter.component';
 
 
 export const routes: Routes = [
@@ -34,6 +46,18 @@ export const routes: Routes = [
     children: [
         { path: 'saree', component: SareeComponent },
         { path: 'viewsaree/:id', component: ViewsareeComponent },
+        {path:'bridalcostumes', component:BridalcostumesComponent},
+        { path: 'bridalcostumes/:id', component: ViewBridalCostumesComponent },
+        {path:'bridalsquade', component:BridesquadComponent},
+        { path: 'bridalsquade/:id', component: ViewBrideSquadeComponent },
+        {path:'cousinsquade', component:CousinsSquardComponent},
+        { path: 'cousinsquade/:id', component: ViewCousinsSquardComponent },
+        {path:'familycombo', component:FamilyComboComponent},
+        { path: 'familycombo/:id', component: ViewFamilyComboComponent },
+        {path:'menswear', component:MensWearComponent},
+        { path: 'menswear/:id', component: ViewMensWearComponent },
+        {path:'momanddaughter', component:MomandDaughterComponent},
+        { path: 'momanddaughter/:id', component: ViewMomandDaughterComponent },
       { path: 'home', component: HomepageComponent },
       { path: 'add',canActivate:[AdminAuthGuard], component: AddItemsComponent },
       { path: 'list',canActivate:[AdminAuthGuard], component: ListItemsComponent },

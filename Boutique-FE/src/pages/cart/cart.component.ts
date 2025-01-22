@@ -11,6 +11,7 @@ import { user } from '@angular/fire/auth';
 import { MatDialog } from '@angular/material/dialog';
 import { DeliveryAddresssModelComponent } from '../../app/delivery-addresss-model/delivery-addresss-model.component';
 import { SharedService } from '../../service/sharedService';
+import { customizationTextService } from '../../service/customizationtextService';
 declare var Razorpay:any
 
 @Component({
@@ -32,13 +33,22 @@ export class CartComponent implements OnInit{
   userId: any;
   public url = environment.localUrl;
   email: any;
+  customText: string = '';
   
 
-constructor(private sharedService:SharedService, private location: Location,private cartService:CartService, private router:Router ,private cdr: ChangeDetectorRef, private razorpayService:razorPayService ,private httpClient:HttpClient,private dialog:MatDialog){
+constructor(private customTextService:customizationTextService,private sharedService:SharedService, private location: Location,private cartService:CartService, private router:Router ,private cdr: ChangeDetectorRef, private razorpayService:razorPayService ,private httpClient:HttpClient,private dialog:MatDialog){
   
 }
 ngOnInit(): void {
   this.loadCart();
+  const data = localStorage.getItem('customData');
+    if(data){
+      const parsedCustomData = JSON.parse(data);
+      console.log("parsedcustomdata:", parsedCustomData);
+      this.customText = parsedCustomData;
+      console.log("customtext:", this.customText);
+    }
+  
  
 
   // this.cartService.currentItems.subscribe( (data:any) => {
@@ -243,8 +253,12 @@ openDeliveryAddressModel(){
 }
 
 proceedToCheckout(address:any){
-  
-  const data ={
+  let customData = null;
+  if(this.customText){
+    customData=this.customText
+   
+  }
+  const data:any ={
     userId:this.userId,
     totalAmount:this.totalPrice,
     paymentStatus:'pending',
@@ -254,8 +268,12 @@ proceedToCheckout(address:any){
 
 
   }
+  if(customData){
+    data.customization = customData
+  }
 
    this.razorpayService.createOrder(data).subscribe( (order:any)=>{
+    localStorage.removeItem('customData');
     console.log("order:",order);
     const options = {
       key:"rzp_test_EoH3hlWAoDxXig",

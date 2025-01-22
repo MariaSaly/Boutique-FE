@@ -12,9 +12,7 @@ import { Router } from '@angular/router';
 })
 export class HomepageComponent {
   constructor(private router:Router){}
-saree(){
-  this.router.navigate(['saree'])
-}
+
 smallImages = [
   './assets/images/bg1.png',
   './assets/images/bg1.png',
@@ -53,5 +51,26 @@ prevImage(): void {
 nextImage(): void {
   this.currentIndex = (this.currentIndex + 1) % this.images.length;
   this.updateImage();
+}
+saree(){
+  this.router.navigate(['saree'])
+}
+bridalcostumes(){
+  this.router.navigate(['bridalcostumes'])
+}
+bridalsquade(){
+  this.router.navigate(['bridalsquade'])
+}
+cousinsquade(){
+  this.router.navigate(['cousinsquade'])
+}
+familycombo(){
+  this.router.navigate(['familycombo'])
+}
+momanddaughter(){
+  this.router.navigate(['momanddaughter'])
+}
+menswear(){
+  this.router.navigate(['menswear'])
 }
 }

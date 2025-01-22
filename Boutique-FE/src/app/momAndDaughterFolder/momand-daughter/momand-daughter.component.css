@@ -1,0 +1,222 @@
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  
+    .newarrivals {
+      text-align: center; /* Center the text */
+      margin-top: 20px;
+    }
+    
+    .arrivalcard {
+      width: 260px;
+      height: 340px;
+      margin: 10px;
+      display: inline-block;
+    
+     
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+    
+ 
+    .card-image {
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+     
+      height: 240px; /* Fixed height for the image */
+      overflow: hidden;
+      transition: transform 0.1s ease-in-out;
+      /* background-image: url('../../../assets/images/saree2.png'); */
+      background-size: contain; /* Ensures the image covers the container fully */
+     background-position: center; /* Centers the image */
+     background-repeat: no-repeat; /* Prevents the image from repeating */
+    }
+    
+    .card-image img {
+      width: 100%; /* Make sure image fills the width */
+      height: 100%; /* Make sure image fills the height */
+      object-fit: cover; /* Ensures the image fills the space without distortion */
+      transition: transform 0.1s ease-in-out;
+    }
+    
+    /* Hover effect on the image */
+     .card-image img:hover {
+      transform: scale(1.1); /* Slightly zoom in the image */
+      cursor: pointer; 
+     
+    }
+    
+    .card-details {
+      padding: 10px;
+      text-align: left; /* Align text to the left */
+      font-size: 14px;
+      color: #333;
+    
+    }
+    
+    .card-details h2 {
+      font-size: 18px;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+    
+    .card-details p {
+      font-size: 14px;
+      color: #777;
+    }
+    
+    .card-details .price {
+      font-size: 14px;
+      color: #e74c3c; /* Red color for the price */
+      font-weight: bold;
+    }
+    
+  
+    .expanded-card {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40%;
+      height: 100vh;
+      background: #fff;
+      border-left: 1px solid #ccc;
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+  
+      &.show {
+        transform: translateX(0);
+      }
+  
+      .expanded-image img {
+        width: 100%;
+        height: auto;
+        border-bottom: 1px solid #ccc;
+      }
+  
+      .expanded-details {
+        padding: 20px;
+  
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 10px;
+        }
+  
+        .price {
+          font-size: 1.2rem;
+          color: #f60;
+          margin: 10px 0;
+        }
+  
+        .size-selection,
+        .customization,
+        .quantity {
+          margin: 20px 0;
+  
+          label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+          }
+  
+          .sizes {
+            display: flex;
+            gap: 10px;
+  
+            button {
+              padding: 5px 10px;
+              border: 1px solid #ccc;
+              background: #fff;
+              cursor: pointer;
+              transition: background 0.3s ease;
+  
+              &.selected {
+                background: #f60;
+                color: #fff;
+              }
+  
+              &:hover {
+                background: #f60;
+                color: #fff;
+              }
+            }
+          }
+        }
+  
+        .action-buttons {
+          display: flex;
+          gap: 10px;
+  
+          button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+  
+            &:first-child {
+              background: #f60;
+              color: #fff;
+  
+              &:hover {
+                background: #e55500;
+              }
+            }
+  
+            &:last-child {
+              background: #ccc;
+  
+              &:hover {
+                background: #bbb;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .prev-btn,
+  .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 10;
+  }
+  
+  .prev-btn {
+    left: 10px;
+  }
+  
+  .next-btn {
+    right: 10px;
+  }
+  
+  .prev-btn:hover,
+  .next-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  

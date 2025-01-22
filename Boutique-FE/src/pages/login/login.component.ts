@@ -40,7 +40,7 @@ export class LoginComponent {
           const userRole = response.role?.trim().toLowerCase();
           console.log("userrole:",userRole);
           this.showPopupMessage('Success', 'Logged in Successfully!');
-          if(userRole === "superAdmin" || userRole === "admin"){
+          if(userRole === "superadmin" || userRole === "admin"){
             this.router.navigate(['/admindashboard']);
           }
           else{
