@@ -17,10 +17,15 @@
           {{ cartCount }}
         </div>
       </button>
-      <!-- Profile Icon -->
-      <button mat-icon-button aria-label="Profile">
+      <button mat-icon-button aria-label="Profile" [matMenuTriggerFor]="menu">
         <mat-icon>account_circle</mat-icon>
       </button>
+      
+      <!-- Menu -->
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="viewProfile()">Profile</button>
+        <button mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
     </div>
   </div>
 

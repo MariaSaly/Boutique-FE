@@ -5,10 +5,10 @@ import { CartService } from '../../app/cart.service';
 import { Router } from '@angular/router';
 import { SearchService } from '../../service/searchService';
 import { SharedService } from '../../service/sharedService';
-
+import { MatMenuModule } from '@angular/material/menu';
 @Component({
   selector: 'app-header',
-  imports: [MatIconModule,CommonModule],
+  imports: [MatIconModule,CommonModule,MatMenuModule],
   standalone:true,
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
@@ -70,5 +70,16 @@ export class HeaderComponent implements OnInit {
   onSearch(query: string): void {
     console.log("I am in search query", query);
     this.searchService.updateSearchQuery(query);
+  
+  }
+  viewProfile() {
+    console.log('Viewing profile...');
+    // You can navigate to the profile page or show profile data here
+  }
+
+  // Method to log out
+  logout() {
+    console.log('Logging out...');
+    // Handle logout logic here (e.g., clearing tokens, redirecting, etc.)
   }
 }
