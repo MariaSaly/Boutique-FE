@@ -16,6 +16,7 @@ import { AdmindashboardComponent } from '../pages/admindashboard/admindashboard.
 import { CartComponent } from '../pages/cart/cart.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { OrderListingComponent } from './order-listing/order-listing.component';
+import { ProfileComponent } from '../pages/profile/profile.component';
 
 
 export const routes: Routes = [
@@ -35,6 +36,7 @@ export const routes: Routes = [
         { path: 'saree', component: SareeComponent },
         { path: 'viewsaree/:id', component: ViewsareeComponent },
       { path: 'home', component: HomepageComponent },
+      { path: 'profile', component: ProfileComponent },
       { path: 'add',canActivate:[AdminAuthGuard], component: AddItemsComponent },
       { path: 'list',canActivate:[AdminAuthGuard], component: ListItemsComponent },
       { path: 'user',canActivate:[AdminAuthGuard], component: ListUserComponent },

@@ -73,6 +73,7 @@ export class HeaderComponent implements OnInit {
   
   }
   viewProfile() {
+    this.router.navigate(['/profile']);
     console.log('Viewing profile...');
     // You can navigate to the profile page or show profile data here
   }
