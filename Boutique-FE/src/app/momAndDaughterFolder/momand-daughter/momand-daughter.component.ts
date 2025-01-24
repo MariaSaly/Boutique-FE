@@ -18,6 +18,7 @@ import { HttpClient } from '@angular/common/http';
 export class MomandDaughterComponent {
  
     public url = environment.localUrl;
+    
     filteredData: any[] = [];
     items: any[] = [];
     currentIndexes: number[] = []; // Added this to track current image indexes
@@ -47,11 +48,29 @@ export class MomandDaughterComponent {
           });
         });
       });
+      this.filteredData.forEach((_, index) => {
+        this.currentIndexes[index] = 0; // Initially show the first image
+      });
+      console.log(this.currentIndexes);
     }
+  
+  
+    // Hover logic to pause carousel
+    onHover(index: number) {
+      console.log('Hovered over product:', this.filteredData[index].name);
+      console.log('Hovered over product:', this.filteredData[index].name);
+    }
+  
+    onLeave(index: number) {
+      console.log('Left hover for product:', this.filteredData[index].name);
+    }
+  
+   
   
     getSareeItems(): void {
       this.httpService.get(`${this.url}/api/items/getItem?category=saree`).subscribe((data: any) => {
         this.items = data;
+        console.log("data:", this.items);
         this.filteredData = [...this.items];
         this.currentIndexes = this.filteredData.map(() => 0); // Initialize image indexes
       });
