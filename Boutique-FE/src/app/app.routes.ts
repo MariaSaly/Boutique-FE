@@ -17,6 +17,10 @@ import { CartComponent } from '../pages/cart/cart.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { OrderListingComponent } from './order-listing/order-listing.component';
 import { ProfileComponent } from '../pages/profile/profile.component';
+import { TermsandconditionComponent } from './termsandcondition/termsandcondition.component';
+import { PrivacypolicyComponent } from './privacypolicy/privacypolicy.component';
+import { ReturnandexchangeComponent } from './returnandexchange/returnandexchange.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
 
 
 export const routes: Routes = [
@@ -34,6 +38,10 @@ export const routes: Routes = [
     component: LayoutzzComponent,
     children: [
         { path: 'saree', component: SareeComponent },
+        { path: 'terms', component: TermsandconditionComponent },
+        { path: 'policy', component: PrivacypolicyComponent },
+        { path: 'aboutus', component: AboutusComponent },
+        { path: 'return', component: ReturnandexchangeComponent },
         { path: 'viewsaree/:id', component: ViewsareeComponent },
       { path: 'home', component: HomepageComponent },
       { path: 'profile', component: ProfileComponent },
