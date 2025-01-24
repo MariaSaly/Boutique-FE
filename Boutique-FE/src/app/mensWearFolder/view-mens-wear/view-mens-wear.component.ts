@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../../environment';
 import { HttpClient } from '@angular/common/http';
 import { user } from '@angular/fire/auth';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-view-mens-wear',
   imports: [CommonModule,FormsModule],
@@ -20,7 +21,7 @@ export class ViewMensWearComponent {
     itemId: string | null = '';
     public url = environment.localUrl;
     itemData: any;
-    constructor( private router:Router,private cartService:CartService , private http:HttpService  ,private cdr: ChangeDetectorRef, private route:ActivatedRoute , private httpClient:HttpClient , ){
+    constructor(private toastService:ToastrService, private router:Router,private cartService:CartService , private http:HttpService  ,private cdr: ChangeDetectorRef, private route:ActivatedRoute , private httpClient:HttpClient , ){
   
     }
     ngOnInit(): void {
@@ -114,6 +115,8 @@ export class ViewMensWearComponent {
     }
   
     addToCart(): void {
+      localStorage.setItem('customData',JSON.stringify(this.customText));
+    
       console.log("Im in add to cart function");
       // const newCartItem = {
       //   product: this.selectedProduct,
@@ -131,6 +134,7 @@ export class ViewMensWearComponent {
       this.cartService.addToCart(this.userId,productId,qty).subscribe( data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
+        this.toastService.success('Cart added Sucessfully!');
         this.router.navigate(['/cart']);
       })
       // this.cartService.addItem(newCartItem);
@@ -143,6 +147,8 @@ export class ViewMensWearComponent {
       this.cartService.addToCartGuestUser(guestId,productId,qty).subscribe( data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
+        this.toastService.success('Cart added Sucessfully!');
+        
         this.router.navigate(['/cart']);
       })
       alert('please login to addtoCart');
@@ -159,6 +165,8 @@ export class ViewMensWearComponent {
     
   
     buyNow() {
+      localStorage.setItem('customData',JSON.stringify(this.customText));
+    
       // Buy now logic
       const productId = this.itemData.id;
       console.log("productId:", productId);

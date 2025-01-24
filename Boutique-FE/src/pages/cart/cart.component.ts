@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeliveryAddresssModelComponent } from '../../app/delivery-addresss-model/delivery-addresss-model.component';
 import { SharedService } from '../../service/sharedService';
 import { customizationTextService } from '../../service/customizationtextService';
+import { ToastrService } from 'ngx-toastr';
 declare var Razorpay:any
 
 @Component({
@@ -36,10 +37,11 @@ export class CartComponent implements OnInit{
   customText: string = '';
   
 
-constructor(private customTextService:customizationTextService,private sharedService:SharedService, private location: Location,private cartService:CartService, private router:Router ,private cdr: ChangeDetectorRef, private razorpayService:razorPayService ,private httpClient:HttpClient,private dialog:MatDialog){
+constructor(private toastService:ToastrService,private customTextService:customizationTextService,private sharedService:SharedService, private location: Location,private cartService:CartService, private router:Router ,private cdr: ChangeDetectorRef, private razorpayService:razorPayService ,private httpClient:HttpClient,private dialog:MatDialog){
   
 }
 ngOnInit(): void {
+  
   this.loadCart();
   const data = localStorage.getItem('customData');
     if(data){
@@ -49,6 +51,8 @@ ngOnInit(): void {
       console.log("customtext:", this.customText);
     }
   
+
+   
  
 
   // this.cartService.currentItems.subscribe( (data:any) => {
@@ -72,12 +76,17 @@ deleteItem(id:any){
    this.cartService.deleteCart(userId,id).subscribe( data => {
     if(data){
       console.log("deleted sucessfully:");
+      this.toastService.success('Cart deleted Sucessfully!');
       this.loadCart();
       this.cartService.loadCart(userId);
     }
    })
   
   this.calculateCartItems();
+}
+showtoastr(){
+  console.log("iam in toastr function")
+      this.toastService.success("taster added suessfuly");
 }
 private loadRazorpayScript():Promise<void>{
   return new Promise((resolve, reject)=> {
@@ -253,6 +262,10 @@ openDeliveryAddressModel(){
 }
 
 proceedToCheckout(address:any){
+  if(!this.userId){
+    this.toastService.error('Please login to make Orders!');
+    this.router.navigate(['login'])
+  }
   let customData = null;
   if(this.customText){
     customData=this.customText
@@ -294,14 +307,16 @@ proceedToCheckout(address:any){
         console.log("paymentdeatils:", paymentData);
         this.razorpayService.verifyOrder(paymentData).subscribe(
           (verificationResponse) => {
-            alert("payment Sucessfull!");
+           
+            this.toastService.success("Payment Verified & Order created Sucessfully")
             this.refreshComponent();
             this.cartService.loadCart(this.userId);
             
             console.log("verificationResponse:", verificationResponse);
           },
           (error)=>{
-            alert("payment verification failed");
+          
+            this.toastService.error("Payment Verification Failed.")
             console.log("error:", error);
           }
         );

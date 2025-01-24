@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../../environment';
 import { HttpClient } from '@angular/common/http';
 import { user } from '@angular/fire/auth';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-view-family-combo',
@@ -21,7 +22,7 @@ export class ViewFamilyComboComponent {
     itemId: string | null = '';
     public url = environment.localUrl;
     itemData: any;
-    constructor( private router:Router,private cartService:CartService , private http:HttpService  ,private cdr: ChangeDetectorRef, private route:ActivatedRoute , private httpClient:HttpClient , ){
+    constructor( private toastService:ToastrService,private router:Router,private cartService:CartService , private http:HttpService  ,private cdr: ChangeDetectorRef, private route:ActivatedRoute , private httpClient:HttpClient , ){
   
     }
     ngOnInit(): void {
@@ -115,6 +116,8 @@ export class ViewFamilyComboComponent {
     }
   
     addToCart(): void {
+      localStorage.setItem('customData',JSON.stringify(this.customText));
+    
       console.log("Im in add to cart function");
       // const newCartItem = {
       //   product: this.selectedProduct,
@@ -132,6 +135,7 @@ export class ViewFamilyComboComponent {
       this.cartService.addToCart(this.userId,productId,qty).subscribe( data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
+        this.toastService.success('Cart added Sucessfully!');
         this.router.navigate(['/cart']);
       })
       // this.cartService.addItem(newCartItem);
@@ -144,6 +148,7 @@ export class ViewFamilyComboComponent {
       this.cartService.addToCartGuestUser(guestId,productId,qty).subscribe( data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
+        this.toastService.success('Cart added Sucessfully!');
         this.router.navigate(['/cart']);
       })
       alert('please login to addtoCart');
@@ -161,6 +166,8 @@ export class ViewFamilyComboComponent {
   
     buyNow() {
       // Buy now logic
+      localStorage.setItem('customData',JSON.stringify(this.customText));
+    
       const productId = this.itemData.id;
       console.log("productId:", productId);
       const qty = this.quantity;

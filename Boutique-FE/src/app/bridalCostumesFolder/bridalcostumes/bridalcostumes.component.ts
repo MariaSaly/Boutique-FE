@@ -7,6 +7,7 @@ import { CartService } from '../../../app/cart.service';
 import { HttpService } from '../../../service/httpService';
 import { environment } from '../../../environment';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-bridalcostumes',
@@ -23,6 +24,8 @@ export class BridalcostumesComponent {
     currentIndexes: number[] = []; // Added this to track current image indexes
   
     constructor(
+      
+
       private router: Router,
       private searchService: SearchService,
       private cartService: CartService,
@@ -50,7 +53,7 @@ export class BridalcostumesComponent {
     }
   
     getSareeItems(): void {
-      this.httpService.get(`${this.url}/api/items/getItem`).subscribe((data: any) => {
+      this.httpService.get(`${this.url}/api/items/getItem?category=bridalcostumes`).subscribe((data: any) => {
         this.items = data;
         this.filteredData = [...this.items];
         this.currentIndexes = this.filteredData.map(() => 0); // Initialize image indexes

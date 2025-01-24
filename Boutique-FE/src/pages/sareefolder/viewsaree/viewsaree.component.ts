@@ -115,6 +115,8 @@ export class ViewsareeComponent implements OnInit {
   }
 
   addToCart( ): void {
+    localStorage.setItem('customData',JSON.stringify(this.customText));
+    
    
     console.log("Im in add to cart function");
     // const newCartItem = {
@@ -150,11 +152,11 @@ export class ViewsareeComponent implements OnInit {
     alert('please login to addtoCart');
   }
   }
-  onCustomizationChange(){
-    localStorage.setItem('customData',JSON.stringify(this.customText));
+  // onCustomizationChange(){
+  //   localStorage.setItem('customData',JSON.stringify(this.customText));
     
   
-  }
+  // }
   generateGuestId() {
     let guestId = localStorage.getItem('guestId');
     if (!guestId) {
@@ -166,6 +168,8 @@ export class ViewsareeComponent implements OnInit {
   
 
   buyNow() {
+    localStorage.setItem('customData',JSON.stringify(this.customText));
+    
     // Buy now logic
     const productId = this.itemData.id;
     console.log("productId:", productId);

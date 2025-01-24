@@ -49,7 +49,7 @@ export class SareeComponent implements OnInit {
   }
 
   getSareeItems(): void {
-    this.httpService.get(`${this.url}/api/items/getItem`).subscribe((data: any) => {
+    this.httpService.get(`${this.url}/api/items/getItem?category= saree`).subscribe((data: any) => {
       this.items = data;
       this.filteredData = [...this.items];
       this.currentIndexes = this.filteredData.map(() => 0); // Initialize image indexes
