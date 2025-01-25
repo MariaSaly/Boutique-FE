@@ -30,7 +30,7 @@ export class HttpService {
           return new HttpHeaders(); // If refresh failed, return empty headers
         }
         // Use the new token after refresh
-        storedToken = refreshedToken;
+        //storedToken = refreshedToken;
       }
   
       const authToken = storedToken;
