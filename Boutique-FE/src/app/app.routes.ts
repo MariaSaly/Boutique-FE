@@ -28,68 +28,70 @@ import { MensWearComponent } from './mensWearFolder/mens-wear/mens-wear.componen
 import { ViewMensWearComponent } from './mensWearFolder/view-mens-wear/view-mens-wear.component';
 import { MomandDaughterComponent } from './momAndDaughterFolder/momand-daughter/momand-daughter.component';
 import { ViewMomandDaughterComponent } from './momAndDaughterFolder/view-momand-daughter/view-momand-daughter.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 
 export const routes: Routes = [
   // Default route redirects to login
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  
+
   // Public routes
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'MoksheDestination', component: DashboardComponent },
-  
+
   // Protected routes under Layout
   {
     path: '',
     component: LayoutzzComponent,
     children: [
-        { path: 'saree', component: SareeComponent },
-        { path: 'viewsaree/:id', component: ViewsareeComponent },
-        {path:'bridalcostumes', component:BridalcostumesComponent},
-        { path: 'bridalcostumes/:id', component: ViewBridalCostumesComponent },
-        {path:'bridalsquade', component:BridesquadComponent},
-        { path: 'bridalsquade/:id', component: ViewBrideSquadeComponent },
-        {path:'cousinsquade', component:CousinsSquardComponent},
-        { path: 'cousinsquade/:id', component: ViewCousinsSquardComponent },
-        {path:'familycombo', component:FamilyComboComponent},
-        { path: 'familycombo/:id', component: ViewFamilyComboComponent },
-        {path:'menswear', component:MensWearComponent},
-        { path: 'menswear/:id', component: ViewMensWearComponent },
-        {path:'momanddaughter', component:MomandDaughterComponent},
-        { path: 'momanddaughter/:id', component: ViewMomandDaughterComponent },
+      { path: 'search', component: SearchResultComponent },
+      { path: 'saree', component: SareeComponent },
+      { path: 'viewsaree/:id', component: ViewsareeComponent },
+      { path: 'bridalcostumes', component: BridalcostumesComponent },
+      { path: 'bridalcostumes/:id', component: ViewBridalCostumesComponent },
+      { path: 'bridalsquade', component: BridesquadComponent },
+      { path: 'bridalsquade/:id', component: ViewBrideSquadeComponent },
+      { path: 'cousinsquade', component: CousinsSquardComponent },
+      { path: 'cousinsquade/:id', component: ViewCousinsSquardComponent },
+      { path: 'familycombo', component: FamilyComboComponent },
+      { path: 'familycombo/:id', component: ViewFamilyComboComponent },
+      { path: 'menswear', component: MensWearComponent },
+      { path: 'menswear/:id', component: ViewMensWearComponent },
+      { path: 'momanddaughter', component: MomandDaughterComponent },
+      { path: 'momanddaughter/:id', component: ViewMomandDaughterComponent },
       { path: 'home', component: HomepageComponent },
-      { path: 'add',canActivate:[AdminAuthGuard], component: AddItemsComponent },
-      { path: 'list',canActivate:[AdminAuthGuard], component: ListItemsComponent },
-      { path: 'user',canActivate:[AdminAuthGuard], component: ListUserComponent },
-      { path: 'adduser',canActivate:[AdminAuthGuard], component: AddUserComponent },
-      {path:'admindashboard',canActivate:[AdminAuthGuard],component:AdmindashboardComponent},
-      { path:'cart',component:CartComponent},
-      {path:'order/:id',canActivate:[AdminAuthGuard], component:OrderDetailsComponent},
-      {path:'order-listing', canActivate:[AdminAuthGuard],component:OrderListingComponent}
+      { path: 'add', canActivate: [AdminAuthGuard], component: AddItemsComponent },
+      { path: 'list', canActivate: [AdminAuthGuard], component: ListItemsComponent },
+      { path: 'user', canActivate: [AdminAuthGuard], component: ListUserComponent },
+      { path: 'adduser', canActivate: [AdminAuthGuard], component: AddUserComponent },
+      { path: 'admindashboard', canActivate: [AdminAuthGuard], component: AdmindashboardComponent },
+      { path: 'cart', component: CartComponent },
+      { path: 'order/:id', canActivate: [AdminAuthGuard], component: OrderDetailsComponent },
+      { path: 'order-listing', canActivate: [AdminAuthGuard], component: OrderListingComponent }
     ],
   },
   {
-    path:'item',
-    loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule),
+    path: 'item',
+    loadChildren: () => import('../pages/adminpage/admin.module').then(m => m.adminModule),
     canActivate: [AdminAuthGuard],
 
- },
- {
-    path:'item/add',
-    loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule),
+  },
+  {
+    path: 'item/add',
+    loadChildren: () => import('../pages/adminpage/admin.module').then(m => m.adminModule),
     canActivate: [AdminAuthGuard],
- },
- {
-    path:'item/:id/view',
-    loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule),
+  },
+  {
+    path: 'item/:id/view',
+    loadChildren: () => import('../pages/adminpage/admin.module').then(m => m.adminModule),
     canActivate: [AdminAuthGuard],
- },
- {
-    path:'item/:id/edit',
-    loadChildren:() =>import('../pages/adminpage/admin.module').then( m =>m.adminModule),
+  },
+  {
+    path: 'item/:id/edit',
+    loadChildren: () => import('../pages/adminpage/admin.module').then(m => m.adminModule),
     canActivate: [AdminAuthGuard],
- },
+  },
   // Wildcard route for 404
   { path: '**', redirectTo: 'login' },
 ];
@@ -98,4 +100,4 @@ export const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

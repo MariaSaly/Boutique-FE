@@ -69,6 +69,9 @@ export class HeaderComponent implements OnInit {
 
   onSearch(query: string): void {
     console.log("I am in search query", query);
-    this.searchService.updateSearchQuery(query);
+    if(query.trim()){
+      this.router.navigate(['/search'],{queryParams:{query}})
+    }
+   // this.searchService.updateSearchQuery(query);
   }
 }
