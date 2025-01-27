@@ -83,6 +83,8 @@
 }
 
 .item-description {
+
+
   font-size: 14px;
   color: #555;
   margin-top: 5px;
@@ -201,6 +203,7 @@
   .cart-products {
     width: 100%;
   }
+ 
 
   .cart-item {
     flex-direction: column;
@@ -213,7 +216,9 @@
     height: 200px; /* Larger height for better visibility */
     margin-bottom: 10px;
   }
-
+.cart-item-quantity{
+  margin-right: -60px;
+}
   .order-summary {
     width: 100%;
     margin-top: 20px;
