@@ -7,6 +7,7 @@ import { SearchService } from '../../service/searchService';
 import { SharedService } from '../../service/sharedService';
 import { MatMenuModule } from '@angular/material/menu';
 import { query } from '@angular/animations';
+import { AuthService } from '../../shared/authService';
 @Component({
   selector: 'app-header',
   imports: [MatIconModule,CommonModule,MatMenuModule],
@@ -18,7 +19,7 @@ export class HeaderComponent implements OnInit {
   showSearchBar = false;
   cartCount:number =0;
   userId: any;
-  constructor( private SharedService:SharedService,private cartService:CartService , private router:Router , private searchService:SearchService){
+  constructor(private authService:AuthService, private SharedService:SharedService,private cartService:CartService , private router:Router , private searchService:SearchService){
 
   }
   ngOnInit(): void {
@@ -82,6 +83,7 @@ export class HeaderComponent implements OnInit {
   // Method to log out
   logout() {
     console.log('Logging out...');
+    this.authService.logout()
     // Handle logout logic here (e.g., clearing tokens, redirecting, etc.)
     // if(query.trim()){
     //   this.router.navigate(['/search'],{queryParams:{query}})

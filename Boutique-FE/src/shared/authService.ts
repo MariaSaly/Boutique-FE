@@ -134,6 +134,7 @@ export class AuthService {
   logout(){
    const promise = this.firebaseAuth.signOut().then(()=>{
     localStorage.removeItem('token');
+    localStorage.removeItem('userData')
     this.router.navigate(['/login']);
    });
    return from(promise).subscribe();

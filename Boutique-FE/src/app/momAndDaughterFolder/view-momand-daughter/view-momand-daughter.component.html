@@ -3,11 +3,11 @@
     <div class="image-gallery">
       <!-- Large Display Image -->
       <div class="featured-image">
-        <img [src]="url + imageUrls[currentIndex]" alt="Gallery Image" class="featured-img" />
+        <img [src]="url + itemData.imageUrl[currentIndex]" alt="Gallery Image" class="featured-img" />
         
         <!-- Navigation Buttons (only if multiple images exist) -->
         <button 
-          *ngIf="imageUrls.length > 1" 
+          *ngIf="itemData.imageUrl.length > 1" 
           class="prev-btn"
           (click)="previousImage(); $event.stopPropagation()"
           type="button"
@@ -16,7 +16,7 @@
         </button>
     
         <button 
-          *ngIf="imageUrls.length > 1" 
+          *ngIf="itemData.imageUrl.length > 1" 
           class="next-btn"
           (click)="nextImage(); $event.stopPropagation()"
           type="button"
@@ -28,7 +28,7 @@
       <!-- Thumbnail Navigation -->
       <div class="thumbnails" *ngIf="imageUrls.length > 1">
         <img 
-          *ngFor="let img of imageUrls; let i = index"
+          *ngFor="let img of itemData.imageUrl; let i = index"
           [src]="url + img"
           [ngClass]="{'active': i === currentIndex}"
           (click)="selectImage(i)"

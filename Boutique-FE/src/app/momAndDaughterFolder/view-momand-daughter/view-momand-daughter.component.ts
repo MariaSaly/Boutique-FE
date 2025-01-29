@@ -202,12 +202,12 @@ export class ViewMomandDaughterComponent {
     ];
     currentIndex = 0;
     previousImage() {
-      this.currentIndex = this.currentIndex > 0 ? this.currentIndex - 1 : this.imageUrls.length - 1;
+      this.currentIndex = this.currentIndex > 0 ? this.currentIndex - 1 : this.itemData.imageUrl.length - 1;
     }
   
     // Navigate to the next image
     nextImage() {
-      this.currentIndex = this.currentIndex < this.imageUrls.length - 1 ? this.currentIndex + 1 : 0;
+      this.currentIndex = this.currentIndex < this.itemData.imageUrl.length - 1 ? this.currentIndex + 1 : 0;
     }
   
     // Select a specific image via thumbnails

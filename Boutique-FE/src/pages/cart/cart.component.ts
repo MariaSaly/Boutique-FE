@@ -62,6 +62,12 @@ ngOnInit(): void {
 
   this.calculateCartItems();
 }
+getImageUrl(item: any): string {
+  if (Array.isArray(item.imageUrl)) {
+    return this.url + item.imageUrl[0]; // Return first image if it's an array
+  }
+  return this.url + item.imageUrl; // Return single image if it's not an array
+}
 deleteItem(id:any){
   const previousItem= this.cartItems.find((item:any)=> item.cartId == id);
   let userId:string = '';
