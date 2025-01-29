@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { SearchService } from '../../service/searchService';
 import { SharedService } from '../../service/sharedService';
 import { MatMenuModule } from '@angular/material/menu';
+import { query } from '@angular/animations';
 @Component({
   selector: 'app-header',
   imports: [MatIconModule,CommonModule,MatMenuModule],
@@ -82,5 +83,9 @@ export class HeaderComponent implements OnInit {
   logout() {
     console.log('Logging out...');
     // Handle logout logic here (e.g., clearing tokens, redirecting, etc.)
+    // if(query.trim()){
+    //   this.router.navigate(['/search'],{queryParams:{query}})
+    // }
+   // this.searchService.updateSearchQuery(query);
   }
 }

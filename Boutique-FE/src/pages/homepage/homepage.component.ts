@@ -16,9 +16,9 @@ export class HomepageComponent {
   showSamePinchContent = false;
   
   constructor(private router:Router,private sharedService: SharedService){}
-saree(){
-  this.router.navigate(['saree'])
-}
+
+ 
+
 smallImages = [
   './assets/images/bg1.png',
   './assets/images/bg1.png',
@@ -64,5 +64,44 @@ prevImage(): void {
 nextImage(): void {
   this.currentIndex = (this.currentIndex + 1) % this.images.length;
   this.updateImage();
+}
+saree(){
+  this.router.navigate(['saree'])
+}
+bridalcostumes(){
+  this.router.navigate(['bridalcostumes'])
+}
+bridalsquade(){
+  this.router.navigate(['bridalsquade'])
+}
+cousinsquade(){
+  this.router.navigate(['cousinsquade'])
+}
+familycombo(){
+  this.router.navigate(['familycombo'])
+}
+momanddaughter(){
+  this.router.navigate(['momanddaughter'])
+}
+menswear(){
+  this.router.navigate(['menswear'])
+}
+nine(){
+  this.router.navigate(['nine'])
+}
+coords(){
+  this.router.navigate(['coords'])
+}
+halfsaree(){
+  this.router.navigate(['halfsaree'])
+}
+officewear(){
+  this.router.navigate(['officewear'])
+}
+plussize(){
+  this.router.navigate(['plussize'])
+}
+leggings(){
+  this.router.navigate(['leggins'])
 }
 }

@@ -51,11 +51,8 @@ export class SareeComponent implements OnInit {
   }
   
   getSareeItems(): void {
-    this.httpService.get(`${this.url}/api/items/getItem`).subscribe((data: any) => {
-      this.items = data.map((item: any) => ({
-        ...item,
-        images: Array.isArray(item.imageUrl) ? item.imageUrl : [], // Ensure images is an array
-      }));
+    this.httpService.get(`${this.url}/api/items/getItem?category= saree`).subscribe((data: any) => {
+      this.items = data;
       this.filteredData = [...this.items];
       this.currentIndexes = this.filteredData.map(() => 0); // Initialize image indexes
       console.log('Fetched Items:', this.items); // Debug

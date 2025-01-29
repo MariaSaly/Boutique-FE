@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { PopupMessageComponent } from '../popupmessage/popup-message/popup-message.component';
 import { SharedModule } from '../../app/shared.module';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { HttpService } from '../../service/httpService';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent {
   popupTitle = ''; // Title for the popup
   popupMessage = ''; // Message for the popup
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router, private authService: AuthService , private http:HttpService) {
     this.loginform = new FormGroup({
       email: new FormControl('', [Validators.email, Validators.required]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -40,7 +41,7 @@ export class LoginComponent {
           const userRole = response.role?.trim().toLowerCase();
           console.log("userrole:",userRole);
           this.showPopupMessage('Success', 'Logged in Successfully!');
-          if(userRole === "superAdmin" || userRole === "admin"){
+          if(userRole === "superadmin" || userRole === "admin"){
             this.router.navigate(['/admindashboard']);
           }
           else{
