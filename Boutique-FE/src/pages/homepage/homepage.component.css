@@ -174,10 +174,10 @@ button:hover {
   
   .cards-container {
     display: flex; /* Flexbox for a single-row layout */
-    flex-wrap: nowrap; /* Prevent wrapping to a new row */
+    flex-wrap: wrap; 
     gap: 20px; /* Space between cards */
     justify-content: center; /* Center the cards horizontally */
-    overflow-x: auto; /* Allow horizontal scrolling if necessary */
+    /* overflow-x: auto;  */
   }
   
   .arrivalcard-wrapper {
@@ -244,4 +244,34 @@ button:hover {
     background-color: black;
     color: white;
   }
+  @media screen and (max-width: 768px) {
+    .cards-container {
+      max-width: 100%;
+      overflow-x: auto; /* Enable horizontal scrolling */
+      white-space: nowrap; /* Prevent wrapping */
+      padding: 10px 0;
+    }
   
+    .arrivalcard-wrapper {
+      flex-shrink: 0; /* Prevent cards from shrinking */
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .newarrivals{
+      padding: 5px;
+    }
+    .cards-container {
+      max-width: 400px;
+      overflow-x: auto; /* Enable
+      h horizontal scrolling */
+      white-space: wrap; /* Prevent wrapping */
+      height: 500px;
+      flex-wrap: wrap;
+      flex-direction: column;
+      padding: 10px 0;
+    }
+  
+    .arrivalcard-wrapper {
+      flex-shrink: 0; /* Prevent cards from shrinking */
+    }
+  }
