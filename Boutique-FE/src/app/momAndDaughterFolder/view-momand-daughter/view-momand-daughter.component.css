@@ -41,6 +41,7 @@ body {
     width: 500px;
     height: 500px;
     margin: auto;
+    margin-bottom: 10px;
     background-image: url('../../../assets/images/bm.jpg');
   }
   
@@ -241,8 +242,8 @@ height: 400px;
 height: 400px !important;
     }
 .featured-image{
-  width: 400px;
-height: 400px;
+  width: 400px !important;
+height: 400px !important;
 }
   }
   .in-stock {
