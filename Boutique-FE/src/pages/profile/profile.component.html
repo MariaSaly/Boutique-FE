@@ -16,32 +16,34 @@
   <div class="order-history">
     <h3 class="section-title">Order History</h3>
 
-    <!-- Order Item 1 -->
-    <div class="order-item">
+    <!-- Order Loop -->
+    <div class="order-item" *ngFor="let order of orders">
       <div class="order-info">
-        <img src="path/to/product-image.jpg" alt="Product Image" class="order-image" />
-        <div class="order-details">
-          <h4 class="order-product-name">Fancy Shirt</h4>
-          <p class="order-id">Order ID: 12345</p>
-          <p class="order-status">Status: Delivered</p>
-          <p class="order-price"><strong>Price:</strong> $30</p>
+        <h4 class="order-id">Order ID: {{order.id}}</h4>
+        <p class="order-date">Ordered on: {{ convertToDate(order.createdAt) | date:'short' }}</p>
+
+        <p class="order-status">Status: {{order.status}}</p>
+        
+        <!-- Loop through items in each order -->
+        <div class="order-items" *ngFor="let cartItem of order.cartItems">
+        
+          <!-- Loop through items inside each cartItem -->
+          <div class="order-item-details" *ngFor="let item of cartItem.items">
+            <div class="order-item-info">
+              <img [src]="getProductImage(item.productId)" alt="Product Image" class="order-image" />
+              <div class="order-item-details-text">
+                <h5 class="order-product-name">{{item.productId}}</h5> <!-- Replace with actual product name -->
+                <p class="order-item-quantity">Quantity: {{item.quantity}}</p>
+                <p class="order-item-price"><strong>Price:</strong> ${{item.price || 0}}</p> <!-- Assuming you have price data -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-total">
+          <p><strong>Total:</strong> ${{order.totalAmount}}</p> <!-- Assuming you have totalAmount in your order -->
         </div>
       </div>
     </div>
-
-    <!-- Order Item 2 -->
-    <div class="order-item">
-      <div class="order-info">
-        <img src="path/to/product-image.jpg" alt="Product Image" class="order-image" />
-        <div class="order-details">
-          <h4 class="order-product-name">Casual Jeans</h4>
-          <p class="order-id">Order ID: 67890</p>
-          <p class="order-status">Status: Shipped</p>
-          <p class="order-price"><strong>Price:</strong> $45</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Add more orders here -->
   </div>
 </div>

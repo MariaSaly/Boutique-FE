@@ -1,148 +1,139 @@
-/* General Styles */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
-  margin: 0;
-  padding: 0;
-}
-
 /* Profile Page */
 .profile-page {
-  max-width: 800px;
-  margin: 2rem auto;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  font-family: Arial, sans-serif;
+  color: #333;
+  padding: 20px;
 }
 
-/* Profile Section */
 .profile-section {
-  background: linear-gradient(135deg, #1A1A1A 20%, #4A4A4A 40%, #FFD700 80%);
-  padding: 2rem;
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-bottom: 30px;
 }
 
 .profile-card {
   display: flex;
   align-items: center;
-  text-align: center;
-  color: #fff;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+  width: 60%;
 }
-.profile-image{
-  width: 100px;
-  height: 100px;
-  border: 1px solid transparent;
-  border-radius: 50%;
-  margin-right: 2rem;
-  content: url('../../assets/images/halfsaree.jpg');
-}
-.profile-image img {
- 
+
+.profile-image {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 3px solid #fff;
-  margin-right: 1rem;
+  background: #ddd;
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.profile-details {
-  text-align: left;
-}
-
-.profile-name {
-  font-size: 1.5rem;
+.profile-details h2 {
+  font-size: 24px;
   margin: 0;
 }
 
 .profile-info {
-  font-size: 1rem;
-  margin: 0.5rem 0;
+  margin-top: 10px;
+  font-size: 16px;
+  color: #555;
 }
 
-/* Order History Section */
+/* Order History */
 .order-history {
-  padding: 2rem;
+  margin-top: 40px;
 }
 
 .section-title {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color: #333;
-  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
-/* Order Items */
 .order-item {
-  display: flex;
-  align-items: center;
   background: #f9f9f9;
-  margin-bottom: 1rem;
+  padding: 20px;
+  margin-bottom: 20px;
   border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 .order-info {
+  margin-bottom: 15px;
+}
+
+.order-id {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.order-date, .order-status {
+  font-size: 14px;
+  color: #777;
+}
+
+.order-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.order-item-details {
+  width: 45%;
+  background: #fff;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.order-item-info {
   display: flex;
   align-items: center;
-  width: 100%;
 }
 
 .order-image {
   width: 80px;
   height: 80px;
-  object-fit: cover;
-  border-right: 2px solid #ddd;
+  border-radius: 8px;
+  margin-right: 15px;
 }
 
-.order-details {
-  padding: 1rem;
-  flex: 1;
+.order-item-details-text {
+  display: flex;
+  flex-direction: column;
 }
 
 .order-product-name {
-  font-size: 1.2rem;
-  margin: 0;
-  color: #333;
-}
-
-.order-id,
-.order-status,
-.order-price {
-  font-size: 0.9rem;
-  color: #555;
-  margin: 0.3rem 0;
-}
-
-.order-price {
+  font-size: 18px;
   font-weight: bold;
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-  .profile-card {
-    flex-direction: column;
-    text-align: center;
-  }
+.order-item-quantity, .order-item-price {
+  font-size: 14px;
+  color: #555;
+}
 
-  .profile-image img {
-    margin: 0 0 1rem 0;
-  }
+.order-total {
+  margin-top: 15px;
+  text-align: right;
+  font-size: 16px;
+  font-weight: bold;
+}
 
-  .order-info {
-    flex-direction: column;
-    text-align: center;
-  }
+.order-item-details:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
 
-  .order-image {
-    border: none;
-    border-bottom: 2px solid #ddd;
-  }
+.order-total p {
+  color: #333;
+  font-size: 18px;
+}
 
-  .order-details {
-    padding: 0.5rem;
-  }
+.order-id {
+  color: #2c3e50;
 }
