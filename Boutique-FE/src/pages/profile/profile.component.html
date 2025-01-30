@@ -3,45 +3,43 @@
   <div class="profile-section">
     <div class="profile-card">
       <div class="profile-image">
-        <!-- <img src="path/to/profile-image.jpg" alt="Profile Image" /> -->
+        <img src="assets/profile-placeholder.jpg" alt="Profile Image" *ngIf="user?.profileImage"/>
       </div>
-      <div class="profile-details">
-        <h2 class="profile-name">John Doe</h2>
-        <p class="profile-info"><strong>Phone:</strong> +1234567890</p>
+      <div class="profile-details" *ngFor="let user of user">
+        <h2 class="profile-name">{{ user?.name }}</h2>
+        <p class="profile-info"><strong>Email:</strong> {{ user?.email }}</p>
       </div>
     </div>
   </div>
 
   <!-- Order History Section -->
-  <div class="order-history">
+  <div class="order-history" *ngIf="orders">
     <h3 class="section-title">Order History</h3>
 
-    <!-- Order Loop -->
-    <div class="order-item" *ngFor="let order of orders">
-      <div class="order-info">
-        <h4 class="order-id">Order ID: {{order.id}}</h4>
-        <p class="order-date">Ordered on: {{ convertToDate(order.createdAt) | date:'short' }}</p>
+    <div class="order-list">
+      <div class="order-item" *ngFor="let order of orders">
+        <div class="order-header">
+          <h4 class="order-id">Order ID: {{ order.id }}</h4>
+          <p class="order-date">Ordered on: {{ convertToDate(order.createdAt) }}</p>
+          <p class="order-status">Status: <span [ngClass]="order.status">{{ order.status }}</span></p>
+        </div>
 
-        <p class="order-status">Status: {{order.status}}</p>
-        
-        <!-- Loop through items in each order -->
-        <div class="order-items" *ngFor="let cartItem of order.cartItems">
-        
-          <!-- Loop through items inside each cartItem -->
-          <div class="order-item-details" *ngFor="let item of cartItem.items">
-            <div class="order-item-info">
+        <!-- Order Items -->
+        <div class="order-items">
+          <div class="order-item-details" *ngFor="let cartItem of order.cartItems">
+            <div class="order-item-info" *ngFor="let item of cartItem.items">
               <img [src]="getProductImage(item.productId)" alt="Product Image" class="order-image" />
               <div class="order-item-details-text">
-                <h5 class="order-product-name">{{item.productId}}</h5> <!-- Replace with actual product name -->
-                <p class="order-item-quantity">Quantity: {{item.quantity}}</p>
-                <p class="order-item-price"><strong>Price:</strong> ${{item.price || 0}}</p> <!-- Assuming you have price data -->
+                <h5 class="order-product-name">{{ item.productId }}</h5>
+                <p class="order-item-quantity">Qty: {{ item.quantity }}</p>
+                <p class="order-item-price"><strong>Price:</strong> ${{ getProductPrice(item.productId) }}</p>
               </div>
             </div>
           </div>
         </div>
 
         <div class="order-total">
-          <p><strong>Total:</strong> ${{order.totalAmount}}</p> <!-- Assuming you have totalAmount in your order -->
+          <p><strong>Total:</strong> ${{ order.totalAmount }}</p>
         </div>
       </div>
     </div>
