@@ -6,18 +6,21 @@
     .newarrivals {
       text-align: center; /* Center the text */
       margin-top: 20px;
+      justify-content: space-evenly;
+      display: flex;
+      flex-wrap: wrap;
     }
     
     .arrivalcard {
       width: 260px;
-      height: 340px;
+      height: 360px;
       margin: 10px;
       display: inline-block;
-    
+      border: none;
      
       overflow: hidden;
       cursor: pointer;
-      transition: transform 0.3s ease-in-out;
+    
     }
     
  
@@ -25,40 +28,41 @@
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       width: 100%;
-     
-      height: 240px; /* Fixed height for the image */
+      height: 260px; 
       overflow: hidden;
       transition: transform 0.1s ease-in-out;
-      /* background-image: url('../../../assets/images/saree2.png'); */
-      background-size: contain; /* Ensures the image covers the container fully */
-     background-position: center; /* Centers the image */
-     background-repeat: no-repeat; /* Prevents the image from repeating */
+      background-size: contain; 
+     background-position: center; 
+     background-repeat: no-repeat; 
     }
     
     .card-image img {
-      width: 100%; /* Make sure image fills the width */
-      height: 100%; /* Make sure image fills the height */
-      object-fit: cover; /* Ensures the image fills the space without distortion */
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
       transition: transform 0.1s ease-in-out;
     }
     
     /* Hover effect on the image */
      .card-image img:hover {
-      transform: scale(1.1); /* Slightly zoom in the image */
+      transform: scale(1.1);
       cursor: pointer; 
      
     }
     
     .card-details {
-      padding: 10px;
-      text-align: left; /* Align text to the left */
+      /* padding: 10px; */
+      text-align: left;
       font-size: 14px;
       color: #333;
+      border: transparent;
+      transition: none;
+     
     
     }
     
     .card-details h2 {
-      font-size: 18px;
+      font-size: 16px;
       margin: 10px 0;
       font-weight: bold;
     }
@@ -70,7 +74,7 @@
     
     .card-details .price {
       font-size: 14px;
-      color: #e74c3c; /* Red color for the price */
+      color: #e74c3c; 
       font-weight: bold;
     }
     
@@ -219,33 +223,9 @@
   .next-btn:hover {
     background-color: rgba(0, 0, 0, 0.8);
   }
-  .main-container {
-  display: flex;
-  justify-content: center;
-  margin: 20px;
-}
 
-.newarrivals {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
 
-.arrivalcard {
-  width: 280px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  cursor: pointer;
-}
 
-.card-image {
-  position: relative;
-  width: 100%;
-  height: 220px;
-  overflow: hidden;
-}
 
 .product-image {
   width: 100%;
@@ -282,22 +262,33 @@
   right: 10px;
 }
 
-.card-details {
-  padding: 15px;
-  text-align: center;
-}
 
-.card-details h2 {
-  font-size: 18px;
-  font-weight: bold;
-}
+@media(max-width:480px){
+  .main-container{
+    .newarrivals{
+      margin: 0 !important;
+      padding: 0;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: flex-start;
+    }
+    .arrivalcard{
+      width: 150px !important;
+      height: 300px !important;
+    }
+    .card-image{
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-image img{
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
+    .card-details{
+      
+    }
+  }
 
-.card-details p {
-  color: #666;
-}
-
-.card-details .price {
-  color: #000;
-  font-size: 20px;
-  font-weight: bold;
 }

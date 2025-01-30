@@ -1,31 +1,58 @@
+/* Footer Styling */
 .footer {
-  height: 30px;
+  background-color: #f8f8f8;
+  padding: 20px;
   text-align: center;
-  padding: 10px 20px;
-  background-color: #f1f1f1;
-  color: #555;
-  font-size: 0.9rem;
+  border-top: 1px solid #ddd;
+}
+
+/* Customer Service Row */
+.footer-customer-service {
+  margin-bottom: 15px;
+  font-weight: 600px;
+}
+
+.customer-service-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   justify-content: center;
-  align-items: center; /* Vertically center content */
+  gap: 20px;
+  font-weight: 600;
 }
 
-/* For devices with a width of 768px (tablets) and below */
-@media (max-width: 768px) {
-  .footer {
-    position: relative;
-    padding: 10px 15px; /* Adjust padding for tablet view */
-    font-size: 1rem; /* Slightly increase font size for readability */
-    height: 40px; /* Adjust height for tablet */
-  }
+.customer-service-links li {
+  display: inline;
+  font-weight: 600px;
 }
 
-/* For mobile devices with a width of 480px (or below) */
-@media (max-width: 480px) {
-  .footer {
-    position: relative;
-    padding: 10px 10px; /* Reduce padding on mobile */
-    font-size: 0.8rem; /* Slightly reduce font size for mobile */
-    height: 50px; /* Adjust footer height on mobile */
-  }
+.customer-service-links a {
+  font-size: 14px;
+  font-weight: 600px;
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.customer-service-links a:hover {
+  color: #007bff;
+}
+
+/* Social Media Icons Row */
+.footer-social-media {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.footer-social-media a {
+  font-size: 20px;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.footer-social-media a:hover {
+  color: #ff5722;
 }

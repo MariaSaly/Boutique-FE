@@ -31,7 +31,7 @@ export class SareeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSareeItems();
-
+  
     this.searchService.searchQuery$.subscribe((query) => {
       this.filteredData = this.items.filter((item) => {
         return Object.values(item).some((val: any) => {
@@ -45,30 +45,41 @@ export class SareeComponent implements OnInit {
           return false;
         });
       });
+      this.currentIndexes = this.filteredData.map(() => 0); 
+      console.log('Filtered Data:', this.filteredData); 
     });
   }
-
+  
   getSareeItems(): void {
     this.httpService.get(`${this.url}/api/items/getItem?category= saree`).subscribe((data: any) => {
       this.items = data;
       this.filteredData = [...this.items];
       this.currentIndexes = this.filteredData.map(() => 0); // Initialize image indexes
+      console.log('Fetched Items:', this.items); // Debug
     });
   }
-
+  
   nextImage(cardIndex: number, images: string[]): void {
-    if (images.length > 1) {
+    if (images?.length > 1) {
       this.currentIndexes[cardIndex] =
         (this.currentIndexes[cardIndex] + 1) % images.length;
     }
+    console.log('Next Image Index:', this.currentIndexes[cardIndex]); // Debug
   }
-
+  
   previousImage(cardIndex: number, images: string[]): void {
-    if (images.length > 1) {
+    if (images?.length > 1) {
       this.currentIndexes[cardIndex] =
         (this.currentIndexes[cardIndex] - 1 + images.length) % images.length;
     }
+    console.log('Previous Image Index:', this.currentIndexes[cardIndex]); // Debug
   }
+  
+  
+
+
+
+
 
   selectCard(index: number): void {
     const selectedProduct = this.filteredData[index];

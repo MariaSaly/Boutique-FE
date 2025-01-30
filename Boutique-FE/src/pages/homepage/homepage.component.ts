@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SharedService } from '../../service/homesharedservice';
 
 @Component({
   selector: 'app-homepage',
@@ -11,7 +12,12 @@ import { Router } from '@angular/router';
   styleUrl: './homepage.component.css'
 })
 export class HomepageComponent {
-  constructor(private router:Router){}
+  showCategoryContent = false;
+  showSamePinchContent = false;
+  
+  constructor(private router:Router,private sharedService: SharedService){}
+
+ 
 
 smallImages = [
   './assets/images/bg1.png',
@@ -41,6 +47,13 @@ updateImage(): void {
   if (mainImage) {
     mainImage.style.backgroundImage = `url(${this.images[this.currentIndex]})`;
   }
+  this.sharedService.categoryContent$.subscribe((value) => {
+    this.showCategoryContent = value;
+  });
+  this.sharedService.samePinchContent$.subscribe((value) => {
+    this.showSamePinchContent = value;
+  });
+
 }
 
 prevImage(): void {
@@ -72,5 +85,23 @@ momanddaughter(){
 }
 menswear(){
   this.router.navigate(['menswear'])
+}
+nine(){
+  this.router.navigate(['nine'])
+}
+coords(){
+  this.router.navigate(['coords'])
+}
+halfsaree(){
+  this.router.navigate(['halfsaree'])
+}
+officewear(){
+  this.router.navigate(['officewear'])
+}
+plussize(){
+  this.router.navigate(['plussize'])
+}
+leggings(){
+  this.router.navigate(['leggins'])
 }
 }

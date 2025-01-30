@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartService } from '../../../app/cart.service';
 import { HttpService } from '../../../service/httpService';
@@ -18,7 +18,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './view-momand-daughter.component.css'
 })
 export class ViewMomandDaughterComponent {
- 
+  @Input() imageUrls: string[] = [];
     userId: any;
     itemId: string | null = '';
     public url = environment.localUrl;
@@ -95,9 +95,7 @@ export class ViewMomandDaughterComponent {
     customText: string = '';
     quantity: number = 0;
   
-    selectImage(image: string) {
-      this.selectedImage = image;
-    }
+
   
     selectSize(size: string) {
       this.selectedSize = size;
@@ -202,19 +200,19 @@ export class ViewMomandDaughterComponent {
     images: string[] = [
      
     ];
-    currentIndex: number = 0;
-  
-    nextImage() {
-      if (this.images.length > 0) {
-        this.currentIndex = (this.currentIndex + 1) % this.images.length;
-      }
+    currentIndex = 0;
+    previousImage() {
+      this.currentIndex = this.currentIndex > 0 ? this.currentIndex - 1 : this.itemData.imageUrl.length - 1;
     }
   
-    previousImage() {
-      if (this.images.length > 0) {
-        this.currentIndex =
-          (this.currentIndex - 1 + this.images.length) % this.images.length;
-      }
+    // Navigate to the next image
+    nextImage() {
+      this.currentIndex = this.currentIndex < this.itemData.imageUrl.length - 1 ? this.currentIndex + 1 : 0;
+    }
+  
+    // Select a specific image via thumbnails
+    selectImage(index: number) {
+      this.currentIndex = index;
     }
   }
   

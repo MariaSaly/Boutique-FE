@@ -1,37 +1,64 @@
 <div class="main-container">
   <!-- Heading Section -->
   <div class="heading">
-    <h1 class="page-title">Item Maintenace</h1>
+    <h1 class="page-title">Item Maintenance</h1>
+    <div class="search-bar">
+      <input type="text" placeholder="Search items..." [(ngModel)]="searchQuery" (input)="filterItems()" />
+    </div>
     <div class="btn">
       <button class="add-btn" (click)="add()">Add</button>
     </div>
   </div>
 
   <!-- Card Section -->
-  <div *ngFor="let item of items" class="card">
-    <!-- Image Section -->
-    <div class="card-image">
-      <img [src]=" url + item.imageUrl" [alt]="item.title" />
-    </div>
+  <div class="card-container">
+    <div *ngFor="let item of filteredItems" class="card">
+      <!-- Card Image -->
+      <div class="card-image" >
+        <div *ngIf="item.imageUrl?.length > 1" class="carousel">
+          <!-- Image Display -->
+          <div class="slideshow-container">
+            <div *ngFor="let imgUrl of item.imageUrl; let i = index" class="slide" [class.active]="currentIndex === i">
+              <img [src]="url + imgUrl" [alt]="item.title" class="slider-image" />
+            </div>
+          </div>
+          <!-- Navigation buttons -->
+          <div class="slideshow-controls">
+            <button (click)="prevImage(item)">&#10094;</button>
+            <button (click)="nextImage(item)">&#10095;</button>
+          </div>
+        </div>
 
-    <!-- Description Section -->
-    <div class="card-description">
-      <p>{{ item.description }}</p>
-    </div>
+        <!-- Single image display -->
+        <div *ngIf="item.imageUrl?.length === 1">
+          <img [src]="url + item.imageUrl[0]" class="slider-image" alt="Item image" />
+        </div>
+      </div>
 
-    <!-- Icons Section -->
-    <div class="card-icons">
-      <button class="icon-btn view-btn" title="View" (click)="onCardClick(item.id, 'view'); $event.stopPropagation()">
-        <i class="fas fa-eye"></i>
-      </button>
-      <button class="icon-btn edit-btn" title="Edit" (click)="onCardClick(item.id, 'edit'); $event.stopPropagation()">
-        <i class="fas fa-edit"></i>
-      </button>
-      <button class="icon-btn delete-btn" title="Delete" (click)="confirmDelete(item)">
-        <i class="fas fa-trash"></i>
-      </button>
+      <!-- Description Section -->
+      <div class="card-description">
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.description }}</p>
+        <p class="price">{{ item.price | currency }}</p>
+      </div>
+
+      <!-- Icons Section -->
+      <div class="card-icons">
+        <button class="icon-btn view-btn" title="View" (click)="onCardClick(item.id, 'view'); $event.stopPropagation()">
+          <i class="fas fa-eye"></i>
+        </button>
+        <button class="icon-btn edit-btn" title="Edit" (click)="onCardClick(item.id, 'edit'); $event.stopPropagation()">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button class="icon-btn delete-btn" title="Delete" (click)="confirmDelete(item)">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
     </div>
   </div>
-</div>
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+  <!-- View More Button -->
+  <div *ngIf="showViewMore" class="view-more-btn">
+    <button (click)="viewMoreCards()">View More</button>
+  </div>
+</div>

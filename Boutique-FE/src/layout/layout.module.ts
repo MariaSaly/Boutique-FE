@@ -12,11 +12,9 @@ import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
-    HeaderComponent,
-    FooterComponent,
-    LayoutzzComponent, // Declare the layout component
+   
   ],
-  exports: [HeaderComponent, FooterComponent],
+  exports: [],
   imports: [
     BrowserModule,
     CommonModule,

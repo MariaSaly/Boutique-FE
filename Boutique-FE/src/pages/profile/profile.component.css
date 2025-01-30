@@ -1,0 +1,148 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+}
+
+/* Profile Page */
+.profile-page {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Profile Section */
+.profile-section {
+  background: linear-gradient(135deg, #1A1A1A 20%, #4A4A4A 40%, #FFD700 80%);
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}
+.profile-image{
+  width: 100px;
+  height: 100px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  margin-right: 2rem;
+  content: url('../../assets/images/halfsaree.jpg');
+}
+.profile-image img {
+ 
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  margin-right: 1rem;
+}
+
+.profile-details {
+  text-align: left;
+}
+
+.profile-name {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.profile-info {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+/* Order History Section */
+.order-history {
+  padding: 2rem;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #333;
+  text-align: center;
+}
+
+/* Order Items */
+.order-item {
+  display: flex;
+  align-items: center;
+  background: #f9f9f9;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.order-info {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.order-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-right: 2px solid #ddd;
+}
+
+.order-details {
+  padding: 1rem;
+  flex: 1;
+}
+
+.order-product-name {
+  font-size: 1.2rem;
+  margin: 0;
+  color: #333;
+}
+
+.order-id,
+.order-status,
+.order-price {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0.3rem 0;
+}
+
+.order-price {
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profile-image img {
+    margin: 0 0 1rem 0;
+  }
+
+  .order-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .order-image {
+    border: none;
+    border-bottom: 2px solid #ddd;
+  }
+
+  .order-details {
+    padding: 0.5rem;
+  }
+}

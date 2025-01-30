@@ -24,9 +24,7 @@ import { LayoutzzComponent } from '../layout/layoutzz/layoutzz.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
-    LayoutzzComponent
+   
   ],
   imports: [
     
@@ -34,7 +32,7 @@ import { LayoutzzComponent } from '../layout/layoutzz/layoutzz.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    LayoutModule,
+    
     AppRoutingModule,
     
     // Initialize Firebase with the provided config
@@ -45,6 +43,6 @@ import { LayoutzzComponent } from '../layout/layoutzz/layoutzz.component';
     provide:HTTP_INTERCEPTORS ,useClass:AuthInterceptor,multi:true
   }
  ],
-  bootstrap: [AppComponent]
+  // bootstrap: [AppComponent]
 })
 export class AppModule { }

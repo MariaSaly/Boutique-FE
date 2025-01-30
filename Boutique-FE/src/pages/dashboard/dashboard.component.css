@@ -57,107 +57,86 @@
   /* background-color: #e9e9e9;  */
   flex-direction: column;
 }
-/* .container{
-  width:200px;
-  height: 200px;
-  border: 1px solid black;
-  border-radius: 50%;
-  margin-bottom: 10px;
-  content: url('../../assets/images/Miya1.png');
-} */
+
 .container {
   position: relative;
   width: 200px;
   height: 200px;
-  border: 1px solid black;
   border-radius: 50%;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  content: url('../../assets/images/Miya.png');
+  background-image: url('../../assets/images/Miya.png'); /* Initial image */
+ 
+  background-position: center;
+  background-size: contain;  /* Ensure the entire background image fits within the container */
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
+/* Hidden images that will be shown sequentially */
 .image {
   position: absolute;
-  width: 200px; /* Initial size (smaller) */
+  width: 200px;
   height: 200px;
-  background-size: cover;
-  background-position: center;
   border-radius: 50%;
+  background-size: cover; /* Ensure full image is visible */
+  background-position: center;
+  background-repeat: no-repeat;
+
   opacity: 0; /* Initially hidden */
-  transform: scale(0); /* Start completely scaled down */
-  animation: none; /* No animation initially */
+  animation: fadeInOut 10s ease-in-out infinite; /* Infinite animation with adjusted timing */
 }
 
-/* Image-specific backgrounds */
+/* Individual images with specific backgrounds */
 .image1 {
-  background-image: url('../../assets/images/bg2.png');
+  background-image: url('../../assets/images/bm.jpg');
 }
 
 .image2 {
-  background-image: url('../../assets/images/bg3.png');
+  background-image: url('../../assets/images/fm.png');
 }
 
 .image3 {
-  background-image: url('../../assets/images/Miya.png');
+  background-image: url('../../assets/images/cs1.jpg');
 }
 
 .image4 {
-  background-image: url('../../assets/images/saree2.png');
-}
-.container:hover{
-  content: none;
-}
-/* Hover Effect */
-.container:hover .image {
-  
-  animation: imageSequence 8s ease-in-out infinite;
+  background-image: url('../../assets/images/md1.jpeg');
 }
 
-/* Animation */
-@keyframes imageSequence {
-  0% {
-    transform: scale(0);
+/* Fade-in and fade-out animation */
+@keyframes fadeInOut {
+  0%, 100% {
     opacity: 0;
   }
-  10% {
-    transform: scale(1.5);
+  20% {
     opacity: 1;
   }
-  20%, 40% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 0.8;
+  40% {
+    opacity: 0;
   }
   60% {
-    transform: scale(0);
+    opacity: 1;
+  }
+  80% {
     opacity: 0;
   }
-  100% {
-    transform: scale(0);
-    opacity: 0;
-  }
 }
 
-/* Specific delays for images to sequence them */
-.container:hover .image1 {
-  animation-delay: 0s;
+/* Delay for each image to create sequential fade */
+.image1 {
+  animation-delay: 0s; /* First image fades in immediately */
 }
 
-.container:hover .image2 {
-  animation-delay: 2s;
+.image2 {
+  animation-delay: 2s; /* Second image fades in after 5s */
 }
 
-.container:hover .image3 {
-  animation-delay: 4s;
+.image3 {
+  animation-delay: 4s; /* Third image fades in after 10s */
 }
 
-.container:hover .image4 {
-  animation-delay: 6s;
+.image4 {
+  animation-delay: 6s; /* Fourth image fades in after 15s */
 }
 
 
@@ -200,7 +179,7 @@
   background-repeat: no-repeat;
 
   opacity: 0; /* Initially hidden */
-  animation: fadeInOut 20s ease-in-out infinite; /* Infinite animation with adjusted timing */
+  animation: fadeInOut 10s ease-in-out infinite; /* Infinite animation with adjusted timing */
 }
 
 /* Individual images with specific backgrounds */
@@ -245,15 +224,15 @@
 }
 
 .image6 {
-  animation-delay: 5s; /* Second image fades in after 5s */
+  animation-delay: 2s; /* Second image fades in after 5s */
 }
 
 .image7 {
-  animation-delay: 10s; /* Third image fades in after 10s */
+  animation-delay: 4s; /* Third image fades in after 10s */
 }
 
 .image8 {
-  animation-delay: 15s; /* Fourth image fades in after 15s */
+  animation-delay: 6s; /* Fourth image fades in after 15s */
 }
 
 
@@ -312,10 +291,10 @@
   background-position: center;
   border-radius: 8px;
 }
-@media(max-width:680px){
+@media(max-width:768px){
   .layout {
     display: flex;
-    flex-direction: row; /* Stack .mokshe and .samepinch vertically */
+    flex-direction: column; /* Stack .mokshe and .samepinch vertically */
     gap: 20px; /* Space between .mokshe and .samepinch */
     justify-content: center;
     align-items: center;
@@ -324,7 +303,7 @@
     height: 100%;
   }  
 }
-@media(max-width:400px){
+@media(max-width:480px){
   .layout {
     display: flex;
     flex-direction: column; /* Stack .mokshe and .samepinch vertically */
@@ -332,7 +311,8 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 10px !important;
+    width: 100%;
+    /* padding: 10px !important; */
   }
   .image-container, .image-container1{
     width: 250px;
@@ -342,14 +322,18 @@
   .logo-container1,.logo-container {
     flex-direction: column;
     width: 300px;
-    height: 400px;
+    height: 300px;
     /* background-color: #e9e9e9;  */
   } 
-  .container,.container1{
-    width:150px;
-    height: 150px;
+  /* .container,.container1{
+    width:150px !important;
+    height: 150px !important;
     border: 1px solid black;
     border-radius: 50%;
     margin-bottom: 10px;
   }
+  .image-container image{
+    width: 100%;
+    height: 100%;
+  } */
 }

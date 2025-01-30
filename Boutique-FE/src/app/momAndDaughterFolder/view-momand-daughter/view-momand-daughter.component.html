@@ -3,21 +3,40 @@
     <div class="image-gallery">
       <!-- Large Display Image -->
       <div class="featured-image">
-        <img [src]=" url + itemData.imageUrl" alt="" class="featured-img" />
-      </div>
-  
-      <!-- Thumbnail Gallery -->
-      <div class="thumbnails">
-        <div
-          *ngFor="let image of smallImages"
-          class="thumbnail"
-          (click)="selectImage(image)"
-          [class.active]="image === selectedImage"
+        <img [src]="url + itemData.imageUrl[currentIndex]" alt="Gallery Image" class="featured-img" />
+        
+        <!-- Navigation Buttons (only if multiple images exist) -->
+        <button 
+          *ngIf="itemData.imageUrl.length > 1" 
+          class="prev-btn"
+          (click)="previousImage(); $event.stopPropagation()"
+          type="button"
         >
-          <img [src]="image" alt="" class="thumbnail-img" />
-        </div>
+          &#10094;
+        </button>
+    
+        <button 
+          *ngIf="itemData.imageUrl.length > 1" 
+          class="next-btn"
+          (click)="nextImage(); $event.stopPropagation()"
+          type="button"
+        >
+          &#10095;
+        </button>
+      </div>
+    
+      <!-- Thumbnail Navigation -->
+      <div class="thumbnails" *ngIf="imageUrls.length > 1">
+        <img 
+          *ngFor="let img of itemData.imageUrl; let i = index"
+          [src]="url + img"
+          [ngClass]="{'active': i === currentIndex}"
+          (click)="selectImage(i)"
+          class="thumbnail"
+        />
       </div>
     </div>
+    
   
     <!-- Right Side: Product Details -->
     <div class="product-details">
@@ -41,6 +60,17 @@
         </div>
       </div>
   
+      <div class="sizeguide" *ngIf="selectedProduct.stock > 0">
+        <a href="/saree" class="sizeguide">
+          <h3>Size Guide</h3>
+        </a>
+      </div>
+
+      <div class="stock-status">
+        <p *ngIf="itemData.stock > 0" class="in-stock">In Stock</p>
+        <p *ngIf="itemData.stock === 0" class="out-of-stock">Out of Stock</p>
+      </div>
+
       <!-- Customization -->
       <div class="customization">
         <h3>Customization</h3>

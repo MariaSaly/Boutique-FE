@@ -5,10 +5,12 @@ import { CartService } from '../../app/cart.service';
 import { Router } from '@angular/router';
 import { SearchService } from '../../service/searchService';
 import { SharedService } from '../../service/sharedService';
-
+import { MatMenuModule } from '@angular/material/menu';
+import { query } from '@angular/animations';
+import { AuthService } from '../../shared/authService';
 @Component({
   selector: 'app-header',
-  imports: [MatIconModule,CommonModule],
+  imports: [MatIconModule,CommonModule,MatMenuModule],
   standalone:true,
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
@@ -17,7 +19,7 @@ export class HeaderComponent implements OnInit {
   showSearchBar = false;
   cartCount:number =0;
   userId: any;
-  constructor( private SharedService:SharedService,private cartService:CartService , private router:Router , private searchService:SearchService){
+  constructor(private authService:AuthService, private SharedService:SharedService,private cartService:CartService , private router:Router , private searchService:SearchService){
 
   }
   ngOnInit(): void {
@@ -69,9 +71,23 @@ export class HeaderComponent implements OnInit {
 
   onSearch(query: string): void {
     console.log("I am in search query", query);
-    if(query.trim()){
-      this.router.navigate(['/search'],{queryParams:{query}})
-    }
+    this.searchService.updateSearchQuery(query);
+  
+  }
+  viewProfile() {
+    this.router.navigate(['/profile']);
+    console.log('Viewing profile...');
+    // You can navigate to the profile page or show profile data here
+  }
+
+  // Method to log out
+  logout() {
+    console.log('Logging out...');
+    this.authService.logout()
+    // Handle logout logic here (e.g., clearing tokens, redirecting, etc.)
+    // if(query.trim()){
+    //   this.router.navigate(['/search'],{queryParams:{query}})
+    // }
    // this.searchService.updateSearchQuery(query);
   }
 }

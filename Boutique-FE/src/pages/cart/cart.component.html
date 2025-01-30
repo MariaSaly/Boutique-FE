@@ -6,11 +6,13 @@
     <!-- Product Section -->
     <div class="cart-products" *ngIf="cartItems.length > 0; else emptyCart">
       <div class="cart-items">
-        <div class="cart-item" *ngFor="let item of cartItems">
+        <div class="cart-item" *ngFor="let item of cartItems; let i = index" >
           <!-- Product Image -->
-          <div class="cart-item-product" >
-            <img [src]="url + item.imageUrl"  class="item-image">
+          <div class="cart-item-product">
+            <!-- Check if imageUrl is an array and display the first image, otherwise display the single image -->
+            <img [src]="getImageUrl(item)" class="item-image">
           </div>
+          
 
           <!-- Product Name and Description -->
           <div class="cart-item-details">
