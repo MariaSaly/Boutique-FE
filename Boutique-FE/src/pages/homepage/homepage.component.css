@@ -246,9 +246,13 @@ button:hover {
   }
   @media screen and (max-width: 768px) {
     .cards-container {
-      max-width: 100%;
-      overflow-x: auto; /* Enable horizontal scrolling */
-      white-space: nowrap; /* Prevent wrapping */
+      max-width: 700px;
+      overflow-x: auto; /* Enable
+      h horizontal scrolling */
+      white-space: wrap; /* Prevent wrapping */
+      height: 500px;
+      flex-wrap: wrap;
+      flex-direction: column;
       padding: 10px 0;
     }
   
