@@ -105,6 +105,9 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
+    /* justify-content: center;
+    text-align: center;
+    align-items: center; */
     /* gap: 20px; */
   }
   
@@ -116,6 +119,7 @@ body {
   }
   
   .product-description {
+    line-height: 0%;
     font-size: 1rem;
     /* line-height: 1.6; */
     color: #555;
@@ -123,14 +127,19 @@ body {
   
   .price {
     font-size: 1.5rem;
+    line-height: 0%;
     color: #d9534f; /* Eye-catching price color */
     font-weight: bold;
   }
   
   .size-options h3,
   .customization h3 {
+    line-height: 0.2;
     font-size: 1.2rem;
     margin-bottom: 10px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align:flex-start
   }
   
   .size-buttons {
@@ -160,6 +169,9 @@ body {
     border-radius: 5px;
     font-family: 'Lora', serif;
     resize: none;
+    /* justify-content: flex-start;
+    align-items: flex-start;
+    text-align:flex-start */
   }
   
   .actions {
@@ -249,9 +261,11 @@ height: 400px !important;
   .in-stock {
     color: green;
     font-weight: bold;
+    line-height: 0.2;
   }
   
   .out-of-stock {
+    line-height: 0.2;
     color: red;
     font-weight: bold;
   }
