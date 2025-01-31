@@ -54,30 +54,37 @@ export class AuthService {
   }
 
   // login method
-   login(email: string, password: string ):Observable<{ role :string}> {
-    // try {
-    //   await this.firebaseAuth.si(email, password);
-    //   localStorage.setItem('token', 'true');
-    //   this.router.navigate(['dashboard']);
-    // } catch (err) {
-    //     alert(`Error in signup${err}`);
-    //   this.router.navigate(['/login']);
-    // }
-    const promise = signInWithEmailAndPassword(this.firebaseAuth,email,password).then( async(UserCredential) => {
-    const token = await UserCredential.user.getIdToken(true);
-    console.log("token:",token);
-    const decodedToken = jwtDecode<any>(token);
-    
-    console.log("decodedToken:",decodedToken);
-    localStorage.setItem('token',token);
-    localStorage.setItem('userData',JSON.stringify(decodedToken));
+  login(email: string, password: string): Observable<{ role: string }> {
+    const promise = (async () => {
+      try {
+        // Sign in user
+        const UserCredential = await signInWithEmailAndPassword(this.firebaseAuth, email, password);
+        const token = await UserCredential.user.getIdToken(true);
+        console.log("Token:", token);
   
-    return { role: decodedToken.role }; // Ensure the response includes 'role'
-    
-
-    });
+        // Decode token
+        const decodedToken = jwtDecode<any>(token);
+        console.log("Decoded Token:", decodedToken);
+  
+        // Remove old data first
+        localStorage.removeItem('userData');
+        localStorage.removeItem('token');
+  
+        // Store new token and user data
+        localStorage.setItem('token', token);
+        localStorage.setItem('userData', JSON.stringify(decodedToken));
+  
+        // Return role
+        return { role: decodedToken.role };
+      } catch (error) {
+        console.error("Error in login:", error);
+        throw error; // Propagate error to the caller
+      }
+    })();
+  
     return from(promise);
   }
+  
 
   // register method
    signup(name:string,email: string, password: string,phonenumber:number):Observable<void> {
