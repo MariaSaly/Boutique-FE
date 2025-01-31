@@ -89,6 +89,7 @@ export class ViewleggingsComponent {
   
     sizes = ['S', 'M', 'L', 'XL'];
     selectedSize: string = 'M';
+    size:string = 'M'
   
     customText: string = '';
     quantity: number = 0;
@@ -131,7 +132,7 @@ export class ViewleggingsComponent {
         this.userId = userData.user_id;
         console.log("userid:", this.userId);
       
-      this.cartService.addToCart(this.userId,productId,qty).subscribe( data => {
+      this.cartService.addToCart(this.userId,productId,this.size,qty).subscribe( data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
         this.toastService.success("Cart Added Sucessfully!");
@@ -144,7 +145,7 @@ export class ViewleggingsComponent {
       const productId = this.itemData.id;
       const qty = this.quantity;
       
-      this.cartService.addToCartGuestUser(guestId,productId,qty).subscribe( data => {
+      this.cartService.addToCartGuestUser(guestId,productId,this.size,qty).subscribe( data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
@@ -175,7 +176,7 @@ export class ViewleggingsComponent {
         this.userId = userData.user_id;
         console.log("userid:", this.userId);
       
-      this.cartService.addToCart(this.userId,productId,qty).subscribe( data => {
+      this.cartService.addToCart(this.userId,productId,this.size,qty).subscribe( data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
@@ -188,7 +189,7 @@ export class ViewleggingsComponent {
       const productId = this.itemData.id;
       const qty = this.quantity;
       
-      this.cartService.addToCartGuestUser(guestId,productId,qty).subscribe( data => {
+      this.cartService.addToCartGuestUser(guestId,productId,this.size,qty).subscribe( data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);

@@ -77,7 +77,8 @@ export class OrderDetailsComponent implements OnInit {
         // Combine the item data with its quantity
         const fullItemData = {
           ...itemData,          // The fetched item data
-          quantity: item.quantity // Add the quantity from the cart item
+          quantity: item.quantity,
+          size:item.size // Add the quantity from the cart item
         };
   
         console.log("fullItemData:", fullItemData);
