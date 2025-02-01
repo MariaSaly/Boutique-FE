@@ -67,7 +67,7 @@ export class OfficewearComponent {
    
   
     getSareeItems(): void {
-      this.httpService.get(`${this.url}/api/items/getItem?category=saree?isCustomizable='false'`).subscribe((data: any) => {
+      this.httpService.get(`${this.url}/api/items/getItem?category=officewear?isCustomizable='false'`).subscribe((data: any) => {
         this.items = data;
         console.log("data:", this.items);
         this.filteredData = [...this.items];

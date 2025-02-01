@@ -217,7 +217,7 @@ export class ViewMomandDaughterComponent {
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
       })
-      alert('please login to addtoCart');
+      //alert('please login to addtoCart');
     }
     }
    
