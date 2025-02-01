@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../../cart.service';
@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './viewninenineninecostumes.component.css'
 })
 export class ViewninenineninecostumesComponent {
-
+ @Input() imageUrls: string[] = [];
     userId: any;
     itemId: string | null = '';
     public url = environment.localUrl;
@@ -94,10 +94,7 @@ export class ViewninenineninecostumesComponent {
     customText: string = '';
     quantity: number = 0;
   
-    selectImage(image: string) {
-      this.selectedImage = image;
-    }
-  
+ 
     selectSize(size: string) {
       this.selectedSize = size;
     }
@@ -202,7 +199,9 @@ export class ViewninenineninecostumesComponent {
      
     ];
     currentIndex: number = 0;
-  
+    selectImage(index: number) {
+      this.currentIndex = index;
+    }
     nextImage() {
       if (this.images.length > 0) {
         this.currentIndex = (this.currentIndex + 1) % this.images.length;
