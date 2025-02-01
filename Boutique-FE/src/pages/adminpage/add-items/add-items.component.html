@@ -23,7 +23,7 @@
     <!-- Is Customizable Field -->
     <div class="form-group">
       <label for="isCustomizable">Is Customizable</label>
-      <select id="isCustomizable" name="isCustomizable" [(ngModel)]="isCustomizable" required>
+      <select id="isCustomizable" name="isCustomizable" [(ngModel)]="isCustomizable" (change)="onCustomizableChange()" required>
         <option value="true">True</option>
         <option value="false">False</option>
       </select>
@@ -41,7 +41,9 @@
     <!-- Category Field -->
     <div class="form-group">
       <label for="category">Category</label>
-      <input type="text" id="category" name="category" [(ngModel)]="category" placeholder="Enter category" required />
+      <select id="category" name="category" [(ngModel)]="category" required>
+        <option *ngFor="let cat of categoryList" [value]="cat">{{ cat }}</option>
+      </select>
     </div>
 
     <!-- Stock Field -->

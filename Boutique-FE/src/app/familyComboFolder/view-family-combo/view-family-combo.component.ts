@@ -21,6 +21,7 @@ export class ViewFamilyComboComponent {
     userId: any;
     itemId: string | null = '';
     public url = environment.localUrl;
+     size:string = 'M'
     itemData: any;
     constructor( private toastService:ToastrService,private router:Router,private cartService:CartService , private http:HttpService  ,private cdr: ChangeDetectorRef, private route:ActivatedRoute , private httpClient:HttpClient , ){
   
@@ -132,7 +133,7 @@ export class ViewFamilyComboComponent {
         this.userId = userData.user_id;
         console.log("userid:", this.userId);
       
-      this.cartService.addToCart(this.userId,productId,qty).subscribe( data => {
+      this.cartService.addToCart(this.userId,productId,this.size,qty).subscribe( data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
         this.toastService.success('Cart added Sucessfully!');
@@ -145,7 +146,7 @@ export class ViewFamilyComboComponent {
       const productId = this.itemData.id;
       const qty = this.quantity;
       
-      this.cartService.addToCartGuestUser(guestId,productId,qty).subscribe( data => {
+      this.cartService.addToCartGuestUser(guestId,productId,this.size,qty).subscribe( data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
         this.toastService.success('Cart added Sucessfully!');
@@ -177,7 +178,7 @@ export class ViewFamilyComboComponent {
         this.userId = userData.user_id;
         console.log("userid:", this.userId);
       
-      this.cartService.addToCart(this.userId,productId,qty).subscribe( data => {
+      this.cartService.addToCart(this.userId,productId,this.size,qty).subscribe( data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
@@ -190,7 +191,7 @@ export class ViewFamilyComboComponent {
       const productId = this.itemData.id;
       const qty = this.quantity;
       
-      this.cartService.addToCartGuestUser(guestId,productId,qty).subscribe( data => {
+      this.cartService.addToCartGuestUser(guestId,productId,this.size,qty).subscribe( data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
