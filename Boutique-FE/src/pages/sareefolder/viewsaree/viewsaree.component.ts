@@ -151,7 +151,7 @@ export class ViewsareeComponent implements OnInit {
       console.log("user added sucessfully !");
       this.router.navigate(['/cart']);
     })
-    alert('please login to addtoCart');
+   // alert('please login to addtoCart');
   }
   }
   // onCustomizationChange(){

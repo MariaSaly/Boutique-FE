@@ -68,7 +68,7 @@ export class NinenineninecostumesComponent {
    
   
     getSareeItems(): void {
-      this.httpService.get(`${this.url}/api/items/getItem?category=saree?isCustomizable='false'`).subscribe((data: any) => {
+      this.httpService.get(`${this.url}/api/items/getItem?category=nine?isCustomizable='false'`).subscribe((data: any) => {
         this.items = data;
         console.log("data:", this.items);
         this.filteredData = [...this.items];
