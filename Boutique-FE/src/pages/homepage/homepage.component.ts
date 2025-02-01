@@ -42,41 +42,51 @@ ngOnInit(): void {
   this.loadCategoryState(); // Load stored category state
   this.updateImage();
   this.subscribeToSharedService();
-
+  this.handleBackNavigation();
 }
 
 loadCategoryState(): void {
+  console.log("Loading category state...");
+
   const savedShowCategory = localStorage.getItem('showCategoryContent');
-  this.showCategoryContent = savedShowCategory ? JSON.parse(savedShowCategory) : false;
-
   const savedShowSamePinch = localStorage.getItem('showSamePinchContent');
-  this.showSamePinchContent = savedShowSamePinch ? JSON.parse(savedShowSamePinch) : false;
 
-  console.log('Loaded from localStorage:', {
+  console.log("LocalStorage Retrieved:", {
+    showCategoryContent: savedShowCategory,
+    showSamePinchContent: savedShowSamePinch,
+  });
+
+  // ✅ Retrieve stored values or set default `false`
+  this.showCategoryContent = savedShowCategory !== null ? JSON.parse(savedShowCategory) : false;
+  this.showSamePinchContent = savedShowSamePinch !== null ? JSON.parse(savedShowSamePinch) : false;
+
+  console.log("Final State After Loading:", {
     showCategoryContent: this.showCategoryContent,
     showSamePinchContent: this.showSamePinchContent,
   });
 }
 
-// ✅ **Subscribe to SharedService and store updates in localStorage**
+
 subscribeToSharedService(): void {
   this.sharedService.categoryContent$.subscribe((value) => {
     this.showCategoryContent = value;
-    localStorage.setItem('showCategoryContent', JSON.stringify(value)); // Save to localStorage
+    localStorage.setItem('showCategoryContent', JSON.stringify(value)); // ✅ Save changes
   });
 
   this.sharedService.samePinchContent$.subscribe((value) => {
     this.showSamePinchContent = value;
-    localStorage.setItem('showSamePinchContent', JSON.stringify(value)); // Save to localStorage
+    localStorage.setItem('showSamePinchContent', JSON.stringify(value)); // ✅ Save changes
   });
 }
 
-// ✅ **Handle back navigation manually to reload the saved state**
+
+
 handleBackNavigation(): void {
   window.addEventListener('popstate', () => {
     this.loadCategoryState();
   });
 }
+
 
 // Call this function inside ngOnInit
 updateImage(): void {

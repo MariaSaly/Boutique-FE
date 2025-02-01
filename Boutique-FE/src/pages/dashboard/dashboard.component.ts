@@ -40,13 +40,38 @@ export class DashboardComponent {
     }
   }
   cutomize(){
+    console.log("Clicked Customize");
     this.sharedService.setCategoryContentFlag(true);
-    this.sharedService.setSamePinchFlag(false); // Ensure this is reset
-    this.route.navigate(['/home'])
-  }
-  samepinch(){
+    this.sharedService.setSamePinchFlag(false);
+
+    // ✅ Save state in localStorage
+    localStorage.setItem('showCategoryContent', JSON.stringify(true));
+    localStorage.setItem('showSamePinchContent', JSON.stringify(false));
+
+    console.log("Stored in localStorage:", {
+        showCategoryContent: localStorage.getItem('showCategoryContent'),
+        showSamePinchContent: localStorage.getItem('showSamePinchContent')
+    });
+
+    this.route.navigate(['/home']);
+}
+
+samepinch(){
+    console.log("Clicked SamePinch");
     this.sharedService.setSamePinchFlag(true);
-    this.sharedService.setCategoryContentFlag(false); 
-    this.route.navigate(['/home'])
-  }
+    this.sharedService.setCategoryContentFlag(false);
+
+    // ✅ Save state in localStorage
+    localStorage.setItem('showCategoryContent', JSON.stringify(false));
+    localStorage.setItem('showSamePinchContent', JSON.stringify(true));
+
+    console.log("Stored in localStorage:", {
+        showCategoryContent: localStorage.getItem('showCategoryContent'),
+        showSamePinchContent: localStorage.getItem('showSamePinchContent')
+    });
+
+    this.route.navigate(['/home']);
+}
+
+
 }
