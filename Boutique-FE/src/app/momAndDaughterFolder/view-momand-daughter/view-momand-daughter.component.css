@@ -15,28 +15,52 @@ body {
     max-width: 1200px;
     margin: 0 auto;
   }
+  .hover-link {
+    display: none; /* Hide by default */
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    word-break: break-all;
+    max-width: 90%; /* Optional: to make sure the link doesn't overflow */
+  }
   
+  .featured-image:hover .hover-link {
+    display: flex; /* Show the link on hover */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
   /* Left Side: Image Gallery */
   .image-gallery {
     text-align: center;
     position: relative;
-   width: 500px;
-   height: 500px;
+    width: 500px;
+    height: 500px;
     margin: auto;
     background-image: url('../../../assets/images/bm.jpg');
   }
   
   .featured-image {
-    width: 500px;
-   height: 500px;
-    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .featured-img {
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain; /* ✅ Ensures image fits without cropping */
     border-radius: 8px;
   }
-  
   .prev-btn, .next-btn {
     position: absolute;
     top: 50%;
@@ -92,7 +116,7 @@ body {
   
   .product-description {
     font-size: 1rem;
-    line-height: 1.6;
+    /* line-height: 1.6; */
     color: #555;
   }
   
@@ -213,8 +237,8 @@ height: 400px;
       margin: 0px;
     }
     .image-gallery {
- width: 400px;
-height: 400px;
+ width: 400px !important;
+height: 400px !important;
     }
 .featured-image{
   width: 400px;

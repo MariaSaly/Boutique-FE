@@ -39,23 +39,52 @@ images: string[] = [
 currentIndex: number = 0;
 
 ngOnInit(): void {
+  this.loadCategoryState(); // Load stored category state
   this.updateImage();
+  this.subscribeToSharedService();
+
 }
 
+loadCategoryState(): void {
+  const savedShowCategory = localStorage.getItem('showCategoryContent');
+  this.showCategoryContent = savedShowCategory ? JSON.parse(savedShowCategory) : false;
+
+  const savedShowSamePinch = localStorage.getItem('showSamePinchContent');
+  this.showSamePinchContent = savedShowSamePinch ? JSON.parse(savedShowSamePinch) : false;
+
+  console.log('Loaded from localStorage:', {
+    showCategoryContent: this.showCategoryContent,
+    showSamePinchContent: this.showSamePinchContent,
+  });
+}
+
+// ✅ **Subscribe to SharedService and store updates in localStorage**
+subscribeToSharedService(): void {
+  this.sharedService.categoryContent$.subscribe((value) => {
+    this.showCategoryContent = value;
+    localStorage.setItem('showCategoryContent', JSON.stringify(value)); // Save to localStorage
+  });
+
+  this.sharedService.samePinchContent$.subscribe((value) => {
+    this.showSamePinchContent = value;
+    localStorage.setItem('showSamePinchContent', JSON.stringify(value)); // Save to localStorage
+  });
+}
+
+// ✅ **Handle back navigation manually to reload the saved state**
+handleBackNavigation(): void {
+  window.addEventListener('popstate', () => {
+    this.loadCategoryState();
+  });
+}
+
+// Call this function inside ngOnInit
 updateImage(): void {
   const mainImage = document.getElementById('mainImage');
   if (mainImage) {
     mainImage.style.backgroundImage = `url(${this.images[this.currentIndex]})`;
   }
-  this.sharedService.categoryContent$.subscribe((value) => {
-    this.showCategoryContent = value;
-  });
-  this.sharedService.samePinchContent$.subscribe((value) => {
-    this.showSamePinchContent = value;
-  });
-
 }
-
 prevImage(): void {
   this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
   this.updateImage();
