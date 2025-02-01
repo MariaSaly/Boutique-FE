@@ -116,7 +116,7 @@ export class ViewMomandDaughterComponent {
       // Add more image paths here
     ];
   
-    sizes = ['S', 'M', 'L', 'XL'];
+    sizes = ['S', 'M', 'L','XL','2XL','3XL','4XL','5XL','6XL',];
     selectedSize: string = 'M';
   
     customText: string = '';

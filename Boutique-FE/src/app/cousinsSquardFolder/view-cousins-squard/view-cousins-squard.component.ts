@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartService } from '../../../app/cart.service';
 import { HttpService } from '../../../service/httpService';
@@ -18,7 +18,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './view-cousins-squard.component.css'
 })
 export class ViewCousinsSquardComponent {
-
+  @Input() imageUrls: string[] = [];
     userId: any;
     itemId: string | null = '';
     public url = environment.localUrl;
@@ -28,6 +28,32 @@ export class ViewCousinsSquardComponent {
 ,      private router:Router,private cartService:CartService , private http:HttpService  ,private cdr: ChangeDetectorRef, private route:ActivatedRoute , private httpClient:HttpClient , ){
   
     }
+    sizes = ['S', 'M', 'L','XL','2XL','3XL','4XL','5XL','6XL',];
+    isSizeGuideOpen = false;
+ 
+     selectSize(size: string) {
+       this.selectedSize = size;
+     }
+   
+     sizeGuide = [
+       {Size: 'S', chest: '32"', waist: '28"', length: '55"' },
+       { Size: 'M', chest: '34"', waist: '30"', length: '55"' },
+       { Size: 'L', chest: '36"', waist: '32"', length: '55"' },
+       { Size: 'XL', chest: '38"', waist: '34"', length: '55"' },
+       { Size: '2XL', chest: '40"', waist: '36"', length: '55"' },
+       { Size: '3XL', chest: '42"', waist: '38"', length: '55"' },
+       { Size: '4XL', chest: '44"', waist: '40"', length: '55"' },
+       { Size: '5XL', chest: '46"', waist: '42"', length: '55"' },
+       { Size: '6XL', chest: '48"', waist: '42"', length: '55"' },
+     ];
+   
+     openSizeGuide() {
+       this.isSizeGuideOpen = true;
+     }
+   
+     closeSizeGuide() {
+       this.isSizeGuideOpen = false;
+     }
     ngOnInit(): void {
       this.itemId = this.route.snapshot.paramMap.get('id');
       console.log("id:", this.itemId);
@@ -91,20 +117,17 @@ export class ViewCousinsSquardComponent {
       // Add more image paths here
     ];
   
-    sizes = ['S', 'M', 'L', 'XL'];
+    selectImage(index: number) {
+      this.currentIndex = index;
+    }
     selectedSize: string = 'M';
   
     customText: string = '';
     quantity: number = 0;
   
-    selectImage(image: string) {
-      this.selectedImage = image;
-    }
   
-    selectSize(size: string) {
-      this.selectedSize = size;
-    }
   
+ 
     increaseQuantity(): void {
       if(this.quantity === this.selectedProduct.stock){
         return

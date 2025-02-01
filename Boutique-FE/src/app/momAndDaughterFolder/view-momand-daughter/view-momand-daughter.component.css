@@ -257,6 +257,44 @@ height: 400px !important;
   width: 400px !important;
 height: 400px !important;
 }
+.size-options {
+  width: 100%;
+  max-width: 480px; /* Ensures container width remains fixed at 480px */
+  margin: auto;
+}
+
+.size-buttons {
+  display: flex;
+  overflow-x: auto; /* Enables horizontal scrolling */
+  white-space: nowrap; /* Prevents wrapping of buttons */
+  padding: 10px 0;
+  gap: 8px; /* Adds spacing between buttons */
+}
+
+.size-btn {
+  flex: 0 0 auto; /* Prevents buttons from shrinking */
+  min-width: 80px; /* Adjust width as needed */
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.size-buttons::-webkit-scrollbar {
+  height: 5px; /* Adjust scrollbar height */
+}
+
+.size-buttons::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.size-buttons::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
   }
   .in-stock {
     color: green;

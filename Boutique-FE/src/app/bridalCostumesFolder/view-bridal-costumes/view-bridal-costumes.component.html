@@ -1,23 +1,41 @@
 <div class="boutique-container" >
-    <!-- Left Side: Image Gallery -->
-    <div class="image-gallery">
-      <!-- Large Display Image -->
-      <div class="featured-image">
-        <img [src]=" url + itemData.imageUrl" alt="" class="featured-img" />
-      </div>
+   
+  <div class="image-gallery">
+    <!-- Large Display Image -->
+    <div class="featured-image">
+      <img [src]="url + itemData.imageUrl[currentIndex]" alt="Gallery Image" class="featured-img" />
+      <a href="https://app.epatrolz.com" class="hover-link" target="_blank">https://app.epatrolz.com</a>
+      <!-- Navigation Buttons (only if multiple images exist) -->
+      <button 
+        *ngIf="itemData.imageUrl.length > 1" 
+        class="prev-btn"
+        (click)="previousImage(); $event.stopPropagation()"
+        type="button"
+      >
+        &#10094;
+      </button>
   
-      <!-- Thumbnail Gallery -->
-      <div class="thumbnails">
-        <div
-          *ngFor="let image of smallImages"
-          class="thumbnail"
-          (click)="selectImage(image)"
-          [class.active]="image === selectedImage"
-        >
-          <img [src]="image" alt="" class="thumbnail-img" />
-        </div>
-      </div>
+      <button 
+        *ngIf="itemData.imageUrl.length > 1" 
+        class="next-btn"
+        (click)="nextImage(); $event.stopPropagation()"
+        type="button"
+      >
+        &#10095;
+      </button>
     </div>
+  
+    <!-- Thumbnail Navigation -->
+    <div class="thumbnails" *ngIf="imageUrls.length > 1">
+      <img 
+        *ngFor="let img of itemData.imageUrl; let i = index"
+        [src]="url + img"
+        [ngClass]="{'active': i === currentIndex}"
+        (click)="selectImage(i)"
+        class="thumbnail"
+      />
+    </div>
+  </div>
   
     <!-- Right Side: Product Details -->
     <div class="product-details">
@@ -40,7 +58,39 @@
           </button>
         </div>
       </div>
-  
+   
+      <div class="sizeguide" *ngIf="selectedProduct.stock > 0">
+        <button class="sizeguide-btn" (click)="openSizeGuide()">
+          <h3>Size Guide</h3>
+        </button>
+      </div>
+      
+      <!-- Popup Modal -->
+      <div class="size-modal" *ngIf="isSizeGuideOpen">
+        <div class="size-modal-content">
+          <span class="close-btn" (click)="closeSizeGuide()">&times;</span>
+          <h2>Size Guide</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Size</th>
+                <th>Chest</th>
+                <th>Waist</th>
+                <th>Length</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let size of sizeGuide">
+                <td>{{ size.Size }}</td>
+                <td>{{ size.chest }}</td>
+                <td>{{ size.waist }}</td>
+                <td>{{ size.length }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       <!-- Customization -->
       <div class="customization">
         <h3>Customization</h3>
