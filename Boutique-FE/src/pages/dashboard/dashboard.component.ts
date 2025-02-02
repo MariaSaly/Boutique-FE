@@ -16,7 +16,7 @@ import { SharedService } from '../../service/homesharedservice';
 export class DashboardComponent {
   constructor(private route:Router,private sharedService: SharedService){}
   selectedContent: { title: string, description: string } | null = null;
-
+  selectedFlag: string | null = localStorage.getItem('selectedFlag');
   showCategoryContent: boolean = false; // For "Customize" button in mokshe
   showCategoryContent1: boolean = false; // For "Explore" button in samepinch
   
@@ -39,39 +39,31 @@ export class DashboardComponent {
       alert('Non-Customizable content clicked');
     }
   }
-  cutomize(){
+  setFlag(flag: string) {
+    this.selectedFlag = flag; // Update component state
+    localStorage.setItem('selectedFlag', flag); // Store in localStorage
+
+    console.log("Stored in localStorage:", localStorage.getItem('selectedFlag'));
+
+    this.route.navigate(['/home']);
+  }
+
+  cutomize() {
     console.log("Clicked Customize");
     this.sharedService.setCategoryContentFlag(true);
     this.sharedService.setSamePinchFlag(false);
+    
+    this.setFlag('customize'); // Use single flag
+  }
 
-    // ✅ Save state in localStorage
-    localStorage.setItem('showCategoryContent', JSON.stringify(true));
-    localStorage.setItem('showSamePinchContent', JSON.stringify(false));
-
-    console.log("Stored in localStorage:", {
-        showCategoryContent: localStorage.getItem('showCategoryContent'),
-        showSamePinchContent: localStorage.getItem('showSamePinchContent')
-    });
-
-    this.route.navigate(['/home']);
-}
-
-samepinch(){
+  samepinch() {
     console.log("Clicked SamePinch");
     this.sharedService.setSamePinchFlag(true);
     this.sharedService.setCategoryContentFlag(false);
 
-    // ✅ Save state in localStorage
-    localStorage.setItem('showCategoryContent', JSON.stringify(false));
-    localStorage.setItem('showSamePinchContent', JSON.stringify(true));
+    this.setFlag('samepinch'); // Use single flag
+  }
 
-    console.log("Stored in localStorage:", {
-        showCategoryContent: localStorage.getItem('showCategoryContent'),
-        showSamePinchContent: localStorage.getItem('showSamePinchContent')
-    });
-
-    this.route.navigate(['/home']);
-}
 
 
 }

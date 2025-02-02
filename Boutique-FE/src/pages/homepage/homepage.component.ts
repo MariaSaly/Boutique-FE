@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SharedService } from '../../service/homesharedservice';
@@ -15,7 +15,7 @@ export class HomepageComponent {
   showCategoryContent = false;
   showSamePinchContent = false;
   
-  constructor(private router:Router,private sharedService: SharedService){}
+  constructor(private router:Router,private sharedService: SharedService, private cdRef: ChangeDetectorRef ){}
 
  
 
@@ -39,53 +39,49 @@ images: string[] = [
 currentIndex: number = 0;
 
 ngOnInit(): void {
-  this.loadCategoryState(); // Load stored category state
+  this.setFlagFromLocalStorage();
   this.updateImage();
-  this.subscribeToSharedService();
+
   this.handleBackNavigation();
 }
 
-loadCategoryState(): void {
-  console.log("Loading category state...");
+setFlagFromLocalStorage() {
+  const selectedFlag = localStorage.getItem('selectedFlag');
+  console.log('Selected Flag from LocalStorage:', selectedFlag);
 
-  const savedShowCategory = localStorage.getItem('showCategoryContent');
-  const savedShowSamePinch = localStorage.getItem('showSamePinchContent');
+  if (selectedFlag === 'customize') {
+    this.showCategoryContent = true;
+    this.showSamePinchContent = false;
+  } else {
+    this.showCategoryContent = false;
+    this.showSamePinchContent = true;
+  }
 
-  console.log("LocalStorage Retrieved:", {
-    showCategoryContent: savedShowCategory,
-    showSamePinchContent: savedShowSamePinch,
-  });
+  // Manually trigger change detection after setting the flags
+  this.cdRef.detectChanges();
 
-  // ✅ Retrieve stored values or set default `false`
-  this.showCategoryContent = savedShowCategory !== null ? JSON.parse(savedShowCategory) : false;
-  this.showSamePinchContent = savedShowSamePinch !== null ? JSON.parse(savedShowSamePinch) : false;
-
-  console.log("Final State After Loading:", {
+  console.log('Final State After Loading:', {
     showCategoryContent: this.showCategoryContent,
-    showSamePinchContent: this.showSamePinchContent,
+    showSamePinchContent: this.showSamePinchContent
   });
 }
 
 
-subscribeToSharedService(): void {
-  this.sharedService.categoryContent$.subscribe((value) => {
-    this.showCategoryContent = value;
-    localStorage.setItem('showCategoryContent', JSON.stringify(value)); // ✅ Save changes
-  });
 
-  this.sharedService.samePinchContent$.subscribe((value) => {
-    this.showSamePinchContent = value;
-    localStorage.setItem('showSamePinchContent', JSON.stringify(value)); // ✅ Save changes
-  });
-}
+
+
 
 
 
 handleBackNavigation(): void {
   window.addEventListener('popstate', () => {
-    this.loadCategoryState();
+    console.log("Back navigation detected. Reloading category state...");
+    this.setFlagFromLocalStorage();
+    // Apply fade-in effect
+  
   });
 }
+
 
 
 // Call this function inside ngOnInit

@@ -91,6 +91,6 @@ export class PlussizeeComponent {
   
     selectCard(index: number): void {
       const selectedProduct = this.filteredData[index];
-      this.router.navigate([`/viewsaree/${selectedProduct.id}`]);
+      this.router.navigate([`/plussize/${selectedProduct.id}`]);
     }
 }
