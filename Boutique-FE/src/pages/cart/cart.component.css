@@ -514,3 +514,14 @@
     margin-top: 5px;
   }
 }
+.shop-now-link {
+  color: #007bff; /* Change to your preferred color */
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.shop-now-link:hover {
+  color: #0056b3; /* Darker shade on hover */
+}
