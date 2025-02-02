@@ -4,6 +4,7 @@ import { HttpService } from '../../../service/httpService';
 import { environment } from '../../../environment';
 import { CommonModule } from '@angular/common';
 import { userService } from '../../../service/userService';
+import { HttpServiceWithHeaders } from '../../../service/httpServiceForAdmin';
 
 @Component({
   selector: 'app-list-user',
@@ -15,7 +16,7 @@ import { userService } from '../../../service/userService';
 export class ListUserComponent implements OnInit {
   users:any;
   private url = environment.localUrl;
-  constructor(private router:Router, private http:HttpService , private userService:userService){}
+  constructor(private router:Router, private http:HttpServiceWithHeaders , private userService:userService){}
   ngOnInit(): void {
    this.getUsers();
   }

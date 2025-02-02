@@ -67,7 +67,7 @@ export class PlussizeeComponent {
    
   
     getSareeItems(): void {
-      this.httpService.get(`${this.url}/api/items/getItem?category=saree`).subscribe((data: any) => {
+      this.httpService.get(`${this.url}/api/items/getItem?category=plussize&isCustomizable=false`).subscribe((data: any) => {
         this.items = data;
         console.log("data:", this.items);
         this.filteredData = [...this.items];
@@ -91,6 +91,6 @@ export class PlussizeeComponent {
   
     selectCard(index: number): void {
       const selectedProduct = this.filteredData[index];
-      this.router.navigate([`/viewsaree/${selectedProduct.id}`]);
+      this.router.navigate([`/plussize/${selectedProduct.id}`]);
     }
 }

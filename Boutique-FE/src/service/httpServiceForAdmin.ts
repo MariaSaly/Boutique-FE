@@ -9,7 +9,7 @@ import { getAuth } from 'firebase/auth';
 @Injectable({
   providedIn: 'root'
 })
-export class HttpService {
+export class HttpServiceWithHeaders {
   changePassword: any;
   private apiUrl = `${environment.localUrl}`
 
@@ -50,22 +50,22 @@ export class HttpService {
   
   post<T>(url: string, body: any): Observable<any> {
     console.log("url:", url);
-    return this.http.post(url, body);
+    return this.http.post(url, body, { headers: this.getHeaders() });
   }
   postRole<T>(url: string, body: any): Observable<any> {
     console.log("url:", url);
-    return this.http.post(url, body);
+    return this.http.post(url, body, { headers: this.getHeaders() });
   }
   patch<T>(url: string, body: any): Observable<any> {
-    return this.http.patch(url, body);
+    return this.http.patch(url, body, { headers: this.getHeaders() });
   }
 
 
   get<T>(url: string, params?: any): Observable<T> {
-    return this.http.get<T>(url);
+    return this.http.get<T>(url, { headers: this.getHeaders() });
   }
   delete<T>(url: string): Observable<T> {
-    return this.http.delete<T>(url);
+    return this.http.delete<T>(url, { headers: this.getHeaders() });
   }
 
 
@@ -73,7 +73,7 @@ export class HttpService {
   getById<T>(url: string, id: string | number, params?: any): Observable<T> {
     // Construct URL with ID. It assumes your URL does not end with a slash.
     const fullUrl = `${url}/${id}`;
-    return this.http.get<T>(fullUrl, { params: { params } });
+    return this.http.get<T>(fullUrl, { headers: this.getHeaders(), params: { params } });
   }
   // Updated method to fetch points data for a specific unit
   getPointsDataForUnit(accountId: string): Observable<any[]> {

@@ -51,7 +51,7 @@ export class CousinsSquardComponent {
     }
   
     getSareeItems(): void {
-      this.httpService.get(`${this.url}/api/items/getItem?category=cousinsquade?isCustomizable='true'`).subscribe((data: any) => {
+      this.httpService.get(`${this.url}/api/items/getItem?category=cousinsquade&isCustomizable=true`).subscribe((data: any) => {
         this.items = data;
         this.filteredData = [...this.items];
         this.currentIndexes = this.filteredData.map(() => 0); // Initialize image indexes

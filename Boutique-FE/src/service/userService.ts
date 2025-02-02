@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpService } from "./httpService";
 import { environment } from "../environment";
 import { Observable } from "rxjs";
+import { HttpServiceWithHeaders } from "./httpServiceForAdmin";
 
 @Injectable({
     providedIn: 'root'
@@ -10,7 +11,7 @@ import { Observable } from "rxjs";
 
 export class userService{
     private url = environment.localUrl
-    constructor( private http:HttpService){
+    constructor( private http:HttpServiceWithHeaders){
 
     }
 

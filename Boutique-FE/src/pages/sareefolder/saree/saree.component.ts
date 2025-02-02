@@ -51,7 +51,7 @@ export class SareeComponent implements OnInit {
   }
   
   getSareeItems(): void {
-    this.httpService.get(`${this.url}/api/items/getItem?category= saree`).subscribe((data: any) => {
+    this.httpService.get(`${this.url}/api/items/getItem?category=saree&isCustomizable=false`).subscribe((data: any) => {
       this.items = data;
       this.filteredData = [...this.items];
       this.currentIndexes = this.filteredData.map(() => 0); // Initialize image indexes
@@ -83,6 +83,6 @@ export class SareeComponent implements OnInit {
 
   selectCard(index: number): void {
     const selectedProduct = this.filteredData[index];
-    this.router.navigate([`/viewsaree/${selectedProduct.id}`]);
+    this.router.navigate([`/saree/${selectedProduct.id}`]);
   }
 }

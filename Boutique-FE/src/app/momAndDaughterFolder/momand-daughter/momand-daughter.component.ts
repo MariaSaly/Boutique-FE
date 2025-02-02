@@ -68,7 +68,7 @@ export class MomandDaughterComponent {
    
   
     getSareeItems(): void {
-      this.httpService.get(`${this.url}/api/items/getItem?category=saree?isCustomizable='true'`).subscribe((data: any) => {
+      this.httpService.get(`${this.url}/api/items/getItem?category=momanddaughter&isCustomizable=true`).subscribe((data: any) => {
         this.items = data;
         console.log("data:", this.items);
         this.filteredData = [...this.items];

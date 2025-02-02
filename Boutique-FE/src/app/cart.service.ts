@@ -5,6 +5,7 @@ import { environment } from '../environment';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 import { user } from '@angular/fire/auth';
 import { HttpClient } from '@angular/common/http';
+import { HttpServiceWithHeaders } from '../service/httpServiceForAdmin';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class CartService {
  cartCount$ = this.cartCountSubject.asObservable();
   userId: any;
 
-  constructor(private http:HttpService , private httpClient:HttpClient) { }
+  constructor(private http:HttpServiceWithHeaders , private httpClient:HttpClient) { }
 
   //load the cart ad update the count 
 

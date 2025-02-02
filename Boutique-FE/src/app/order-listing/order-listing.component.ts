@@ -4,6 +4,7 @@ import { environment } from '../../environment';
 import { Timestamp } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { HttpServiceWithHeaders } from '../../service/httpServiceForAdmin';
 
 @Component({
   selector: 'app-order-listing',
@@ -15,7 +16,7 @@ import { Router } from '@angular/router';
 export class OrderListingComponent implements OnInit {
   private url = environment.localUrl
   ordersWithDates: any;
- constructor( private http:HttpService , private router:Router){
+ constructor( private http:HttpServiceWithHeaders , private router:Router){
    
  }
   ngOnInit(): void {

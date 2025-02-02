@@ -10,7 +10,7 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-   this.checkTokenExpiry()
+    this.checkTokenExpiry()
   }
   @HostListener('window:beforeunload',['$event'] )
   clearStorage(event:Event){

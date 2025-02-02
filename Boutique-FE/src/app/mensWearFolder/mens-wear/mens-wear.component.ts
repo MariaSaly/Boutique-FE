@@ -50,7 +50,7 @@ export class MensWearComponent {
     }
   
     getSareeItems(): void {
-      this.httpService.get(`${this.url}/api/items/getItem?category=menswear?isCustomizable='true'`).subscribe((data: any) => {
+      this.httpService.get(`${this.url}/api/items/getItem?category=menswear&isCustomizable=true`).subscribe((data: any) => {
         this.items = data;
         this.filteredData = [...this.items];
         this.currentIndexes = this.filteredData.map(() => 0); // Initialize image indexes
