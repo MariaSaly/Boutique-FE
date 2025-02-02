@@ -1,26 +1,21 @@
 <div class="layout">
-  <div class="mokshe">
-    <div class="image-container">
-     
-    </div>
+  <div class="mokshe" [class.active]="selectedFlag === 'customize'">
+    <div class="image-container"></div>
     <div class="logo-container">
-     <div class="container">
-      <div class="image image1"></div>
-      <div class="image image2"></div>
-      <div class="image image3"></div>
-      <div class="image image4"></div>
-    
-    </div>
+      <div class="container">
+        <div class="image image1"></div>
+        <div class="image image2"></div>
+        <div class="image image3"></div>
+        <div class="image image4"></div>
+      </div>
       <div class="btn">
         <button class="btn1" (click)="cutomize()">Explore</button>
       </div>
-     
     </div>
   </div>
-  <div class="samepinch">
-    <div class="image-container1">
-      
-    </div>
+
+  <div class="samepinch" [class.active]="selectedFlag === 'samepinch'">
+    <div class="image-container1"></div>
     <div class="logo-container1">
       <div class="container1">
         <div class="image1 image5"></div>
@@ -29,7 +24,7 @@
         <div class="image1 image8"></div>
       </div>
       <div class="btn">
-        <button class="btn1"(click)="samepinch()">Explore</button>
+        <button class="btn1" (click)="samepinch()">Explore</button>
       </div>
     </div>
   </div>

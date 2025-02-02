@@ -1,4 +1,4 @@
-<div class="category-container"  *ngIf="showCategoryContent">
+<div class="category-container"  *ngIf="showCategoryContent" [ngClass]="{ 'show-category': showCategoryContent }">
     <div class="category-items">
         <div class="category-item">
             <div class="category-image MomDaughterCombo" (click)="momanddaughter()"></div>
@@ -87,7 +87,7 @@
     
     
 </div>
-<div class="category-container1" *ngIf="showSamePinchContent">
+<div class="category-container1" *ngIf="showSamePinchContent" [ngClass]="{ 'show-samepinch': showSamePinchContent }">
   <div class="category-items ">
       <div class="category-item">
           <div class="category-image nine" (click)="nine()"></div>

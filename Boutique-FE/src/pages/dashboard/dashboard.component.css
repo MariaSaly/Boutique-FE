@@ -303,37 +303,39 @@
     height: 100%;
   }  
 }
-@media(max-width:480px){
+@media (max-width: 480px) {
   .layout {
-    display: flex;
-    flex-direction: column; /* Stack .mokshe and .samepinch vertically */
-    gap: 20px; /* Space between .mokshe and .samepinch */
-    justify-content: center;
-    align-items: center;
+    flex-direction: column; /* Stack vertically */
+    gap: 10px; /* Reduce space between sections */
+    padding: 20px; /* Adjust padding */
+    height: auto; /* Allow content to flow naturally */
+  }
+
+  .mokshe, .samepinch {
+    flex-direction: column; /* Stack image and logo vertically */
+    width: 350px; /* Use full width */
+    max-width: 350px; /* Ensure no overflow */
+   
+  }
+
+  .image-container, .logo-container,
+  .image-container1, .logo-container1 {
+    width: 100%; /* Make images responsive */
+    max-width: 300px; /* Limit max width */
+    height: 300px; /* Maintain aspect ratio */
+  }
+
+  .image-container img, 
+  .image-container1 img, 
+  .logo-container img, 
+  .logo-container1 img {
+    width: 100%; /* Responsive width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover;
+  }
+
+  .btn {
+    width: 100%; /* Full width button */
     text-align: center;
-    width: 100%;
-    /* padding: 10px !important; */
   }
-  .image-container, .image-container1{
-    width: 250px;
-    height: 400px;
-    background-color: #f9f9f9; /* Optional: Placeholder background */
-  }
-  .logo-container1,.logo-container {
-    flex-direction: column;
-    width: 300px;
-    height: 300px;
-    /* background-color: #e9e9e9;  */
-  } 
-  /* .container,.container1{
-    width:150px !important;
-    height: 150px !important;
-    border: 1px solid black;
-    border-radius: 50%;
-    margin-bottom: 10px;
-  }
-  .image-container image{
-    width: 100%;
-    height: 100%;
-  } */
 }
