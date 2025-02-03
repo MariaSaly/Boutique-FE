@@ -6,6 +6,7 @@ import { updateProfile } from 'firebase/auth';
 import { from, Observable, of } from 'rxjs';
 import { HttpService } from '../../../service/httpService';
 import { environment } from '../../../environment';
+import { HttpServiceWithHeaders } from '../../../service/httpServiceForAdmin';
 
 @Component({
   selector: 'app-add-user',
@@ -21,7 +22,7 @@ export class AddUserComponent {
   addUser: FormGroup ;
   loading:boolean = false;
   private url = environment.localUrl;
-  constructor(private router :Router, private http:HttpService){
+  constructor(private router :Router, private http:HttpServiceWithHeaders){
     this.addUser = new FormGroup({
         email: new FormControl('',[Validators.email,Validators.required]),
         password:new FormControl('', [Validators.required,Validators.minLength(5)]),

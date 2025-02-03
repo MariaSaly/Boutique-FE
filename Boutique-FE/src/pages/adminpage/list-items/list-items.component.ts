@@ -5,6 +5,7 @@ import { environment } from '../../../environment';
 import { HttpService } from '../../../service/httpService';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { HttpServiceWithHeaders } from '../../../service/httpServiceForAdmin';
 
 @Component({
   selector: 'app-list-items',
@@ -23,7 +24,7 @@ export class ListItemsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private http: HttpService,
+    private http: HttpServiceWithHeaders,
     private cdr: ChangeDetectorRef,
     private httpclient: HttpClient
   ) {}

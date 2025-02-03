@@ -5,6 +5,7 @@ import { HttpService } from '../../service/httpService';
 import { environment } from '../../environment';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpServiceWithHeaders } from '../../service/httpServiceForAdmin';
 
 @Component({
   selector: 'app-order-details',
@@ -23,7 +24,7 @@ export class OrderDetailsComponent implements OnInit {
   paymentDate!: Date;
   isEditing: boolean = false;
   
-  constructor( private activatedRoute:ActivatedRoute , private http:HttpService){
+  constructor( private activatedRoute:ActivatedRoute , private http:HttpServiceWithHeaders){
 
   }
   ngOnInit(): void {

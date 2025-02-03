@@ -51,7 +51,7 @@ export class FamilyComboComponent {
     }
   
     getSareeItems(): void {
-      this.httpService.get(`${this.url}/api/items/getItem?category=familycombo?isCustomizable='true'`).subscribe((data: any) => {
+      this.httpService.get(`${this.url}/api/items/getItem?category=familycombo&isCustomizable=true`).subscribe((data: any) => {
         this.items = data;
         this.filteredData = [...this.items];
         this.currentIndexes = this.filteredData.map(() => 0); // Initialize image indexes
