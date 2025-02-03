@@ -292,3 +292,13 @@
   }
 
 }
+
+.current-route-link {
+  text-decoration: underline; /* Underline for current route link */
+  margin-right: 10px; /* Adds space between current route and home link */
+}
+
+.home-link {
+  text-decoration: underline; /* Underline for home link */
+}
+

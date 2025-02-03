@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { environment } from '../../../environment';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CartService } from '../../cart.service';
 import { HttpService } from '../../../service/httpService';
 import { HttpClient } from '@angular/common/http';
@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-viewhalfsaree',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,RouterModule],
   standalone:true,
   templateUrl: './viewhalfsaree.component.html',
   styleUrl: './viewhalfsaree.component.css'

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { environment } from '../../../environment';
 import { SearchService } from '../../../service/searchService';
 import { CartService } from '../../cart.service';
@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-ninenineninecostumes',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,RouterModule],
   standalone:true,
   templateUrl: './ninenineninecostumes.component.html',
   styleUrl: './ninenineninecostumes.component.css'

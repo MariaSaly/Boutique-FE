@@ -3,14 +3,14 @@ import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartService } from '../../../app/cart.service';
 import { HttpService } from '../../../service/httpService';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { environment } from '../../../environment';
 import { HttpClient } from '@angular/common/http';
 import { user } from '@angular/fire/auth';
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-view-mens-wear',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,RouterModule],
   standalone:true,
   templateUrl: './view-mens-wear.component.html',
   styleUrl: './view-mens-wear.component.css'

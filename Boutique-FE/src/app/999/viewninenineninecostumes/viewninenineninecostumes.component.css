@@ -7,7 +7,14 @@ body {
   background-color: #f9f8f6; /* Neutral background */
   color: #333;
 }
+.current-route-link {
+  text-decoration: none; /* Underline for current route link */
+  margin-right: 10px; /* Adds space between current route and home link */
+}
 
+.home-link {
+  text-decoration: none; /* Underline for home link */
+}
 .boutique-container {
   display: flex;
   gap: 40px;

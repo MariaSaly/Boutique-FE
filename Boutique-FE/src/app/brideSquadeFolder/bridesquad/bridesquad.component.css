@@ -220,3 +220,11 @@
     background-color: rgba(0, 0, 0, 0.8);
   }
   
+  .current-route-link {
+    text-decoration: none; /* Underline for current route link */
+    margin-right: 10px; /* Adds space between current route and home link */
+  }
+  
+  .home-link {
+    text-decoration: none; /* Underline for home link */
+  }

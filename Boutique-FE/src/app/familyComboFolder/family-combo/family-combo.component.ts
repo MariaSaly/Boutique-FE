@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { SearchService } from '../../../service/searchService';
 import { CartService } from '../../../app/cart.service';
 import { HttpService } from '../../../service/httpService';
@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-family-combo',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,RouterModule],
   standalone:true,
   templateUrl: './family-combo.component.html',
   styleUrl: './family-combo.component.css'
