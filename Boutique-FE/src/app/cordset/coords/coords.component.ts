@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from '../../../environment';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { SearchService } from '../../../service/searchService';
 import { CartService } from '../../cart.service';
 import { HttpService } from '../../../service/httpService';
@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-coords',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,RouterModule],
   standalone:true,
   templateUrl: './coords.component.html',
   styleUrl: './coords.component.css'

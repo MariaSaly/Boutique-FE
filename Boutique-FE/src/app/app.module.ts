@@ -21,6 +21,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule,provideHttpClient,withInterceptorsF
 import { AuthInterceptor } from '../service/httpInterceptorService';
 import { LayoutModule } from '../layout/layout.module';
 import { LayoutzzComponent } from '../layout/layoutzz/layoutzz.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { LayoutzzComponent } from '../layout/layoutzz/layoutzz.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    
+    RouterModule,
     AppRoutingModule,
     
     // Initialize Firebase with the provided config

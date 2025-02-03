@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from '../../../environment';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { SearchService } from '../../../service/searchService';
 import { CartService } from '../../cart.service';
 import { HttpService } from '../../../service/httpService';
@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-officewear',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,RouterModule],
   standalone:true,
   templateUrl: './officewear.component.html',
   styleUrl: './officewear.component.css'

@@ -398,3 +398,12 @@ color: blue;
 cursor: pointer;
 text-decoration: underline;
 }
+
+.current-route-link {
+  text-decoration: none; /* Underline for current route link */
+  margin-right: 10px; /* Adds space between current route and home link */
+}
+
+.home-link {
+  text-decoration: none; /* Underline for home link */
+}

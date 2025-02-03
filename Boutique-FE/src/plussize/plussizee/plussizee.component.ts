@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SearchService } from '../../service/searchService';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { environment } from '../../environment';
 import { CartService } from '../../app/cart.service';
 import { HttpService } from '../../service/httpService';
@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-plussizee',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,RouterModule],
   standalone:true,
   templateUrl: './plussizee.component.html',
   styleUrl: './plussizee.component.css'

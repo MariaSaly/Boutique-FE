@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { SearchService } from '../../../service/searchService';
 import { HttpService } from '../../../service/httpService';
 import { CartService } from '../../cart.service';
@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-legging',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,RouterModule],
   standalone:true,
   templateUrl: './legging.component.html',
   styleUrl: './legging.component.css'

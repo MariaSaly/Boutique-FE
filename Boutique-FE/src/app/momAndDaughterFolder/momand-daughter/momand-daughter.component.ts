@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { SearchService } from '../../../service/searchService';
 import { CartService } from '../../../app/cart.service';
 import { HttpService } from '../../../service/httpService';
@@ -10,13 +10,13 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-momand-daughter',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,RouterModule],
   standalone:true,
   templateUrl: './momand-daughter.component.html',
   styleUrl: './momand-daughter.component.css'
 })
 export class MomandDaughterComponent {
- 
+  currentRoute: string = '';  
     public url = environment.localUrl;
     
     filteredData: any[] = [];
@@ -28,10 +28,17 @@ export class MomandDaughterComponent {
       private searchService: SearchService,
       private cartService: CartService,
       private httpService: HttpService,
-      private httpClient: HttpClient
+      private httpClient: HttpClient,
+      private activatedRoute: ActivatedRoute,
     ) {}
   
     ngOnInit(): void {
+      this.setRoute();
+
+      // Listen for changes in the route path to update the currentRoute dynamically
+      this.router.events.subscribe(() => {
+        this.setRoute();
+      });
       this.getSareeItems();
   
       this.searchService.searchQuery$.subscribe((query) => {
@@ -53,7 +60,10 @@ export class MomandDaughterComponent {
       });
       console.log(this.currentIndexes);
     }
-  
+    private setRoute(): void {
+      // Access the current route path using the router's state
+      this.currentRoute = this.router.url; // This will give the full URL
+    }
   
     // Hover logic to pause carousel
     onHover(index: number) {

@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../../cart.service';
 import { HttpService } from '../../../service/httpService';
@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-viewninenineninecostumes',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,RouterModule],
   standalone:true,
   templateUrl: './viewninenineninecostumes.component.html',
   styleUrl: './viewninenineninecostumes.component.css'
