@@ -2,17 +2,20 @@
   display: flex;
   flex-direction: column;
   background-color: black;
-  padding: 10px 20px;
+  /* padding: 10px 20px; */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
+padding-top:8px ;
+/* padding: 20px; */
+padding-right: 20px;
+padding-bottom: 0px;
   .header-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     .logo-container {
-       width: auto;
-        height: 100px;
+       width: 80px;
+        height: 80px;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -20,7 +23,7 @@
       .logo {
         
         width: auto;
-        height: 100px;
+        height: 80px;
         border-radius: 50%;
       }
 
@@ -114,13 +117,13 @@
     gap: 20px;
 
     button {
-      font-size: 1rem;
+      font-size: 14px;
       font-weight: bold;
       color:#FFD700;;
       background: none;
       border: none;
       cursor: pointer;
-      padding: 5px 15px;
+      /* padding: 5px 15px; */
       border-radius: 4px;
       transition: all 0.3s ease;
 
@@ -136,9 +139,9 @@
   overflow: hidden;
   white-space: nowrap;
   color: #FFD700;
-  border: 1px solid #ddd; /* Optional border */
-  height: 50px; /* Optional height */
-  line-height: 50px; /* Align text vertically */
+  /* border: 1px solid #ddd; */
+  height: 30px; /* Optional height */
+  line-height: 30px; /* Align text vertically */
 }
 
 /* Text to animate */
