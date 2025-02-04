@@ -116,7 +116,22 @@
   text-align: center;
 }
 
-
+@media (max-width: 480px) {
+  @media (max-width: 480px) {
+    .image-container {
+      height: 250px !important; /* Adjust height for mobile view */
+    }
+  
+    /* Optionally adjust the image size further if necessary */
+    .main-image {
+      object-fit: contain;
+      width: auto; /* Keep the aspect ratio while scaling */
+      max-width: 100%; /* Ensure it doesn't overflow */
+      max-height: 100%; /* Ensure it fits within the container height */
+    }
+  }
+  
+}
 
 .image-container {
   position: relative;
@@ -168,14 +183,7 @@
 .indicator-bar.active {
   background-color: white; /* Fully white for active image */
 }
-/* .main-image {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  transition: background-image 0.5s ease;
-} */
+
 
 
 button {

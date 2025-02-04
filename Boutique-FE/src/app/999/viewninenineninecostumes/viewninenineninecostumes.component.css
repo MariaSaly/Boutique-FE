@@ -293,8 +293,8 @@ body {
     gap: 20px !important;
   }
   .image-gallery {
-width: 400px;
-height: 400px;
+    width: 400px;
+    height: 400px;
   }
 .featured-image{
 width: 400px;
