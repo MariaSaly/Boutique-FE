@@ -329,3 +329,62 @@ button:hover {
   }
 
 
+/* Footer Styling */
+.footer {
+  width: 100%;
+  background-color: #f8f8f8;
+  /* padding: 20px; */
+  text-align: center;
+  border-top: 1px solid #ddd;
+}
+
+/* Customer Service Row */
+.footer-customer-service {
+  margin-bottom: 15px;
+  font-weight: 600px;
+}
+
+.customer-service-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-weight: 600;
+}
+
+.customer-service-links li {
+  display: inline;
+  font-weight: 600px;
+}
+
+.customer-service-links a {
+  font-size: 14px;
+  font-weight: 600px;
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.customer-service-links a:hover {
+  color: #007bff;
+}
+
+/* Social Media Icons Row */
+.footer-social-media {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.footer-social-media a {
+  font-size: 20px;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.footer-social-media a:hover {
+  color: #ff5722;
+}
