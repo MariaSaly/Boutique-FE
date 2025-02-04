@@ -62,6 +62,7 @@ export class ViewMomandDaughterComponent {
 
     selectSize(size: string) {
       this.selectedSize = size;
+      console.log("selectedsize:", this.selectedSize);
     }
   
     sizeGuide = [

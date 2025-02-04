@@ -5,10 +5,11 @@ import { Timestamp } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpServiceWithHeaders } from '../../service/httpServiceForAdmin';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-order-listing',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   standalone:true,
   templateUrl: './order-listing.component.html',
   styleUrl: './order-listing.component.css'
@@ -16,6 +17,8 @@ import { HttpServiceWithHeaders } from '../../service/httpServiceForAdmin';
 export class OrderListingComponent implements OnInit {
   private url = environment.localUrl
   ordersWithDates: any;
+  filteredOrders: any[] = []; 
+  selectedStatus: string = "";    // Orders after filtering
  constructor( private http:HttpServiceWithHeaders , private router:Router){
    
  }
@@ -36,11 +39,19 @@ export class OrderListingComponent implements OnInit {
           jsDate, // Add the converted JavaScript date
         };
       });
+      this.filteredOrders = [...this.ordersWithDates]
     
       console.log("ordersWithDates:", this.ordersWithDates);
     });
     
     
+  }
+   filterOrders() {
+    if (this.selectedStatus) {
+      this.filteredOrders = this.ordersWithDates.filter((order:any) => order.status === this.selectedStatus);
+    } else {
+      this.filteredOrders = [...this.ordersWithDates]; // Show all if no filter selected
+    }
   }
 
   viewOrder(id:string){
