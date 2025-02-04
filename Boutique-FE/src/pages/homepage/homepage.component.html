@@ -26,10 +26,27 @@
     </div>
     </div>
     <div class="image-container">
+      <div 
+        class="main-image" 
+        [ngStyle]="{'background-image': 'url(' + images[currentIndex] + ')'}">
+      </div>
+    
+      <!-- Indicator Dots -->
+      <div class="indicator-container">
+        <div 
+          *ngFor="let img of images; let i = index" 
+          class="indicator-bar" 
+          [ngClass]="{'active': i === currentIndex}">
+        </div>
+      </div>
+    </div>
+    
+    
+    <!-- <div class="image-container">
       <button class="prev-btn" onclick="prevImage()">&#10094;</button>
       <div class="main-image" id="mainImage"></div>
       <button class="next-btn" onclick="nextImage()">&#10095;</button>
-  </div>
+  </div> -->
   
     <div class="newarrivals">
         <h1>New Arrivals</h1>
@@ -119,11 +136,20 @@
 </div>
   </div>
   <div class="image-container">
-    <button class="prev-btn" onclick="prevImage()">&#10094;</button>
-    <div class="main-image" id="mainImage"></div>
-    <button class="next-btn" onclick="nextImage()">&#10095;</button>
-</div>
-
+    <div 
+      class="main-image" 
+      [ngStyle]="{'background-image': 'url(' + images[currentIndex] + ')'}">
+    </div>
+  
+    <!-- Indicator Dots -->
+    <div class="indicator-container">
+      <div 
+        *ngFor="let img of images; let i = index" 
+        class="indicator-bar" 
+        [ngClass]="{'active': i === currentIndex}">
+      </div>
+    </div>
+  </div>
   <div class="newarrivals">
       <h1>New Arrivals</h1>
       <div class="cards-container">
