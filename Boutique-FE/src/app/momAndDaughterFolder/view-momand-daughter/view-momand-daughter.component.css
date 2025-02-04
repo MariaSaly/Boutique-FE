@@ -71,7 +71,7 @@ body {
     width: 100% !important; /* Force each image to take full width */
     height: 100%;
     max-width: unset; /* Remove any width restrictions */
-    object-fit: fill; /* Ensure image is fully visible */
+    object-fit: contain; /* Ensure image is fully visible */
     object-position: center; /* Center the image */
     flex-shrink: 0; /* Prevent image from shrinking */
 }
