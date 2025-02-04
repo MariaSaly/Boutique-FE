@@ -42,9 +42,9 @@ selectImage(image: string): void {
   this.selectedImage = image;
 }
 images: string[] = [
-  'https://tse2.mm.bing.net/th?id=OIP.Ekodt74sE9k22Kcb1D_9XwHaFj&pid=Api&P=0&h=180',
-  'https://tse3.mm.bing.net/th?id=OIP.YomYaulho7GB52o5WXJ3bAHaEK&pid=Api&P=0&h=180',
-  'https://tse3.mm.bing.net/th?id=OIP.ajQlPZ_n41xdRocAesZVigHaEo&pid=Api&P=0&h=180'
+  'https://i.pinimg.com/originals/02/cf/cf/02cfcffac595c832c514d58704cd82ce.jpg',
+  'https://i.pinimg.com/originals/ec/6a/19/ec6a19a588615a57fd006893f4599c05.jpg',
+  'https://i.pinimg.com/originals/02/cf/cf/02cfcffac595c832c514d58704cd82ce.jpg'
 ];
 // images: string[] = [
 //   '../../assets/images/bg2.png',

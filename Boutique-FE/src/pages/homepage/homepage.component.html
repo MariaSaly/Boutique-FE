@@ -26,10 +26,14 @@
     </div>
     </div>
     <div class="image-container">
-      <div 
-        class="main-image" 
-        [ngStyle]="{'background-image': 'url(' + images[currentIndex] + ')'}">
+      <div class="slider-wrapper" [ngStyle]="{'transform': 'translateX(-' + (currentIndex * 100) + '%)'}">
+        <div 
+          *ngFor="let img of images" 
+          class="main-image"
+          [ngStyle]="{'background-image': 'url(' + img + ')'}">
+        </div>
       </div>
+    
     
       <!-- Indicator Dots -->
       <div class="indicator-container">
@@ -136,10 +140,14 @@
 </div>
   </div>
   <div class="image-container">
-    <div 
-      class="main-image" 
-      [ngStyle]="{'background-image': 'url(' + images[currentIndex] + ')'}">
+    <div class="slider-wrapper" [ngStyle]="{'transform': 'translateX(-' + (currentIndex * 100) + '%)'}">
+      <div 
+        *ngFor="let img of images" 
+        class="main-image"
+        [ngStyle]="{'background-image': 'url(' + img + ')'}">
+      </div>
     </div>
+  
   
     <!-- Indicator Dots -->
     <div class="indicator-container">
