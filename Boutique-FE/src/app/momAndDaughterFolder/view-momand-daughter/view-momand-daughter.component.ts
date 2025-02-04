@@ -24,6 +24,7 @@ export class ViewMomandDaughterComponent {
     public url = environment.localUrl;
      size:string = 'M'
     itemData: any;
+  isStock: any;
     constructor( private toastService:ToastrService,private router:Router,private cartService:CartService , private http:HttpService  ,private cdr: ChangeDetectorRef, private route:ActivatedRoute , private httpClient:HttpClient , ){
   
     }
@@ -38,6 +39,12 @@ export class ViewMomandDaughterComponent {
       this.http.get(`${this.url}/api/items/getItemById/${this.itemId}`).subscribe( data => {
         console.log("data:", data);
         this.itemData = data;
+        if(  this.itemData.isStock === "true"){
+             this.isStock = true;
+        }
+        else{
+          this.isStock = false
+        }
       
       
          
