@@ -11,25 +11,33 @@
   
 </div>
 <div class="boutique-container" >
-    <!-- Left Side: Image Gallery -->
-    <div class="image-gallery">
-      <!-- Large Display Image -->
-      <div class="featured-image">
-        <img [src]=" url + itemData.imageUrl" alt="" class="featured-img" />
+  <div class="image-gallery">
+    <!-- Large Display Image -->
+    <div class="featured-image">
+      <div class="slider-wrapper" [ngStyle]="{'transform': 'translateX(-' + (currentIndex * 100) + '%)'}">
+        <img 
+          *ngFor="let img of itemData?.imageUrl" 
+          [src]="url + img" 
+          alt="Gallery Image" 
+          class="featured-img"
+        />
       </div>
-  
-      <!-- Thumbnail Gallery -->
-      <div class="thumbnails">
-        <div
-          *ngFor="let image of smallImages"
-          class="thumbnail"
-          (click)="selectImage(image)"
-          [class.active]="image === selectedImage"
-        >
-          <img [src]="image" alt="" class="thumbnail-img" />
+    
+      <a href="https://app.epatrolz.com" class="hover-link" target="_blank">https://app.epatrolz.com</a>
+    
+      <!-- Indicator Dots -->
+      <div class="indicator-container">
+        <div 
+          *ngFor="let img of itemData?.imageUrl; let i = index" 
+          class="indicator-bar" 
+          [ngClass]="{'active': i === currentIndex}">
         </div>
       </div>
     </div>
+  
+  
+  </div>
+  
   
     <!-- Right Side: Product Details -->
     <div class="product-details">
