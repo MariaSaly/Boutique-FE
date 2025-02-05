@@ -43,67 +43,81 @@ body {
   align-items: center; /* Center vertically */
 }
 /* Left Side: Image Gallery */
-.image-gallery {
+.image-gallery { 
   text-align: center;
   position: relative;
   width: 500px;
   height: 500px;
   margin: auto;
   margin-bottom: 10px;
-  /* background-image: url('../../../assets/images/bm.jpg'); */
+  overflow: hidden; /* Ensures no overflow issues */
 }
 
 .featured-image {
+  position: relative;
   width: 100%;
   height: 100%;
+  margin: auto;
   overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.featured-img {
-  max-width: 500px;
-  max-height: 500px;
-  width: auto;
-  height: auto;
-  object-fit: cover; /* ✅ Ensures image fits without cropping */
-  border-radius: 8px;
-}
-.prev-btn, .next-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 18px;
-}
-
-.prev-btn { left: 10px; }
-.next-btn { right: 10px; }
-
-.thumbnails {
+/* Fix slider wrapper width */
+.slider-wrapper {
   display: flex;
-  justify-content: center;
-  margin-top: 10px;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s ease-in-out;
 }
 
-.thumbnail {
-  width: 60px;
-  height: 60px;
-  margin: 5px;
-  cursor: pointer;
+/* Ensure all images take full slider space */
+.featured-img {
+  width: 100% !important; /* Force each image to take full width */
+  height: 100%;
+  max-width: unset; /* Remove any width restrictions */
+  object-fit: contain; /* Ensure image is fully visible */
+  object-position: center; /* Center the image */
+  flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+/* Indicator Container */
+.indicator-container {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+/* Indicator Bars */
+.indicator-bar {
+  width: 30px;
+  height: 5px;
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 5px;
-  opacity: 0.6;
-  transition: opacity 0.3s;
+  transition: background-color 0.5s ease-in-out;
 }
 
-.thumbnail.active {
-  border: 2px solid #007bff;
-  opacity: 1;
+/* Mobile-specific styling */
+@media (max-width: 480px) {
+  .image-gallery {
+      width: 100%;
+      height: 300px !important;
+  }
+
+  .featured-image {
+      height: 100%;
+  }
+
+  .featured-img {
+      width: 100%;
+      height: 100%;
+  }
 }
 
 
