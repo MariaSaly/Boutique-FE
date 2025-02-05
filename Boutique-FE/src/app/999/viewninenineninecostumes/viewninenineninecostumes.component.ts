@@ -91,7 +91,7 @@ export class ViewninenineninecostumesComponent {
       // Add more image paths here
     ];
   
-    sizes = ['S', 'M', 'L', 'XL'];
+    sizes = ['S', 'M', 'L','XL','2XL','3XL','4XL','5XL','6XL',];
     selectedSize: string = 'M';
   
     customText: string = '';
@@ -174,6 +174,25 @@ export class ViewninenineninecostumesComponent {
       }
     }
 
+    sizeGuide = [
+      {Size: 'S', chest: '32"', waist: '28"', length: '55"' },
+      { Size: 'M', chest: '34"', waist: '30"', length: '55"' },
+      { Size: 'L', chest: '36"', waist: '32"', length: '55"' },
+      { Size: 'XL', chest: '38"', waist: '34"', length: '55"' },
+      { Size: '2XL', chest: '40"', waist: '36"', length: '55"' },
+      { Size: '3XL', chest: '42"', waist: '38"', length: '55"' },
+      { Size: '4XL', chest: '44"', waist: '40"', length: '55"' },
+      { Size: '5XL', chest: '46"', waist: '42"', length: '55"' },
+      { Size: '6XL', chest: '48"', waist: '42"', length: '55"' },
+    ];
+    isSizeGuideOpen = false;
+    openSizeGuide() {
+      this.isSizeGuideOpen = true;
+    }
+  
+    closeSizeGuide() {
+      this.isSizeGuideOpen = false;
+    }
     buyNow() {
       // Buy now logic
       localStorage.setItem('customData',JSON.stringify(this.customText));

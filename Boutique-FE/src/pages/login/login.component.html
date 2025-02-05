@@ -1,24 +1,26 @@
-<div class="login-container">
-  <!-- Logo Section -->
-  <div class="logo-container">
-    <div class="logo"></div>
+<div class="lo">
+  <div class="login-container">
+    <!-- Logo Section -->
+    <div class="logo-container">
+      <div class="logo"></div>
+    </div>
+  
+    <h2>Login</h2>
+  
+    <form [formGroup]="loginform" (ngSubmit)="onLogin()" class="form-container">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" formControlName="email" name="email" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" formControlName="password" name="password" required>
+      </div>
+  
+      <button type="submit" [disabled]="loginform.invalid" class="login-button">Login</button>
+    </form>
+  
+    <p id="navigate">Don't have an account? <button class="signup-button" (click)="goToSignUp()">Sign Up</button></p>
   </div>
-
-  <h2>Login</h2>
-
-  <form [formGroup]="loginform" (ngSubmit)="onLogin()" class="form-container">
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" class="form-control" formControlName="email" name="email" required>
-    </div>
-
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" class="form-control" formControlName="password" name="password" required>
-    </div>
-
-    <button type="submit" [disabled]="loginform.invalid" class="login-button">Login</button>
-  </form>
-
-  <p id="navigate">Don't have an account? <button class="signup-button" (click)="goToSignUp()">Sign Up</button></p>
 </div>
