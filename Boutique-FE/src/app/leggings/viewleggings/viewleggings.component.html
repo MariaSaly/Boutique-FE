@@ -46,7 +46,31 @@
       <h1 class="product-title">{{ itemData.name}}</h1>
       <p class="product-description">{{ itemData.description }}</p>
       <p class="price">{{ itemData.price | currency }}</p>
-  
+
+    <div class="size-modal" *ngIf="isSizeGuideOpen">
+        <div class="size-modal-content">
+          <span class="close-btn" (click)="closeSizeGuide()">&times;</span>
+          <h2>Size Guide</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Size</th>
+                <th>Chest</th>
+                <th>Waist</th>
+                <th>Length</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let size of sizeGuide">
+                <td>{{ size.Size }}</td>
+                <td>{{ size.chest }}</td>
+                <td>{{ size.waist }}</td>
+                <td>{{ size.length }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
       <!-- Size Selection -->
       <div class="size-options">
         <h3>Select Size</h3>
