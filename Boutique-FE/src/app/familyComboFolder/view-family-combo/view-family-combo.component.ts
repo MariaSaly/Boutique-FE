@@ -255,5 +255,22 @@ export class ViewFamilyComboComponent {
           (this.currentIndex - 1 + this.images.length) % this.images.length;
       }
     }
+    currentIndexes: { [key: number]: number } = {}; // Track the index of each product image
+    hoverIntervals: { [key: number]: any } = {};
+      // Hover logic to pause carousel
+      onHover(index: number, images: string[]) {
+        if (images.length > 1) {
+          this.hoverIntervals[index] = setInterval(() => {
+            this.currentIndexes[index] = (this.currentIndexes[index] + 1) % images.length;
+          }, 1000); // Change image every second
+        }
+      }
+    
+      onLeave(index: number) {
+        if (this.hoverIntervals[index]) {
+          clearInterval(this.hoverIntervals[index]); // Stop the interval
+          delete this.hoverIntervals[index];
+        }
+      }
   }
 

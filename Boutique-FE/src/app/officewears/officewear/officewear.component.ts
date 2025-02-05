@@ -20,7 +20,7 @@ export class OfficewearComponent {
     
     filteredData: any[] = [];
     items: any[] = [];
-    currentIndexes: number[] = []; // Added this to track current image indexes
+    // Added this to track current image indexes
   
     constructor(
       private router: Router,
@@ -53,16 +53,23 @@ export class OfficewearComponent {
       console.log(this.currentIndexes);
     }
   
-  
-    // Hover logic to pause carousel
-    onHover(index: number) {
-      console.log('Hovered over product:', this.filteredData[index].name);
-      console.log('Hovered over product:', this.filteredData[index].name);
-    }
-  
-    onLeave(index: number) {
-      console.log('Left hover for product:', this.filteredData[index].name);
-    }
+    currentIndexes: { [key: number]: number } = {}; // Track the index of each product image
+    hoverIntervals: { [key: number]: any } = {};
+      // Hover logic to pause carousel
+      onHover(index: number, images: string[]) {
+        if (images.length > 1) {
+          this.hoverIntervals[index] = setInterval(() => {
+            this.currentIndexes[index] = (this.currentIndexes[index] + 1) % images.length;
+          }, 1000); // Change image every second
+        }
+      }
+    
+      onLeave(index: number) {
+        if (this.hoverIntervals[index]) {
+          clearInterval(this.hoverIntervals[index]); // Stop the interval
+          delete this.hoverIntervals[index];
+        }
+      }
   
    
   

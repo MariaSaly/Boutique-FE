@@ -3,11 +3,12 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { SharedService } from '../../service/homesharedservice';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-homepage',
   standalone:true,
-  imports: [ReactiveFormsModule, CommonModule,RouterModule],
+  imports: [ReactiveFormsModule, CommonModule,RouterModule,MatIconModule],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css'
 })
@@ -28,7 +29,9 @@ export class HomepageComponent  implements OnInit, OnDestroy {
       clearInterval(this.interval);
     }
   }
- 
+  onbtn(){
+    this.router.navigate(['/MoksheDestination'])
+  }
 
 smallImages = [
   './assets/images/bg1.png',

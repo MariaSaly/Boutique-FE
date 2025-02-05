@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { environment } from '../../environment';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -16,8 +16,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './viewplussizee.component.css'
 })
 export class ViewplussizeeComponent {
-
+  @Input() imageUrls: string[] = [];
     userId: any;
+    interval: any;
     itemId: string | null = '';
     public url = environment.localUrl;
      size:string = 'M'
@@ -36,10 +37,49 @@ export class ViewplussizeeComponent {
       this.http.get(`${this.url}/api/items/getItemById/${this.itemId}`).subscribe( data => {
         console.log("data:", data);
         this.itemData = data;
-      
+        if (this.itemData?.imageUrl?.length > 1) {
+          this.startImageRotation();
+        }
       
          
       })
+    }
+    startImageRotation() {
+      this.interval = setInterval(() => {
+        this.currentIndex = (this.currentIndex + 1) % this.itemData.imageUrl.length;
+      }, 5000); // Slide every 5 seconds
+    }
+  
+    ngOnDestroy() {
+      if (this.interval) {
+        clearInterval(this.interval);
+      }
+    }
+
+    isSizeGuideOpen = false;
+
+    selectSize(size: string) {
+      this.selectedSize = size;
+    }
+  
+    sizeGuide = [
+      {Size: 'S', chest: '32"', waist: '28"', length: '55"' },
+      { Size: 'M', chest: '34"', waist: '30"', length: '55"' },
+      { Size: 'L', chest: '36"', waist: '32"', length: '55"' },
+      { Size: 'XL', chest: '38"', waist: '34"', length: '55"' },
+      { Size: '2XL', chest: '40"', waist: '36"', length: '55"' },
+      { Size: '3XL', chest: '42"', waist: '38"', length: '55"' },
+      { Size: '4XL', chest: '44"', waist: '40"', length: '55"' },
+      { Size: '5XL', chest: '46"', waist: '42"', length: '55"' },
+      { Size: '6XL', chest: '48"', waist: '42"', length: '55"' },
+    ];
+  
+    openSizeGuide() {
+      this.isSizeGuideOpen = true;
+    }
+  
+    closeSizeGuide() {
+      this.isSizeGuideOpen = false;
     }
     fetchImageForItems(Item: any): void {
       
@@ -88,19 +128,14 @@ export class ViewplussizeeComponent {
       // Add more image paths here
     ];
   
-    sizes = ['S', 'M', 'L', 'XL'];
+    sizes = ['S', 'M', 'L','XL','2XL','3XL','4XL','5XL','6XL',];
     selectedSize: string = 'M';
   
     customText: string = '';
     quantity: number = 0;
   
-    selectImage(image: string) {
-      this.selectedImage = image;
-    }
-  
-    selectSize(size: string) {
-      this.selectedSize = size;
-    }
+
+ 
   
     increaseQuantity(): void {
       if(this.quantity === this.selectedProduct.stock){
@@ -132,7 +167,7 @@ export class ViewplussizeeComponent {
         this.userId = userData.user_id;
         console.log("userid:", this.userId);
       
-      this.cartService.addToCart(this.userId,productId,this.selectedSize,qty).subscribe( data => {
+      this.cartService.addToCart(this.userId,productId,this.size,qty).subscribe( data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
         this.toastService.success("Cart Added Sucessfully!");
@@ -145,7 +180,7 @@ export class ViewplussizeeComponent {
       const productId = this.itemData.id;
       const qty = this.quantity;
       
-      this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty).subscribe( data => {
+      this.cartService.addToCartGuestUser(guestId,productId,this.size,qty).subscribe( data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
@@ -176,7 +211,7 @@ export class ViewplussizeeComponent {
         this.userId = userData.user_id;
         console.log("userid:", this.userId);
       
-      this.cartService.addToCart(this.userId,productId,this.selectedSize,qty).subscribe( data => {
+      this.cartService.addToCart(this.userId,productId,this.size,qty).subscribe( data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
@@ -189,30 +224,31 @@ export class ViewplussizeeComponent {
       const productId = this.itemData.id;
       const qty = this.quantity;
       
-      this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty).subscribe( data => {
+      this.cartService.addToCartGuestUser(guestId,productId,this.size,qty).subscribe( data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
       })
-      alert('please login to addtoCart');
+      //alert('please login to addtoCart');
     }
     }
    
     images: string[] = [
      
     ];
-    currentIndex: number = 0;
-  
-    nextImage() {
-      if (this.images.length > 0) {
-        this.currentIndex = (this.currentIndex + 1) % this.images.length;
-      }
-    }
-  
+    currentIndex = 0;
     previousImage() {
-      if (this.images.length > 0) {
-        this.currentIndex =
-          (this.currentIndex - 1 + this.images.length) % this.images.length;
-      }
+      this.currentIndex = this.currentIndex > 0 ? this.currentIndex - 1 : this.itemData.imageUrl.length - 1;
     }
-}
+  
+    // Navigate to the next image
+    nextImage() {
+      this.currentIndex = this.currentIndex < this.itemData.imageUrl.length - 1 ? this.currentIndex + 1 : 0;
+    }
+  
+    // Select a specific image via thumbnails
+    selectImage(index: number) {
+      this.currentIndex = index;
+    }
+    }
+

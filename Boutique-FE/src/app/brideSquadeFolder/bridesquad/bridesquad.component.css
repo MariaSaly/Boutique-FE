@@ -9,15 +9,15 @@
     }
     
     .arrivalcard {
-      width: 260px;
-      height: 340px;
+      width: 200px !important;
+      height: 360px;
       margin: 10px;
       display: inline-block;
-    
+      border: none;
      
       overflow: hidden;
       cursor: pointer;
-      transition: transform 0.3s ease-in-out;
+    
     }
     
  
@@ -25,26 +25,24 @@
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       width: 100%;
-     
-      height: 240px; /* Fixed height for the image */
+      height: 260px; 
       overflow: hidden;
       transition: transform 0.1s ease-in-out;
-      /* background-image: url('../../../assets/images/saree2.png'); */
-      background-size: contain; /* Ensures the image covers the container fully */
-     background-position: center; /* Centers the image */
-     background-repeat: no-repeat; /* Prevents the image from repeating */
+      background-size: cover; 
+     background-position: center; 
+     background-repeat: no-repeat; 
     }
     
     .card-image img {
-      width: 100%; /* Make sure image fills the width */
-      height: 100%; /* Make sure image fills the height */
-      object-fit: cover; /* Ensures the image fills the space without distortion */
+      width: 100%; 
+      height: 100%; 
+      object-fit: contain; 
       transition: transform 0.1s ease-in-out;
     }
     
     /* Hover effect on the image */
      .card-image img:hover {
-      transform: scale(1.1); /* Slightly zoom in the image */
+      transform: scale(1.1);
       cursor: pointer; 
      
     }
