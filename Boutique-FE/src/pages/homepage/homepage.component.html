@@ -1,4 +1,12 @@
+
+<div class="con">
+  <button  class="btn2" (click)="onbtn()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+</div>
 <div class="category-container"  *ngIf="showCategoryContent" [ngClass]="{ 'show-category': showCategoryContent }">
+ 
+  
     <div class="category-items">
         <div class="category-item">
             <div class="category-image MomDaughterCombo" (click)="momanddaughter()"></div>
@@ -26,10 +34,31 @@
     </div>
     </div>
     <div class="image-container">
+      <div class="slider-wrapper" [ngStyle]="{'transform': 'translateX(-' + (currentIndex * 100) + '%)'}">
+        <div 
+          *ngFor="let img of images" 
+          class="main-image"
+          [ngStyle]="{'background-image': 'url(' + img + ')'}">
+        </div>
+      </div>
+    
+    
+      <!-- Indicator Dots -->
+      <div class="indicator-container">
+        <div 
+          *ngFor="let img of images; let i = index" 
+          class="indicator-bar" 
+          [ngClass]="{'active': i === currentIndex}">
+        </div>
+      </div>
+    </div>
+    
+    
+    <!-- <div class="image-container">
       <button class="prev-btn" onclick="prevImage()">&#10094;</button>
       <div class="main-image" id="mainImage"></div>
       <button class="next-btn" onclick="nextImage()">&#10095;</button>
-  </div>
+  </div> -->
   
     <div class="newarrivals">
         <h1>New Arrivals</h1>
@@ -81,8 +110,81 @@
           
         </div>
       </div>
+      <div class="newarrivals">
+        <h1>Best Sellers</h1>
+        <div class="cards-container">
+          <!-- Card 1 -->
+          <div class="arrivalcard-wrapper">
+            <div class="arrivalcard">
+              <div class="card-image"></div>
+            </div>
+            <div class="card-details">
+              <h2>Product Name</h2>
+              <p>Description of the product goes here.</p>
+              <p class="price">$49.99</p>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="arrivalcard-wrapper">
+            <div class="arrivalcard">
+              <div class="card-image"></div>
+            </div>
+            <div class="card-details">
+              <h2>Product Name</h2>
+              <p>Description of the product goes here.</p>
+              <p class="price">$49.99</p>
+            </div>
+          </div>
+          <div class="arrivalcard-wrapper">
+            <div class="arrivalcard">
+              <div class="card-image"></div>
+            </div>
+            <div class="card-details">
+              <h2>Product Name</h2>
+              <p>Description of the product goes here.</p>
+              <p class="price">$49.99</p>
+            </div>
+          </div>
+          <div class="arrivalcard-wrapper">
+            <div class="arrivalcard">
+              <div class="card-image"></div>
+            </div>
+            <div class="card-details">
+              <h2>Product Name</h2>
+              <p>Description of the product goes here.</p>
+              <p class="price">$49.99</p>
+            </div>
+          </div>
+          
+        
+          
+        </div>
+      </div>  
+      <div class="footer">
+        <!-- Customer Service Row -->
+        <div class="footer-customer-service">
+          <ul class="customer-service-links">
+            <li  [routerLink]="'/terms'">Terms and Conditions</li>
+            <li  [routerLink]="'/policy'">Privacy Policy</li>
+            <li  [routerLink]="'/return'">Return and Exchange Policy</li>
+            <li  [routerLink]="'/aboutus'">About Us</li>
+            <!-- <li><a href="/contact-us">Contact Us</a></li> -->
+          </ul>
+        </div>
       
- 
+        <!-- Social Media Icons Row -->
+        <div class="footer-social-media">
+          <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.youtube.com" target="_blank" aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+            <i class="fab fa-facebook"></i>
+          </a>
+        </div>
+      </div>
     
     
     
@@ -119,11 +221,24 @@
 </div> -->
   </div>
   <div class="image-container">
-    <button class="prev-btn" onclick="prevImage()">&#10094;</button>
-    <div class="main-image" id="mainImage"></div>
-    <button class="next-btn" onclick="nextImage()">&#10095;</button>
-</div>
-
+    <div class="slider-wrapper" [ngStyle]="{'transform': 'translateX(-' + (currentIndex * 100) + '%)'}">
+      <div 
+        *ngFor="let img of images" 
+        class="main-image"
+        [ngStyle]="{'background-image': 'url(' + img + ')'}">
+      </div>
+    </div>
+  
+  
+    <!-- Indicator Dots -->
+    <div class="indicator-container">
+      <div 
+        *ngFor="let img of images; let i = index" 
+        class="indicator-bar" 
+        [ngClass]="{'active': i === currentIndex}">
+      </div>
+    </div>
+  </div>
   <div class="newarrivals">
       <h1>New Arrivals</h1>
       <div class="cards-container">
@@ -172,6 +287,81 @@
         
       
         
+      </div>
+      <div class="newarrivals">
+        <h1>Best Sellers</h1>
+        <div class="cards-container">
+          <!-- Card 1 -->
+          <div class="arrivalcard-wrapper">
+            <div class="arrivalcard">
+              <div class="card-image"></div>
+            </div>
+            <div class="card-details">
+              <h2>Product Name</h2>
+              <p>Description of the product goes here.</p>
+              <p class="price">$49.99</p>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="arrivalcard-wrapper">
+            <div class="arrivalcard">
+              <div class="card-image"></div>
+            </div>
+            <div class="card-details">
+              <h2>Product Name</h2>
+              <p>Description of the product goes here.</p>
+              <p class="price">$49.99</p>
+            </div>
+          </div>
+          <div class="arrivalcard-wrapper">
+            <div class="arrivalcard">
+              <div class="card-image"></div>
+            </div>
+            <div class="card-details">
+              <h2>Product Name</h2>
+              <p>Description of the product goes here.</p>
+              <p class="price">$49.99</p>
+            </div>
+          </div>
+          <div class="arrivalcard-wrapper">
+            <div class="arrivalcard">
+              <div class="card-image"></div>
+            </div>
+            <div class="card-details">
+              <h2>Product Name</h2>
+              <p>Description of the product goes here.</p>
+              <p class="price">$49.99</p>
+            </div>
+          </div>
+          
+        
+          
+        </div>
+      </div>
+      <div class="footer">
+        <!-- Customer Service Row -->
+        <div class="footer-customer-service">
+          <ul class="customer-service-links">
+            <li  [routerLink]="'/terms'">Terms and Conditions</li>
+            <li  [routerLink]="'/policy'">Privacy Policy</li>
+            <li  [routerLink]="'/return'">Return and Exchange Policy</li>
+            <li  [routerLink]="'/aboutus'">About Us</li>
+            <!-- <li><a href="/contact-us">Contact Us</a></li> -->
+          </ul>
+        </div>
+      
+        <!-- Social Media Icons Row -->
+        <div class="footer-social-media">
+          <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.youtube.com" target="_blank" aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+            <i class="fab fa-facebook"></i>
+          </a>
+        </div>
       </div>
     </div>
     

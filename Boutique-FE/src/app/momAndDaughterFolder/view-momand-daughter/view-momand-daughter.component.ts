@@ -20,6 +20,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ViewMomandDaughterComponent {
   @Input() imageUrls: string[] = [];
     userId: any;
+    interval: any;
     itemId: string | null = '';
     public url = environment.localUrl;
      size:string = 'M'
@@ -39,22 +40,30 @@ export class ViewMomandDaughterComponent {
       this.http.get(`${this.url}/api/items/getItemById/${this.itemId}`).subscribe( data => {
         console.log("data:", data);
         this.itemData = data;
-        if(  this.itemData.isStock === "true"){
-             this.isStock = true;
+        if (this.itemData?.imageUrl?.length > 1) {
+          this.startImageRotation();
         }
-        else{
-          this.isStock = false
-        }
-      
       
          
       })
+    }
+    startImageRotation() {
+      this.interval = setInterval(() => {
+        this.currentIndex = (this.currentIndex + 1) % this.itemData.imageUrl.length;
+      }, 5000); // Slide every 5 seconds
+    }
+  
+    ngOnDestroy() {
+      if (this.interval) {
+        clearInterval(this.interval);
+      }
     }
 
     isSizeGuideOpen = false;
 
     selectSize(size: string) {
       this.selectedSize = size;
+      console.log("selectedsize:", this.selectedSize);
     }
   
     sizeGuide = [

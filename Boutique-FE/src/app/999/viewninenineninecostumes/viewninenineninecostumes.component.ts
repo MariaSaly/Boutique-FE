@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 export class ViewninenineninecostumesComponent {
  @Input() imageUrls: string[] = [];
     userId: any;
+    interval: any;
     itemId: string | null = '';
     public url = environment.localUrl;
     itemData: any;
@@ -36,7 +37,9 @@ export class ViewninenineninecostumesComponent {
       this.http.get(`${this.url}/api/items/getItemById/${this.itemId}`).subscribe( data => {
         console.log("data:", data);
         this.itemData = data;
-      
+        if (this.itemData?.imageUrl?.length > 1) {
+          this.startImageRotation();
+        }
       
          
       })
@@ -88,7 +91,7 @@ export class ViewninenineninecostumesComponent {
       // Add more image paths here
     ];
   
-    sizes = ['S', 'M', 'L', 'XL'];
+    sizes = ['S', 'M', 'L','XL','2XL','3XL','4XL','5XL','6XL',];
     selectedSize: string = 'M';
   
     customText: string = '';
@@ -129,7 +132,7 @@ export class ViewninenineninecostumesComponent {
         this.userId = userData.user_id;
         console.log("userid:", this.userId);
       
-      this.cartService.addToCart(this.userId,productId,this.size,qty).subscribe( data => {
+      this.cartService.addToCart(this.userId,productId,this.selectedSize,qty).subscribe( data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
         this.toastService.success("Cart Added Sucessfully!");
@@ -142,7 +145,7 @@ export class ViewninenineninecostumesComponent {
       const productId = this.itemData.id;
       const qty = this.quantity;
       
-      this.cartService.addToCartGuestUser(guestId,productId,this.size,qty).subscribe( data => {
+      this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty).subscribe( data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
@@ -159,7 +162,37 @@ export class ViewninenineninecostumesComponent {
       return guestId;
     }
     
+    startImageRotation() {
+      this.interval = setInterval(() => {
+        this.currentIndex = (this.currentIndex + 1) % this.itemData.imageUrl.length;
+      }, 5000); // Slide every 5 seconds
+    }
   
+    ngOnDestroy() {
+      if (this.interval) {
+        clearInterval(this.interval);
+      }
+    }
+
+    sizeGuide = [
+      {Size: 'S', chest: '32"', waist: '28"', length: '55"' },
+      { Size: 'M', chest: '34"', waist: '30"', length: '55"' },
+      { Size: 'L', chest: '36"', waist: '32"', length: '55"' },
+      { Size: 'XL', chest: '38"', waist: '34"', length: '55"' },
+      { Size: '2XL', chest: '40"', waist: '36"', length: '55"' },
+      { Size: '3XL', chest: '42"', waist: '38"', length: '55"' },
+      { Size: '4XL', chest: '44"', waist: '40"', length: '55"' },
+      { Size: '5XL', chest: '46"', waist: '42"', length: '55"' },
+      { Size: '6XL', chest: '48"', waist: '42"', length: '55"' },
+    ];
+    isSizeGuideOpen = false;
+    openSizeGuide() {
+      this.isSizeGuideOpen = true;
+    }
+  
+    closeSizeGuide() {
+      this.isSizeGuideOpen = false;
+    }
     buyNow() {
       // Buy now logic
       localStorage.setItem('customData',JSON.stringify(this.customText));
@@ -173,7 +206,7 @@ export class ViewninenineninecostumesComponent {
         this.userId = userData.user_id;
         console.log("userid:", this.userId);
       
-      this.cartService.addToCart(this.userId,productId,this.size,qty).subscribe( data => {
+      this.cartService.addToCart(this.userId,productId,this.selectedSize,qty).subscribe( data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
@@ -186,7 +219,7 @@ export class ViewninenineninecostumesComponent {
       const productId = this.itemData.id;
       const qty = this.quantity;
       
-      this.cartService.addToCartGuestUser(guestId,productId,this.size,qty).subscribe( data => {
+      this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty).subscribe( data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);

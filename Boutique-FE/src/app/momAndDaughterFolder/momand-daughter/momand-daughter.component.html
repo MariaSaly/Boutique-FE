@@ -17,15 +17,15 @@
       (click)="selectCard(i)"
     >
       <!-- Card Image -->
-      <div class="card-image" (mouseenter)="onHover(i)" (mouseleave)="onLeave(i)">
+      <!-- <div class="card-image" (mouseenter)="onHover(i)" (mouseleave)="onLeave(i)">
         <div *ngIf="product.imageUrl?.length > 1" class="carousel">
-          <!-- Image Display -->
+          
           <img
             [src]="url + product.imageUrl[currentIndexes[i]]"
             class="product-image"
             alt="Product image"
           />
-          <!-- Navigation buttons -->
+       
           <button
             class="prev-btn"
             (click)="previousImage(i, product.imageUrl); $event.stopPropagation()"
@@ -42,7 +42,7 @@
           </button>
         </div>
 
-        <!-- Single image display -->
+       
         <div *ngIf="!product.images || product.images.length === 1">
           <img
             [src]="url + (product.images?.[0] || product.imageUrl)"
@@ -50,8 +50,27 @@
             alt="Product image"
           />
         </div>
+      </div> -->
+      <div class="card-image" (mouseenter)="onHover(i, product.imageUrl)" (mouseleave)="onLeave(i)">
+        <div *ngIf="product.imageUrl?.length > 1" class="carousel">
+          <!-- Image Display -->
+          <img
+            [src]="url + product.imageUrl[currentIndexes[i]]"
+            class="product-image"
+            alt="Product image"
+          />
+        </div>
+      
+        <!-- Single Image Display -->
+        <div *ngIf="!product.imageUrl || product.imageUrl.length === 1">
+          <img
+            [src]="url + (product.imageUrl?.[0] || product.imageUrl)"
+            class="product-image"
+            alt="Product image"
+          />
+        </div>
       </div>
-
+      
       <!-- Card Details -->
       <div class="card-details">
         <h2>{{ product.name }}</h2>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component,OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component,OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { CartService } from '../../app/cart.service';
 import { Router } from '@angular/router';
@@ -18,11 +18,14 @@ import { AuthService } from '../../shared/authService';
 export class HeaderComponent implements OnInit {
   showSearchBar = false;
   cartCount:number =0;
+  showCategoryContent = false;
+  showSamePinchContent = false;
   userId: any;
-  constructor(private authService:AuthService, private SharedService:SharedService,private cartService:CartService , private router:Router , private searchService:SearchService){
+  constructor(private cdRef: ChangeDetectorRef,private authService:AuthService, private SharedService:SharedService,private cartService:CartService , private router:Router , private searchService:SearchService){
 
   }
   ngOnInit(): void {
+    this.setFlagFromLocalStorage();
     // this.cartService.currentItems.subscribe( data => {
     //  console.log("data:", data);
     //  this.cartCount = data.length;
@@ -64,7 +67,26 @@ export class HeaderComponent implements OnInit {
    toggleSearchBar() {
     this.showSearchBar = !this.showSearchBar; // Toggles the search bar visibility
   }
-
+  setFlagFromLocalStorage() {
+    const selectedFlag = localStorage.getItem('selectedFlag');
+    console.log('Selected Flag from LocalStorage:', selectedFlag);
+  
+    if (selectedFlag === 'customize') {
+      this.showCategoryContent = true;
+      this.showSamePinchContent = false;
+    } else {
+      this.showCategoryContent = false;
+      this.showSamePinchContent = true;
+    }
+  
+    // Manually trigger change detection after setting the flags
+    this.cdRef.detectChanges();
+  
+    console.log('Final State After Loading:', {
+      showCategoryContent: this.showCategoryContent,
+      showSamePinchContent: this.showSamePinchContent
+    });
+  }
   goToCart() {
     this.router.navigate(['/cart']);
   }

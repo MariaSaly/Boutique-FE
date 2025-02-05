@@ -12,43 +12,32 @@
 </div>
 <div class="boutique-container" >
 
-    <!-- Left Side: Image Gallery -->
-    <div class="image-gallery">
-      <!-- Large Display Image -->
-      <div class="featured-image">
-        <img [src]="url + itemData.imageUrl[currentIndex]" alt="Gallery Image" class="featured-img" />
-        <a href="https://app.epatrolz.com" class="hover-link" target="_blank">https://app.epatrolz.com</a>
-        <!-- Navigation Buttons (only if multiple images exist) -->
-        <button 
-          *ngIf="itemData.imageUrl.length > 1" 
-          class="prev-btn"
-          (click)="previousImage(); $event.stopPropagation()"
-          type="button"
-        >
-          &#10094;
-        </button>
-    
-        <button 
-          *ngIf="itemData.imageUrl.length > 1" 
-          class="next-btn"
-          (click)="nextImage(); $event.stopPropagation()"
-          type="button"
-        >
-          &#10095;
-        </button>
+  <div class="image-gallery">
+    <!-- Large Display Image -->
+    <div class="featured-image">
+      <div class="slider-wrapper" [ngStyle]="{'transform': 'translateX(-' + (currentIndex * 100) + '%)'}">
+        <img 
+          *ngFor="let img of itemData?.imageUrl" 
+          [src]="url + img" 
+          alt="Gallery Image" 
+          class="featured-img"
+        />
       </div>
     
-      <!-- Thumbnail Navigation -->
-      <!-- <div class="thumbnails" *ngIf="imageUrls.length > 1">
-        <img 
-          *ngFor="let img of itemData.imageUrl; let i = index"
-          [src]="url + img"
-          [ngClass]="{'active': i === currentIndex}"
-          (click)="selectImage(i)"
-          class="thumbnail"
-        />
-      </div> -->
+      <a href="https://app.epatrolz.com" class="hover-link" target="_blank">https://app.epatrolz.com</a>
+    
+      <!-- Indicator Dots -->
+      <div class="indicator-container">
+        <div 
+          *ngFor="let img of itemData?.imageUrl; let i = index" 
+          class="indicator-bar" 
+          [ngClass]="{'active': i === currentIndex}">
+        </div>
+      </div>
     </div>
+  
+  
+  </div>
   
     <!-- Right Side: Product Details -->
     <div class="product-details">
@@ -109,14 +98,14 @@
         <p *ngIf="itemData.stock === 0" class="out-of-stock">Out of Stock</p>
       </div>
       <!-- Customization -->
-      <div class="customization">
+      <!-- <div class="customization">
         <h3>Customization</h3>
         <textarea
           [(ngModel)]="customText"
          
           placeholder="Enter customization details..."
         ></textarea>
-      </div>
+      </div> -->
      
   
       <!-- Quantity & Actions -->

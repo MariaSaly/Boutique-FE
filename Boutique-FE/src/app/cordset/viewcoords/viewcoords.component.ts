@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { environment } from '../../../environment';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -7,6 +7,7 @@ import { HttpService } from '../../../service/httpService';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { customizationTextService } from '../../../service/customizationtextService';
 
 @Component({
   selector: 'app-viewcoords',
@@ -16,8 +17,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './viewcoords.component.css'
 })
 export class ViewcoordsComponent {
-
+  @Input() imageUrls: string[] = [];
     userId: any;
+    interval: any;
     itemId: string | null = '';
     public url = environment.localUrl;
      size:string = 'M'
@@ -36,10 +38,49 @@ export class ViewcoordsComponent {
       this.http.get(`${this.url}/api/items/getItemById/${this.itemId}`).subscribe( data => {
         console.log("data:", data);
         this.itemData = data;
-      
+        if (this.itemData?.imageUrl?.length > 1) {
+          this.startImageRotation();
+        }
       
          
       })
+    }
+    startImageRotation() {
+      this.interval = setInterval(() => {
+        this.currentIndex = (this.currentIndex + 1) % this.itemData.imageUrl.length;
+      }, 5000); // Slide every 5 seconds
+    }
+  
+    ngOnDestroy() {
+      if (this.interval) {
+        clearInterval(this.interval);
+      }
+    }
+
+    isSizeGuideOpen = false;
+
+    selectSize(size: string) {
+      this.selectedSize = size;
+    }
+  
+    sizeGuide = [
+      {Size: 'S', chest: '32"', waist: '28"', length: '55"' },
+      { Size: 'M', chest: '34"', waist: '30"', length: '55"' },
+      { Size: 'L', chest: '36"', waist: '32"', length: '55"' },
+      { Size: 'XL', chest: '38"', waist: '34"', length: '55"' },
+      { Size: '2XL', chest: '40"', waist: '36"', length: '55"' },
+      { Size: '3XL', chest: '42"', waist: '38"', length: '55"' },
+      { Size: '4XL', chest: '44"', waist: '40"', length: '55"' },
+      { Size: '5XL', chest: '46"', waist: '42"', length: '55"' },
+      { Size: '6XL', chest: '48"', waist: '42"', length: '55"' },
+    ];
+  
+    openSizeGuide() {
+      this.isSizeGuideOpen = true;
+    }
+  
+    closeSizeGuide() {
+      this.isSizeGuideOpen = false;
     }
     fetchImageForItems(Item: any): void {
       
@@ -88,19 +129,14 @@ export class ViewcoordsComponent {
       // Add more image paths here
     ];
   
-    sizes = ['S', 'M', 'L', 'XL'];
+    sizes = ['S', 'M', 'L','XL','2XL','3XL','4XL','5XL','6XL',];
     selectedSize: string = 'M';
   
     customText: string = '';
     quantity: number = 0;
   
-    selectImage(image: string) {
-      this.selectedImage = image;
-    }
-  
-    selectSize(size: string) {
-      this.selectedSize = size;
-    }
+
+ 
   
     increaseQuantity(): void {
       if(this.quantity === this.selectedProduct.stock){
@@ -201,18 +237,18 @@ export class ViewcoordsComponent {
     images: string[] = [
      
     ];
-    currentIndex: number = 0;
-  
-    nextImage() {
-      if (this.images.length > 0) {
-        this.currentIndex = (this.currentIndex + 1) % this.images.length;
-      }
+    currentIndex = 0;
+    previousImage() {
+      this.currentIndex = this.currentIndex > 0 ? this.currentIndex - 1 : this.itemData.imageUrl.length - 1;
     }
   
-    previousImage() {
-      if (this.images.length > 0) {
-        this.currentIndex =
-          (this.currentIndex - 1 + this.images.length) % this.images.length;
-      }
+    // Navigate to the next image
+    nextImage() {
+      this.currentIndex = this.currentIndex < this.itemData.imageUrl.length - 1 ? this.currentIndex + 1 : 0;
+    }
+  
+    // Select a specific image via thumbnails
+    selectImage(index: number) {
+      this.currentIndex = index;
     }
 }

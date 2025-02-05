@@ -8,6 +8,7 @@ import { environment } from '../../../environment';
 import { HttpClient } from '@angular/common/http';
 import { user } from '@angular/fire/auth';
 import { ToastrService } from 'ngx-toastr';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-view-bridal-costumes',
@@ -19,6 +20,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ViewBridalCostumesComponent {
   @Input() imageUrls: string[] = [];
     userId: any;
+    interval:any;
     itemId: string | null = '';
     public url = environment.localUrl;
      size:string = 'M'
@@ -64,10 +66,23 @@ export class ViewBridalCostumesComponent {
       this.http.get(`${this.url}/api/items/getItemById/${this.itemId}`).subscribe( data => {
         console.log("data:", data);
         this.itemData = data;
-      
+        if (this.itemData?.imageUrl?.length > 1) {
+          this.startImageRotation();
+        }
       
          
       })
+    }
+    startImageRotation() {
+      this.interval = setInterval(() => {
+        this.currentIndex = (this.currentIndex + 1) % this.itemData.imageUrl.length;
+      }, 5000); // Slide every 5 seconds
+    }
+  
+    ngOnDestroy() {
+      if (this.interval) {
+        clearInterval(this.interval);
+      }
     }
     fetchImageForItems(Item: any): void {
       
@@ -158,7 +173,7 @@ export class ViewBridalCostumesComponent {
         this.userId = userData.user_id;
         console.log("userid:", this.userId);
       
-      this.cartService.addToCart(this.userId,productId,this.size,qty).subscribe( data => {
+      this.cartService.addToCart(this.userId,productId,this.selectedSize,qty).subscribe( data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
         this.toastService.success('Cart added Sucessfully!');
@@ -171,7 +186,7 @@ export class ViewBridalCostumesComponent {
       const productId = this.itemData.id;
       const qty = this.quantity;
       
-      this.cartService.addToCartGuestUser(guestId,productId,this.size,qty).subscribe( data => {
+      this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty).subscribe( data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
         this.toastService.success('Cart added Sucessfully!');
@@ -203,7 +218,7 @@ export class ViewBridalCostumesComponent {
         this.userId = userData.user_id;
         console.log("userid:", this.userId);
       
-      this.cartService.addToCart(this.userId,productId,this.size,qty).subscribe( data => {
+      this.cartService.addToCart(this.userId,productId,this.selectedSize,qty).subscribe( data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
@@ -216,7 +231,7 @@ export class ViewBridalCostumesComponent {
       const productId = this.itemData.id;
       const qty = this.quantity;
       
-      this.cartService.addToCartGuestUser(guestId,productId,this.size,qty).subscribe( data => {
+      this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty).subscribe( data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);

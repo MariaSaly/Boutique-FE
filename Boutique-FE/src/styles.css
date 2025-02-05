@@ -1,7 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'ngx-toastr/toastr';
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Montserrat", sans-serif; }
+body { margin: 0;  }
 
-
+body {
+      font-family: 'Montserrat', sans-serif;
+    font-size: 16px; /* Set a default font size */
+    color: #333; /* Optional: Set a global text color */
+    line-height: 1;
+  }
 

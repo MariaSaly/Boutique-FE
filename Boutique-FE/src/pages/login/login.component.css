@@ -1,8 +1,17 @@
 /* General Styling */
+.lo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #f0f4f8;
-  margin: 0;
+  background-color: #000;
+  color: #FFD700; /* Gold text */
+  margin: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,33 +21,27 @@ body {
 
 /* Login Container */
 .login-container {
-  max-width: 420px;
+
+  max-width: 400px;
   width: 100%;
   padding: 35px;
-  background: linear-gradient(145deg, #ffffff, #f0f4f8);
+  background: linear-gradient(145deg, #111, #222); /* Black gradient */
   border-radius: 20px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+justify-content: center;
+align-items: center;
   text-align: center;
   position: relative;
   margin: 0 auto;
 }
 
-/* Centering the container in Web View */
-@media (min-width: 601px) {
-  .login-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
+
 
 /* Mobile View Adjustments */
 @media (max-width: 600px) {
   .login-container {
     margin: 90px auto 20px;
     padding: 30px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.2);
   }
 
   .form-container {
@@ -46,64 +49,30 @@ body {
   }
 }
 
-/* Logo Section with Animation */
+/* Logo Section */
 .logo-container {
   width: 120px;
   height: 120px;
   margin: 0 auto 25px;
-  background-color: transparent;
+  background: radial-gradient(circle, #FFD700 20%, #222 80%); /* Gold to Black */
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  /* box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);  */
   position: relative;
-  animation: float 3s ease-in-out infinite;
 }
 
-/* Adding Glow and Rotation Effect on Hover */
-.logo-container:hover {
-  animation: rotateGlow 2s ease-in-out infinite;
-}
-
+/* Logo */
 .logo {
   width: 100px;
   height: 100px;
-  background-image: url('../../assets/images/mo1.png'); /* Replace with your logo image */
+  background-image: url('../../assets/images/mo1.png'); /* Replace with your logo */
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 50%;
-  border: 5px solid #fff;
-}
-
-/* Floating Animation */
-@keyframes float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-/* Glowing and Rotating Effect */
-@keyframes rotateGlow {
-  0% {
-    transform: rotate(0deg);
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
-  }
-  50% {
-    transform: rotate(180deg);
-    box-shadow: 0 0 20px rgba(0, 123, 255, 1);
-  }
-  100% {
-    transform: rotate(360deg);
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
-  }
+  border: 2px solid #FFD700; 
 }
 
 /* Form Container */
@@ -122,21 +91,24 @@ label {
   font-size: 14px;
   margin-bottom: 8px;
   display: block;
+  color: #FFD700; /* Gold text */
 }
 
 input.form-control {
   width: 100%;
   padding: 12px;
   font-size: 16px;
-  border: 1px solid #ddd;
+  border: 1px solid #FFD700; /* Gold border */
   border-radius: 8px;
+  background: transparent;
+  color: #FFD700; /* Gold text */
   box-sizing: border-box;
   transition: all 0.3s ease;
 }
 
 input.form-control:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+  border-color: #FFA500;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.8); /* Gold glow */
   outline: none;
 }
 
@@ -144,8 +116,8 @@ input.form-control:focus {
 .login-button {
   padding: 12px;
   font-size: 16px;
-  color: white;
-  background-color: #007bff;
+  color: #000;
+  background-color: #FFD700; /* Gold button */
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -156,11 +128,12 @@ input.form-control:focus {
 }
 
 .login-button:hover {
-  background-color: #0056b3;
+  background-color: #FFA500; /* Darker gold on hover */
 }
 
+/* Sign Up Button */
 .signup-button {
-  color: #007bff;
+  color: #FFD700; /* Gold text */
   background: none;
   border: none;
   font-size: 14px;
@@ -169,18 +142,20 @@ input.form-control:focus {
 }
 
 .signup-button:hover {
-  color: #0056b3;
+  color: #FFA500; /* Orange-gold on hover */
 }
 
 /* Spacing for "Don't have an account?" */
 #navigate {
   margin-top: 20px;
   font-size: 14px;
-  color: #555;
+  color: #FFD700;
 }
-
+h2{
+  color: #FFD700; 
+}
 /* Responsive Design for Mobile */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .login-container {
     padding: 25px;
   }

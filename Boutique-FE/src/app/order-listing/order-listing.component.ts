@@ -6,10 +6,11 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpServiceWithHeaders } from '../../service/httpServiceForAdmin';
 import { jsPDF } from 'jspdf';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-order-listing',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   standalone:true,
   templateUrl: './order-listing.component.html',
   styleUrl: './order-listing.component.css'
@@ -17,6 +18,8 @@ import { jsPDF } from 'jspdf';
 export class OrderListingComponent implements OnInit {
   private url = environment.localUrl
   ordersWithDates: any;
+  filteredOrders: any[] = []; 
+  selectedStatus: string = "";  
  constructor( private http:HttpServiceWithHeaders , private router:Router , private httpClient:HttpService){
    
  }
@@ -39,6 +42,7 @@ export class OrderListingComponent implements OnInit {
         };
       });
       this.generateInvoice();
+      this.filteredOrders = [...this.ordersWithDates]
     
       console.log("ordersWithDates:", this.ordersWithDates);
     });
@@ -54,6 +58,14 @@ export class OrderListingComponent implements OnInit {
   getItemData(userId:string):Promise<any>{
     return this.httpClient.get<any>(`${this.url}/api/items/getItemById/${userId}`).toPromise()
   }
+  filterOrders() {
+    if (this.selectedStatus) {
+      this.filteredOrders = this.ordersWithDates.filter((order:any) => order.status === this.selectedStatus);
+    } else {
+      this.filteredOrders = [...this.ordersWithDates]; // Show all if no filter selected
+    }
+  }
+
   async generateInvoice() {
     const filteredOrder = this.ordersWithDates.filter((item: any) => item.status === 'paid');
     let generateObjects: any = [];
@@ -170,6 +182,7 @@ generateTemplate(order: any): string[] {
       `---------------------------------------------------`
   ];
 }
+
 
 
 

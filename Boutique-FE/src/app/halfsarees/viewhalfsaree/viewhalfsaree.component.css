@@ -16,66 +16,93 @@ body {
     margin: 0 auto;
   }
   
+  .featured-image:hover .hover-link {
+    display: flex; /* Show the link on hover */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
   /* Left Side: Image Gallery */
-  .image-gallery {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .featured-image {
-    width: 100%;
-    max-width: 500px;
+  .image-gallery { 
+    text-align: center;
+    position: relative;
+    width: 500px;
     height: 500px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    /* background-image: url('../../../assets/images/lehanga.png'); */
-    background-size: cover; /* Ensures the image covers the container fully */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-  }
-  
-  .featured-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-  }
-  
-  .thumbnails {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-   
-  }
-  
-  .thumbnail {
-    width: 70px;
-    height: 70px;
-    border: 2px solid transparent;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-    cursor: pointer;
-   
-    background-size: contain; /* Ensures the image covers the container fully */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-  }
-  
-  .thumbnail:hover,
-  .thumbnail.active {
-    border-color: #d4af37; /* Luxurious gold accent */
-    transform: scale(1.1);
-  }
-  
-  .thumbnail-img {
+    margin: auto;
+    margin-bottom: 10px;
+    overflow: hidden; /* Ensures no overflow issues */
+}
+
+.featured-image {
+    position: relative;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-  }
+    margin: auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fix slider wrapper width */
+.slider-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 1s ease-in-out;
+}
+
+/* Ensure all images take full slider space */
+.featured-img {
+    width: 100% !important; /* Force each image to take full width */
+    height: 100%;
+    max-width: unset; /* Remove any width restrictions */
+    object-fit: contain; /* Ensure image is fully visible */
+    object-position: center; /* Center the image */
+    flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+/* Indicator Container */
+.indicator-container {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+/* Indicator Bars */
+.indicator-bar {
+    width: 30px;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    transition: background-color 0.5s ease-in-out;
+}
+
+/* Mobile-specific styling */
+@media (max-width: 480px) {
+    .image-gallery {
+        width: 100%;
+        height: 300px !important;
+    }
+
+    .featured-image {
+        height: 100%;
+    }
+
+    .featured-img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+:host {
+  line-height: normal !important;
+ }
+
   
   /* Right Side: Product Details */
   .product-details {
