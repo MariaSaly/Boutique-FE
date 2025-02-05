@@ -119,7 +119,9 @@ body {
   }
 }
 
-
+:host {
+  line-height: normal !important;
+ }
 
 
 

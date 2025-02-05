@@ -6,6 +6,9 @@
 .home-link {
   text-decoration: none; /* Underline for home link */
 }
+:host {
+  line-height: normal !important;
+ }
 /* Global Styles */
 body {
     font-family: 'Lora', serif; /* Elegant serif font for headings */

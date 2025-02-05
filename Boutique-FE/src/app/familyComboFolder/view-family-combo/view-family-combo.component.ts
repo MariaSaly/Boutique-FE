@@ -171,7 +171,7 @@ export class ViewFamilyComboComponent {
         this.userId = userData.user_id;
         console.log("userid:", this.userId);
       
-      this.cartService.addToCart(this.userId,productId,this.size,qty).subscribe( data => {
+      this.cartService.addToCart(this.userId,productId,this.selectedSize,qty).subscribe( data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
         this.toastService.success('Cart added Sucessfully!');
@@ -184,7 +184,7 @@ export class ViewFamilyComboComponent {
       const productId = this.itemData.id;
       const qty = this.quantity;
       
-      this.cartService.addToCartGuestUser(guestId,productId,this.size,qty).subscribe( data => {
+      this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty).subscribe( data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
         this.toastService.success('Cart added Sucessfully!');
@@ -216,7 +216,7 @@ export class ViewFamilyComboComponent {
         this.userId = userData.user_id;
         console.log("userid:", this.userId);
       
-      this.cartService.addToCart(this.userId,productId,this.size,qty).subscribe( data => {
+      this.cartService.addToCart(this.userId,productId,this.selectedSize,qty).subscribe( data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
@@ -229,7 +229,7 @@ export class ViewFamilyComboComponent {
       const productId = this.itemData.id;
       const qty = this.quantity;
       
-      this.cartService.addToCartGuestUser(guestId,productId,this.size,qty).subscribe( data => {
+      this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty).subscribe( data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
