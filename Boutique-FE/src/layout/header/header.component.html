@@ -1,7 +1,10 @@
 <div class="header">
   <!-- First Row: Logo, Brand, Cart, Profile, and Search Icon -->
   <div class="header-top">
-    <div class="logo-container">
+    <div class="logo-container1"*ngIf="showCategoryContent" [ngClass]="{ 'show-category': showCategoryContent }">
+      <img src="./media/Miya.png" alt="Miya Designers Logo" class="logo" />
+    </div>
+    <div class="logo-container"*ngIf="showSamePinchContent" [ngClass]="{ 'show-samepinch': showSamePinchContent }">
       <img src="./media/mo1.png" alt="Miya Designers Logo" class="logo" />
     </div>
     <div class="icons">
