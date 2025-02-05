@@ -1,7 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'ngx-toastr/toastr';
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0;  }
 
-
+body {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; /* Replace with your preferred font */
+    font-size: 16px; /* Set a default font size */
+    color: #333; /* Optional: Set a global text color */
+    line-height: 0.5;
+  }
 

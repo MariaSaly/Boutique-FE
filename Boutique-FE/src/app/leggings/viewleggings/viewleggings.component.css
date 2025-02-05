@@ -99,7 +99,9 @@ body {
         height: 100%;
     }
 }
-  
+:host {
+  line-height: normal !important;
+ }
 
   
   /* Right Side: Product Details */

@@ -72,7 +72,9 @@ body {
     display: flex;
     gap: 8px;
 }
-
+:host {
+  line-height: normal !important;
+ }
 /* Indicator Bars */
 .indicator-bar {
     width: 30px;

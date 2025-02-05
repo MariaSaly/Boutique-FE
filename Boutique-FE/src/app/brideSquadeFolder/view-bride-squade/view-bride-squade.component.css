@@ -112,7 +112,9 @@ body {
   }
 }
 
-
+:host {
+  line-height: normal !important;
+ }
 
 /* Right Side: Product Details */
 .product-details {
