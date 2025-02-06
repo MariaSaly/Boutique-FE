@@ -20,14 +20,31 @@ export class LoginComponent {
   showPopup = false; // Control popup visibility
   popupTitle = ''; // Title for the popup
   popupMessage = ''; // Message for the popup
+  forgotPasswordForm: FormGroup;
+  showForgotPasswordModal = false;
 
   constructor(private router: Router, private authService: AuthService , private http:HttpService) {
     this.loginform = new FormGroup({
       email: new FormControl('', [Validators.email, Validators.required]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)]),
     });
+    this.forgotPasswordForm = new FormGroup({
+      email: new FormControl('',Validators.required)
+    });
   }
- 
+  openForgotPasswordModal() {
+    this.showForgotPasswordModal = true;
+  }
+  closeForgotPasswordModal() {
+    this.showForgotPasswordModal = false;
+  }
+  resetPassword() {
+    if (this.forgotPasswordForm.valid) {
+      const email = this.forgotPasswordForm.value.email;
+      this.authService.resetPassword(email).subscribe();
+      this.closeForgotPasswordModal();
+    }
+  }
   
   onLogin(): void {
     if (this.loginform.valid) {

@@ -1,13 +1,15 @@
 <div class="order-list">
   <header class="order-list-header">
     <h1>Your Orders</h1>
-    
+
+    <button (click)="generateInvoice()" class="btn btn-invoice" (click)="generateInvoice()">Generate Invoice</button>
+
     <!-- Status Filter Dropdown -->
     <select [(ngModel)]="selectedStatus" (change)="filterOrders()" class="order-filter">
       <option value="">All</option>
       <option value="pending">Pending</option>
-      <option value="dispatched">Dispatched</option>
-      <option value="delivered">Delivered</option>
+      <option value="Cancelled">Cancelled</option>
+      <option value="Delivered">Delivered</option>
       <option value="paid">Paid</option>
     </select>
   </header>
@@ -21,6 +23,7 @@
       <div class="order-card-body">
         <p><strong>Order Date:</strong> {{ order.jsDate }}</p>
         <p><strong>Total Amount:</strong> {{ order.totalAmount }}</p>
+        <p><strong>Status:</strong> {{ order.status }}</p>
       </div>
       <div class="order-card-footer">
         <button (click)="viewOrder(order.id)" class="btn btn-view">View</button>

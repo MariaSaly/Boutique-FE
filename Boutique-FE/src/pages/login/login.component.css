@@ -1,5 +1,5 @@
-/* General Styling */
-.lo{
+/* ---------- General Styling (already in your code) ---------- */
+.lo {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,6 +7,7 @@
   height: 100%;
   padding: 20px;
 }
+
 body {
   font-family: "Poppins", sans-serif;
   background-color: #000;
@@ -21,32 +22,16 @@ body {
 
 /* Login Container */
 .login-container {
-
   max-width: 400px;
   width: 100%;
   padding: 35px;
-  background: linear-gradient(145deg, #111, #222); /* Black gradient */
+  background: linear-gradient(145deg, #111, #222);
   border-radius: 20px;
-justify-content: center;
-align-items: center;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   position: relative;
   margin: 0 auto;
-}
-
-
-
-/* Mobile View Adjustments */
-@media (max-width: 600px) {
-  .login-container {
-    margin: 90px auto 20px;
-    padding: 30px;
-    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.2);
-  }
-
-  .form-container {
-    gap: 20px;
-  }
 }
 
 /* Logo Section */
@@ -54,16 +39,14 @@ align-items: center;
   width: 120px;
   height: 120px;
   margin: 0 auto 25px;
-  background: radial-gradient(circle, #FFD700 20%, #222 80%); /* Gold to Black */
+  background: radial-gradient(circle, #FFD700 20%, #222 80%);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);  */
   position: relative;
 }
 
-/* Logo */
 .logo {
   width: 100px;
   height: 100px;
@@ -72,7 +55,7 @@ align-items: center;
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 50%;
-  border: 2px solid #FFD700; 
+  border: 2px solid #FFD700;
 }
 
 /* Form Container */
@@ -91,33 +74,33 @@ label {
   font-size: 14px;
   margin-bottom: 8px;
   display: block;
-  color: #FFD700; /* Gold text */
+  color: #FFD700;
 }
 
 input.form-control {
   width: 100%;
   padding: 12px;
   font-size: 16px;
-  border: 1px solid #FFD700; /* Gold border */
+  border: 1px solid #FFD700;
   border-radius: 8px;
   background: transparent;
-  color: #FFD700; /* Gold text */
+  color: #FFD700;
   box-sizing: border-box;
   transition: all 0.3s ease;
 }
 
 input.form-control:focus {
   border-color: #FFA500;
-  box-shadow: 0 0 8px rgba(255, 215, 0, 0.8); /* Gold glow */
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
   outline: none;
 }
 
-/* Button Styling */
+/* Buttons */
 .login-button {
   padding: 12px;
   font-size: 16px;
   color: #000;
-  background-color: #FFD700; /* Gold button */
+  background-color: #FFD700;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -128,12 +111,11 @@ input.form-control:focus {
 }
 
 .login-button:hover {
-  background-color: #FFA500; /* Darker gold on hover */
+  background-color: #FFA500;
 }
 
-/* Sign Up Button */
 .signup-button {
-  color: #FFD700; /* Gold text */
+  color: #FFD700;
   background: none;
   border: none;
   font-size: 14px;
@@ -142,29 +124,124 @@ input.form-control:focus {
 }
 
 .signup-button:hover {
-  color: #FFA500; /* Orange-gold on hover */
+  color: #FFA500;
 }
 
-/* Spacing for "Don't have an account?" */
 #navigate {
   margin-top: 20px;
   font-size: 14px;
   color: #FFD700;
 }
-h2{
-  color: #FFD700; 
+
+h2 {
+  color: #FFD700;
 }
-/* Responsive Design for Mobile */
+
+/* ---------- Forgot Password Modal Styling ---------- */
+
+/* Overlay to block the UI */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background: #222; /* Dark background to match theme */
+  padding: 25px;
+  border-radius: 12px;
+  width: 320px;
+  text-align: center;
+  border: 2px solid #FFD700;
+  color: #FFD700;
+}
+
+/* Heading in the Modal */
+.modal-content h3 {
+  margin-top: 0;
+  color: #FFD700;
+}
+
+/* Input inside Modal */
+.modal-content input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin: 15px 0;
+  font-size: 16px;
+  border: 1px solid #FFD700;
+  border-radius: 8px;
+  background: transparent;
+  color: #FFD700;
+  box-sizing: border-box;
+}
+
+/* Modal Buttons Container */
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Cancel Button (styled similarly to link) */
+.cancel-button {
+  padding: 12px;
+  font-size: 16px;
+  color: #FFD700;
+  background: transparent;
+  border: 1px solid #FFD700;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.cancel-button:hover {
+  background-color: #FFD700;
+  color: #000;
+}
+
+/* Close (X) Button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #FFD700;
+}
+
+/* Responsive Adjustments for Modal (if needed) */
 @media (max-width: 480px) {
-  .login-container {
-    padding: 25px;
+  .modal-content {
+    width: 90%;
   }
+}
+.forgot-password {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #FFD700;
+  background: transparent;
+  border: 2px solid #FFD700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 10px 0;
+}
 
-  .form-group {
-    margin-bottom: 18px;
-  }
-
-  .form-container {
-    gap: 20px;
-  }
+.forgot-password:hover {
+  background: #FFD700;
+  color: #000;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
 }

@@ -1,5 +1,5 @@
 import { inject, Inject, Injectable } from '@angular/core';
-import { Auth ,createUserWithEmailAndPassword ,signInWithCredential,signInWithEmailAndPassword,UserCredential} from '@angular/fire/auth';
+import { sendPasswordResetEmail,Auth ,createUserWithEmailAndPassword ,signInWithCredential,signInWithEmailAndPassword,UserCredential} from '@angular/fire/auth';
 import { Router } from '@angular/router';
 //import { createUserWithEmailAndPassword } from 'firease/auth';
 import { from, Observable } from 'rxjs';
@@ -51,6 +51,20 @@ export class AuthService {
     // Assuming userRole is extracted from decodedToken
     const userRole = decodedToken?.role; // Adjust this depending on your token structure
     return this.isLoggedIn() && userRole === 'admin' || userRole === 'superAdmin';
+  }
+  //reset password email 
+  resetPassword(email: string): Observable<void> {
+    const promise = sendPasswordResetEmail(this.firebaseAuth, email)
+      .then(() => {
+        console.log('Password reset email sent successfully.');
+        alert('Password reset email sent. Check your inbox.');
+      })
+      .catch((error) => {
+        console.error('Error sending password reset email:', error);
+        alert(error.message);
+      });
+  
+    return from(promise);
   }
 
   // login method

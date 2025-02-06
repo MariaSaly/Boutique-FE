@@ -41,7 +41,7 @@ export class OrderListingComponent implements OnInit {
           jsDate, // Add the converted JavaScript date
         };
       });
-      this.generateInvoice();
+      // this.generateInvoice();
       this.filteredOrders = [...this.ordersWithDates]
     
       console.log("ordersWithDates:", this.ordersWithDates);
