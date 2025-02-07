@@ -4,6 +4,7 @@
   background-color: black;
   padding: 10px 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+ 
 /* padding-top:8px ;
 padding: 20px;
 padding-right: 20px;
@@ -38,7 +39,7 @@ padding-bottom: 0px; */
       display: flex;
       align-items: center;
       gap: 10px;
-      
+      font-family: 'Poppins';
       .logo {
         
         width: auto;
@@ -134,10 +135,11 @@ padding-bottom: 0px; */
     display: flex;
     justify-content: center;
     gap: 20px;
-
+    font-family: 'Poppins';
     button {
-      font-size: 16px;
-      font-weight: bold;
+      font-family: 'Poppins';
+      font-size: 18px;
+      font-weight: bolder;
       color:#FFD700;;
       background: none;
       border: none;
@@ -169,7 +171,8 @@ padding-bottom: 0px; */
   padding-left: 100%; /* Start outside of the container */
   animation: scroll-left 20s linear infinite; /* Animation for scrolling */
   color: #FFD700;
-  font-size: medium;
+  font-size: large;
+  /* font-weight: bolder; */
 }
 
 /* Keyframes for continuous scrolling */
@@ -183,6 +186,7 @@ padding-bottom: 0px; */
 }
 @media(max-width:480px){
   .header-bottom {
+    font-size: larger;
     display: flex;
     justify-content: start;
     overflow-x: auto;
