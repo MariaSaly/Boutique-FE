@@ -39,84 +39,86 @@
   
   </div>
   
+    <!-- Right Side: Product Details -->
+    <div class="product-details">
+      <!-- Product Info -->
+      <h1 class="product-title">{{ itemData.name}}</h1>
+      <p class="product-description">{{ itemData.description }}</p>
+      <p class="price">{{ itemData.price | currency }}</p>
   
-
-  <!-- Right Side: Product Details -->
-  <div class="product-details">
-    <!-- Product Info -->
-    <h1 class="product-title">{{ itemData.name}}</h1>
-    <p class="product-description">{{ itemData.description }}</p>
-    <p class="price">{{ itemData.price | currency }}</p>
-
-    <!-- Size Selection -->
-    <div class="size-options">
-      <h3>Select Size</h3>
-      <div class="size-buttons">
-        <button
-          *ngFor="let size of sizes"
-          class="size-btn"
-          [class.selected]="size === selectedSize"
-          (click)="selectSize(size)"
-        >
-          {{ size }}
+      <div class="sizeguide" *ngIf="selectedProduct.stock > 0">
+        <button class="sizeguide-btn" (click)="openSizeGuide()">
+          <h3>Size Guide</h3>
         </button>
       </div>
-    </div>
-
-    <div class="sizeguide" *ngIf="selectedProduct.stock > 0">
-      <button class="sizeguide-btn" (click)="openSizeGuide()">
-        <h3>Size Guide</h3>
-      </button>
-    </div>
-    <div class="size-modal" *ngIf="isSizeGuideOpen">
-      <div class="size-modal-content">
-        <span class="close-btn" (click)="closeSizeGuide()">&times;</span>
-        <h2>Size Guide</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Size</th>
-              <th>Chest</th>
-              <th>Waist</th>
-              <th>Length</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let size of sizeGuide">
-              <td>{{ size.Size }}</td>
-              <td>{{ size.chest }}</td>
-              <td>{{ size.waist }}</td>
-              <td>{{ size.length }}</td>
-            </tr>
-          </tbody>
-        </table>
+      
+      <!-- Popup Modal -->
+      <div class="size-modal" *ngIf="isSizeGuideOpen">
+        <div class="size-modal-content">
+          <span class="close-btn" (click)="closeSizeGuide()">&times;</span>
+          <h2>Size Guide</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Size</th>
+                <th>Chest</th>
+                <th>Waist</th>
+                <th>Length</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let size of sizeGuide">
+                <td>{{ size.Size }}</td>
+                <td>{{ size.chest }}</td>
+                <td>{{ size.waist }}</td>
+                <td>{{ size.length }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
-    <div class="stock-status">
-      <p *ngIf="itemData.stock > 0" class="in-stock">In Stock</p>
-      <p *ngIf="itemData.stock === 0" class="out-of-stock">Out of Stock</p>
-    </div>
-
-    <!-- Customization -->
-    <!-- <div class="customization">
-      <h3>Customization</h3>
-      <textarea
-        [(ngModel)]="customText"
-        placeholder="Enter customization details..."
-      ></textarea>
-    </div> -->
-
-    <!-- Quantity & Actions -->
-    <div class="actions">
-      <div class="quantity-control">
-        <button class="qty-btn" (click)="decreaseQuantity()">-</button>
-        <span>{{ quantity }}</span>
-        <button class="qty-btn" (click)="increaseQuantity()">+</button>
+      
+      <!-- Size Selection -->
+      <div class="size-options">
+        <h3>Select Size</h3>
+        <div class="size-buttons">
+          <button
+            *ngFor="let size of sizes"
+            class="size-btn"
+            [class.selected]="size === selectedSize"
+            (click)="selectSize(size)"
+          >
+            {{ size }}
+          </button>
+        </div>
       </div>
-      <div class="action-buttons">
-        <button class="btn add-to-cart" (click)="addToCart()">Add to Cart</button>
-        <button class="btn buy-now" (click)="buyNow()">Buy Now</button>
+      
+      <div class="stock-status">
+        <p *ngIf="itemData.stock > 0" class="in-stock">  In Stock ({{ itemData.stock }}) </p>
+        <p *ngIf="itemData.stock === 0" class="out-of-stock">Out of Stock</p>
+      </div>
+      <!-- Customization -->
+      <!-- <div class="customization">
+        <h3>Customization</h3>
+        <textarea
+          [(ngModel)]="customText"
+         
+          placeholder="Enter customization details..."
+        ></textarea>
+      </div> -->
+     
+  
+      <!-- Quantity & Actions -->
+      <div class="actions">
+        <div class="quantity-control">
+          <button class="qty-btn" (click)="decreaseQuantity()">-</button>
+          <span>{{ quantity }}</span>
+          <button class="qty-btn" (click)="increaseQuantity()">+</button>
+        </div>
+        <div class="action-buttons">
+          <button class="btn add-to-cart" (click)="addToCart()">Add to Cart</button>
+          <button class="btn buy-now" (click)="buyNow()">Buy Now</button>
+        </div>
       </div>
     </div>
   </div>
-</div>

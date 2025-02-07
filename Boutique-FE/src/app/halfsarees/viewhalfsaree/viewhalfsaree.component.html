@@ -3,43 +3,41 @@
      <a [routerLink]="'/home'" class="home-link" style="cursor: pointer;">
        Home/ 
     </a>
-    <a [routerLink]="'/momanddaughter'" class="home-link" style="cursor: pointer;">
-      MomAndDaughter
+    <a [routerLink]="'/halfsaree'" class="home-link" style="cursor: pointer;">
+      HalfSaree
    </a>
   </p>
   
   
 </div>
 <div class="boutique-container" >
- 
-    <!-- Left Side: Image Gallery -->
-    <div class="image-gallery">
-      <!-- Large Display Image -->
-      <div class="featured-image">
-        <div class="slider-wrapper" [ngStyle]="{'transform': 'translateX(-' + (currentIndex * 100) + '%)'}">
-          <img 
-            *ngFor="let img of itemData?.imageUrl" 
-            [src]="url + img" 
-            alt="Gallery Image" 
-            class="featured-img"
-          />
-        </div>
-      
-        <a href="https://app.epatrolz.com" class="hover-link" target="_blank">https://app.epatrolz.com</a>
-      
-        <!-- Indicator Dots -->
-        <div class="indicator-container">
-          <div 
-            *ngFor="let img of itemData?.imageUrl; let i = index" 
-            class="indicator-bar" 
-            [ngClass]="{'active': i === currentIndex}">
-          </div>
-        </div>
+
+  <div class="image-gallery">
+    <!-- Large Display Image -->
+    <div class="featured-image">
+      <div class="slider-wrapper" [ngStyle]="{'transform': 'translateX(-' + (currentIndex * 100) + '%)'}">
+        <img 
+          *ngFor="let img of itemData?.imageUrl" 
+          [src]="url + img" 
+          alt="Gallery Image" 
+          class="featured-img"
+        />
       </div>
     
+      <a href="https://app.epatrolz.com" class="hover-link" target="_blank">https://app.epatrolz.com</a>
     
+      <!-- Indicator Dots -->
+      <div class="indicator-container">
+        <div 
+          *ngFor="let img of itemData?.imageUrl; let i = index" 
+          class="indicator-bar" 
+          [ngClass]="{'active': i === currentIndex}">
+        </div>
+      </div>
     </div>
-    
+  
+  
+  </div>
   
     <!-- Right Side: Product Details -->
     <div class="product-details">
@@ -47,21 +45,6 @@
       <h1 class="product-title">{{ itemData.name}}</h1>
       <p class="product-description">{{ itemData.description }}</p>
       <p class="price">{{ itemData.price | currency }}</p>
-  
-      <!-- Size Selection -->
-      <div class="size-options">
-        <h3>Select Size</h3>
-        <div class="size-buttons">
-          <button
-            *ngFor="let size of sizes"
-            class="size-btn"
-            [class.selected]="size === selectedSize"
-            (click)="selectSize(size)"
-          >
-            {{ size }}
-          </button>
-        </div>
-      </div>
   
       <div class="sizeguide" *ngIf="selectedProduct.stock > 0">
         <button class="sizeguide-btn" (click)="openSizeGuide()">
@@ -94,20 +77,36 @@
           </table>
         </div>
       </div>
-
+      
+      <!-- Size Selection -->
+      <div class="size-options">
+        <h3>Select Size</h3>
+        <div class="size-buttons">
+          <button
+            *ngFor="let size of sizes"
+            class="size-btn"
+            [class.selected]="size === selectedSize"
+            (click)="selectSize(size)"
+          >
+            {{ size }}
+          </button>
+        </div>
+      </div>
+      
       <div class="stock-status">
-        <p *ngIf="itemData.stock > 0" class="in-stock">In Stock</p>
+        <p *ngIf="itemData.stock > 0" class="in-stock">  In Stock ({{ itemData.stock }}) </p>
         <p *ngIf="itemData.stock === 0" class="out-of-stock">Out of Stock</p>
       </div>
-
       <!-- Customization -->
-      <div class="customization">
+      <!-- <div class="customization">
         <h3>Customization</h3>
         <textarea
           [(ngModel)]="customText"
+         
           placeholder="Enter customization details..."
         ></textarea>
-      </div>
+      </div> -->
+     
   
       <!-- Quantity & Actions -->
       <div class="actions">

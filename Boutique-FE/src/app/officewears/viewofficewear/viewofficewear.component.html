@@ -4,13 +4,14 @@
        Home/ 
     </a>
     <a [routerLink]="'/officewear'" class="home-link" style="cursor: pointer;">
-      OfficeWear 
+      OfficeWear
    </a>
   </p>
   
   
 </div>
 <div class="boutique-container" >
+
   <div class="image-gallery">
     <!-- Large Display Image -->
     <div class="featured-image">
@@ -38,7 +39,6 @@
   
   </div>
   
-  
     <!-- Right Side: Product Details -->
     <div class="product-details">
       <!-- Product Info -->
@@ -46,7 +46,13 @@
       <p class="product-description">{{ itemData.description }}</p>
       <p class="price">{{ itemData.price | currency }}</p>
   
-
+      <div class="sizeguide" *ngIf="selectedProduct.stock > 0">
+        <button class="sizeguide-btn" (click)="openSizeGuide()">
+          <h3>Size Guide</h3>
+        </button>
+      </div>
+      
+      <!-- Popup Modal -->
       <div class="size-modal" *ngIf="isSizeGuideOpen">
         <div class="size-modal-content">
           <span class="close-btn" (click)="closeSizeGuide()">&times;</span>
@@ -71,6 +77,7 @@
           </table>
         </div>
       </div>
+      
       <!-- Size Selection -->
       <div class="size-options">
         <h3>Select Size</h3>
@@ -85,8 +92,21 @@
           </button>
         </div>
       </div>
-  
-   
+      
+      <div class="stock-status">
+        <p *ngIf="itemData.stock > 0" class="in-stock">  In Stock ({{ itemData.stock }}) </p>
+        <p *ngIf="itemData.stock === 0" class="out-of-stock">Out of Stock</p>
+      </div>
+      <!-- Customization -->
+      <!-- <div class="customization">
+        <h3>Customization</h3>
+        <textarea
+          [(ngModel)]="customText"
+         
+          placeholder="Enter customization details..."
+        ></textarea>
+      </div> -->
+     
   
       <!-- Quantity & Actions -->
       <div class="actions">

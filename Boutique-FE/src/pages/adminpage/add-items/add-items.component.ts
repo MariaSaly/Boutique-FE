@@ -41,7 +41,7 @@ export class AddItemsComponent implements OnInit {
   items: unknown;
   selectedFiles: File[] = [];
   filenames: any[] = [];
-  customizableCategories: any[] = ['momanddaughter', 'meswear','familycombo','cousinsquade','bridalsquade','bridalcostumes'];
+  customizableCategories: any[] = ['momanddaughter', 'menswear','familycombo','cousinsquade','bridalsquade','bridalcostumes'];
   nonCustomizabeCategories: any[] = ['nine', 'coords','halfsaree','leggins','officewear','saree','plussize'];
   categoryList: any[] = this.nonCustomizabeCategories;
   constructor(private router: Router, private cdr: ChangeDetectorRef, private http: HttpServiceWithHeaders, private activatedRoute: ActivatedRoute) { }

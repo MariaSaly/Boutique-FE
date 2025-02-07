@@ -57,15 +57,8 @@ export class ViewhalfsareeComponent {
       clearInterval(this.interval);
     }
   }
-  currentIndexes: { [key: number]: number } = {}; // Track the index of each product image
-  hoverIntervals: { [key: number]: any } = {};
   selectImage(index: number) {
     this.currentIndex = index;
-  }
-  filteredData: any[] = [];
-  selectCard(index: number): void {
-    const selectedProduct = this.filteredData[index];
-    this.router.navigate([`/momanddaughter/${selectedProduct.id}`]);
   }
   fetchImageForItems(Item: any): void {
     
@@ -125,20 +118,7 @@ export class ViewhalfsareeComponent {
   selectSize(size: string) {
     this.selectedSize = size;
   }
-  onHover(index: number, images: string[]) {
-    if (images.length > 1) {
-      this.hoverIntervals[index] = setInterval(() => {
-        this.currentIndexes[index] = (this.currentIndexes[index] + 1) % images.length;
-      }, 1000); // Change image every second
-    }
-  }
 
-  onLeave(index: number) {
-    if (this.hoverIntervals[index]) {
-      clearInterval(this.hoverIntervals[index]); // Stop the interval
-      delete this.hoverIntervals[index];
-    }
-  }
   sizeGuide = [
     {Size: 'S', chest: '32"', waist: '28"', length: '55"' },
     { Size: 'M', chest: '34"', waist: '30"', length: '55"' },

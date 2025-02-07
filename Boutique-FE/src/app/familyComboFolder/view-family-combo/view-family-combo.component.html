@@ -112,6 +112,11 @@
           placeholder="Enter customization details..."
         ></textarea>
       </div>
+
+      <div class="stock-status">
+        <p *ngIf="itemData.stock > 0" class="in-stock">  In Stock ({{ itemData.stock }}) </p>
+        <p *ngIf="itemData.stock === 0" class="out-of-stock">Out of Stock</p>
+      </div>
   
       <!-- Quantity & Actions -->
       <div class="actions">

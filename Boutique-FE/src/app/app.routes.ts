@@ -67,7 +67,7 @@ export const routes: Routes = [
         { path: 'policy', component: PrivacypolicyComponent },
         { path: 'aboutus', component: AboutusComponent },
         { path: 'return', component: ReturnandexchangeComponent },
-        { path: 'viewsaree/:id', component: ViewsareeComponent },
+        { path: 'saree/:id', component: ViewsareeComponent },
       { path: 'home', component: HomepageComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'add',canActivate:[AdminAuthGuard], component: AddItemsComponent },
