@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { environment } from "../environment";
 import { HttpClient } from "@angular/common/http";
 import { HttpService } from "./httpService";
+import { HttpServiceWithHeaders } from "./httpServiceForAdmin";
 
 @Injectable({
     providedIn:'root'
@@ -9,7 +10,7 @@ import { HttpService } from "./httpService";
 
 export class razorPayService{
     private url = environment.localUrl;
-    constructor( private http:HttpService){
+    constructor( private http:HttpServiceWithHeaders){
 
 
     }

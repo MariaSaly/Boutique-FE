@@ -23,8 +23,10 @@
     "@angular/router": "^18.0.0",
     "boutique-fe": "file:",
     "firebase": "^11.1.0",
+    "jspdf": "^2.5.2",
     "jwt-decode": "^4.0.0",
     "ngx-toastr": "^19.0.0",
+    "print-js": "^1.6.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.0"

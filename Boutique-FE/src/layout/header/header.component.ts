@@ -93,6 +93,9 @@ export class HeaderComponent implements OnInit {
 
   onSearch(query: string): void {
     console.log("I am in search query", query);
+    if(query.trim()){
+        this.router.navigate(['/search'],{queryParams:{query}})
+       }
     this.searchService.updateSearchQuery(query);
   
   }
@@ -100,6 +103,9 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/profile']);
     console.log('Viewing profile...');
     // You can navigate to the profile page or show profile data here
+  }
+  login(){
+    this.router.navigate(['/login'])
   }
 
   // Method to log out

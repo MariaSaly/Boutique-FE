@@ -50,7 +50,7 @@ import { ViewcoordsComponent } from './cordset/viewcoords/viewcoords.component';
 
 export const routes: Routes = [
   // Default route redirects to login
-  { path: '', redirectTo: 'mokshedestination', pathMatch: 'full' },
+  { path: '', redirectTo: 'MoksheDestination', pathMatch: 'full' },
 
   // Public routes
   { path: 'login', component: LoginComponent },

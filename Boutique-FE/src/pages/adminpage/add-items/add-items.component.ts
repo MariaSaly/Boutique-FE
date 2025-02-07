@@ -25,6 +25,7 @@ export class AddItemsComponent implements OnInit {
   files: any[] = []
   description: string = '';
   isCustomizable: string = 'false';
+  isStock:string='false'
   @ViewChild('submitBtn')
   submitButton!: ElementRef<HTMLButtonElement>;
   samepinch: boolean = false;
@@ -76,6 +77,23 @@ export class AddItemsComponent implements OnInit {
     }
   }
   onCustomizableChange() {
+    console.log("iscustomizable:", this.isCustomizable);
+    if (this.isCustomizable === 'true') {
+      console.log("Entering true condition");
+      this.categoryList = this.customizableCategories;
+    } else {
+      console.log("Entering false condition");
+      this.categoryList = this.nonCustomizabeCategories;
+    }
+    console.log("categoryList after check:", this.categoryList);
+    if (this.categoryList.length > 0) {
+      this.category = this.categoryList[0];
+      console.log("categorylist:", this.category);
+    }
+
+  }
+
+  onStockChange() {
     console.log("iscustomizable:", this.isCustomizable);
     if (this.isCustomizable === 'true') {
       console.log("Entering true condition");
@@ -173,6 +191,7 @@ export class AddItemsComponent implements OnInit {
     formData.append('isCustomizable', this.isCustomizable.toString()); // Ensure it's a string
     formData.append('category', this.category);
     formData.append('stock', this.stock.toString()); // Ensure it's a string
+    formData.append('isStock', this.isStock.toString()); // Ensure it's a string
     formData.append('vedioLink', this.vedioUrl);
 
     // Append image file

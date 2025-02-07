@@ -25,6 +25,7 @@ export class ViewMomandDaughterComponent {
     public url = environment.localUrl;
      size:string = 'M'
     itemData: any;
+  isStock: any;
     constructor( private toastService:ToastrService,private router:Router,private cartService:CartService , private http:HttpService  ,private cdr: ChangeDetectorRef, private route:ActivatedRoute , private httpClient:HttpClient , ){
   
     }
@@ -62,6 +63,7 @@ export class ViewMomandDaughterComponent {
 
     selectSize(size: string) {
       this.selectedSize = size;
+      console.log("selectedsize:", this.selectedSize);
     }
   
     sizeGuide = [

@@ -4,6 +4,7 @@ import { AppModule } from '../../app/app.module';
 import { HttpService } from '../../service/httpService';
 import { environment } from '../../environment';
 import { FormsModule } from '@angular/forms';
+import { HttpServiceWithHeaders } from '../../service/httpServiceForAdmin';
 
 @Component({
   selector: 'app-profile',
@@ -24,7 +25,7 @@ export class ProfileComponent implements OnInit {
   userId: any;
   userData: any;
   user: any = null;
-  constructor(private http: HttpService, private cdr: ChangeDetectorRef) {
+  constructor(private http: HttpServiceWithHeaders, private cdr: ChangeDetectorRef) {
 
   }
   ngOnInit(): void {

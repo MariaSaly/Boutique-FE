@@ -1,28 +1,38 @@
 <div class="order-list">
-    <header class="order-list-header">
-      <h1>Your Orders</h1>
-    </header>
-  
-    <section *ngIf="ordersWithDates.length > 0; else noOrders">
-      <div *ngFor="let order of ordersWithDates" class="order-card">
-        <div class="order-card-header">
-          <h3>Order ID:{{order.razorpayOrderId}} </h3>
-          <span class="order-status {{ order.status  }}"></span>
-        </div>
-        <div class="order-card-body">
-          <p><strong>Order Date:{{order.jsDate}}</strong> </p>
-          <p><strong>Total Amount:</strong> {{ order.totalAmount  }}</p>
-        </div>
-        <div class="order-card-footer">
-          <button (click)="viewOrder(order.id)" class="btn btn-view">View</button>
-          <!-- <button  class="btn btn-edit">Edit</button> -->
-          <button   (click)="confirmDelete(order.id)"class="btn btn-delete">Delete</button>
-        </div>
+  <header class="order-list-header">
+    <h1>Your Orders</h1>
+
+    <button (click)="generateInvoice()" class="btn btn-invoice" (click)="generateInvoice()">Generate Invoice</button>
+
+    <!-- Status Filter Dropdown -->
+    <select [(ngModel)]="selectedStatus" (change)="filterOrders()" class="order-filter">
+      <option value="">All</option>
+      <option value="pending">Pending</option>
+      <option value="Cancelled">Cancelled</option>
+      <option value="Delivered">Delivered</option>
+      <option value="paid">Paid</option>
+    </select>
+  </header>
+
+  <section *ngIf="filteredOrders.length > 0; else noOrders">
+    <div *ngFor="let order of filteredOrders" class="order-card">
+      <div class="order-card-header">
+        <h3>Order ID: {{ order.razorpayOrderId }}</h3>
+        <span class="order-status {{ order.status }}"></span>
       </div>
-    </section>
-  
-    <ng-template #noOrders>
-      <p class="no-orders">You have no orders yet.</p>
-    </ng-template>
-  </div>
-  
+      <div class="order-card-body">
+        <p><strong>Order Date:</strong> {{ order.jsDate }}</p>
+        <p><strong>Total Amount:</strong> {{ order.totalAmount }}</p>
+        <p><strong>Status:</strong> {{ order.status }}</p>
+      </div>
+      <div class="order-card-footer">
+        <button (click)="viewOrder(order.id)" class="btn btn-view">View</button>
+        <button (click)="confirmDelete(order.id)" class="btn btn-delete">Delete</button>
+      </div>
+    </div>
+  </section>
+
+  <ng-template #noOrders>
+    <p class="no-orders">No orders found for the selected status.</p>
+  </ng-template>
+</div>
