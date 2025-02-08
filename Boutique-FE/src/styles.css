@@ -10,4 +10,16 @@ body {
     line-height: 1;
     font-weight: 600;
   }
-
+  .share-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    color: grey;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    z-index: 10;
+    transition: background 0.3s ease-in-out;
+  }

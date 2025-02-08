@@ -423,3 +423,20 @@
  .home-link {
    text-decoration: none; /* Underline for home link */
  }
+ .share-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: white;
+  color: grey;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 10;
+  transition: background 0.3s ease-in-out;
+}
+
+/* .share-icon:hover {
+  background: rgba(0, 0, 0, 0.8);
+} */

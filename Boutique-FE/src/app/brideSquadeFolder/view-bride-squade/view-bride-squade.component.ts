@@ -256,5 +256,44 @@ export class ViewBrideSquadeComponent {
           (this.currentIndex - 1 + this.images.length) % this.images.length;
       }
     }
+    shareImage() {
+      if (!this.itemData) {
+        alert("Product data is not available.");
+        return;
+      }
+    
+      const productName = this.itemData.name;
+      const productDescription = this.itemData.description;
+      const productPrice = this.itemData.price;
+    
+      // ✅ Get the correct base URL (Avoids localhost issue)
+      let liveBaseUrl = window.location.origin;
+    
+      if (liveBaseUrl.includes("localhost")) {
+        liveBaseUrl = "https://Mokshedestination.com"; // Replace with your actual live domain
+      }
+    
+      const productPageUrl = `${liveBaseUrl}/saree/${this.itemData.id}`;
+    
+      // ✅ Format text properly to ensure clickable links
+      const shareText = `${productName}\n${productDescription}\n💰 Price: ₹${productPrice}\n\n🔗 ${productPageUrl}`;
+    
+      if (navigator.share) {
+        navigator
+          .share({
+            title: productName,
+            text: shareText,
+            url: productPageUrl,
+          })
+          .then(() => console.log("Shared successfully"))
+          .catch((error) => console.error("Sharing failed:", error));
+      } else {
+        // ✅ WhatsApp Share Link (Forcing Clickable Link)
+        const whatsappShareUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+    
+        window.open(whatsappShareUrl, "_blank");
+      }
+    }
+
   }
 

@@ -16,6 +16,9 @@
     <div class="image-gallery">
       <!-- Large Display Image -->
       <div class="featured-image">
+        <div class="share-icon" (click)="shareImage()" >
+          <i class="fas fa-share-alt"></i> 
+        </div>
         <div class="slider-wrapper" [ngStyle]="{'transform': 'translateX(-' + (currentIndex * 100) + '%)'}">
           <img 
             *ngFor="let img of itemData?.imageUrl" 
