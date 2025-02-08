@@ -7,11 +7,12 @@ import { PopupMessageComponent } from '../popupmessage/popup-message/popup-messa
 import { SharedModule } from '../../app/shared.module';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { HttpService } from '../../service/httpService';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule,SharedModule],
+  imports: [ReactiveFormsModule, CommonModule,SharedModule,ToastrModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
@@ -23,7 +24,7 @@ export class LoginComponent {
   forgotPasswordForm: FormGroup;
   showForgotPasswordModal = false;
 
-  constructor(private router: Router, private authService: AuthService , private http:HttpService) {
+  constructor( private toastr: ToastrService ,private router: Router, private authService: AuthService , private http:HttpService) {
     this.loginform = new FormGroup({
       email: new FormControl('', [Validators.email, Validators.required]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -57,7 +58,7 @@ export class LoginComponent {
           console.log('Login Successful');
           const userRole = response.role?.trim().toLowerCase();
           console.log("userrole:",userRole);
-          this.showPopupMessage('Success', 'Logged in Successfully!');
+          this.toastr.success('Logged in Successfully!', 'Success');
           if(userRole === "superadmin" || userRole === "admin"){
             this.router.navigate(['/admindashboard']);
           }
@@ -69,7 +70,7 @@ export class LoginComponent {
         },
         error: (error) => {
           console.log('Login Error:', error);
-          this.showPopupMessage('Error', `Error in logging in: ${error}`);
+          this.toastr.error('Invalid email or password', 'Login Failed');
         },
       });
       
