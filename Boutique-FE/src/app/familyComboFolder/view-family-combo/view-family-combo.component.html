@@ -20,7 +20,7 @@
           <i class="fas fa-share-alt"></i> 
         </div>
         <img [src]="url + itemData.imageUrl[currentIndex]" alt="Gallery Image" class="featured-img" />
-        <a href="https://app.epatrolz.com" class="hover-link" target="_blank">https://app.epatrolz.com</a>
+        <a  class="hover-link" target="_blank">{{itemData.vedioLink}}</a>
         <!-- Navigation Buttons (only if multiple images exist) -->
         <button 
           *ngIf="itemData.imageUrl.length > 1" 
