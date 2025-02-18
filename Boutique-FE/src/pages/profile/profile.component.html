@@ -24,6 +24,11 @@
           <p class="order-status">Status: <span [ngClass]="order.status">{{ order.status }}</span></p>
         </div>
 
+        <!-- Display Tracking ID if exists -->
+        <div class="tracking-id-section" *ngIf="order.trackingId">
+          <p class="tracking-id-label"><strong>Tracking ID:</strong> {{ order.trackingId || 'Not Available' }}</p>
+        </div>
+        
         <!-- Order Items -->
         <div class="order-items">
           <div class="order-item-details" *ngFor="let cartItem of order.cartItems">

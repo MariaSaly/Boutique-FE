@@ -180,6 +180,27 @@
   color: #34495e;
 }
 
+/* Tracking ID Section */
+.tracking-id-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.tracking-id-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #34495e;
+  background-color: #ecf0f1;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .profile-card {
@@ -199,6 +220,15 @@
   }
 
   .order-item-details {
+    width: 100%;
+  }
+
+  .tracking-id-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tracking-id-label {
     width: 100%;
   }
 }

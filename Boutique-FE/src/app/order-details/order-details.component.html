@@ -1,72 +1,83 @@
-<div class="order-details" >
-    <!-- Header Section -->
-    <header class="order-details-header">
-      <h1>Order Details</h1>
-      <a routerLink="/orders" class="back-button">← Back to Orders</a>
-    </header>
-  
-    <!-- Order Summary -->
-    <section class="order-summary" >
-      <h2>Order Summary</h2>
-      <p><strong>Order ID:{{orders.id}}</strong> </p>
-      <p><strong>Order Date:{{jsDate}}</strong> </p>
-      <p><strong>PaymentStatus:{{orders.paymentStatus}}</strong> </p>
-      <p><strong>Customization:{{orders.customization}}</strong> </p>
-    </section>
-  
-    <!-- Customer Information -->
-    <section class="user-info" *ngFor="let userData of userData">
-      <h2>Customer Information</h2>
-      <p><strong>Name:{{userData.name}}</strong> </p>
-      <p><strong>Email:{{userData.email}}</strong> </p>
-      <p><strong>Phone:{{userData.phonenumber}}</strong> </p>
-      <p><strong>Address:{{deliveryAddress}}</strong> </p>
-    </section>
-  
-    <!-- Items Ordered -->
-    <section class="order-items" *ngFor=" let items of itemsData" >
-      <h2>Items Ordered</h2>
-      <ul>
-        <li  class="order-item">
-          <img [src]=" url + items.imageUrl" alt="Product Image">
-          <div>
-            <p><strong>Product Name:{{items.name}}</strong> </p>
-            <p><strong>Quantity:{{items.quantity}}</strong> </p>
-            <p><strong>Price:{{items.price}}</strong> </p>
-            <p><strong>size:{{items.size}}</strong> </p>
-          </div>
-        </li>
-      </ul>
-      <div class="order-total">
-        <strong>Total Amount:{{orders.totalAmount}}</strong> 
-      </div>
-    </section>
-  
-    <!-- Payment & Delivery -->
-    <section class="payment-delivery">
-      <h2>Payment & Delivery</h2>
-      <p><strong>Payment Status: {{orders.paymentStatus}}</strong></p>
-      <p><strong>Transaction ID: {{orders.paymentId}}</strong></p>
-      <p><strong>Payment Date: {{this.paymentDate}}</strong></p>
-      <p>
-        <strong>Delivery Status:</strong>
-        <span >{{ orders.status }}</span>
-        <select
-          *ngIf="isEditing"
-          [(ngModel)]="orders.status"
-          
-          class="status-dropdown"
-        >
-          <option value="Pending">Pending</option>
-          <option value="Shipped">Shipped</option>
-          <option value="Delivered">Delivered</option>
-          <option value="Cancelled">Cancelled</option>
-        </select>
-        <button class="btn" (click)="isEditing ? saveStatus(orders.id) : editStatus()">
-          {{ isEditing ? 'Save' : 'Edit Status' }}
-        </button>
-      </p>
-    </section>
-    
-  </div>
-  
+<div class="order-details">
+  <!-- Header Section -->
+  <header class="order-details-header">
+    <h1>Order Details</h1>
+    <a routerLink="/order-listing" class="back-button">← Back to Orders</a>
+  </header>
+
+  <!-- Order Summary -->
+  <section class="order-summary">
+    <h2>Order Summary</h2>
+    <p><strong>Order ID:{{orders.id}}</strong> </p>
+    <p><strong>Order Date:{{jsDate}}</strong> </p>
+    <p><strong>Payment Status:{{orders.paymentStatus}}</strong> </p>
+    <p><strong>Customization:{{orders.customization}}</strong> </p>
+  </section>
+
+  <!-- Customer Information -->
+  <section class="user-info" *ngFor="let userData of userData">
+    <h2>Customer Information</h2>
+    <p><strong>Name:{{userData.name}}</strong> </p>
+    <p><strong>Email:{{userData.email}}</strong> </p>
+    <p><strong>Phone:{{userData.phonenumber}}</strong> </p>
+    <p><strong>Address:{{deliveryAddress}}</strong> </p>
+  </section>
+
+  <!-- Items Ordered -->
+  <section class="order-items" *ngFor="let items of itemsData">
+    <h2>Items Ordered</h2>
+    <ul>
+      <li class="order-item">
+        <img [src]="url + items.imageUrl" alt="Product Image">
+        <div>
+          <p><strong>Product Name:{{items.name}}</strong> </p>
+          <p><strong>Quantity:{{items.quantity}}</strong> </p>
+          <p><strong>Price:{{items.price}}</strong> </p>
+          <p><strong>Size:{{items.size}}</strong> </p>
+        </div>
+      </li>
+    </ul>
+    <div class="order-total">
+      <strong>Total Amount:{{orders.totalAmount}}</strong>
+    </div>
+  </section>
+
+  <!-- Payment & Delivery -->
+  <section class="payment-delivery">
+    <h2>Payment & Delivery</h2>
+    <p><strong>Payment Status: {{orders.paymentStatus}}</strong></p>
+    <p><strong>Transaction ID: {{orders.paymentId}}</strong></p>
+    <p><strong>Payment Date: {{this.paymentDate}}</strong></p>
+    <p>
+      <strong>Delivery Status:</strong>
+      <span>{{ orders.status }}</span>
+      <select
+        *ngIf="isEditing"
+        [(ngModel)]="orders.status"
+        class="status-dropdown"
+      >
+        <option value="Pending">Pending</option>
+        <option value="Shipped">Shipped</option>
+        <option value="Delivered">Delivered</option>
+        <option value="Cancelled">Cancelled</option>
+      </select>
+      <button class="btn" (click)="isEditing ? saveStatus(orders.id) : editStatus()">
+        {{ isEditing ? 'Save' : 'Edit Status' }}
+      </button>
+    </p>
+  </section>
+
+  <!-- Tracking ID Section -->
+  <section class="tracking-id-section">
+    <h2>Tracking ID</h2>
+    <input
+      type="text"
+      [(ngModel)]="trackingId"
+      placeholder="Enter Tracking ID"
+      class="tracking-id-input"
+    />
+    <button class="btn" (click)="updateTrackingId(orders.id)">
+      Update Tracking ID
+    </button>
+  </section>
+</div>
