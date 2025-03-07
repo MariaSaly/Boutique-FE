@@ -1,68 +1,62 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #1A1A1A 10%, #4A4A4A 30%, #FFD700 100%);
-    color: #333;
+.shipping-policy {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 20px;
+}
+
+.shipping-policy .header {
+  background: linear-gradient(135deg, #1A1A1A 20%, #4A4A4A 40%, #FFD700 80%);
+  padding: 20px;
+  text-align: center;
+  border-bottom: 2px solid #ccc;
+}
+
+.shipping-policy .header h1 {
+  margin: 0;
+  color: #fff;
+}
+
+.shipping-policy .content section {
+  margin: 20px 0;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.shipping-policy .content h2 {
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1.4em;
+}
+
+.shipping-policy .content p {
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.shipping-policy .content a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.shipping-policy .content a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .shipping-policy {
+      margin: 10px;
   }
 
-  .header {
-    background: linear-gradient(135deg, #1A1A1A 20%, #4A4A4A 40%, #FFD700 80%);
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-    border-radius: 0 0 10px 10px;
+  .shipping-policy .content section {
+      padding: 10px;
   }
 
-  .header h1 {
-    margin: 0;
-    font-size: 24px;
+  .shipping-policy .header h1 {
+      font-size: 1.5em;
   }
-
-  .content {
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  }
-
-  .content h2 {
-    color: black;
-    margin-top: 20px;
-    font-size: 20px;
-  }
-
-  .content p {
-    line-height: 1.6;
-    margin: 10px 0;
-    text-align: justify;
-  }
-
-  .content ul {
-    margin: 10px 0 20px 20px;
-  }
-
-  .content li {
-    margin-bottom: 10px;
-  }
-
-  footer {
-    text-align: center;
-    background-color: #f1f1f1;
-    padding: 10px;
-    font-size: 14px;
-    color: #777;
-    border-radius: 10px 10px 0 0;
-    margin-top: 20px;
-  }
-
-  a {
-    color: #4CAF50;
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
+}
