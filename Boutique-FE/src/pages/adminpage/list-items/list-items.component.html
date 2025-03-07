@@ -14,12 +14,13 @@
   <div class="card-container">
     <div *ngFor="let item of filteredItems" class="card">
       <!-- Card Image -->
-      <div class="card-image" >
+      <div class="card-image">
+        <!-- Carousel for multiple images -->
         <div *ngIf="item.imageUrl?.length > 1" class="carousel">
           <!-- Image Display -->
           <div class="slideshow-container">
             <div *ngFor="let imgUrl of item.imageUrl; let i = index" class="slide" [class.active]="currentIndex === i">
-              <img [src]="url + imgUrl" [alt]="item.title" class="slider-image" />
+              <img [src]="imgUrl" [alt]="item.title" class="slider-image" />
             </div>
           </div>
           <!-- Navigation buttons -->
@@ -31,7 +32,12 @@
 
         <!-- Single image display -->
         <div *ngIf="item.imageUrl?.length === 1">
-          <img [src]="url + item.imageUrl[0]" class="slider-image" alt="Item image" />
+          <img [src]="item.imageUrl[0]" class="slider-image" alt="Item image" />
+        </div>
+
+        <!-- No image available -->
+        <div *ngIf="!item.imageUrl || item.imageUrl.length === 0">
+          <p>No image available</p>
         </div>
       </div>
 
