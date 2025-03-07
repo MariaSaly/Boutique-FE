@@ -3,6 +3,7 @@
   padding: 20px;
   font-family: 'Roboto', sans-serif;
   text-align: center;
+  justify-content: center;
 }
 
 /* Cart Content Layout */
@@ -12,9 +13,23 @@
   align-items: flex-start;
   margin-top: 40px;
 }
+.empty{
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
 .empty-cart-container{
-  margin-left: 450px;
-  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+.empty-cart-content{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 /* Product Section */
 .cart-products {

@@ -23,3 +23,11 @@ body {
     z-index: 10;
     transition: background 0.3s ease-in-out;
   }
+  /* :root {
+    color-scheme: light;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+  } */
+  
