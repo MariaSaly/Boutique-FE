@@ -225,6 +225,9 @@ h2 {
   .modal-content {
     width: 90%;
   }
+  .login-container{
+    width: 300px !important;
+  }
 }
 .forgot-password {
   padding: 10px 20px;

@@ -89,9 +89,23 @@ body {
   }
   @media(max-width:480px){
   .main-content{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+    display: flex !important ;
+    justify-content: center !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    width: 400px !important;
+    margin-top: 0px !important;
   }  
+  .action-buttons {
+    display: flex;
+    flex-direction: column !important;
+    justify-content: center;
+   
+    /* gap: 30px; */
+  }
+  .dashboard{
+    display: flex;
+    justify-content: start !important;
+  }
   }
   

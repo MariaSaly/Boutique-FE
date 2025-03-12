@@ -55,7 +55,7 @@
         <div *ngIf="product.imageUrl?.length > 1" class="carousel">
           <!-- Image Display -->
           <img
-            [src]="url + product.imageUrl[currentIndexes[i]]"
+            [src]="product.imageUrl[currentIndexes[i]]"
             class="product-image"
             alt="Product image"
           />
@@ -64,7 +64,7 @@
         <!-- Single Image Display -->
         <div *ngIf="!product.imageUrl || product.imageUrl.length === 1">
           <img
-            [src]="url + (product.imageUrl?.[0] || product.imageUrl)"
+            [src]="(product.imageUrl?.[0] || product.imageUrl)"
             class="product-image"
             alt="Product image"
           />
@@ -75,7 +75,7 @@
       <div class="card-details">
         <h2>{{ product.name }}</h2>
         <p>{{ product.description }}</p>
-        <p class="price">{{ product.price | currency }}</p>
+        <p class="price">{{ product.price | currency:'INR'}}</p>
       </div>
     </div>
   </div>

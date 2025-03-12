@@ -46,7 +46,7 @@
       <div class="thumbnails" *ngIf="imageUrls.length > 1">
         <img 
           *ngFor="let img of itemData.imageUrl; let i = index"
-          [src]="url + img"
+          [src]="img"
           [ngClass]="{'active': i === currentIndex}"
           (click)="selectImage(i)"
           class="thumbnail"
@@ -59,7 +59,7 @@
       <!-- Product Info -->
       <h1 class="product-title">{{ itemData.name}}</h1>
       <p class="product-description">{{ itemData.description }}</p>
-      <p class="price">{{ itemData.price | currency }}</p>
+      <p class="price">{{ itemData.price |  currency:'INR'  }}</p>
   
       <!-- Size Selection -->
       <div class="size-options">

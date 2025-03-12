@@ -314,15 +314,15 @@
   .mokshe, .samepinch {
     flex-direction: column; /* Stack image and logo vertically */
     width: 350px; /* Use full width */
-    max-width: 350px; /* Ensure no overflow */
+    max-width: 350px !important; /* Ensure no overflow */
    
   }
 
   .image-container, .logo-container,
   .image-container1, .logo-container1 {
     width: 100%; /* Make images responsive */
-    max-width: 300px; /* Limit max width */
-    height: 300px; /* Maintain aspect ratio */
+    max-width: 300px !important; /* Limit max width */
+    height: 300px !important ; /* Maintain aspect ratio */
   }
 
   .image-container img, 

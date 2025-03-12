@@ -21,7 +21,7 @@
       <div class="slider-wrapper" [ngStyle]="{'transform': 'translateX(-' + (currentIndex * 100) + '%)'}">
         <img 
           *ngFor="let img of itemData?.imageUrl" 
-          [src]="url + img" 
+          [src]="img" 
           alt="Gallery Image" 
           class="featured-img"
         />
@@ -47,7 +47,7 @@
       <!-- Product Info -->
       <h1 class="product-title">{{ itemData.name}}</h1>
       <p class="product-description">{{ itemData.description }}</p>
-      <p class="price">{{ itemData.price | currency }}</p>
+      <p class="price">{{ itemData.price |  currency:'INR'  }}</p>
   
       <div class="sizeguide" *ngIf="selectedProduct.stock > 0">
         <button class="sizeguide-btn" (click)="openSizeGuide()">
