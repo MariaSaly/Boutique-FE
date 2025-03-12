@@ -4,6 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { SharedService } from '../../service/homesharedservice';
 import { MatIconModule } from '@angular/material/icon';
+import { environment } from '../../environment';
+import { HttpService } from '../../service/httpService';
 
 @Component({
   selector: 'app-homepage',
@@ -13,10 +15,12 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './homepage.component.css'
 })
 export class HomepageComponent  implements OnInit, OnDestroy {
+  private url = environment.localUrl;
   showCategoryContent = false;
   showSamePinchContent = false;
   interval: any;
-  constructor(private router:Router,private sharedService: SharedService, private cdRef: ChangeDetectorRef ){}
+  newarrivals: any;
+  constructor(private router:Router,private sharedService: SharedService, private cdRef: ChangeDetectorRef,private httpService: HttpService, ){}
 
   startImageRotation() {
     this.interval = setInterval(() => {
@@ -62,8 +66,16 @@ ngOnInit(): void {
   this.updateImage();
   this.startImageRotation();
   this.handleBackNavigation();
+  this.getProducts();
 }
-
+getProducts(){
+this.httpService.get<any>(`${this.url}/api/items/getItem?subcategory=newarrivals`).subscribe(
+  data => {
+    console.log("new arrival data:", data);
+    this.newarrivals = data;
+  }
+)
+}
 setFlagFromLocalStorage() {
   const selectedFlag = localStorage.getItem('selectedFlag');
   console.log('Selected Flag from LocalStorage:', selectedFlag);

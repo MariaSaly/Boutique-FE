@@ -44,6 +44,8 @@ export class AddItemsComponent implements OnInit {
   customizableCategories: any[] = ['momanddaughter', 'menswear','familycombo','cousinsquade','bridalsquade','bridalcostumes'];
   nonCustomizabeCategories: any[] = ['nine', 'coords','halfsaree','leggins','officewear','saree','plussize'];
   categoryList: any[] = this.nonCustomizabeCategories;
+  subcategoryList:any[]=['newarrivals','bestsellar']
+  subcategory: any;
   constructor(private router: Router, private cdr: ChangeDetectorRef, private http: HttpServiceWithHeaders, private activatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
 
@@ -72,7 +74,8 @@ export class AddItemsComponent implements OnInit {
         this.category = items.category;
         this.stock = items.stock;
         this.image = items.image;
-        this.vedioUrl = items.vedioLink
+        this.vedioUrl = items.vedioLink;
+        this.subcategory = items.subcategory
       })
     }
   }
@@ -149,6 +152,7 @@ export class AddItemsComponent implements OnInit {
     formData.append('description', this.description);
     formData.append('isCustomizable', this.isCustomizable.toString()); // Ensure it's a string
     formData.append('category', this.category);
+    formData.append('subcategory', this.subcategory);
     formData.append('stock', this.stock.toString()); // Ensure it's a string
     formData.append('isStock', this.isStock)
     formData.append('vedioLink', this.vedioUrl);
@@ -191,6 +195,7 @@ export class AddItemsComponent implements OnInit {
     formData.append('description', this.description);
     formData.append('isCustomizable', this.isCustomizable.toString()); // Ensure it's a string
     formData.append('category', this.category);
+    formData.append('subcategory', this.subcategory);
     formData.append('stock', this.stock.toString()); // Ensure it's a string
     formData.append('isStock', this.isStock.toString()); // Ensure it's a string
     formData.append('vedioLink', this.vedioUrl);
