@@ -19,7 +19,7 @@
         <div *ngIf="product.imageUrl?.length > 1" class="carousel">
           <!-- Image Display -->
           <img
-            [src]="url + product.imageUrl[currentIndexes[i]]"
+            [src]=" product.imageUrl[currentIndexes[i]]"
             class="product-image"
             alt="Product image"
           />

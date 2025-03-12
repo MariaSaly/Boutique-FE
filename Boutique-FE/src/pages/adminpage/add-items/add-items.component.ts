@@ -150,6 +150,7 @@ export class AddItemsComponent implements OnInit {
     formData.append('isCustomizable', this.isCustomizable.toString()); // Ensure it's a string
     formData.append('category', this.category);
     formData.append('stock', this.stock.toString()); // Ensure it's a string
+    formData.append('isStock', this.isStock)
     formData.append('vedioLink', this.vedioUrl);
 
     // Append image file
@@ -159,12 +160,12 @@ export class AddItemsComponent implements OnInit {
     //    formData.append('image', imageFile);
     //  }
     for (const file of this.selectedFiles) {
-      formData.append('image', file, file.name)
+      formData.append('imageUrl', file, file.name)
     }
     this.itemId = this.activatedRoute.snapshot.paramMap.get('id');
     // Send data to server
     console.log("Sending data to server:", formData);
-    this.http.patch<any>(`${this.url}/api/items/updateItem/${this.itemId}`, formData).subscribe({
+    this.http.put<any>(`${this.url}/api/items/updateItem/${this.itemId}`, formData).subscribe({
       next: (response) => {
         console.log("Product created successfully:", response);
         this.router.navigate(['/item']);
