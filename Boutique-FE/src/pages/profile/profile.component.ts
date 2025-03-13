@@ -100,8 +100,7 @@ export class ProfileComponent implements OnInit {
     }
   
     return 'default-image.jpg'; // Fallback image
-  }
-  
+  }  
 
   // Function to get product price
   getProductPrice(productId: string): number {
@@ -111,12 +110,11 @@ export class ProfileComponent implements OnInit {
 
 
 
-  convertToDate(date: any): Date {
+  convertToDate(date: any): string {
     const seconds = date._seconds;
-    const nanoseconds = date._nanoseconds;
-    // Create a new Date object with the seconds part of the timestamp
-    return new Date(seconds * 1000); // Convert seconds to milliseconds
+    return new Date(seconds * 1000).toISOString().split("T")[0]; // Returns YYYY-MM-DD
   }
+  
 
   getOrder() {
     const data: any = localStorage.getItem('userData');
