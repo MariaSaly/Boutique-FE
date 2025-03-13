@@ -4,6 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { SharedService } from '../../service/homesharedservice';
 import { MatIconModule } from '@angular/material/icon';
+import { environment } from '../../environment';
+import { HttpService } from '../../service/httpService';
 
 @Component({
   selector: 'app-homepage',
@@ -16,7 +18,10 @@ export class HomepageComponent  implements OnInit, OnDestroy {
   showCategoryContent = false;
   showSamePinchContent = false;
   interval: any;
-  constructor(private router:Router,private sharedService: SharedService, private cdRef: ChangeDetectorRef ){}
+  items: any[] = [];
+  public url = environment.localUrl;
+  filteredData: any[] = [];
+  constructor(  private httpService: HttpService,private router:Router,private sharedService: SharedService, private cdRef: ChangeDetectorRef ){}
 
   startImageRotation() {
     this.interval = setInterval(() => {
@@ -62,6 +67,48 @@ ngOnInit(): void {
   this.updateImage();
   this.startImageRotation();
   this.handleBackNavigation();
+}
+getSareeItems(): void {
+  this.httpService.get(`${this.url}/api/items/getItem?category=bridalsquade&isCustomizable=true`).subscribe((data: any) => {
+    this.items = data;
+    this.filteredData = [...this.items];
+    this.currentIndexes = this.filteredData.map(() => 0); // Initialize image indexes
+  });
+}
+
+// nextImage(cardIndex: number, images: string[]): void {
+//   if (images.length > 1) {
+//     this.currentIndexes[cardIndex] =
+//       (this.currentIndexes[cardIndex] + 1) % images.length;
+//   }
+// }
+currentIndexes: { [key: number]: number } = {}; // Track the index of each product image
+hoverIntervals: { [key: number]: any } = {};
+  // Hover logic to pause carousel
+  onHover(index: number, images: string[]) {
+    if (images.length > 1) {
+      this.hoverIntervals[index] = setInterval(() => {
+        this.currentIndexes[index] = (this.currentIndexes[index] + 1) % images.length;
+      }, 1000); // Change image every second
+    }
+  }
+
+  onLeave(index: number) {
+    if (this.hoverIntervals[index]) {
+      clearInterval(this.hoverIntervals[index]); // Stop the interval
+      delete this.hoverIntervals[index];
+    }
+  }
+previousImage(cardIndex: number, images: string[]): void {
+  if (images.length > 1) {
+    this.currentIndexes[cardIndex] =
+      (this.currentIndexes[cardIndex] - 1 + images.length) % images.length;
+  }
+}
+
+selectCard(index: number): void {
+  const selectedProduct = this.filteredData[index];
+  this.router.navigate([`/bridalsquade/${selectedProduct.id}`]);
 }
 
 setFlagFromLocalStorage() {

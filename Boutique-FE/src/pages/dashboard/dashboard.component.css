@@ -7,9 +7,7 @@
   text-align: center;
   padding: 50px;
   height: 100vh;
-  background: linear-gradient(135deg, #1A1A1A 10%, #4A4A4A 30%, #FFD700 100%);
-  /* Dark gray transition for smoother blend */
-  
+  background: linear-gradient(135deg, #1A1A1A 10%, #4A4A4A 30%, #FFD700 100%);  
 }
 
 .mokshe, .samepinch {
