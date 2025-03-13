@@ -95,7 +95,7 @@ export class ProfileComponent implements OnInit {
   getProductImage(productId: string): string {
     console.log("prodyctcache:", this.productCache[productId]);
 
-    return this.url + this.productCache[productId]?.imageUrl || 'default-image.jpg';
+    return this.productCache[productId]?.imageUrl || 'default-image.jpg';
   }
 
   // Function to get product price

@@ -15,13 +15,15 @@ import { HttpService } from '../../service/httpService';
   styleUrl: './homepage.component.css'
 })
 export class HomepageComponent  implements OnInit, OnDestroy {
+  private url = environment.localUrl;
   showCategoryContent = false;
   showSamePinchContent = false;
   interval: any;
   items: any[] = [];
-  public url = environment.localUrl;
+
   filteredData: any[] = [];
-  constructor(  private httpService: HttpService,private router:Router,private sharedService: SharedService, private cdRef: ChangeDetectorRef ){}
+  newarrivals: any;
+  constructor( private router:Router,private sharedService: SharedService, private cdRef: ChangeDetectorRef,private httpService: HttpService, ){}
 
   startImageRotation() {
     this.interval = setInterval(() => {
@@ -67,8 +69,16 @@ ngOnInit(): void {
   this.updateImage();
   this.startImageRotation();
   this.handleBackNavigation();
+  this.getProducts();
 }
-getSareeItems(): void {
+getProducts(){
+this.httpService.get<any>(`${this.url}/api/items/getItem?subcategory=newarrivals`).subscribe(
+  data => {
+    console.log("new arrival data:", data);
+    this.newarrivals = data;
+  }
+)
+}getSareeItems(): void {
   this.httpService.get(`${this.url}/api/items/getItem?category=bridalsquade&isCustomizable=true`).subscribe((data: any) => {
     this.items = data;
     this.filteredData = [...this.items];

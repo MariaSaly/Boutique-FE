@@ -86,19 +86,19 @@
 
 /* Individual images with specific backgrounds */
 .image1 {
-  background-image: url('../../assets/images/bm.jpg');
+  background-image: url('../../assets/images/brides\ 1.jpg');
 }
 
 .image2 {
-  background-image: url('../../assets/images/fm.png');
+  background-image: url('../../assets/images/bridesmate1.jpg');
 }
 
 .image3 {
-  background-image: url('../../assets/images/cs1.jpg');
+  background-image: url('../../assets/images/cousinssquade.jpg');
 }
 
 .image4 {
-  background-image: url('../../assets/images/md1.jpeg');
+  background-image: url('../../assets/images/momanddaughter.jpg');
 }
 
 /* Fade-in and fade-out animation */
