@@ -240,66 +240,7 @@ button:hover {
 }
 
 
-.newarrivals {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .cards-container {
-    display: flex; /* Flexbox for a single-row layout */
-    flex-wrap: wrap; 
-    gap: 20px; /* Space between cards */
-    justify-content: center; /* Center the cards horizontally */
-    /* overflow-x: auto;  */
-  }
-  
-  .arrivalcard-wrapper {
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    width: 240px; 
-  }
-  
-  .arrivalcard {
-    background-image: url('../../assets/images/saree.png');
-    background-size: cover;
-    background-position: center; 
-    background-repeat: no-repeat;
-    width: 240px;
-    height: 280px;
-    overflow: hidden;
-    border-radius: 8px;
-    display: flex;
-    transition: transform 0.3s ease-in-out; /* Smooth animation */
-  }
-  
-  .arrivalcard:hover {
-    transform: scale(1.1); /* Slightly zoom in the card */
-    cursor: pointer; /* Change cursor to pointer to indicate interactivity */
-  }
-  
-  .card-details {
-    padding: 10px;
-    text-align: start;
-    font-size: 16px;
-    color: #333;
-  }
-  
-  .card-details h2 {
-    font-size: 16px;
-    margin: 10px 0;
-  }
-  
-  .card-details p {
-    font-size: 16px;
-    color: #777;
-  }
-  
-  .card-details .price {
-    font-size: 16px;
-    color: #e74c3c;
-    font-weight: bold;
-  }
+
   
   button {
     font-size: 1rem;
@@ -319,11 +260,11 @@ button:hover {
   }
   @media screen and (max-width: 768px) {
     .cards-container {
-      max-width: 700px;
+      max-width: 400px !important;
       overflow-x: auto; /* Enable
       h horizontal scrolling */
       white-space: wrap; /* Prevent wrapping */
-      height: 500px;
+    
       flex-wrap: wrap;
       flex-direction: column;
       padding: 10px 0;
@@ -333,25 +274,105 @@ button:hover {
       flex-shrink: 0; /* Prevent cards from shrinking */
     }
   }
-  @media screen and (max-width: 480px) {
-    .newarrivals{
-      padding: 5px;
-    }
-    .cards-container {
-      max-width: 400px;
-      overflow-x: auto; /* Enable
-      h horizontal scrolling */
-      white-space: wrap; /* Prevent wrapping */
-      height: 500px;
-      flex-wrap: wrap;
-      flex-direction: column;
-      padding: 10px 0;
-    }
-  
-    .arrivalcard-wrapper {
-      flex-shrink: 0; /* Prevent cards from shrinking */
-    }
+/* 🌟 New Arrivals Container */
+/* .newarrivals {
+  width: 100%;
+  padding: 20px;
+} */
+
+/* 🎴 Cards Wrapper with Horizontal Scroll */
+.cards-container {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto; /* Enables horizontal scroll */
+  white-space: nowrap; /* Prevents wrapping */
+  padding-bottom: 10px;
+  scroll-behavior: smooth;
+}
+
+/* 🎴 Individual Product Card */
+.arrivalcard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background: #fff; */
+  border-radius: 8px;
+  /* padding: 10px; */
+  width: 200px; /* Fixed width */
+  height: 360px; /* Fixed height */
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+  text-align: center;
+  white-space: normal;
+  overflow: hidden;
+  flex-shrink: 0; /* Ensures cards stay in a row */
+}
+
+/* 🖼️ Product Image */
+.card-image {
+  width: 100%;
+  height: 260px; /* Fixed image height */
+}
+
+.product-image {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* 📄 Card Content */
+.card-details {
+  flex-grow: 1;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: start;
+  padding: 5px;
+}
+
+.card-details h2 {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 3px;
+}
+
+.card-details p {
+  font-size: 12px;
+  color: #666;
+  margin: 2px 0;
+}
+
+/* 💰 Price Styling */
+.price {
+  font-weight: bold;
+  color: #d93d3d;
+  font-size: 14px;
+}
+
+/* 🎠 Enable Smooth Horizontal Scroll for Mobile */
+.cards-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.cards-container::-webkit-scrollbar-thumb {
+  /* background: #ff6b6b; */
+  border-radius: 4px;
+}
+
+.cards-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* 📱 Responsive: Full-width Scroll Effect */
+@media (max-width: 768px) {
+  .cards-container {
+    overflow-x: scroll;
+    height: 400px !important;
+    margin-bottom: 10px;
+    /* -webkit-overflow-scrolling: touch;  */
   }
+}
+
 
 
 /* Footer Styling */
@@ -415,81 +436,94 @@ button:hover {
 }
 
 
+.newarrivals h1 {
+  text-align: center; /* Explicitly centers the heading */
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.newarrivals {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; /* Center the text */
+  margin-top: 20px;
+  flex-direction: column;
+}
+
+.arrivalcard {
+  width: 200px !important;
+  height: 360px;
+  margin: 10px;
+  display: inline-block;
+  border: none;
+ 
+  overflow: hidden;
+  cursor: pointer;
+
+}
 
 
+.card-image {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 260px; 
+  overflow: hidden;
+  transition: transform 0.1s ease-in-out;
+  background-size: cover; 
+ background-position: center; 
+ background-repeat: no-repeat; 
+}
+
+.card-image img {
+  width: 100%; 
+  height: 100%; 
+  object-fit: contain; 
+  transition: transform 0.1s ease-in-out;
+}
+
+/* Hover effect on the image */
+ .card-image img:hover {
+  transform: scale(1.1);
+  cursor: pointer; 
+ 
+}
+
+.card-details {
+  padding: 10px;
+  text-align: left; /* Align text to the left */
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+
+}
+
+.card-details h2 {
+  font-size: 18px;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.card-details p {
+  font-size: 14px;
+  color: #777;
+}
+
+.card-details .price {
+  font-size: 14px;
+  color: #e74c3c; /* Red color for the price */
+  font-weight: bold;
+}
 .main-container {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
 
-  .newarrivals {
-    text-align: center; /* Center the text */
-    margin-top: 20px;
-  }
-  
-  .arrivalcard {
-    width: 200px !important;
-    height: 360px;
-    margin: 10px;
-    display: inline-block;
-    border: none;
-   
-    overflow: hidden;
-    cursor: pointer;
-  
-  }
-  
-
-  .card-image {
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    height: 260px; 
-    overflow: hidden;
-    transition: transform 0.1s ease-in-out;
-    background-size: cover; 
-   background-position: center; 
-   background-repeat: no-repeat; 
-  }
-  
-  .card-image img {
-    width: 100%; 
-    height: 100%; 
-    object-fit: contain; 
-    transition: transform 0.1s ease-in-out;
-  }
-  
-  /* Hover effect on the image */
-   .card-image img:hover {
-    transform: scale(1.1);
-    cursor: pointer; 
-   
-  }
-  
-  .card-details {
-    padding: 10px;
-    text-align: left; /* Align text to the left */
-    font-size: 14px;
-    color: #333;
-  
-  }
-  
-  .card-details h2 {
-    font-size: 18px;
-    margin: 10px 0;
-    font-weight: bold;
-  }
-  
-  .card-details p {
-    font-size: 14px;
-    color: #777;
-  }
-  
-  .card-details .price {
-    font-size: 14px;
-    color: #e74c3c; /* Red color for the price */
-    font-weight: bold;
-  }
   
 
   .expanded-card {

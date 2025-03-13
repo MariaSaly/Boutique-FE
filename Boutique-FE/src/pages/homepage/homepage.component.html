@@ -61,75 +61,58 @@
   </div> -->
   
   <div class="newarrivals">
-    <h1>New Arrivals </h1>
-    <div
-      class="arrivalcard"
-      *ngFor="let product of newarrivals; let i = index"
-      (click)="selectCard(i)"
-    >
-    <div class="card-image" (mouseenter)="onHover(i, product.imageUrl)" (mouseleave)="onLeave(i)">
-      <div *ngIf="product.imageUrl?.length > 1" class="carousel">
-        <!-- Image Display -->
-        <img
-          [src]="product.imageUrl[currentIndexes[i]]"
-          class="product-image"
-          alt="Product image"
-        />
-      </div>
-    
-      <!-- Single Image Display -->
-      <div *ngIf="!product.imageUrl || product.imageUrl.length === 1">
-        <img
-          [src]=" (product.imageUrl?.[0] || product.imageUrl)"
-          class="product-image"
-          alt="Product image"
-        />
-      </div>
-    </div>
-
-      <!-- Card Details -->
-      <div class="card-details">
-        <h2>{{ product.name }}</h2>
-        <p>{{ product.description }}</p>
-        <p class="price">{{ product.price |  currency:'INR'  }}</p>
+    <h1>New Arrivals</h1>
+    <div class="cards-container">
+      <div
+        class="arrivalcard"
+        *ngFor="let product of newarrivals; let i = index"
+        (click)="selectCard(i)"
+      >
+        <div class="card-image">
+          <div *ngIf="product.imageUrl?.length > 1" class="carousel">
+            <img [src]="product.imageUrl[currentIndexes[i]]" class="product-image" alt="Product image" />
+          </div>
+          <div *ngIf="!product.imageUrl || product.imageUrl.length === 1">
+            <img [src]="(product.imageUrl?.[0] || product.imageUrl)" class="product-image" alt="Product image" />
+          </div>
+        </div>
+  
+        <!-- Card Details -->
+        <div class="card-details">
+          <h2>{{ product.name }}</h2>
+          <p>{{ product.description }}</p>
+          <p class="price">{{ product.price | currency: 'INR' }}</p>
+        </div>
       </div>
     </div>
   </div>
+  
   <div class="newarrivals">
-    <h1>Best Sellers </h1>
-    <div
-      class="arrivalcard"
-      *ngFor="let product of filteredData; let i = index"
-      (click)="selectCard(i)"
-    >
-    <div class="card-image" (mouseenter)="onHover(i, product.imageUrl)" (mouseleave)="onLeave(i)">
-      <div *ngIf="product.imageUrl?.length > 1" class="carousel">
-        <!-- Image Display -->
-        <img
-          [src]="product.imageUrl[currentIndexes[i]]"
-          class="product-image"
-          alt="Product image"
-        />
-      </div>
-    
-      <!-- Single Image Display -->
-      <div *ngIf="!product.imageUrl || product.imageUrl.length === 1">
-        <img
-          [src]=" (product.imageUrl?.[0] || product.imageUrl)"
-          class="product-image"
-          alt="Product image"
-        />
-      </div>
-    </div>
-
-      <!-- Card Details -->
-      <div class="card-details">
-        <h2>{{ product.name }}</h2>
-        <p>{{ product.description }}</p>
-        <p class="price">{{ product.price |  currency:'INR'  }}</p>
+    <h1>Best Sellers</h1>
+    <div class="cards-container">
+      <div
+        class="arrivalcard"
+        *ngFor="let product of newarrivals; let i = index"
+        (click)="selectCard(i)"
+      >
+        <div class="card-image">
+          <div *ngIf="product.imageUrl?.length > 1" class="carousel">
+            <img [src]="product.imageUrl[currentIndexes[i]]" class="product-image" alt="Product image" />
+          </div>
+          <div *ngIf="!product.imageUrl || product.imageUrl.length === 1">
+            <img [src]="(product.imageUrl?.[0] || product.imageUrl)" class="product-image" alt="Product image" />
+          </div>
+        </div>
+  
+        <!-- Card Details -->
+        <div class="card-details">
+          <h2>{{ product.name }}</h2>
+          <p>{{ product.description }}</p>
+          <p class="price">{{ product.price | currency: 'INR' }}</p>
+        </div>
       </div>
     </div>
-  </div>  
+  </div> 
       <div class="footer">
         <!-- Customer Service Row -->
         <div class="footer-customer-service">
@@ -212,75 +195,58 @@
     <!-- <div class="newarrivals">
       <h1>New Arrivals</h1> -->
       <div class="newarrivals">
-        <h1>New Arrivals </h1>
-        <div
-          class="arrivalcard"
-          *ngFor="let product of filteredData; let i = index"
-          (click)="selectCard(i)"
-        >
-        <div class="card-image" (mouseenter)="onHover(i, product.imageUrl)" (mouseleave)="onLeave(i)">
-          <div *ngIf="product.imageUrl?.length > 1" class="carousel">
-            <!-- Image Display -->
-            <img
-              [src]="product.imageUrl[currentIndexes[i]]"
-              class="product-image"
-              alt="Product image"
-            />
-          </div>
-        
-          <!-- Single Image Display -->
-          <div *ngIf="!product.imageUrl || product.imageUrl.length === 1">
-            <img
-              [src]=" (product.imageUrl?.[0] || product.imageUrl)"
-              class="product-image"
-              alt="Product image"
-            />
-          </div>
-        </div>
-    
-          <!-- Card Details -->
-          <div class="card-details">
-            <h2>{{ product.name }}</h2>
-            <p>{{ product.description }}</p>
-            <p class="price">{{ product.price |  currency:'INR'  }}</p>
+        <h1>New Arrivals</h1>
+        <div class="cards-container">
+          <div
+            class="arrivalcard"
+            *ngFor="let product of newarrivals; let i = index"
+            (click)="selectCard(i)"
+          >
+            <div class="card-image">
+              <div *ngIf="product.imageUrl?.length > 1" class="carousel">
+                <img [src]="product.imageUrl[currentIndexes[i]]" class="product-image" alt="Product image" />
+              </div>
+              <div *ngIf="!product.imageUrl || product.imageUrl.length === 1">
+                <img [src]="(product.imageUrl?.[0] || product.imageUrl)" class="product-image" alt="Product image" />
+              </div>
+            </div>
+      
+            <!-- Card Details -->
+            <div class="card-details">
+              <h2>{{ product.name }}</h2>
+              <p>{{ product.description }}</p>
+              <p class="price">{{ product.price | currency: 'INR' }}</p>
+            </div>
           </div>
         </div>
       </div>
+      
       <div class="newarrivals">
-        <h1>Best Sellers </h1>
-        <div
-          class="arrivalcard"
-          *ngFor="let product of filteredData; let i = index"
-          (click)="selectCard(i)"
-        >
-        <div class="card-image" (mouseenter)="onHover(i, product.imageUrl)" (mouseleave)="onLeave(i)">
-          <div *ngIf="product.imageUrl?.length > 1" class="carousel">
-            <!-- Image Display -->
-            <img
-              [src]="product.imageUrl[currentIndexes[i]]"
-              class="product-image"
-              alt="Product image"
-            />
-          </div>
-        
-          <!-- Single Image Display -->
-          <div *ngIf="!product.imageUrl || product.imageUrl.length === 1">
-            <img
-              [src]=" (product.imageUrl?.[0] || product.imageUrl)"
-              class="product-image"
-              alt="Product image"
-            />
-          </div>
-        </div>
-    
-          <!-- Card Details -->
-          <div class="card-details">
-            <h2>{{ product.name }}</h2>
-            <p>{{ product.description }}</p>
-            <p class="price">{{ product.price |  currency:'INR'  }}</p>
+        <h1>Best Sellers</h1>
+        <div class="cards-container">
+          <div
+            class="arrivalcard"
+            *ngFor="let product of newarrivals; let i = index"
+            (click)="selectCard(i)"
+          >
+            <div class="card-image">
+              <div *ngIf="product.imageUrl?.length > 1" class="carousel">
+                <img [src]="product.imageUrl[currentIndexes[i]]" class="product-image" alt="Product image" />
+              </div>
+              <div *ngIf="!product.imageUrl || product.imageUrl.length === 1">
+                <img [src]="(product.imageUrl?.[0] || product.imageUrl)" class="product-image" alt="Product image" />
+              </div>
+            </div>
+      
+            <!-- Card Details -->
+            <div class="card-details">
+              <h2>{{ product.name }}</h2>
+              <p>{{ product.description }}</p>
+              <p class="price">{{ product.price | currency: 'INR' }}</p>
+            </div>
           </div>
         </div>
-      </div>  
+      </div> 
     
       <div class="footer">
         <!-- Customer Service Row -->
