@@ -70,6 +70,7 @@ ngOnInit(): void {
   this.startImageRotation();
   this.handleBackNavigation();
   this.getProducts();
+  
 }
 getProducts(){
 this.httpService.get<any>(`${this.url}/api/items/getItem?subcategory=newarrivals`).subscribe(
@@ -79,7 +80,8 @@ this.httpService.get<any>(`${this.url}/api/items/getItem?subcategory=newarrivals
   }
 )
 }getSareeItems(): void {
-  this.httpService.get(`${this.url}/api/items/getItem?category=bridalsquade&isCustomizable=true`).subscribe((data: any) => {
+  this.httpService.get(`${this.url}/api/items/getItem?subcategory=newarrivals`).subscribe((data: any) => {
+    console.log("new arrival data:", data);
     this.items = data;
     this.filteredData = [...this.items];
     this.currentIndexes = this.filteredData.map(() => 0); // Initialize image indexes
