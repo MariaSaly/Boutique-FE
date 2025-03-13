@@ -59,6 +59,9 @@ export class HttpServiceWithHeaders {
   patch<T>(url: string, body: any): Observable<any> {
     return this.http.patch(url, body, { headers: this.getHeaders() });
   }
+  put<T>(url: string, body: any): Observable<any> {
+    return this.http.put(url, body, { headers: this.getHeaders() });
+  }
 
 
   get<T>(url: string, params?: any): Observable<T> {
