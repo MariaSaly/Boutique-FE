@@ -26,7 +26,9 @@
 
         <!-- Display Tracking ID if exists -->
         <div class="tracking-id-section" *ngIf="order.trackingId">
-          <p class="tracking-id-label"><strong>Tracking ID:</strong> {{ order.trackingId || 'Not Available' }}</p>
+          <a [href]="order.trackingId" target="_blank" class="tracking-id-label">
+            {{ order.trackingId }}
+          </a>
         </div>
         
         <!-- Order Items -->
@@ -37,7 +39,7 @@
               <div class="order-item-details-text">
                 <h5 class="order-product-name">{{ item.productId }}</h5>
                 <p class="order-item-quantity">Qty: {{ item.quantity }}</p>
-                <p class="order-item-price"><strong>Price:</strong> ${{ getProductPrice(item.productId) }}</p>
+                <p class="order-item-price"><strong>Price:</strong> ₹{{ getProductPrice(item.productId) }}</p>
               </div>
             </div>
           </div>

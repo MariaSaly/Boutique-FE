@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { SearchServiceService } from '../search-service.service';
 import { environment } from '../../environment';
 import { CommonModule } from '@angular/common';
@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-search-result',
-  imports: [CommonModule , FormsModule],
+  imports: [CommonModule , FormsModule ,RouterModule],
   standalone:true,
   templateUrl: './search-result.component.html',
   styleUrl: './search-result.component.css'

@@ -189,7 +189,7 @@ export class ViewMomandDaughterComponent {
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
       })
-      this.toastService.error('please login to addtoCart');
+      //this.toastService.error('please login to addtoCart');
     }
     }
     generateGuestId() {

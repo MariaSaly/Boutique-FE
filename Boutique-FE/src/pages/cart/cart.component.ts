@@ -64,9 +64,9 @@ ngOnInit(): void {
 }
 getImageUrl(item: any): string {
   if (Array.isArray(item.imageUrl)) {
-    return this.url + item.imageUrl[0]; // Return first image if it's an array
+    return item.imageUrl[0]; // Return first image if it's an array
   }
-  return this.url + item.imageUrl; // Return single image if it's not an array
+  return  item.imageUrl; // Return single image if it's not an array
 }
 deleteItem(id:any){
   const previousItem= this.cartItems.find((item:any)=> item.cartId == id);
@@ -130,7 +130,7 @@ loadCart(){
       console.log ("data:", data);
       this.cartItems = data.map((item: any) => ({
        ...item,
-       quantity:item.quantity?item.quantity:1
+       quantity:item.quantity
 
       }));
       const guestId = localStorage.getItem('guestId');
@@ -152,7 +152,7 @@ loadCart(){
       console.log ("data:", data);
       this.cartItems = data.map((item:any)=>({
         ...item,
-        quantity:item.quantity?item.quantity:1
+        quantity:item.quantity
       }));
      //  this.cartItems.forEach((item)=>{
      //   this.fetchImageForItems(item);

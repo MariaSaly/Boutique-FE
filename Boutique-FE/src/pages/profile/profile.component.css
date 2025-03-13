@@ -145,15 +145,19 @@
   width: 70px;
   height: 70px;
   border-radius: 8px;
-  object-fit: cover;
+  object-fit: contain;
   margin-right: 15px;
 }
 
 /* Order Item Details */
 .order-item-info {
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
+  min-width: 100px;
+  flex-shrink: 0;
 }
+
 
 .order-item-details-text {
   display: flex;
@@ -187,19 +191,24 @@
   gap: 10px;
   margin-top: 10px;
 }
-
 .tracking-id-label {
   font-size: 14px;
   font-weight: 600;
-  color: #34495e;
+  color: #007bff;
   background-color: #ecf0f1;
   padding: 5px 10px;
   border-radius: 5px;
   display: inline-block;
-  max-width: 200px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.3s;
 }
+
+.tracking-id-label:hover {
+  background-color: #d5e4f1;
+  text-decoration: underline;
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
