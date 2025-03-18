@@ -19,6 +19,17 @@
       <label for="description">Description</label>
       <textarea id="description" name="description" [(ngModel)]="description" placeholder="Enter product description" rows="4" ></textarea>
     </div>
+    <!--- Color Pattern-->
+    <div class="form-group">
+      <label for="colorPattern">Color Pattern</label>
+      <input 
+        type="text" 
+        id="colorPattern" 
+        name="colorPattern" 
+        [(ngModel)]="colorPattern" 
+        placeholder="Enter color pattern (comma-separated, e.g., Red,Blue,Green)" 
+      />
+    </div>
 
     <!-- Is Customizable Field -->
     <div class="form-group">
