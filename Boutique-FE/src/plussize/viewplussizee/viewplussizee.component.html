@@ -95,7 +95,18 @@
           </button>
         </div>
       </div>
-      
+      <div class="pattern-options">
+        <h3>Patterns</h3>
+        <div class="pattern-list">
+          <div 
+            *ngFor="let pattern of splitPatterns(itemData.colorPattern)" 
+            class="pattern-box" 
+            [ngClass]="{'selected': pattern === selectedPattern}" 
+            (click)="selectPattern(pattern)">
+            {{ pattern }}
+          </div>
+        </div>
+      </div>
       <div class="stock-status">
         <p *ngIf="itemData.stock > 0" class="in-stock">  In Stock ({{ itemData.stock }}) </p>
         <p *ngIf="itemData.stock === 0" class="out-of-stock">Out of Stock</p>

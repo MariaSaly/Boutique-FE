@@ -1,6 +1,35 @@
 :host {
   line-height: normal !important;
  }
+
+ .pattern-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pattern-box {
+  padding: 5px 5px;
+  border: 1px solid #000;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: white;
+  font-weight: bold;
+  text-align: center;
+  min-width: 70px;
+  transition: all 0.3s ease-in-out;
+}
+
+.pattern-box:hover {
+  background-color: #ddd;
+}
+
+.selected {
+  background: #d4af37 !important;
+  color: white !important;
+  border-color: #d4af37;
+}
+
  body {
      font-family: 'Lora', serif; /* Elegant serif font for headings */
      font-size: 16px;
@@ -136,7 +165,7 @@
    }
    
    .product-description {
-     line-height: 0%;
+     /* line-height: 0%; */
      font-size: 1rem;
      /* line-height: 1.6; */
      color: #555;

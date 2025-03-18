@@ -296,5 +296,25 @@ export class ViewhalfsareeComponent {
       window.open(whatsappShareUrl, "_blank");
     }
   }
+  selectedColor: string = '';
+  colors: string[] = ['red', 'blue', 'green', 'yellow', 'black']; // Dynamic color list
+  
+  selectColor(color: string) {
+    this.selectedColor = color;
+    console.log('Selected Color:', this.selectedColor);
+  }
+  patterns: string[] = ["MLO41", "ML544", "ML233", "ML678"]; // Add more patterns
+  selectedPattern: string = ""; // Stores selected pattern
 
+
+  // Function to split colorPattern into an array
+  splitPatterns(patternString: string): string[] {
+    return patternString ? patternString.split(',') : [];
+  }
+  
+  selectPattern(pattern: string) {
+    this.selectedPattern = pattern;
+    console.log("Selected Pattern:", pattern);
+  }
+  
 }

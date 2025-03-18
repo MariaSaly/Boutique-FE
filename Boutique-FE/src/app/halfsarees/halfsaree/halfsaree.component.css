@@ -65,11 +65,19 @@
     font-size: 16px;
     margin: 10px 0;
     font-weight: bold;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
   }
   
   .card-details p {
     font-size: 14px;
     color: #777;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
   }
   
   .card-details .price {
@@ -265,12 +273,17 @@ right: 10px;
 
 @media(max-width:480px){
 .main-container{
+  width: 100%;
+  display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
   .newarrivals{
     margin: 0 !important;
     padding: 0;
     display: flex;
     justify-content: space-evenly;
-    align-items: flex-start;
+    /* align-items: flex-start; */
   }
   .arrivalcard{
     width: 150px !important;
@@ -289,8 +302,8 @@ right: 10px;
   .card-details{
     
   }
-}
 
+}
 }
 .current-route-link {
   text-decoration: none; /* Underline for current route link */
@@ -300,3 +313,4 @@ right: 10px;
 .home-link {
   text-decoration: none; /* Underline for home link */
 }
+

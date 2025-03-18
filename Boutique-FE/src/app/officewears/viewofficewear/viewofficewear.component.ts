@@ -297,4 +297,16 @@ export class ViewofficewearComponent {
     }
   }
 
+  selectedPattern: string = ""; // Stores selected pattern
+
+
+  // Function to split colorPattern into an array
+  splitPatterns(patternString: string): string[] {
+    return patternString ? patternString.split(',') : [];
+  }
+  
+  selectPattern(pattern: string) {
+    this.selectedPattern = pattern;
+    console.log("Selected Pattern:", pattern);
+  }
 }

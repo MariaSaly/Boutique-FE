@@ -326,7 +326,9 @@ button:hover {
   display: flex;
   width: 100%;
   flex-direction: column;
-  justify-content: start;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   padding: 5px;
 }
 
@@ -334,6 +336,9 @@ button:hover {
   font-size: 14px;
   color: #333;
   margin-bottom: 3px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .card-details p {
@@ -372,7 +377,12 @@ button:hover {
     /* -webkit-overflow-scrolling: touch;  */
   }
 }
-
+.card-details{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
 
 
 /* Footer Styling */
@@ -498,8 +508,8 @@ button:hover {
   font-size: 14px;
   color: #333;
   display: flex;
-  align-items: start;
-  justify-content: start;
+  /* align-items: start;
+  justify-content: start; */
 
 }
 

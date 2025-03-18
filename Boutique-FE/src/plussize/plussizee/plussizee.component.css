@@ -274,6 +274,10 @@ right: 10px;
 
 @media(max-width:480px){
 .main-container{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
   .newarrivals{
     margin: 0 !important;
     padding: 0;
@@ -298,6 +302,6 @@ right: 10px;
   .card-details{
     
   }
-}
+
 
 }

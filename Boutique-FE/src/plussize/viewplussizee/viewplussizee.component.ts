@@ -295,5 +295,14 @@ export class ViewplussizeeComponent {
       window.open(whatsappShareUrl, "_blank");
     }
   }
+  selectedPattern: string = "";
+  splitPatterns(patternString: string): string[] {
+    return patternString ? patternString.split(',') : [];
+  }
+  
+  selectPattern(pattern: string) {
+    this.selectedPattern = pattern;
+    console.log("Selected Pattern:", pattern);
+  }
     }
 
