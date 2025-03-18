@@ -25,10 +25,11 @@ export class AddItemsComponent implements OnInit {
   files: any[] = []
   description: string = '';
   isCustomizable: string = 'false';
-  isStock:string='false'
+  isStock: string = 'false'
   @ViewChild('submitBtn')
   submitButton!: ElementRef<HTMLButtonElement>;
   samepinch: boolean = false;
+  colorPattern: string = '';
   category: string = '';
   stock: number = 0;
   image: File | null = null;
@@ -41,10 +42,10 @@ export class AddItemsComponent implements OnInit {
   items: unknown;
   selectedFiles: File[] = [];
   filenames: any[] = [];
-  customizableCategories: any[] = ['momanddaughter', 'menswear','familycombo','cousinsquade','bridalsquade','bridalcostumes'];
-  nonCustomizabeCategories: any[] = ['nine', 'coords','halfsaree','leggins','officewear','saree','plussize'];
+  customizableCategories: any[] = ['momanddaughter', 'menswear', 'familycombo', 'cousinsquade', 'bridalsquade', 'bridalcostumes'];
+  nonCustomizabeCategories: any[] = ['nine', 'coords', 'halfsaree', 'leggins', 'officewear', 'saree', 'plussize'];
   categoryList: any[] = this.nonCustomizabeCategories;
-  subcategoryList:any[]=['newarrivals','bestsellar']
+  subcategoryList: any[] = ['newarrivals', 'bestsellar']
   subcategory: any;
   constructor(private router: Router, private cdr: ChangeDetectorRef, private http: HttpServiceWithHeaders, private activatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
@@ -156,6 +157,8 @@ export class AddItemsComponent implements OnInit {
     formData.append('stock', this.stock.toString()); // Ensure it's a string
     formData.append('isStock', this.isStock)
     formData.append('vedioLink', this.vedioUrl);
+    // Convert colorPattern to a comma-separated string before appending
+    formData.append('colorPattern', this.colorPattern ? this.colorPattern.split(',').map(c => c.trim()).join(',') : '');
 
     // Append image file
     //  const imageFile = (document.getElementById('imageUpload') as HTMLInputElement).files?.[0];
@@ -199,6 +202,8 @@ export class AddItemsComponent implements OnInit {
     formData.append('stock', this.stock.toString()); // Ensure it's a string
     formData.append('isStock', this.isStock.toString()); // Ensure it's a string
     formData.append('vedioLink', this.vedioUrl);
+    // Convert colorPattern to a comma-separated string before appending
+    formData.append('colorPattern', this.colorPattern ? this.colorPattern.split(',').map(c => c.trim()).join(',') : '');
 
     // Append image file
     // const imageFile = (document.getElementById('imageUpload') as HTMLInputElement).files?.[0];
