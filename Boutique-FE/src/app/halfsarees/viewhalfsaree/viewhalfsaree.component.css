@@ -480,6 +480,11 @@
 }
 
 
+.checkbox-container {
+  display: flex;
+  gap: 15px; /* Adjust spacing between checkboxes */
+  align-items: center; /* Align checkboxes vertically */
+}
 
 
 
