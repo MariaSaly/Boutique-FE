@@ -9,7 +9,11 @@
      background-color: #f9f8f6; /* Neutral background */
      color: #333;
    }
-   
+   .checkbox-container {
+    display: flex;
+    gap: 15px; /* Adjust spacing between checkboxes */
+    align-items: center; /* Align checkboxes vertically */
+  }
    .boutique-container {
      display: flex;
      gap: 40px;

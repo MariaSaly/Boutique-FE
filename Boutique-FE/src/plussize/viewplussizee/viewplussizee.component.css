@@ -1,6 +1,11 @@
 :host {
   line-height: normal !important;
  }
+ .checkbox-container {
+  display: flex;
+  gap: 15px; /* Adjust spacing between checkboxes */
+  align-items: center; /* Align checkboxes vertically */
+}
  body {
      font-family: 'Lora', serif; /* Elegant serif font for headings */
      font-size: 16px;
