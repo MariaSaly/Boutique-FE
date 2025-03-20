@@ -109,11 +109,15 @@
         </div>
       </div>
       
-      <div class="checkbox-container">
+      <div class="checkbox-container" *ngIf="itemData.isSleeve === 'true'" >
         <label>
-          <input type="checkbox" name="sleeveType" value="sleeve"> Sleeve
+          <input 
+            type="checkbox" 
+            name="sleeveType" 
+            [checked]="isSleeveChecked" 
+            (change)="onSleeveCheckboxChange($event)"
+          > Sleeve
         </label>
-       
       </div>
       
       

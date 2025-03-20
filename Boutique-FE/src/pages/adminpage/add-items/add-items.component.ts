@@ -25,6 +25,7 @@ export class AddItemsComponent implements OnInit {
   files: any[] = []
   description: string = '';
   isCustomizable: string = 'false';
+  isSleeve: string = 'false';
   isStock: string = 'false'
   @ViewChild('submitBtn')
   submitButton!: ElementRef<HTMLButtonElement>;
@@ -155,7 +156,8 @@ export class AddItemsComponent implements OnInit {
     formData.append('category', this.category);
     formData.append('subcategory', this.subcategory);
     formData.append('stock', this.stock.toString()); // Ensure it's a string
-    formData.append('isStock', this.isStock)
+    formData.append('isStock', this.isStock);
+    formData.append('isSleeve', this.isSleeve)
     formData.append('vedioLink', this.vedioUrl);
     // Convert colorPattern to a comma-separated string before appending
     formData.append('colorPattern', this.colorPattern ? this.colorPattern.split(',').map(c => c.trim()).join(',') : '');
@@ -201,6 +203,7 @@ export class AddItemsComponent implements OnInit {
     formData.append('subcategory', this.subcategory);
     formData.append('stock', this.stock.toString()); // Ensure it's a string
     formData.append('isStock', this.isStock.toString()); // Ensure it's a string
+    formData.append('isSleeve', this.isSleeve.toString()); // Ensure it's a string
     formData.append('vedioLink', this.vedioUrl);
     // Convert colorPattern to a comma-separated string before appending
     formData.append('colorPattern', this.colorPattern ? this.colorPattern.split(',').map(c => c.trim()).join(',') : '');

@@ -34,6 +34,9 @@
           <p><strong>Quantity:{{items.quantity}}</strong> </p>
           <p><strong>Price:{{items.price}}</strong> </p>
           <p><strong>Size:{{items.size}}</strong> </p>
+          <p>
+            <strong>Sleeve: {{ items.isSleeve === 'true' ? 'Sleeve' : 'Non-Sleeve' }}</strong>
+          </p>
         </div>
       </li>
     </ul>

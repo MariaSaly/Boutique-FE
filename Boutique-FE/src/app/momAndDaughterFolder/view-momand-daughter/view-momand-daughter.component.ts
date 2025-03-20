@@ -24,6 +24,8 @@ export class ViewMomandDaughterComponent {
     itemId: string | null = '';
     public url = environment.localUrl;
      size:string = 'M'
+     isSleeveChecked: boolean = false;
+
     itemData: any;
   isStock: any;
     constructor( private toastService:ToastrService,private router:Router,private cartService:CartService , private http:HttpService  ,private cdr: ChangeDetectorRef, private route:ActivatedRoute , private httpClient:HttpClient , ){
@@ -58,6 +60,10 @@ export class ViewMomandDaughterComponent {
         clearInterval(this.interval);
       }
     }
+    
+onSleeveCheckboxChange(event: any): void {
+  this.isSleeveChecked = event.target.checked;
+}
 
     isSizeGuideOpen = false;
 
@@ -165,13 +171,15 @@ export class ViewMomandDaughterComponent {
       const productId = this.itemData.id;
       console.log("productId:", productId);
       const qty = this.quantity;
+      const isSleeve = this.isSleeveChecked; 
+
       const data = localStorage.getItem('userData');
       if(data){
         const userData = JSON.parse(data);
         this.userId = userData.user_id;
         console.log("userid:", this.userId);
       
-      this.cartService.addToCart(this.userId,productId,this.size,qty).subscribe( data => {
+      this.cartService.addToCart(this.userId,productId,this.size,qty,isSleeve).subscribe( data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
         this.toastService.success("Cart Added Sucessfully!");
@@ -184,7 +192,7 @@ export class ViewMomandDaughterComponent {
       const productId = this.itemData.id;
       const qty = this.quantity;
       
-      this.cartService.addToCartGuestUser(guestId,productId,this.size,qty).subscribe( data => {
+      this.cartService.addToCartGuestUser(guestId,productId,this.size,qty,isSleeve).subscribe( data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
@@ -209,13 +217,15 @@ export class ViewMomandDaughterComponent {
       const productId = this.itemData.id;
       console.log("productId:", productId);
       const qty = this.quantity;
+      const isSleeve = this.isSleeveChecked; 
+
       const data = localStorage.getItem('userData');
       if(data){
         const userData = JSON.parse(data);
         this.userId = userData.user_id;
         console.log("userid:", this.userId);
       
-      this.cartService.addToCart(this.userId,productId,this.size,qty).subscribe( data => {
+      this.cartService.addToCart(this.userId,productId,this.size,qty,isSleeve).subscribe( data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
@@ -228,7 +238,7 @@ export class ViewMomandDaughterComponent {
       const productId = this.itemData.id;
       const qty = this.quantity;
       
-      this.cartService.addToCartGuestUser(guestId,productId,this.size,qty).subscribe( data => {
+      this.cartService.addToCartGuestUser(guestId,productId,this.size,qty,isSleeve).subscribe( data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);

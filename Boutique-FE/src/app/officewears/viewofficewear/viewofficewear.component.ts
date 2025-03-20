@@ -23,6 +23,8 @@ export class ViewofficewearComponent {
   public url = environment.localUrl;
   itemData: any;
   size: string = 'M';
+  isSleeveChecked: boolean = false;
+
   @Input() imageUrls: string[] = [];
   constructor(private customTextService:customizationTextService, private router:Router,private cartService:CartService , private http:HttpService  ,private cdr: ChangeDetectorRef, private route:ActivatedRoute , private httpClient:HttpClient , ){
 
@@ -44,6 +46,9 @@ export class ViewofficewearComponent {
     
        
     })
+  }
+  onSleeveCheckboxChange(event: any): void {
+    this.isSleeveChecked = event.target.checked;
   }
   startImageRotation() {
     this.interval = setInterval(() => {
@@ -163,6 +168,8 @@ export class ViewofficewearComponent {
     const productId = this.itemData.id;
     console.log("productId:", productId);
     const qty = this.quantity;
+    const isSleeve = this.isSleeveChecked; 
+
     const data = localStorage.getItem('userData');
     if(data){
       const userData = JSON.parse(data);
@@ -170,7 +177,7 @@ export class ViewofficewearComponent {
       console.log("userid:", this.userId);
     
     
-    this.cartService.addToCart(this.userId,productId,this.selectedSize,qty).subscribe( data => {
+    this.cartService.addToCart(this.userId,productId,this.selectedSize,qty,isSleeve).subscribe( data => {
       this.cartService.loadCart(this.userId)
       console.log("user added sucessfully !");
       this.router.navigate(['/cart']);
@@ -182,7 +189,7 @@ export class ViewofficewearComponent {
     const productId = this.itemData.id;
     const qty = this.quantity;
     
-    this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty).subscribe( data => {
+    this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty,isSleeve).subscribe( data => {
       this.cartService.loadCart(guestId)
       console.log("user added sucessfully !");
       this.router.navigate(['/cart']);
@@ -212,13 +219,15 @@ export class ViewofficewearComponent {
     const productId = this.itemData.id;
     console.log("productId:", productId);
     const qty = this.quantity;
+    const isSleeve = this.isSleeveChecked; 
+
     const data = localStorage.getItem('userData');
     if(data){
       const userData = JSON.parse(data);
       this.userId = userData.user_id;
       console.log("userid:", this.userId);
     
-    this.cartService.addToCart(this.userId,productId,this.selectedSize,qty).subscribe( data => {
+    this.cartService.addToCart(this.userId,productId,this.selectedSize,qty,isSleeve).subscribe( data => {
       this.cartService.loadCart(this.userId)
       console.log("user added sucessfully !");
       this.router.navigate(['/cart']);
@@ -231,7 +240,7 @@ export class ViewofficewearComponent {
     const productId = this.itemData.id;
     const qty = this.quantity;
     
-    this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty).subscribe( data => {
+    this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty,isSleeve).subscribe( data => {
       this.cartService.loadCart(guestId)
       console.log("user added sucessfully !");
       this.router.navigate(['/cart']);
