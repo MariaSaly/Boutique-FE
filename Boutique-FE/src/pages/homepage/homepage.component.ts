@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { SharedService } from '../../service/homesharedservice';
 import { MatIconModule } from '@angular/material/icon';
 import { environment } from '../../environment';
 import { HttpService } from '../../service/httpService';
+import { ScrollService } from '../../service/scroll.service';
+import { ScrollCommunicationService } from '../../service/scroll-communication.service';
 
 @Component({
   selector: 'app-homepage',
@@ -19,12 +21,22 @@ export class HomepageComponent  implements OnInit, OnDestroy {
   showCategoryContent = false;
   showSamePinchContent = false;
   interval: any;
+  showNewArrivals = false; 
   items: any[] = [];
+  @ViewChild('newArrivalsSection') newArrivalsSection!: ElementRef;
 
   filteredData: any[] = [];
   newarrivals: any;
-  constructor( private router:Router,private sharedService: SharedService, private cdRef: ChangeDetectorRef,private httpService: HttpService, ){}
+  constructor(private scrollService: ScrollCommunicationService, private scrollServices: ScrollService,private router:Router,private sharedService: SharedService, private cdRef: ChangeDetectorRef,private httpService: HttpService, ){}
+  showSection() {
+    this.showNewArrivals = true;
+    console.log("🔹 showNewArrivals is now:", this.showNewArrivals);
+  }
 
+  
+  
+  
+  
   startImageRotation() {
     this.interval = setInterval(() => {
       this.currentIndex = (this.currentIndex + 1) % this.images.length;
@@ -70,8 +82,48 @@ ngOnInit(): void {
   this.startImageRotation();
   this.handleBackNavigation();
   this.getProducts();
-  
+  this.scrollService.newArrivalsClicked$.subscribe(() => {
+    console.log("✅ HomepageComponent: Received scroll event!");
+    
+    // Delay scrolling to allow time for rendering
+    setTimeout(() => {
+      this.scrollToNewArrivals();
+    }, 500);
+  });
+  this.scrollService.bestSellersClicked$.subscribe(() => {
+    console.log("🔥 HomepageComponent: Received Best Sellers scroll event!");
+    setTimeout(() => {
+      this.scrollToBestSeller();
+    }, 500);
+  });
 }
+ngAfterViewInit(): void {
+  console.log('🔹 AfterViewInit: ViewChild should now be available.');
+}
+
+scrollToNewArrivals(retries = 10, delay = 500) {
+  const section = document.getElementById('newArrivalsSection'); // Update with correct ID
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' });
+  } else if (retries > 0) {
+    console.warn(`Retrying scroll... ${retries} attempts left`);
+    setTimeout(() => this.scrollToNewArrivals(retries - 1, delay), delay);
+  } else {
+    console.error('ERROR: newArrivalsSection not found in DOM after multiple attempts.');
+  }
+}
+scrollToBestSeller(retries = 10, delay = 500) {
+  const section = document.getElementById('newBestSection'); // Correct ID
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' });
+  } else if (retries > 0) {
+    console.warn(`Retrying scroll... ${retries} attempts left`);
+    setTimeout(() => this.scrollToBestSeller(retries - 1, delay), delay); // ✅ Correct function call
+  } else {
+    console.error('ERROR: newBestSection not found in DOM after multiple attempts.');
+  }
+}
+
 getProducts(){
 this.httpService.get<any>(`${this.url}/api/items/getItem?subcategory=newarrivals`).subscribe(
   data => {

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component,OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component,ElementRef,OnInit, ViewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { CartService } from '../../app/cart.service';
 import { Router } from '@angular/router';
@@ -8,6 +8,8 @@ import { SharedService } from '../../service/sharedService';
 import { MatMenuModule } from '@angular/material/menu';
 import { query } from '@angular/animations';
 import { AuthService } from '../../shared/authService';
+import { ScrollService } from '../../service/scroll.service';
+import { ScrollCommunicationService } from '../../service/scroll-communication.service';
 @Component({
   selector: 'app-header',
   imports: [MatIconModule,CommonModule,MatMenuModule],
@@ -21,9 +23,32 @@ export class HeaderComponent implements OnInit {
   showCategoryContent = false;
   showSamePinchContent = false;
   userId: any;
-  constructor(private cdRef: ChangeDetectorRef,private authService:AuthService, private SharedService:SharedService,private cartService:CartService , private router:Router , private searchService:SearchService){
+  
+  constructor( private scrollService: ScrollCommunicationService,private scrollServices: ScrollService,private cdRef: ChangeDetectorRef,private authService:AuthService, private SharedService:SharedService,private cartService:CartService , private router:Router , private searchService:SearchService){
 
   }
+  @ViewChild('newBestSection') newBestSection!: ElementRef;
+  @ViewChild('newArrivalsSection') newArrivalsSection!: ElementRef;
+  goToNewArrivals() {
+    this.router.navigate(['/home']).then(() => {
+      setTimeout(() => {
+        this.scrollService.notifyNewArrivalsClick();
+        console.log("📢 Sent scroll event to HomepageComponent!");
+      }, 500);
+    });
+  }
+  
+  goToBestSellers(){
+    this.router.navigate(['/home']).then(()=>{
+      setTimeout(() => {
+        this.scrollService.notifyBestSellersClick();
+        console.log("📢 Sent scroll event to HomepageComponent!");
+      }, 500);
+   
+    });
+  }
+  
+
   ngOnInit(): void {
     this.setFlagFromLocalStorage();
     // this.cartService.currentItems.subscribe( data => {

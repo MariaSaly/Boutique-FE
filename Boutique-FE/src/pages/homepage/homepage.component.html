@@ -60,9 +60,9 @@
       <button class="next-btn" onclick="nextImage()">&#10095;</button>
   </div> -->
   
-  <div class="newarrivals">
-    <h1>New Arrivals</h1>
-    <div class="cards-container">
+  <div id="newArrivalsSection" class="newarrivals" #newArrivalsSection>
+    <h1 >New Arrivals</h1>
+    <div class="cards-container" id="newArrivalsSection" class="newarrivals" #newArrivalsSection>
       <div
         class="arrivalcard"
         *ngFor="let product of newarrivals; let i = index"
@@ -194,7 +194,7 @@
   </div>
     <!-- <div class="newarrivals">
       <h1>New Arrivals</h1> -->
-      <div class="newarrivals">
+      <div class="cards-container" id="newArrivalsSection" class="newarrivals" #newArrivalsSection>
         <h1>New Arrivals</h1>
         <div class="cards-container">
           <div
@@ -221,7 +221,7 @@
         </div>
       </div>
       
-      <div class="newarrivals">
+      <div class="newarrivals" id="newBestSection" >
         <h1>Best Sellers</h1>
         <div class="cards-container">
           <div
