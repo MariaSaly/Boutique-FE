@@ -271,35 +271,27 @@ onSleeveCheckboxChange(event: any): void {
         return;
       }
     
-      const productName = this.itemData.name;
-      const productDescription = this.itemData.description;
-      const productPrice = this.itemData.price;
-    
       // ✅ Get the correct base URL (Avoids localhost issue)
       let liveBaseUrl = window.location.origin;
     
       if (liveBaseUrl.includes("localhost")) {
-        liveBaseUrl = "https://Mokshedestination.com"; // Replace with your actual live domain
+        liveBaseUrl = "https://same-pinch.com"; // Replace with your actual live domain
       }
     
       const productPageUrl = `${liveBaseUrl}/saree/${this.itemData.id}`;
     
-      // ✅ Format text properly to ensure clickable links
-      const shareText = `${productName}\n${productDescription}\n💰 Price: ₹${productPrice}\n\n🔗 ${productPageUrl}`;
-    
       if (navigator.share) {
+        // Share only the URL using the Web Share API
         navigator
           .share({
-            title: productName,
-            text: shareText,
-            url: productPageUrl,
+            url: productPageUrl, // Only the URL is shared
           })
           .then(() => console.log("Shared successfully"))
           .catch((error) => console.error("Sharing failed:", error));
       } else {
-        // ✅ WhatsApp Share Link (Forcing Clickable Link)
-        const whatsappShareUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
-    
+        // Fallback for browsers that don't support the Web Share API
+        // Share the URL via WhatsApp
+        const whatsappShareUrl = `https://wa.me/?text=${encodeURIComponent(productPageUrl)}`;
         window.open(whatsappShareUrl, "_blank");
       }
     }
