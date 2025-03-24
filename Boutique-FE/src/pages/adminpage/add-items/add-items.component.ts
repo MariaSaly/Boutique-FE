@@ -150,96 +150,66 @@ export class AddItemsComponent implements OnInit {
   }
   updateItem() {
     const formData = new FormData();
-
+  
     const selectedSizesList = Object.keys(this.selectedSizes).filter(size => this.selectedSizes[size]);
-   // const sizesString = selectedSizesList.join(','); 
-
+    const sizesString = selectedSizesList.join(','); // Convert array to comma-separated string
+  
     // Append form values directly from the component properties
     formData.append('name', this.name);
-    console.log("Name added to formData:", this.name);
-    formData.append('price', this.price.toString()); // Ensure it's a string
-    formData.append(
-      'description',
-      this.description.replace(/ /g, '\u00A0').replace(/\n/g, '\\n')
-    );
-    
-
-    formData.append('isCustomizable', this.isCustomizable.toString()); // Ensure it's a string
+    formData.append('price', this.price.toString());
+    formData.append('description', this.description.replace(/ /g, '\u00A0').replace(/\n/g, '\\n'));
+    formData.append('isCustomizable', this.isCustomizable.toString());
     formData.append('category', this.category);
     formData.append('subcategory', this.subcategory);
-    formData.append('stock', this.stock.toString()); // Ensure it's a string
+    formData.append('stock', this.stock.toString());
     formData.append('isStock', this.isStock);
-    formData.append('isSleeve', this.isSleeve)
+    formData.append('isSleeve', this.isSleeve);
     formData.append('vedioLink', this.vedioUrl);
-    formData.append('sizes', JSON.stringify(selectedSizesList));
-    // Convert colorPattern to a comma-separated string before appending
+    formData.append('sizes', sizesString); // Append sizes as comma-separated string
     formData.append('colorPattern', this.colorPattern ? this.colorPattern.split(',').map(c => c.trim()).join(',') : '');
-
-    // Append image file
-    //  const imageFile = (document.getElementById('imageUpload') as HTMLInputElement).files?.[0];
-    //  console.log("Image file:", imageFile);
-    //  if (imageFile) {
-    //    formData.append('image', imageFile);
-    //  }
+  
+    // Append image files
     for (const file of this.selectedFiles) {
-      formData.append('imageUrl', file, file.name)
+      formData.append('imageUrl', file, file.name);
     }
-    this.itemId = this.activatedRoute.snapshot.paramMap.get('id');
+  
     // Send data to server
-    console.log("Sending data to server:", formData);
     this.http.put<any>(`${this.url}/api/items/updateItem/${this.itemId}`, formData).subscribe({
       next: (response) => {
-        console.log("Product created successfully:", response);
+        console.log("Product updated successfully:", response);
         this.router.navigate(['/item']);
       },
       error: (error) => {
-        console.log("Error in creating product:", error);
+        console.log("Error in updating product:", error);
       },
     });
-
   }
   createItem() {
-    console.log("Iam in onsubmit method");
-    
-    const selectedSizesList = Object.keys(this.selectedSizes).filter(size => this.selectedSizes[size]);
-//formData.append('sizes', JSON.stringify(selectedSizesList)); // Stringify the array
-    //console.log("Form validity:", form.valid); // Log form validity
-
     const formData = new FormData();
-    console.log("Iam in onsubmit function, form is valid.");
-
+  
+    const selectedSizesList = Object.keys(this.selectedSizes).filter(size => this.selectedSizes[size]);
+    const sizesString = selectedSizesList.join(','); // Convert array to comma-separated string
+  
     // Append form values directly from the component properties
     formData.append('name', this.name);
-    console.log("Name added to formData:", this.name);
-    formData.append('price', this.price.toString()); // Ensure it's a string
-    formData.append(
-      'description',
-      this.description.replace(/ /g, '\u00A0').replace(/\n/g, '\\n')
-    );
-    formData.append('isCustomizable', this.isCustomizable.toString()); // Ensure it's a string
+    formData.append('price', this.price.toString());
+    formData.append('description', this.description.replace(/ /g, '\u00A0').replace(/\n/g, '\\n'));
+    formData.append('isCustomizable', this.isCustomizable.toString());
     formData.append('category', this.category);
     formData.append('subcategory', this.subcategory);
-    formData.append('stock', this.stock.toString()); // Ensure it's a string
-    formData.append('isStock', this.isStock.toString()); // Ensure it's a string
-    formData.append('isSleeve', this.isSleeve.toString()); // Ensure it's a string
+    formData.append('stock', this.stock.toString());
+    formData.append('isStock', this.isStock.toString());
+    formData.append('isSleeve', this.isSleeve.toString());
     formData.append('vedioLink', this.vedioUrl);
-    formData.append('sizes',  JSON.stringify(selectedSizesList));
-    // Convert colorPattern to a comma-separated string before appending
+    formData.append('sizes', sizesString); // Append sizes as comma-separated string
     formData.append('colorPattern', this.colorPattern ? this.colorPattern.split(',').map(c => c.trim()).join(',') : '');
-
-    // Append image file
-    // const imageFile = (document.getElementById('imageUpload') as HTMLInputElement).files?.[0];
-    // console.log("Image file:", imageFile);
-    // if (imageFile) {
-    //   formData.append('image', imageFile);
-    // }
+  
+    // Append image files
     for (const file of this.selectedFiles) {
-      console.log("iamgesfiles:", file);
-      formData.append('image', file)
+      formData.append('image', file);
     }
-
+  
     // Send data to server
-    console.log("Sending data to server:", formData);
     this.http.post<any>(`${this.url}/api/items/createItem`, formData).subscribe({
       next: (response) => {
         console.log("Product created successfully:", response);
@@ -249,7 +219,6 @@ export class AddItemsComponent implements OnInit {
         console.log("Error in creating product:", error);
       },
     });
-
   }
 
 
