@@ -257,7 +257,7 @@ calculateCartItems(){
     return acc+current.quantity;
    },0)
    this.totalPrice = this.cartItems.reduce((acc:any,current:any)=>{
-   return acc + (current.price * current.quantity)
+   return acc + (current.price * current.quantity) + 100
    },0)
 }
 goToShop(){
