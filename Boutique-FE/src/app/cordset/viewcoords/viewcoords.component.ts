@@ -181,7 +181,7 @@ export class ViewcoordsComponent {
     console.log("productId:", productId);
     const qty = this.quantity;
     const isSleeve = this.isSleeveChecked; 
-    const colorPattern = this.selectedPattern
+    const colorPattern = this.selectedPattern || '-'
 
 
 
@@ -235,7 +235,7 @@ export class ViewcoordsComponent {
     console.log("productId:", productId);
     const qty = this.quantity;
     const isSleeve = this.isSleeveChecked; 
-    const colorPattern = this.selectedPattern
+    const colorPattern = this.selectedPattern || '-'
 
 
 

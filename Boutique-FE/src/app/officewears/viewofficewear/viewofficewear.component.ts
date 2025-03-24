@@ -174,7 +174,7 @@ export class ViewofficewearComponent {
     console.log("productId:", productId);
     const qty = this.quantity;
     const isSleeve = this.isSleeveChecked; 
-    const colorPattern = this.selectedPattern
+    const colorPattern = this.selectedPattern || '-'
 
 
     const data = localStorage.getItem('userData');
@@ -227,7 +227,7 @@ export class ViewofficewearComponent {
     console.log("productId:", productId);
     const qty = this.quantity;
     const isSleeve = this.isSleeveChecked; 
-    const colorPattern = this.selectedPattern
+    const colorPattern = this.selectedPattern || '-'
 
 
     const data = localStorage.getItem('userData');

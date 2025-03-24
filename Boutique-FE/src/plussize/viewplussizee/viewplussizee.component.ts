@@ -173,7 +173,7 @@ export class ViewplussizeeComponent {
     console.log("productId:", productId);
     const qty = this.quantity;
     const isSleeve = this.isSleeveChecked; 
-    const colorPattern = this.selectedPattern
+    const colorPattern = this.selectedPattern ||  '-'
 
     const data = localStorage.getItem('userData');
     if(data){
@@ -225,7 +225,7 @@ export class ViewplussizeeComponent {
     console.log("productId:", productId);
     const qty = this.quantity;
     const isSleeve = this.isSleeveChecked; 
-    const colorPattern = this.selectedPattern
+    const colorPattern = this.selectedPattern || '-'
 
     const data = localStorage.getItem('userData');
     if(data){

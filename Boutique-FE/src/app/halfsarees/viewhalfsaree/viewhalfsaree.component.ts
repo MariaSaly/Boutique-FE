@@ -176,7 +176,7 @@ export class ViewhalfsareeComponent {
     console.log("productId:", productId);
     const qty = this.quantity;
     const isSleeve = this.isSleeveChecked;
-    const colorPattern = this.selectedPattern
+    const colorPattern = this.selectedPattern || '-'
     const data = localStorage.getItem('userData');
     if(data){
       const userData = JSON.parse(data);
@@ -227,7 +227,7 @@ export class ViewhalfsareeComponent {
     console.log("productId:", productId);
     const qty = this.quantity;
     const isSleeve = this.isSleeveChecked; 
-    const colorPattern = this.selectedPattern
+    const colorPattern = this.selectedPattern || '-'
     const data = localStorage.getItem('userData');
     if(data){
       const userData = JSON.parse(data);

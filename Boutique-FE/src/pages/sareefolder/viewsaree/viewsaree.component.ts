@@ -175,7 +175,7 @@ onSleeveCheckboxChange(event: any): void {
     console.log("productId:", productId);
     const qty = this.quantity;
     const isSleeve = this.isSleeveChecked; 
-    const colorPattern = this.selectedPattern
+    const colorPattern = this.selectedPattern || '-'
     const data = localStorage.getItem('userData');
     if(data){
       const userData = JSON.parse(data);
@@ -226,7 +226,7 @@ onSleeveCheckboxChange(event: any): void {
     console.log("productId:", productId);
     const qty = this.quantity;
     const isSleeve = this.isSleeveChecked; 
-    const colorPattern = this.selectedPattern
+    const colorPattern = this.selectedPattern || '-'
     const data = localStorage.getItem('userData');
     if(data){
       const userData = JSON.parse(data);
