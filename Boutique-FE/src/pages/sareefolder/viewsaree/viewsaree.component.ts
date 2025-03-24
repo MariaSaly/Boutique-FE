@@ -40,6 +40,11 @@ export class ViewsareeComponent implements OnInit {
     this.http.get(`${this.url}/api/items/getItemById/${this.itemId}`).subscribe( data => {
       console.log("data:", data);
       this.itemData = data;
+      if (this.itemData.description) {
+        this.itemData.description = this.itemData.description
+          .replace(/\\n/g, '\n')
+          .replace(/\u00A0/g, ' ');
+      }
       if (this.itemData?.imageUrl?.length > 1) {
         this.startImageRotation();
       }
@@ -170,7 +175,7 @@ onSleeveCheckboxChange(event: any): void {
     console.log("productId:", productId);
     const qty = this.quantity;
     const isSleeve = this.isSleeveChecked; 
-
+    const colorPattern = this.selectedPattern
     const data = localStorage.getItem('userData');
     if(data){
       const userData = JSON.parse(data);
@@ -178,7 +183,7 @@ onSleeveCheckboxChange(event: any): void {
       console.log("userid:", this.userId);
     
     
-    this.cartService.addToCart(this.userId,productId,this.selectedSize,qty,isSleeve).subscribe( data => {
+    this.cartService.addToCart(this.userId,productId,this.selectedSize,qty,isSleeve,colorPattern).subscribe( data => {
       this.cartService.loadCart(this.userId)
       console.log("user added sucessfully !");
       this.router.navigate(['/cart']);
@@ -190,7 +195,7 @@ onSleeveCheckboxChange(event: any): void {
     const productId = this.itemData.id;
     const qty = this.quantity;
     
-    this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty,isSleeve).subscribe( data => {
+    this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty,isSleeve,colorPattern).subscribe( data => {
       this.cartService.loadCart(guestId)
       console.log("user added sucessfully !");
       this.router.navigate(['/cart']);
@@ -221,14 +226,14 @@ onSleeveCheckboxChange(event: any): void {
     console.log("productId:", productId);
     const qty = this.quantity;
     const isSleeve = this.isSleeveChecked; 
-
+    const colorPattern = this.selectedPattern
     const data = localStorage.getItem('userData');
     if(data){
       const userData = JSON.parse(data);
       this.userId = userData.user_id;
       console.log("userid:", this.userId);
     
-    this.cartService.addToCart(this.userId,productId,this.selectedSize,qty,isSleeve).subscribe( data => {
+    this.cartService.addToCart(this.userId,productId,this.selectedSize,qty,isSleeve,colorPattern).subscribe( data => {
       this.cartService.loadCart(this.userId)
       console.log("user added sucessfully !");
       this.router.navigate(['/cart']);
@@ -241,7 +246,7 @@ onSleeveCheckboxChange(event: any): void {
     const productId = this.itemData.id;
     const qty = this.quantity;
     
-    this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty,isSleeve).subscribe( data => {
+    this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty,isSleeve,colorPattern).subscribe( data => {
       this.cartService.loadCart(guestId)
       console.log("user added sucessfully !");
       this.router.navigate(['/cart']);

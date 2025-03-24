@@ -46,11 +46,11 @@ export class CartService {
  }
 
   //create cart 
-  addToCart( userId:string,productId:string,size:string,quantity:number,isSleeve:boolean):Observable<any>{
-    return this.http.post(`${this.url}/api/cart/addCart`,{userId,productId,size,quantity,isSleeve})
+  addToCart( userId:string,productId:string,size:string,quantity:number,isSleeve:boolean,colorPattern:string):Observable<any>{
+    return this.http.post(`${this.url}/api/cart/addCart`,{userId,productId,size,quantity,isSleeve,colorPattern})
   }
-  addToCartGuestUser( userId:string,productId:string,size:string,quantity:number,isSleeve:boolean):Observable<any>{
-    return this.httpClient.post(`${this.url}/api/cart/addCart`,{userId,productId,size,quantity,isSleeve})
+  addToCartGuestUser( userId:string,productId:string,size:string,quantity:number,isSleeve:boolean,colorPattern:string):Observable<any>{
+    return this.httpClient.post(`${this.url}/api/cart/addCart`,{userId,productId,size,quantity,isSleeve,colorPattern})
   }
   //updateCart
   updateCart(userId:string,productId:string,quantity:number):Observable<any>{

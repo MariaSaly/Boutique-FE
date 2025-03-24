@@ -35,7 +35,7 @@ export class OrderListingComponent implements OnInit {
       // Map through the orders and convert each Firestore timestamp
       this.ordersWithDates = data.orders.map((item: { Date: any; }) => {
         const firestoreDate = item.Date; // Get the Firestore date
-        const jsDate = new Date(firestoreDate._seconds * 1000); // Convert to JavaScript Date
+        const jsDate = new Date(firestoreDate?._seconds * 1000); // Convert to JavaScript Date
         return {
           ...item, // Keep other fields
           jsDate, // Add the converted JavaScript date
