@@ -1,40 +1,26 @@
 <div class="cart-container">
   <h1 class="cart-title">Shopping Cart</h1>
-
   <div class="cart-content">
-
-    <!-- Product Section -->
     <div class="cart-products" *ngIf="cartItems.length > 0; else emptyCart">
       <div class="cart-items">
-        <div class="cart-item" *ngFor="let item of cartItems; let i = index" >
-          <!-- Product Image -->
+        <div class="cart-item" *ngFor="let item of cartItems; let i = index">
           <div class="cart-item-product">
-            <!-- Check if imageUrl is an array and display the first image, otherwise display the single image -->
             <img [src]="getImageUrl(item)" class="item-image">
           </div>
-          
-
-          <!-- Product Name and Description -->
           <div class="cart-item-details">
             <h3 class="item-title">{{ item.name }}</h3>
-            <p class="item-description">{{ item.description }}</p>
+            <p class="item-color">Color: {{ item.colorPattern }}</p>
+            <p class="item-size">Size: {{ item.size }}</p>
           </div>
-
-          <!-- Quantity Controls & Remove Link -->
           <div class="cart-item-quantity">
-            <!-- Quantity Controls -->
             <div class="quantity-controls">
               <button class="quantity-btn decrement" (click)="decreaseQty(item)">-</button>
               <span class="quantity-value">{{ item.quantity }}</span>
               <button class="quantity-btn increment" (click)="increaseQty(item)">+</button>
             </div>
-
-            <!-- Remove Button below Quantity -->
             <hr class="remove-line">
             <a href="javascript:void(0)" class="remove-link" (click)="deleteItem(item.productId)">Remove</a>
           </div>
-
-          <!-- Price -->
           <div class="cart-item-price">
             <p class="price">₹<strong>{{ item.price }}</strong></p>
           </div>
@@ -42,9 +28,7 @@
         <hr class="section-divider">
       </div>
     </div>
-
-    <!-- Empty Cart -->
-    <ng-template #emptyCart class="empty">
+    <ng-template #emptyCart>
       <div class="empty-cart-container">
         <div class="empty-cart-content">
           <div class="empty-cart-icon">
@@ -52,16 +36,12 @@
           </div>
           <h2 class="empty-cart-message">Your Cart is Empty!</h2>
           <p class="empty-cart-submessage">It seems like you haven't added anything to your cart yet. Let's go shopping!</p>
-          <a  class="shop-now-link" (click)="goToShop()">Go Shopping</a>
+          <a class="shop-now-link" (click)="goToShop()">Go Shopping</a>
         </div>
       </div>
     </ng-template>
-
-    <!-- Order Summary -->
     <div class="order-summary" *ngIf="cartItems.length > 0">
       <h2>Order Summary</h2>
-    
-      <!-- Summary Details -->
       <div class="summary-details">
         <div class="summary-row">
           <span class="icon-text">
@@ -78,8 +58,6 @@
           <span class="summary-value">₹{{ totalPrice }}</span>
         </div>
       </div>
-    
-      <!-- Notes Section -->
       <div class="order-notes">
         <p class="note-title">Important Notes</p>
         <ul class="notes-list">
@@ -87,12 +65,7 @@
           <li><i class="fas fa-redo"></i> Reorder may require additional charges.</li>
         </ul>
       </div>
-    
-      <!-- Checkout Button -->
       <button class="checkout-btn animated" (click)="openDeliveryAddressModel()">Proceed to Checkout</button>
     </div>
-    
-    
-    
   </div>
 </div>

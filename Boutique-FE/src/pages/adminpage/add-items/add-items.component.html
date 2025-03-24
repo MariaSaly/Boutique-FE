@@ -17,9 +17,10 @@
     <!-- Description Field -->
     <div class="form-group">
       <label for="description">Description</label>
-      <textarea id="description" name="description" [(ngModel)]="description" placeholder="Enter product description" rows="4" ></textarea>
+      <textarea id="description" name="description" [(ngModel)]="description" placeholder="Enter product description" rows="4"></textarea>
     </div>
-    <!--- Color Pattern-->
+
+    <!-- Color Pattern -->
     <div class="form-group">
       <label for="colorPattern">Color Pattern</label>
       <input 
@@ -34,42 +35,33 @@
     <!-- Is Customizable Field -->
     <div class="form-group">
       <label for="isCustomizable">Is Customizable</label>
-      <select id="isCustomizable" name="isCustomizable" [(ngModel)]="isCustomizable" (change)="onCustomizableChange()" >
+      <select id="isCustomizable" name="isCustomizable" [(ngModel)]="isCustomizable" (change)="onCustomizableChange()">
         <option value="true">True</option>
         <option value="false">False</option>
       </select>
     </div>
 
-      <!-- Is sleeve Field -->
-      <div class="form-group">
-        <label for="isSleeve">IsSleeveShowable</label>
-        <select id="isSleeve" name="isSleeve" [(ngModel)]="isSleeve" >
-          <option value="true">True</option>
-          <option value="false">False</option>
-        </select>
-      </div>
-  
-
-    <!-- Same Pinch Field -->
-    <!-- <div class="form-group">
-      <label for="samepinch">Same Pinch</label>
-      <select id="samepinch" name="samepinch" [(ngModel)]="samepinch" required>
+    <!-- Is Sleeve Field -->
+    <div class="form-group">
+      <label for="isSleeve">Is Sleeve Showable</label>
+      <select id="isSleeve" name="isSleeve" [(ngModel)]="isSleeve">
         <option value="true">True</option>
         <option value="false">False</option>
       </select>
-    </div> -->
+    </div>
 
     <!-- Category Field -->
     <div class="form-group">
       <label for="category">Category</label>
-      <select id="category" name="category" [(ngModel)]="category" >
+      <select id="category" name="category" [(ngModel)]="category">
         <option *ngFor="let cat of categoryList" [value]="cat">{{ cat }}</option>
       </select>
     </div>
 
+    <!-- Subcategory Field -->
     <div class="form-group">
-      <label for="subcategory">subcategory</label>
-      <select id="subcategory" name="subcategory" [(ngModel)]="subcategory" >
+      <label for="subcategory">Subcategory</label>
+      <select id="subcategory" name="subcategory" [(ngModel)]="subcategory">
         <option *ngFor="let cat of subcategoryList" [value]="cat">{{ cat }}</option>
       </select>
     </div>
@@ -80,18 +72,34 @@
       <input type="number" id="stock" name="stock" [(ngModel)]="stock" placeholder="Enter stock quantity" required />
     </div>
 
+    <!-- Is Stock Showable Field -->
     <div class="form-group">
-      <label for="isStock">IsStockShowable</label>
-      <select id="isStock" name="isStock" [(ngModel)]="isStock" >
+      <label for="isStock">Is Stock Showable</label>
+      <select id="isStock" name="isStock" [(ngModel)]="isStock">
         <option value="true">True</option>
         <option value="false">False</option>
       </select>
     </div>
 
-    <!--vedioUrl-->
+    <!-- Video URL Field -->
     <div class="form-group">
-      <label for="vedioUrl">vedioUrl</label>
-      <textarea id="vedioUrl" name="vedioUrl" [(ngModel)]="vedioUrl" placeholder="Enter vediourl" rows="4" required></textarea>
+      <label for="vedioUrl">Video URL</label>
+      <textarea id="vedioUrl" name="vedioUrl" [(ngModel)]="vedioUrl" placeholder="Enter video URL" rows="4" required></textarea>
+    </div>
+
+    <!-- Size Selection Field -->
+    <div class="form-group">
+      <label for="sizes">Sizes</label>
+      <div *ngFor="let size of sizeOptions">
+        <input 
+          type="checkbox" 
+          id="size-{{size}}" 
+          name="sizes" 
+          [(ngModel)]="selectedSizes[size]" 
+          (change)="onSizeChange(size)" 
+        />
+        <label for="size-{{size}}">{{ size }}</label>
+      </div>
     </div>
 
     <!-- Image Upload Field -->
@@ -103,13 +111,12 @@
         id="files" 
         name="files[]"
         multiple
-       [(ngModel)]="files"
-        
-        
+        [(ngModel)]="files"
       />
       <div *ngIf="selectedFiles.length > 0">
         <ul>
-          <li *ngFor="let file of selectedFiles let i = index" >{{i+1}}.SelectedFile:{{file.name}}
+          <li *ngFor="let file of selectedFiles; let i = index">
+            {{ i + 1 }}. Selected File: {{ file.name }}
             <span class="delete-icon" (click)="removefile(i)">&#x2715;</span>
           </li>
         </ul>
@@ -119,11 +126,10 @@
         <img id="imagePreview" src="" alt="Image Preview" />
       </div>
     </div>
-    
+
     <!-- Submit Button -->
     <div class="form-group">
-     
-      <button #submitBtn type="submit" class="submit-btn" [disabled]="viewMode" (click)="onsubmit(productform)">Submit</button>
+      <button #submitBtn type="submit" class="submit-btn" [disabled]="viewMode">Submit</button>
     </div>
   </form>
 </div>

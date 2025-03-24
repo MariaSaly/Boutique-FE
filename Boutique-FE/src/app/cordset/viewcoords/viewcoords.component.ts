@@ -26,20 +26,32 @@ export class ViewcoordsComponent {
   isSleeveChecked: boolean = false;
 
   @Input() imageUrls: string[] = [];
+  description: string = '';
   constructor(private customTextService:customizationTextService, private router:Router,private cartService:CartService , private http:HttpService  ,private cdr: ChangeDetectorRef, private route:ActivatedRoute , private httpClient:HttpClient , ){
 
   }
   ngOnInit(): void {
     this.itemId = this.route.snapshot.paramMap.get('id');
     console.log("id:", this.itemId);
+    
     if(this.itemId){
       this.getItemByID();
     }
+   
   }
   getItemByID(){
-    this.http.get(`${this.url}/api/items/getItemById/${this.itemId}`).subscribe( data => {
+    this.http.get(`${this.url}/api/items/getItemById/${this.itemId}`).subscribe( (data:any) => {
       console.log("data:", data);
       this.itemData = data;
+      if (this.itemData.description) {
+        this.itemData.description = this.itemData.description
+          .replace(/\\n/g, '\n')
+          .replace(/\u00A0/g, ' ');
+      }
+      
+      console.log("description:", this.itemData.description);
+
+      console.log("description:",this.itemData.description )
       if (this.itemData?.imageUrl?.length > 1) {
         this.startImageRotation();
       }
@@ -169,6 +181,8 @@ export class ViewcoordsComponent {
     console.log("productId:", productId);
     const qty = this.quantity;
     const isSleeve = this.isSleeveChecked; 
+    const colorPattern = this.selectedPattern || '-'
+
 
 
     const data = localStorage.getItem('userData');
@@ -178,7 +192,7 @@ export class ViewcoordsComponent {
       console.log("userid:", this.userId);
     
     
-    this.cartService.addToCart(this.userId,productId,this.selectedSize,qty,isSleeve).subscribe( data => {
+    this.cartService.addToCart(this.userId,productId,this.selectedSize,qty,isSleeve,colorPattern).subscribe( data => {
       this.cartService.loadCart(this.userId)
       console.log("user added sucessfully !");
       this.router.navigate(['/cart']);
@@ -190,7 +204,7 @@ export class ViewcoordsComponent {
     const productId = this.itemData.id;
     const qty = this.quantity;
     
-    this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty,isSleeve).subscribe( data => {
+    this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty,isSleeve,colorPattern).subscribe( data => {
       this.cartService.loadCart(guestId)
       console.log("user added sucessfully !");
       this.router.navigate(['/cart']);
@@ -221,6 +235,8 @@ export class ViewcoordsComponent {
     console.log("productId:", productId);
     const qty = this.quantity;
     const isSleeve = this.isSleeveChecked; 
+    const colorPattern = this.selectedPattern || '-'
+
 
 
     const data = localStorage.getItem('userData');
@@ -229,7 +245,7 @@ export class ViewcoordsComponent {
       this.userId = userData.user_id;
       console.log("userid:", this.userId);
     
-    this.cartService.addToCart(this.userId,productId,this.selectedSize,qty,isSleeve).subscribe( data => {
+    this.cartService.addToCart(this.userId,productId,this.selectedSize,qty,isSleeve,colorPattern).subscribe( data => {
       this.cartService.loadCart(this.userId)
       console.log("user added sucessfully !");
       this.router.navigate(['/cart']);
@@ -242,7 +258,7 @@ export class ViewcoordsComponent {
     const productId = this.itemData.id;
     const qty = this.quantity;
     
-    this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty,isSleeve).subscribe( data => {
+    this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty,isSleeve,colorPattern).subscribe( data => {
       this.cartService.loadCart(guestId)
       console.log("user added sucessfully !");
       this.router.navigate(['/cart']);
@@ -268,7 +284,9 @@ export class ViewcoordsComponent {
         (this.currentIndex - 1 + this.images.length) % this.images.length;
     }
   }
-
+  unescapeString(str: string): string {
+    return str.replace(/\\n/g, '\n').replace(/\\r/g, '\r').replace(/\\"/g, '"');
+  }
   shareImage() {
     if (!this.itemData) {
       alert("Product data is not available.");

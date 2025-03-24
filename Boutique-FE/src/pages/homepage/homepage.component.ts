@@ -27,6 +27,7 @@ export class HomepageComponent  implements OnInit, OnDestroy {
 
   filteredData: any[] = [];
   newarrivals: any;
+  currentIndex: any;
   constructor(private scrollService: ScrollCommunicationService, private scrollServices: ScrollService,private router:Router,private sharedService: SharedService, private cdRef: ChangeDetectorRef,private httpService: HttpService, ){}
   showSection() {
     this.showNewArrivals = true;
@@ -74,7 +75,7 @@ images: string[] = [
 //   '../../assets/images/saree2.png',
 //   '../../assets/images/halfsaree.jpg'
 // ];
-currentIndex: number = 0;
+currentIndexs: number[]= [];
 
 ngOnInit(): void {
   this.setFlagFromLocalStorage();
@@ -123,15 +124,20 @@ scrollToBestSeller(retries = 10, delay = 500) {
     console.error('ERROR: newBestSection not found in DOM after multiple attempts.');
   }
 }
-
-getProducts(){
-this.httpService.get<any>(`${this.url}/api/items/getItem?subcategory=newarrivals`).subscribe(
-  data => {
-    console.log("new arrival data:", data);
-    this.newarrivals = data;
-  }
-)
-}getSareeItems(): void {
+getProducts(): void {
+  this.httpService.get<any>(`${this.url}/api/items/getItem?subcategory=newarrivals`).subscribe(
+    (data) => {
+      console.log("New arrivals data:", data);
+      this.newarrivals = data;
+      // Initialize currentIndexes for each product
+      this.currentIndexes = this.newarrivals.map(() => 0);
+    },
+    (error) => {
+      console.error("Error fetching new arrivals:", error);
+    }
+  );
+}
+getSareeItems(): void {
   this.httpService.get(`${this.url}/api/items/getItem?subcategory=newarrivals`).subscribe((data: any) => {
     console.log("new arrival data:", data);
     this.items = data;
@@ -149,15 +155,16 @@ this.httpService.get<any>(`${this.url}/api/items/getItem?subcategory=newarrivals
 currentIndexes: { [key: number]: number } = {}; // Track the index of each product image
 hoverIntervals: { [key: number]: any } = {};
   // Hover logic to pause carousel
-  onHover(index: number, images: string[]) {
-    if (images.length > 1) {
+  onHover(index: number, images: string[]): void {
+    if (images?.length > 1) {
       this.hoverIntervals[index] = setInterval(() => {
         this.currentIndexes[index] = (this.currentIndexes[index] + 1) % images.length;
       }, 1000); // Change image every second
     }
   }
 
-  onLeave(index: number) {
+  // Hover logic to stop carousel
+  onLeave(index: number): void {
     if (this.hoverIntervals[index]) {
       clearInterval(this.hoverIntervals[index]); // Stop the interval
       delete this.hoverIntervals[index];
@@ -171,7 +178,7 @@ previousImage(cardIndex: number, images: string[]): void {
 }
 
 selectCard(index: number): void {
-  const selectedProduct = this.filteredData[index];
+  const selectedProduct = this.newarrivals[index];
   this.router.navigate([`/bridalsquade/${selectedProduct.id}`]);
 }
 

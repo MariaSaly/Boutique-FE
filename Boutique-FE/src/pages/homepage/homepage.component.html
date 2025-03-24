@@ -60,18 +60,22 @@
       <button class="next-btn" onclick="nextImage()">&#10095;</button>
   </div> -->
   
-  <div id="newArrivalsSection" class="newarrivals" #newArrivalsSection>
-    <h1 >New Arrivals</h1>
-    <div class="cards-container" id="newArrivalsSection" class="newarrivals" #newArrivalsSection>
+  <div class="cards-container" id="newArrivalsSection" class="newarrivals" #newArrivalsSection>
+    <h1>New Arrivals</h1>
+    <div class="cards-container">
       <div
         class="arrivalcard"
         *ngFor="let product of newarrivals; let i = index"
         (click)="selectCard(i)"
+        (mouseenter)="onHover(i, product.imageUrl)"
+        (mouseleave)="onLeave(i)"
       >
         <div class="card-image">
+          <!-- Carousel for multiple images -->
           <div *ngIf="product.imageUrl?.length > 1" class="carousel">
             <img [src]="product.imageUrl[currentIndexes[i]]" class="product-image" alt="Product image" />
           </div>
+          <!-- Single image -->
           <div *ngIf="!product.imageUrl || product.imageUrl.length === 1">
             <img [src]="(product.imageUrl?.[0] || product.imageUrl)" class="product-image" alt="Product image" />
           </div>
@@ -80,7 +84,6 @@
         <!-- Card Details -->
         <div class="card-details">
           <h2>{{ product.name }}</h2>
-          <!-- <p>{{ product.description }}</p> -->
           <p class="price">{{ product.price | currency: 'INR' }}</p>
         </div>
       </div>

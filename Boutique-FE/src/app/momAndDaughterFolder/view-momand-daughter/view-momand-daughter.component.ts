@@ -28,6 +28,7 @@ export class ViewMomandDaughterComponent {
 
     itemData: any;
   isStock: any;
+  selectedPattern: any;
     constructor( private toastService:ToastrService,private router:Router,private cartService:CartService , private http:HttpService  ,private cdr: ChangeDetectorRef, private route:ActivatedRoute , private httpClient:HttpClient , ){
   
     }
@@ -172,6 +173,9 @@ onSleeveCheckboxChange(event: any): void {
       console.log("productId:", productId);
       const qty = this.quantity;
       const isSleeve = this.isSleeveChecked; 
+      const colorPattern = this.selectedPattern
+
+
 
       const data = localStorage.getItem('userData');
       if(data){
@@ -179,7 +183,7 @@ onSleeveCheckboxChange(event: any): void {
         this.userId = userData.user_id;
         console.log("userid:", this.userId);
       
-      this.cartService.addToCart(this.userId,productId,this.size,qty,isSleeve).subscribe( data => {
+      this.cartService.addToCart(this.userId,productId,this.size,qty,isSleeve,colorPattern).subscribe( data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
         this.toastService.success("Cart Added Sucessfully!");
@@ -192,7 +196,7 @@ onSleeveCheckboxChange(event: any): void {
       const productId = this.itemData.id;
       const qty = this.quantity;
       
-      this.cartService.addToCartGuestUser(guestId,productId,this.size,qty,isSleeve).subscribe( data => {
+      this.cartService.addToCartGuestUser(guestId,productId,this.size,qty,isSleeve,colorPattern).subscribe( data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
@@ -218,6 +222,9 @@ onSleeveCheckboxChange(event: any): void {
       console.log("productId:", productId);
       const qty = this.quantity;
       const isSleeve = this.isSleeveChecked; 
+      const colorPattern = this.selectedPattern
+
+
 
       const data = localStorage.getItem('userData');
       if(data){
@@ -225,7 +232,7 @@ onSleeveCheckboxChange(event: any): void {
         this.userId = userData.user_id;
         console.log("userid:", this.userId);
       
-      this.cartService.addToCart(this.userId,productId,this.size,qty,isSleeve).subscribe( data => {
+      this.cartService.addToCart(this.userId,productId,this.size,qty,isSleeve,colorPattern).subscribe( data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
@@ -238,7 +245,7 @@ onSleeveCheckboxChange(event: any): void {
       const productId = this.itemData.id;
       const qty = this.quantity;
       
-      this.cartService.addToCartGuestUser(guestId,productId,this.size,qty,isSleeve).subscribe( data => {
+      this.cartService.addToCartGuestUser(guestId,productId,this.size,qty,isSleeve,colorPattern).subscribe( data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);

@@ -47,6 +47,8 @@ export class AddItemsComponent implements OnInit {
   nonCustomizabeCategories: any[] = ['nine', 'coords', 'halfsaree', 'leggins', 'officewear', 'saree', 'plussize'];
   categoryList: any[] = this.nonCustomizabeCategories;
   subcategoryList: any[] = ['newarrivals', 'bestsellar']
+  sizeOptions: string[] = ['S', 'M', 'L', 'XL']; // Example sizes
+  selectedSizes: { [key: string]: boolean } = {};
   subcategory: any;
   constructor(private router: Router, private cdr: ChangeDetectorRef, private http: HttpServiceWithHeaders, private activatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
@@ -97,7 +99,9 @@ export class AddItemsComponent implements OnInit {
     }
 
   }
-
+  onSizeChange(size: string) {
+    console.log('Selected Sizes:', this.selectedSizes);
+  }
   onStockChange() {
     console.log("iscustomizable:", this.isCustomizable);
     if (this.isCustomizable === 'true') {
@@ -147,11 +151,19 @@ export class AddItemsComponent implements OnInit {
   updateItem() {
     const formData = new FormData();
 
+    const selectedSizesList = Object.keys(this.selectedSizes).filter(size => this.selectedSizes[size]);
+   // const sizesString = selectedSizesList.join(','); 
+
     // Append form values directly from the component properties
     formData.append('name', this.name);
     console.log("Name added to formData:", this.name);
     formData.append('price', this.price.toString()); // Ensure it's a string
-    formData.append('description', this.description);
+    formData.append(
+      'description',
+      this.description.replace(/ /g, '\u00A0').replace(/\n/g, '\\n')
+    );
+    
+
     formData.append('isCustomizable', this.isCustomizable.toString()); // Ensure it's a string
     formData.append('category', this.category);
     formData.append('subcategory', this.subcategory);
@@ -159,6 +171,7 @@ export class AddItemsComponent implements OnInit {
     formData.append('isStock', this.isStock);
     formData.append('isSleeve', this.isSleeve)
     formData.append('vedioLink', this.vedioUrl);
+    formData.append('sizes', JSON.stringify(selectedSizesList));
     // Convert colorPattern to a comma-separated string before appending
     formData.append('colorPattern', this.colorPattern ? this.colorPattern.split(',').map(c => c.trim()).join(',') : '');
 
@@ -187,7 +200,9 @@ export class AddItemsComponent implements OnInit {
   }
   createItem() {
     console.log("Iam in onsubmit method");
-
+    
+    const selectedSizesList = Object.keys(this.selectedSizes).filter(size => this.selectedSizes[size]);
+//formData.append('sizes', JSON.stringify(selectedSizesList)); // Stringify the array
     //console.log("Form validity:", form.valid); // Log form validity
 
     const formData = new FormData();
@@ -197,7 +212,10 @@ export class AddItemsComponent implements OnInit {
     formData.append('name', this.name);
     console.log("Name added to formData:", this.name);
     formData.append('price', this.price.toString()); // Ensure it's a string
-    formData.append('description', this.description);
+    formData.append(
+      'description',
+      this.description.replace(/ /g, '\u00A0').replace(/\n/g, '\\n')
+    );
     formData.append('isCustomizable', this.isCustomizable.toString()); // Ensure it's a string
     formData.append('category', this.category);
     formData.append('subcategory', this.subcategory);
@@ -205,6 +223,7 @@ export class AddItemsComponent implements OnInit {
     formData.append('isStock', this.isStock.toString()); // Ensure it's a string
     formData.append('isSleeve', this.isSleeve.toString()); // Ensure it's a string
     formData.append('vedioLink', this.vedioUrl);
+    formData.append('sizes',  JSON.stringify(selectedSizesList));
     // Convert colorPattern to a comma-separated string before appending
     formData.append('colorPattern', this.colorPattern ? this.colorPattern.split(',').map(c => c.trim()).join(',') : '');
 

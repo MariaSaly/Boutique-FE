@@ -36,7 +36,7 @@ export class OrderDetailsComponent implements OnInit {
       console.log("data:", data);
       const date = data.orders.Date;
       this.orders = data.orders;
-      this.jsDate = new Date(date._seconds * 1000);
+      this.jsDate = new Date(date?._seconds * 1000);
       console.log("jsdate:", this.jsDate);
       const deliveryAddressObject = data.orders.deliveryAddress;
       this.deliveryAddress = `${deliveryAddressObject.addressLine1},${deliveryAddressObject.addressLine2},${deliveryAddressObject.city},${deliveryAddressObject.country},${deliveryAddressObject.postalCode}`;
