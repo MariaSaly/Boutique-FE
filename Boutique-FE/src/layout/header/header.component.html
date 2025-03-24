@@ -49,8 +49,8 @@
 
   <!-- Second Row: Navigation Links -->
   <div class="header-bottom">
-    <button mat-button  routerLink="/home">New Arrivals</button>
-    <button mat-button  routerLink="/home">Best Seller</button>
+    <button mat-button  (click)="goToNewArrivals()">New Arrivals</button>
+    <button mat-button  (click)="goToBestSellers()">Best Seller</button>
     <button mat-button  routerLink="/home">Home</button>
     <!-- <button mat-button>Kurthi</button>
     <button mat-button>Saree</button> -->
