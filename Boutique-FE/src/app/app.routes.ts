@@ -46,6 +46,7 @@ import { PlussizeeComponent } from '../plussize/plussizee/plussizee.component';
 import { ViewplussizeeComponent } from '../plussize/viewplussizee/viewplussizee.component';
 import { CoordsComponent } from './cordset/coords/coords.component';
 import { ViewcoordsComponent } from './cordset/viewcoords/viewcoords.component';
+import { ShippingpolicyComponent } from './shippingpolicy/shippingpolicy.component';
 
 
 export const routes: Routes = [
@@ -65,6 +66,7 @@ export const routes: Routes = [
       { path: 'home', component: HomepageComponent },
         { path: 'saree', component: SareeComponent },
         { path: 'terms', component: TermsandconditionComponent },
+        { path: 'shipping', component: ShippingpolicyComponent },
         { path: 'policy', component: PrivacypolicyComponent },
         { path: 'aboutus', component: AboutusComponent },
         { path: 'return', component: ReturnandexchangeComponent },

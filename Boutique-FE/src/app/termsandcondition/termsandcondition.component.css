@@ -1,62 +1,46 @@
-.shipping-policy {
+.terms-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
   line-height: 1.6;
-  margin: 20px;
 }
 
-.shipping-policy .header {
-  background: linear-gradient(135deg, #1A1A1A 20%, #4A4A4A 40%, #FFD700 80%);
-  padding: 20px;
-  text-align: center;
-  border-bottom: 2px solid #ccc;
+.terms-container h2, .terms-container h3 {
+  color: black;
 }
 
-.shipping-policy .header h1 {
-  margin: 0;
-  color: #fff;
-}
-
-.shipping-policy .content section {
-  margin: 20px 0;
-  padding: 15px;
-  background: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.shipping-policy .content h2 {
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 5px;
-  margin-bottom: 15px;
-  color: #333;
-  font-size: 1.4em;
-}
-
-.shipping-policy .content p {
-  font-size: 1em;
+.terms-container p {
   color: #555;
+}
+
+.terms-container ul {
+  padding-left: 20px;
+}
+
+.terms-container ul li {
   margin-bottom: 10px;
 }
 
-.shipping-policy .content a {
-  color: #007bff;
+.terms-container a {
+  color: #007BFF;
   text-decoration: none;
 }
 
-.shipping-policy .content a:hover {
+.terms-container a:hover {
   text-decoration: underline;
 }
-
-@media (max-width: 768px) {
-  .shipping-policy {
-      margin: 10px;
-  }
-
-  .shipping-policy .content section {
-      padding: 10px;
-  }
-
-  .shipping-policy .header h1 {
-      font-size: 1.5em;
-  }
+.term{
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+color: aliceblue;
+  background: linear-gradient(135deg, #151515 20%, #4A4A4A 40%, #FFD700 80%);
+}
+.term h2{
+  color: white !important;
 }
