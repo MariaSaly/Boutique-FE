@@ -131,7 +131,9 @@ body {
   color: #444;
   font-weight: 600;
 }
-
+.quantity-controls{
+  gap: 5px;
+}
 .shop-now-link {
   display: inline-block;
   margin-top: 12px;
@@ -142,7 +144,9 @@ body {
   text-decoration: none;
   font-weight: 600;
 }
-
+.quantity-value{
+  margin: 8px;
+}
 .shop-now-link:hover {
   background: #0056b3;
 }
