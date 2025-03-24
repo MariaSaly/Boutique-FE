@@ -47,7 +47,7 @@ export class AddItemsComponent implements OnInit {
   nonCustomizabeCategories: any[] = ['nine', 'coords', 'halfsaree', 'leggins', 'officewear', 'saree', 'plussize'];
   categoryList: any[] = this.nonCustomizabeCategories;
   subcategoryList: any[] = ['newarrivals', 'bestsellar']
-  sizeOptions: string[] = ['S', 'M', 'L', 'XL']; // Example sizes
+  sizeOptions: string[] = ['S', 'M', 'L','XL','2XL','3XL','4XL','5XL','6XL',]; // Example sizes
   selectedSizes: { [key: string]: boolean } = {};
   subcategory: any;
   constructor(private router: Router, private cdr: ChangeDetectorRef, private http: HttpServiceWithHeaders, private activatedRoute: ActivatedRoute) { }

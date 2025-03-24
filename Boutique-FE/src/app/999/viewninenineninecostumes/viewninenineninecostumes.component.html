@@ -86,7 +86,7 @@
         <h3>Select Size</h3>
         <div class="size-buttons">
           <button
-            *ngFor="let size of sizes"
+            *ngFor="let size of itemData.sizesArray"
             class="size-btn"
             [class.selected]="size === selectedSize"
             (click)="selectSize(size)"

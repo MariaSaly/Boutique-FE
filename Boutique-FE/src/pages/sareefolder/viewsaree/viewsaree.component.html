@@ -86,7 +86,7 @@
         <h3>Select Size</h3>
         <div class="size-buttons">
           <button
-            *ngFor="let size of sizes"
+            *ngFor="let size of itemData.sizesArray"
             class="size-btn"
             [class.selected]="size === selectedSize"
             (click)="selectSize(size)"
@@ -141,8 +141,8 @@
           <button class="qty-btn" (click)="increaseQuantity()">+</button>
         </div>
         <div class="action-buttons">
-          <button class="btn add-to-cart" (click)="addToCart()">Add to Cart</button>
-          <button class="btn buy-now" (click)="buyNow()">Buy Now</button>
+          <button class="btn add-to-cart" (click)="addToCart()" [disabled]="itemData.stock === 0">Add to Cart</button>
+          <button class="btn buy-now" (click)="buyNow()" [disabled]="itemData.stock === 0">Buy Now</button>
         </div>
       </div>
     </div>

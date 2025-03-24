@@ -163,6 +163,9 @@ export class ViewcoordsComponent {
   }
   
   decreaseQuantity(): void {
+
+
+    
     if (this.quantity > 1) {
       this.quantity--;
     }
