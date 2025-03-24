@@ -55,13 +55,14 @@ export const routes: Routes = [
   // Public routes
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
-  { path: 'home', component: HomepageComponent },
+  // { path: 'home', component: HomepageComponent },
 
   // Protected routes under Layout
   {
     path: '',
     component: LayoutzzComponent,
     children: [
+      { path: 'home', component: HomepageComponent },
         { path: 'saree', component: SareeComponent },
         { path: 'terms', component: TermsandconditionComponent },
         { path: 'policy', component: PrivacypolicyComponent },
