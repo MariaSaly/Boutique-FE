@@ -136,8 +136,8 @@ body {
   display: inline-block;
   margin-top: 12px;
   padding: 12px 20px;
-  background: #007bff;
-  color: white;
+  background: gold;
+  color:black;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
@@ -173,7 +173,7 @@ body {
 .checkout-btn {
   width: 100%;
   padding: 14px;
-  background: #28a745;
+  background: gold;
   color: white;
   font-size: 18px;
   border: none;
@@ -183,7 +183,7 @@ body {
 }
 
 .checkout-btn:hover {
-  background: #218838;
+  background: #222;
 }
 
 /* Responsive Design */
