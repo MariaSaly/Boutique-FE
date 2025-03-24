@@ -159,21 +159,67 @@ body {
   border: 1px solid #e0e6ed;
 }
 
-.summary-row {
+/* .summary-row {
   display: flex;
   justify-content: space-between;
-  padding: 12px 0;
-  font-size: 16px;
-  color: #222;
+  align-items: center;
+  padding: 8px 0;
+} */
+
+.summary-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between rows */
+}
+
+.summary-row {
+  display: flex;
+  align-items: center; /* Aligns icons and text vertically */
+  justify-content: space-between; /* Ensures text and values are evenly spaced */
+  width: 100%;
 }
 
 .icon-text {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-weight: 500;
+  gap: 8px; /* Space between icon and text */
+  flex: 1; /* Ensures equal width */
+  min-width: 150px; /* Forces alignment */
+}
+.icon-text1 {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* Space between icon and text */
+  flex: 1; /* Ensures equal width */
+  min-width: 150px; /* Forces alignment */
+}
+.icon-text i {
+  font-size: 16px;
 }
 
+.summary-value {
+  font-weight: bold;
+  text-align: right; /* Aligns values to the right */
+  flex-shrink: 0; /* Prevents values from shrinking */
+}
+
+.notes-list {
+  list-style: none;
+  padding: 0;
+}
+
+.notes-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.notes-list i {
+  font-size: 14px;
+  color: #555;
+}
+ 
 .checkout-btn {
   width: 100%;
   padding: 14px;
