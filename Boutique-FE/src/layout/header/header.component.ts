@@ -47,7 +47,9 @@ export class HeaderComponent implements OnInit {
    
     });
   }
-  
+  goToHome() {
+    this.router.navigate(['/home']);  // Navigate to Home
+  }
 
   ngOnInit(): void {
     this.setFlagFromLocalStorage();
