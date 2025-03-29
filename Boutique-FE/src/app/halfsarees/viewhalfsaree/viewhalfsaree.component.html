@@ -82,7 +82,7 @@
       </div>
       
       <!-- Size Selection -->
-      <div class="size-options">
+      <div class="size-options" *ngIf="itemData?.isPattern === 'true'">
         <h3>Select Size</h3>
         <div class="size-buttons">
           <button
@@ -96,7 +96,7 @@
         </div>
       </div>
 
-      <div class="pattern-options" *ngIf="itemData.colorPattern">
+      <div class="pattern-options" *ngIf="itemData?.isColor === 'true'">
         <h3>Patterns</h3>
         <div class="pattern-list">
           <div 
