@@ -63,7 +63,7 @@ export class LoginComponent {
             this.router.navigate(['/admindashboard']);
           }
           else{
-            this.router.navigate(['/MoksheDestination']);
+            this.router.navigate(['/home']);
           }
           
         

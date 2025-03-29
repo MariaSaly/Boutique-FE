@@ -302,7 +302,7 @@ proceedToCheckout(address:any){
     localStorage.removeItem('customData');
     console.log("order:",order);
     const options = {
-      key:"rzp_test_EoH3hlWAoDxXig",
+      key:"rzp_live_DomR59f3x4UYgZ",
       amount:order.amount,
       currency:order.currency,
       name:"Mokshe Rental Destination",
