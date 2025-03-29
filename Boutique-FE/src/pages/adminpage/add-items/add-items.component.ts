@@ -201,7 +201,7 @@ export class AddItemsComponent implements OnInit {
     formData.append('isStock', this.isStock.toString());
     formData.append('isSleeve', this.isSleeve.toString());
     formData.append('vedioLink', this.vedioUrl);
-    formData.append('sizes', sizesString); // Append sizes as comma-separated string
+    formData.append('sizes', JSON.stringify(sizesString)); // Append sizes as comma-separated string
     formData.append('colorPattern', this.colorPattern ? this.colorPattern.split(',').map(c => c.trim()).join(',') : '');
   
     // Append image files
