@@ -256,4 +256,10 @@ body {
   .order-summary {
     text-align: center;
   }
+  .notes-list li {
+    display: flex;
+    align-items: start;
+    gap: 8px;
+    margin-bottom: 5px;
+  }
 }
