@@ -49,14 +49,14 @@
       <p class="product-description">{{ itemData.description }}</p>
       <p class="price">{{ itemData.price |  currency:'INR'  }}</p>
   
-      <div class="sizeguide" *ngIf="selectedProduct.stock > 0">
+      <div class="sizeguide" *ngIf="selectedProduct.stock > 0 && itemData?.isPattern === 'true'">
         <button class="sizeguide-btn" (click)="openSizeGuide()">
-          <h3>Size Guide</h3>
+          <h3 >Size Guide</h3>
         </button>
       </div>
       
       <!-- Popup Modal -->
-      <div class="size-modal" *ngIf="isSizeGuideOpen">
+      <div class="size-modal" *ngIf="isSizeGuideOpen" >
         <div class="size-modal-content">
           <span class="close-btn" (click)="closeSizeGuide()">&times;</span>
           <h2>Size Guide</h2>

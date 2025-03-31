@@ -49,7 +49,7 @@
       <p class="product-description">{{ itemData.description }}</p>
       <p class="price">{{ itemData.price | currency }}</p>
   
-      <div class="sizeguide" *ngIf="selectedProduct.stock > 0">
+      <div class="sizeguide" *ngIf="selectedProduct.stock > 0 && itemData?.isPattern === 'true'">
         <button class="sizeguide-btn" (click)="openSizeGuide()">
           <h3>Size Guide</h3>
         </button>

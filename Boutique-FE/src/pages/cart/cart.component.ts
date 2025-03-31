@@ -265,6 +265,11 @@ goToShop(){
 }
 
 openDeliveryAddressModel(){
+  if(!this.userId){
+    this.toastService.error('Please login to make Orders!');
+    this.router.navigate(['login'])
+    return
+  }  
   const dialogRef = this.dialog.open(DeliveryAddresssModelComponent);
   dialogRef.afterClosed().subscribe( address => {
     if(address){
@@ -275,10 +280,7 @@ openDeliveryAddressModel(){
 }
 
 proceedToCheckout(address:any){
-  if(!this.userId){
-    this.toastService.error('Please login to make Orders!');
-    this.router.navigate(['login'])
-  }
+
   let customData = null;
   if(this.customText){
     customData=this.customText
