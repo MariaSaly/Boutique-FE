@@ -116,7 +116,7 @@ export class ViewplussizeeComponent {
   ];
 
   sizes = ['S', 'M', 'L','XL','2XL','3XL','4XL','5XL','6XL',];
-  selectedSize: string = 'M';
+  selectedSize: string = '';
 
   customText: string = '';
   quantity: number = 0;
@@ -251,7 +251,7 @@ export class ViewplussizeeComponent {
       console.log("user added sucessfully !");
       this.router.navigate(['/cart']);
     })
-    alert('please login to addtoCart');
+    //alert('please login to addtoCart');
   }
   }
  

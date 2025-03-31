@@ -22,7 +22,7 @@ export class ViewsareeComponent implements OnInit {
   itemId: string | null = '';
   public url = environment.localUrl;
   itemData: any;
-  size: string = 'M';
+  size: string = '-';
   isSleeveChecked: boolean = false;
 
   @Input() imageUrls: string[] = [];
@@ -118,7 +118,7 @@ onSleeveCheckboxChange(event: any): void {
   ];
 
   sizes = ['S', 'M', 'L','XL','2XL','3XL','4XL','5XL','6XL',];
-  selectedSize: string = 'M';
+  selectedSize: string = '';
 
   customText: string = '';
   quantity: number = 0;
@@ -251,7 +251,7 @@ onSleeveCheckboxChange(event: any): void {
       console.log("user added sucessfully !");
       this.router.navigate(['/cart']);
     })
-    alert('please login to addtoCart');
+    //alert('please login to addtoCart');
   }
   }
  

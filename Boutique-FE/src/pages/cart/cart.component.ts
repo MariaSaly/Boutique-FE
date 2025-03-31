@@ -265,6 +265,11 @@ goToShop(){
 }
 
 openDeliveryAddressModel(){
+  if(!this.userId){
+    this.toastService.error('Please login to make Orders!');
+    this.router.navigate(['login'])
+    return
+  }  
   const dialogRef = this.dialog.open(DeliveryAddresssModelComponent);
   dialogRef.afterClosed().subscribe( address => {
     if(address){
@@ -275,10 +280,7 @@ openDeliveryAddressModel(){
 }
 
 proceedToCheckout(address:any){
-  if(!this.userId){
-    this.toastService.error('Please login to make Orders!');
-    this.router.navigate(['login'])
-  }
+
   let customData = null;
   if(this.customText){
     customData=this.customText
@@ -302,7 +304,7 @@ proceedToCheckout(address:any){
     localStorage.removeItem('customData');
     console.log("order:",order);
     const options = {
-      key:"rzp_test_EoH3hlWAoDxXig",
+      key:"rzp_live_DomR59f3x4UYgZ",
       amount:order.amount,
       currency:order.currency,
       name:"Mokshe Rental Destination",

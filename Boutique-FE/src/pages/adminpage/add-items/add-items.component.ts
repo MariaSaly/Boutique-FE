@@ -32,6 +32,8 @@ export class AddItemsComponent implements OnInit {
   samepinch: boolean = false;
   colorPattern: string = '';
   category: string = '';
+  isColor:string = 'false';
+  isSize:string = 'false';
   stock: number = 0;
   image: File | null = null;
   isSubmitting = false;
@@ -79,7 +81,10 @@ export class AddItemsComponent implements OnInit {
         this.stock = items.stock;
         this.image = items.image;
         this.vedioUrl = items.vedioLink;
-        this.subcategory = items.subcategory
+        this.subcategory = items.subcategory;
+        this.isColor=items.isColor;
+        this.isSize= items.isSize;
+        this.colorPattern = items.colorPattern
       })
     }
   }
@@ -163,6 +168,8 @@ export class AddItemsComponent implements OnInit {
     formData.append('subcategory', this.subcategory);
     formData.append('stock', this.stock.toString());
     formData.append('isStock', this.isStock);
+    formData.append('isColor', this.isColor);
+    formData.append('isPattern', this.isSize);
     formData.append('isSleeve', this.isSleeve);
     formData.append('vedioLink', this.vedioUrl);
     formData.append('sizes', sizesString); // Append sizes as comma-separated string
@@ -199,6 +206,8 @@ export class AddItemsComponent implements OnInit {
     formData.append('subcategory', this.subcategory);
     formData.append('stock', this.stock.toString());
     formData.append('isStock', this.isStock.toString());
+    formData.append('isColor', this.isColor);
+    formData.append('isPattern', this.isSize);
     formData.append('isSleeve', this.isSleeve.toString());
     formData.append('vedioLink', this.vedioUrl);
     formData.append('sizes', sizesString); // Append sizes as comma-separated string

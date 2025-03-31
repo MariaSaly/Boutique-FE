@@ -11,6 +11,6 @@ export const environment = {
    measurementId: "G-BF2025F8DM"
  },
   localUrl:'https://api-mdyw4leovq-uc.a.run.app'
-  //localUrl:'http://localhost:5000'
+ //localUrl:'http://localhost:5000'
   };
   

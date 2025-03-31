@@ -49,7 +49,7 @@
       <p class="product-description">{{ itemData.description }}</p>
       <p class="price">{{ itemData.price | currency }}</p>
   
-      <div class="sizeguide" *ngIf="selectedProduct.stock > 0">
+      <div class="sizeguide" *ngIf="selectedProduct.stock > 0 && itemData?.isPattern === 'true'">
         <button class="sizeguide-btn" (click)="openSizeGuide()">
           <h3>Size Guide</h3>
         </button>
@@ -82,7 +82,7 @@
       </div>
       
       <!-- Size Selection -->
-      <div class="size-options">
+      <div class="size-options" *ngIf="itemData?.isPattern === 'true'">
         <h3>Select Size</h3>
         <div class="size-buttons">
           <button
@@ -96,7 +96,7 @@
         </div>
       </div>
       
-      <div class="pattern-options">
+      <div class="pattern-options"  *ngIf="itemData?.isColor === 'true'">
         <h3>Patterns</h3>
         <div class="pattern-list">
           <div 
