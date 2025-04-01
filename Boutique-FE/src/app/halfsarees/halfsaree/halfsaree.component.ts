@@ -75,12 +75,28 @@ export class HalfsareeComponent {
   
     getSareeItems(): void {
       this.httpService.get(`${this.url}/api/items/getItem?category=halfsaree&isCustomizable=false`).subscribe((data: any) => {
-        this.items = data;
-        console.log("data:", this.items);
+        this.items = data.sort((a: any, b: any) => {
+          const dateA = this.firebaseTimestampToMillis(a.createdAt);
+          const dateB = this.firebaseTimestampToMillis(b.createdAt);
+          console.log("date a",dateA);
+          console.log("date b",dateB);
+          return dateA - dateB; // Ascending order (oldest first)
+          
+        });
         this.filteredData = [...this.items];
-        this.currentIndexes = this.filteredData.map(() => 0); // Initialize image indexes
+        this.currentIndexes = this.filteredData.map(() => 0);
       });
     }
+    // Helper function to convert Firebase Timestamp to milliseconds
+   firebaseTimestampToMillis(timestamp: any): number {
+    if (timestamp?.toDate) { // If it's a Firebase Timestamp object
+      return timestamp.toDate().getTime();
+    } else if (timestamp?._seconds) { // If it's the raw object format
+      return timestamp._seconds * 1000 + timestamp._nanoseconds / 1000000;
+    }
+    return 0; // Fallback for invalid timestamps
+  }
+    
   
     nextImage(cardIndex: number, images: string[]): void {
       if (images.length > 1) {

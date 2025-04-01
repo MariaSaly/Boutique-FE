@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -10,7 +10,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   templateUrl: './delivery-addresss-model.component.html',
   styleUrl: './delivery-addresss-model.component.css'
 })
-export class DeliveryAddresssModelComponent {
+export class DeliveryAddresssModelComponent  implements OnInit{
   deliveryAddress = {
     addressLine1: '',
     addressLine2: '',
@@ -21,10 +21,17 @@ export class DeliveryAddresssModelComponent {
   constructor(public dialogRef:MatDialogRef<DeliveryAddresssModelComponent>){
     
   }
+  ngOnInit(): void {
+    const savedAddress = localStorage.getItem('address');
+    if (savedAddress) {
+      this.deliveryAddress = JSON.parse(savedAddress);
+    }
+  }
   submitAddress(){
     // Here you can send the address to your backend or handle it as needed
     console.log('Address submitted:', this.deliveryAddress);
     // Close the dialog after submitting the address
+    localStorage.setItem('address', JSON.stringify(this.deliveryAddress));
     this.dialogRef.close(this.deliveryAddress);
   }
 }
