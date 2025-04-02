@@ -258,9 +258,25 @@ button:hover {
     background-color: black;
     color: white;
   }
-  @media screen and (max-width: 768px) {
+  @media  (max-width: 480px) {
     .cards-container {
       max-width: 400px !important;
+      overflow-x: auto; /* Enable
+      h horizontal scrolling */
+      white-space: wrap; /* Prevent wrapping */
+    
+      flex-wrap: wrap;
+      flex-direction: column;
+      padding: 10px 0;
+    }
+  
+    .arrivalcard-wrapper {
+      flex-shrink: 0; /* Prevent cards from shrinking */
+    }
+  }
+  @media  (max-width: 768px) {
+    .cards-container {
+      max-width: 700px !important;
       overflow-x: auto; /* Enable
       h horizontal scrolling */
       white-space: wrap; /* Prevent wrapping */
@@ -282,12 +298,14 @@ button:hover {
 
 /* 🎴 Cards Wrapper with Horizontal Scroll */
 .cards-container {
+  width: 1200px;
   display: flex;
   gap: 15px;
-  overflow-x: auto; /* Enables horizontal scroll */
+  /* overflow-x: auto;  */
   white-space: nowrap; /* Prevents wrapping */
   padding-bottom: 10px;
   scroll-behavior: smooth;
+  overflow-x: scroll;
 }
 
 /* 🎴 Individual Product Card */
