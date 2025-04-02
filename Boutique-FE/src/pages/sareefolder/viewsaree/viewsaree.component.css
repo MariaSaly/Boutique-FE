@@ -476,9 +476,11 @@
 }
 
 .pattern-list {
-  display: flex;
+  display: flex
+;
   flex-wrap: wrap;
   gap: 10px;
+  margin-bottom: 10px;
 }
 
 .pattern-box {
