@@ -76,14 +76,12 @@ export class CoordsComponent {
   
     getSareeItems(): void {
       this.httpService.get(`${this.url}/api/items/getItem?category=coords&isCustomizable=false`).subscribe((data: any) => {
-        this.items = data.sort((a: any, b: any) => {
-          const dateA = this.firebaseTimestampToMillis(a.createdAt);
-          const dateB = this.firebaseTimestampToMillis(b.createdAt);
-          console.log("date a",dateA);
-          console.log("date b",dateB);
-          return dateA - dateB; // Ascending order (oldest first)
-          
-        });
+        this.items = data.map((item: any) => ({
+          ...item,
+          price: +item.price.toString().replace(/[^0-9.]/g, '') || 0,
+          offerPrice: +item.offerPrice?.toString().replace(/[^0-9.]/g, '') || 0
+        })).sort((a:any, b:any) => this.firebaseTimestampToMillis(a.createdAt) - this.firebaseTimestampToMillis(b.createdAt));
+        
         this.filteredData = [...this.items];
         this.currentIndexes = this.filteredData.map(() => 0);
       });

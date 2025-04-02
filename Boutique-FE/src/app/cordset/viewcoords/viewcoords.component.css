@@ -519,3 +519,31 @@
 .product-description {
   white-space: pre-line;
 }
+
+ 
+.product-description {
+  white-space: pre-line;
+}
+.price-display {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 1.2rem;
+}
+
+.current-price {
+  font-size: 1.5rem;
+  color: #d9534f; /* Or your preferred price color */
+  font-weight: bold;
+}
+
+.discount-percentage {
+  color: #388e3c; /* Green color for discount */
+  font-size: 1rem;
+}

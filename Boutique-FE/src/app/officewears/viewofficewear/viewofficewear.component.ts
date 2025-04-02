@@ -11,8 +11,8 @@ import { customizationTextService } from '../../../service/customizationtextServ
 
 @Component({
   selector: 'app-viewofficewear',
-  imports: [FormsModule,CommonModule,RouterModule],
-  standalone:true,
+  imports: [FormsModule, CommonModule, RouterModule],
+  standalone: true,
   templateUrl: './viewofficewear.component.html',
   styleUrl: './viewofficewear.component.css'
 })
@@ -26,20 +26,30 @@ export class ViewofficewearComponent {
   isSleeveChecked: boolean = false;
 
   @Input() imageUrls: string[] = [];
-  constructor(private customTextService:customizationTextService, private router:Router,private cartService:CartService , private http:HttpService  ,private cdr: ChangeDetectorRef, private route:ActivatedRoute , private httpClient:HttpClient , ){
+  constructor(private customTextService: customizationTextService, private router: Router, private cartService: CartService, private http: HttpService, private cdr: ChangeDetectorRef, private route: ActivatedRoute, private httpClient: HttpClient,) {
 
   }
   ngOnInit(): void {
     this.itemId = this.route.snapshot.paramMap.get('id');
     console.log("id:", this.itemId);
-    if(this.itemId){
+    if (this.itemId) {
       this.getItemByID();
     }
   }
-  getItemByID(){
-    this.http.get(`${this.url}/api/items/getItemById/${this.itemId}`).subscribe( data => {
+  calculateDiscount(originalPrice: number, offerPrice: number): number {
+    if (!originalPrice || !offerPrice || offerPrice <= 0) return 0;
+    return Math.round(((originalPrice - offerPrice) / originalPrice) * 100);
+  }
+
+
+  getItemByID() {
+    this.http.get(`${this.url}/api/items/getItemById/${this.itemId}`).subscribe(data => {
       console.log("data:", data);
       this.itemData = data;
+
+      this.itemData.price = Number(this.itemData.price);
+      this.itemData.offerprice = Number(this.itemData.offerprice);
+
       if (this.itemData.description) {
         this.itemData.description = this.itemData.description
           .replace(/\\n/g, '\n')
@@ -48,8 +58,8 @@ export class ViewofficewearComponent {
       if (this.itemData?.imageUrl?.length > 1) {
         this.startImageRotation();
       }
-    
-       
+
+
     })
   }
   onSleeveCheckboxChange(event: any): void {
@@ -70,17 +80,17 @@ export class ViewofficewearComponent {
     this.currentIndex = index;
   }
   fetchImageForItems(Item: any): void {
-    
+
     let imagePath = Item.imageUrl;
 
     // Ensure no duplicate slashes in the URL
     const normalizedUrl = `${this.url.replace(/\/$/, '')}/${imagePath.replace(/^\//, '')}`;
-    
+
     console.log("Fetching image from:", normalizedUrl);
-    
+
     this.httpClient.get(normalizedUrl, { responseType: 'blob' })
       .subscribe(
-        (imageBlob: Blob) => { 
+        (imageBlob: Blob) => {
           const reader = new FileReader();
           reader.readAsDataURL(imageBlob);
           reader.onload = () => {
@@ -99,13 +109,13 @@ export class ViewofficewearComponent {
           console.error(`Error fetching image for item ${Item.id}:`, error);
         }
       );
-    
+
   }
   selectedProduct = {
     title: 'Aamina Saree',
     description: 'A beautiful saree for special occasions.',
     price: 99.99,
-    stock:5
+    stock: 5
   };
 
   selectedImage = 'assets/mo11.png';  // default large image
@@ -116,7 +126,7 @@ export class ViewofficewearComponent {
     // Add more image paths here
   ];
 
-  sizes = ['S', 'M', 'L','XL','2XL','3XL','4XL','5XL','6XL',];
+  sizes = ['S', 'M', 'L', 'XL', '2XL', '3XL', '4XL', '5XL', '6XL',];
   selectedSize: string = '';
 
   customText: string = '';
@@ -129,7 +139,7 @@ export class ViewofficewearComponent {
   }
 
   sizeGuide = [
-    {Size: 'S', chest: '32"', waist: '28"', length: '55"' },
+    { Size: 'S', chest: '32"', waist: '28"', length: '55"' },
     { Size: 'M', chest: '34"', waist: '30"', length: '55"' },
     { Size: 'L', chest: '36"', waist: '32"', length: '55"' },
     { Size: 'XL', chest: '38"', waist: '34"', length: '55"' },
@@ -149,22 +159,22 @@ export class ViewofficewearComponent {
   }
 
   increaseQuantity(): void {
-    if(this.quantity === this.selectedProduct.stock){
+    if (this.quantity === this.selectedProduct.stock) {
       return
     }
     this.quantity++;
   }
-  
+
   decreaseQuantity(): void {
     if (this.quantity > 1) {
       this.quantity--;
     }
   }
 
-  addToCart( ): void {
-    localStorage.setItem('customData',JSON.stringify(this.customText));
-    
-   
+  addToCart(): void {
+    localStorage.setItem('customData', JSON.stringify(this.customText));
+
+
     console.log("Im in add to cart function");
     // const newCartItem = {
     //   product: this.selectedProduct,
@@ -173,41 +183,41 @@ export class ViewofficewearComponent {
     const productId = this.itemData.id;
     console.log("productId:", productId);
     const qty = this.quantity;
-    const isSleeve = this.isSleeveChecked; 
+    const isSleeve = this.isSleeveChecked;
     const colorPattern = this.selectedPattern || '-'
 
 
     const data = localStorage.getItem('userData');
-    if(data){
+    if (data) {
       const userData = JSON.parse(data);
       this.userId = userData.user_id;
       console.log("userid:", this.userId);
-    
-    
-    this.cartService.addToCart(this.userId,productId,this.selectedSize,qty,isSleeve,colorPattern).subscribe( data => {
-      this.cartService.loadCart(this.userId)
-      console.log("user added sucessfully !");
-      this.router.navigate(['/cart']);
-    })
-    // this.cartService.addItem(newCartItem);
-  }else{
-    const guestId = this.generateGuestId();
-    console.log("guestId:", guestId);
-    const productId = this.itemData.id;
-    const qty = this.quantity;
-    
-    this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty,isSleeve,colorPattern).subscribe( data => {
-      this.cartService.loadCart(guestId)
-      console.log("user added sucessfully !");
-      this.router.navigate(['/cart']);
-    })
-   // alert('please login to addtoCart');
-  }
+
+
+      this.cartService.addToCart(this.userId, productId, this.selectedSize, qty, isSleeve, colorPattern).subscribe(data => {
+        this.cartService.loadCart(this.userId)
+        console.log("user added sucessfully !");
+        this.router.navigate(['/cart']);
+      })
+      // this.cartService.addItem(newCartItem);
+    } else {
+      const guestId = this.generateGuestId();
+      console.log("guestId:", guestId);
+      const productId = this.itemData.id;
+      const qty = this.quantity;
+
+      this.cartService.addToCartGuestUser(guestId, productId, this.selectedSize, qty, isSleeve, colorPattern).subscribe(data => {
+        this.cartService.loadCart(guestId)
+        console.log("user added sucessfully !");
+        this.router.navigate(['/cart']);
+      })
+      // alert('please login to addtoCart');
+    }
   }
   // onCustomizationChange(){
   //   localStorage.setItem('customData',JSON.stringify(this.customText));
-    
-  
+
+
   // }
   generateGuestId() {
     let guestId = localStorage.getItem('guestId');
@@ -217,49 +227,49 @@ export class ViewofficewearComponent {
     }
     return guestId;
   }
-  
+
 
   buyNow() {
-    localStorage.setItem('customData',JSON.stringify(this.customText));
-    
+    localStorage.setItem('customData', JSON.stringify(this.customText));
+
     // Buy now logic
     const productId = this.itemData.id;
     console.log("productId:", productId);
     const qty = this.quantity;
-    const isSleeve = this.isSleeveChecked; 
+    const isSleeve = this.isSleeveChecked;
     const colorPattern = this.selectedPattern || '-'
 
 
     const data = localStorage.getItem('userData');
-    if(data){
+    if (data) {
       const userData = JSON.parse(data);
       this.userId = userData.user_id;
       console.log("userid:", this.userId);
-    
-    this.cartService.addToCart(this.userId,productId,this.selectedSize,qty,isSleeve,colorPattern).subscribe( data => {
-      this.cartService.loadCart(this.userId)
-      console.log("user added sucessfully !");
-      this.router.navigate(['/cart']);
 
-    })
-    // this.cartService.addItem(newCartItem);
-  }else{
-    const guestId = this.generateGuestId();
-    console.log("guestId:", guestId);
-    const productId = this.itemData.id;
-    const qty = this.quantity;
-    
-    this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty,isSleeve,colorPattern).subscribe( data => {
-      this.cartService.loadCart(guestId)
-      console.log("user added sucessfully !");
-      this.router.navigate(['/cart']);
-    })
-   // alert('please login to addtoCart');
+      this.cartService.addToCart(this.userId, productId, this.selectedSize, qty, isSleeve, colorPattern).subscribe(data => {
+        this.cartService.loadCart(this.userId)
+        console.log("user added sucessfully !");
+        this.router.navigate(['/cart']);
+
+      })
+      // this.cartService.addItem(newCartItem);
+    } else {
+      const guestId = this.generateGuestId();
+      console.log("guestId:", guestId);
+      const productId = this.itemData.id;
+      const qty = this.quantity;
+
+      this.cartService.addToCartGuestUser(guestId, productId, this.selectedSize, qty, isSleeve, colorPattern).subscribe(data => {
+        this.cartService.loadCart(guestId)
+        console.log("user added sucessfully !");
+        this.router.navigate(['/cart']);
+      })
+      // alert('please login to addtoCart');
+    }
   }
-  }
- 
+
   images: string[] = [
-   
+
   ];
   currentIndex: number = 0;
 
@@ -274,23 +284,23 @@ export class ViewofficewearComponent {
       this.currentIndex =
         (this.currentIndex - 1 + this.images.length) % this.images.length;
     }
-  } 
+  }
 
   shareImage() {
     if (!this.itemData) {
       alert("Product data is not available.");
       return;
     }
-  
+
     // ✅ Get the correct base URL (Avoids localhost issue)
     let liveBaseUrl = window.location.origin;
-  
+
     if (liveBaseUrl.includes("localhost")) {
       liveBaseUrl = "https://same-pinch.com"; // Replace with your actual live domain
     }
-  
+
     const productPageUrl = `${liveBaseUrl}/saree/${this.itemData.id}`;
-  
+
     if (navigator.share) {
       // Share only the URL using the Web Share API
       navigator
@@ -314,7 +324,7 @@ export class ViewofficewearComponent {
   splitPatterns(patternString: string): string[] {
     return patternString ? patternString.split(',') : [];
   }
-  
+
   selectPattern(pattern: string) {
     this.selectedPattern = pattern;
     console.log("Selected Pattern:", pattern);

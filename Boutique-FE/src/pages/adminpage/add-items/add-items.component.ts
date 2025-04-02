@@ -52,6 +52,7 @@ export class AddItemsComponent implements OnInit {
   sizeOptions: string[] = ['S', 'M', 'L','XL','2XL','3XL','4XL','5XL','6XL','7XL','8XL','9XL','10XL']; // Example sizes
   selectedSizes: { [key: string]: boolean } = {};
   subcategory: any;
+  offerprice: number = 0;
   constructor(private router: Router, private cdr: ChangeDetectorRef, private http: HttpServiceWithHeaders, private activatedRoute: ActivatedRoute) { }
   ngOnInit(): void {
 
@@ -74,6 +75,7 @@ export class AddItemsComponent implements OnInit {
         this.formData = data;
         this.name = items.name;
         this.price = items.price;
+        this.offerprice= items.offerprice;
         this.description = items.description;
         this.isCustomizable = items.isCustomizable;
         this.samepinch = items.samepinch;
@@ -162,6 +164,7 @@ export class AddItemsComponent implements OnInit {
     // Append form values directly from the component properties
     formData.append('name', this.name);
     formData.append('price', this.price.toString());
+    formData.append('offerprice', this.offerprice.toString());
     formData.append('description', this.description.replace(/ /g, '\u00A0').replace(/\n/g, '\\n'));
     formData.append('isCustomizable', this.isCustomizable.toString());
     formData.append('category', this.category);
@@ -200,6 +203,7 @@ export class AddItemsComponent implements OnInit {
     // Append form values directly from the component properties
     formData.append('name', this.name);
     formData.append('price', this.price.toString());
+    formData.append('offerprice', this.offerprice.toString());
     formData.append('description', this.description.replace(/ /g, '\u00A0').replace(/\n/g, '\\n'));
     formData.append('isCustomizable', this.isCustomizable.toString());
     formData.append('category', this.category);

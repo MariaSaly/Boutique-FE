@@ -47,7 +47,17 @@
       <!-- Product Info -->
       <h1 class="product-title">{{ itemData.name}}</h1>
       <p class="product-description">{{ itemData.description }}</p>
-      <p class="price">{{ itemData.price |  currency:'INR'  }}</p>
+      <div class="price-display">
+        <span *ngIf="itemData.offerprice > 0" class="original-price">
+          {{ itemData.price | currency:'INR' }}
+        </span>
+        <span class="current-price">
+          {{ (itemData.offerprice > 0 ? itemData.offerprice : itemData.price) | currency:'INR' }}
+        </span>
+        <span *ngIf="itemData.offerprice > 0" class="discount-percentage">
+          ({{ calculateDiscount(itemData.price, itemData.offerprice) }}% OFF)
+        </span>
+      </div>
   
       <div class="sizeguide" *ngIf="selectedProduct.stock > 0 && itemData?.isPattern === 'true'"
       >

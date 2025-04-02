@@ -40,6 +40,11 @@ export class ViewsareeComponent implements OnInit {
     this.http.get(`${this.url}/api/items/getItemById/${this.itemId}`).subscribe( data => {
       console.log("data:", data);
       this.itemData = data;
+      this.itemData.price = Number(this.itemData.price);
+      this.itemData.offerprice = Number(this.itemData.offerprice);
+
+
+    
       if (this.itemData.description) {
         this.itemData.description = this.itemData.description
           .replace(/\\n/g, '\n')
@@ -101,6 +106,10 @@ onSleeveCheckboxChange(event: any): void {
         }
       );
     
+  }
+  calculateDiscount(originalPrice: number, offerPrice: number): number {
+    if (!originalPrice || !offerPrice || offerPrice <= 0) return 0;
+    return Math.round(((originalPrice - offerPrice) / originalPrice) * 100);
   }
   selectedProduct = {
     title: 'Aamina Saree',

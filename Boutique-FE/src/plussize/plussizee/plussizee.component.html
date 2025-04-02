@@ -40,7 +40,14 @@
         <div class="card-details">
           <h2>{{ product.name }}</h2>
           <!-- <p>{{ product.description }}</p> -->
-          <p class="price">{{ product.price |  currency:'INR'  }}</p>
+          <div class="price-container">
+            <span *ngIf="product.offerprice > 0" class="original-price">
+              {{ product.price | currency:'INR' }}
+            </span>
+            <span class="current-price">
+              {{ (product.offerprice > 0 ? product.offerprice : product.price) | currency:'INR' }}
+            </span>
+          </div>
         </div>
       </div>
     </div>

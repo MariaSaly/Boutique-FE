@@ -314,3 +314,21 @@ right: 10px;
   text-decoration: none; /* Underline for home link */
 }
 
+
+.price-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.current-price {
+  color: #d9534f; /* Or your preferred price color */
+  font-weight: bold;
+  font-size: 1rem;
+}
