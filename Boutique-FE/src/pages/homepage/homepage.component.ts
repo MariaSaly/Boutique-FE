@@ -28,6 +28,7 @@ export class HomepageComponent  implements OnInit, OnDestroy {
   filteredData: any[] = [];
   newarrivals: any;
   currentIndex: any;
+  bestseller: any;
   constructor(private scrollService: ScrollCommunicationService, private scrollServices: ScrollService,private router:Router,private sharedService: SharedService, private cdRef: ChangeDetectorRef,private httpService: HttpService, ){}
   showSection() {
     this.showNewArrivals = true;
@@ -83,6 +84,7 @@ ngOnInit(): void {
   this.startImageRotation();
   this.handleBackNavigation();
   this.getProducts();
+  this.getProductsBestseller();
   this.scrollService.newArrivalsClicked$.subscribe(() => {
     console.log("✅ HomepageComponent: Received scroll event!");
     
@@ -125,17 +127,40 @@ scrollToBestSeller(retries = 10, delay = 500) {
   }
 }
 getProducts(): void {
-  this.httpService.get<any>(`${this.url}/api/items/getItem?subcategory=newarrivals`).subscribe(
-    (data) => {
-      console.log("New arrivals data:", data);
-      this.newarrivals = data;
-      // Initialize currentIndexes for each product
-      this.currentIndexes = this.newarrivals.map(() => 0);
-    },
-    (error) => {
-      console.error("Error fetching new arrivals:", error);
-    }
-  );
+ 
+  this.httpService.get(`${this.url}/api/items/getItem?subcategory=newarrivals`).subscribe((data: any) => {
+    this.items = data.map((item: any) => ({
+      ...item,
+      price: +item.price.toString().replace(/[^0-9.]/g, '') || 0,
+      offerPrice: +item.offerPrice?.toString().replace(/[^0-9.]/g, '') || 0
+    })).sort((a:any, b:any) => this.firebaseTimestampToMillis(a.createdAt) - this.firebaseTimestampToMillis(b.createdAt));
+    
+    this.newarrivals = [...this.items];
+    this.currentIndexes = this.filteredData.map(() => 0);
+  });
+}
+getProductsBestseller(): void {
+    
+
+    this.httpService.get(`${this.url}/api/items/getItem?subcategory=bestsellar`).subscribe((data: any) => {
+      this.items = data.map((item: any) => ({
+        ...item,
+        price: +item.price.toString().replace(/[^0-9.]/g, '') || 0,
+        offerPrice: +item.offerPrice?.toString().replace(/[^0-9.]/g, '') || 0
+      })).sort((a:any, b:any) => this.firebaseTimestampToMillis(a.createdAt) - this.firebaseTimestampToMillis(b.createdAt));
+      
+      this.bestseller = [...this.items];
+      this.currentIndexes = this.filteredData.map(() => 0);
+    });
+  
+}
+firebaseTimestampToMillis(timestamp: any): number {
+  if (timestamp?.toDate) { // If it's a Firebase Timestamp object
+    return timestamp.toDate().getTime();
+  } else if (timestamp?._seconds) { // If it's the raw object format
+    return timestamp._seconds * 1000 + timestamp._nanoseconds / 1000000;
+  }
+  return 0; // Fallback for invalid timestamps
 }
 getSareeItems(): void {
   this.httpService.get(`${this.url}/api/items/getItem?subcategory=newarrivals`).subscribe((data: any) => {

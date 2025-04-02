@@ -218,7 +218,14 @@
             <div class="card-details">
               <h2>{{ product.name }}</h2>
               <!-- <p>{{ product.description }}</p> -->
-              <p class="price">{{ product.price | currency: 'INR' }}</p>
+              <div class="price-container">
+                <span *ngIf="product.offerprice > 0" class="original-price">
+                  {{ product.price | currency:'INR' }}
+                </span>
+                <span class="current-price">
+                  {{ (product.offerprice > 0 ? product.offerprice : product.price) | currency:'INR' }}
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -229,7 +236,7 @@
         <div class="cards-container">
           <div
             class="arrivalcard"
-            *ngFor="let product of newarrivals; let i = index"
+            *ngFor="let product of bestseller; let i = index"
             (click)="selectCard(i)"
           >
             <div class="card-image">
@@ -245,7 +252,14 @@
             <div class="card-details">
               <h2>{{ product.name }}</h2>
               <!-- <p>{{ product.description }}</p> -->
-              <p class="price">{{ product.price | currency: 'INR' }}</p>
+              <div class="price-container">
+                <span *ngIf="product.offerprice > 0" class="original-price">
+                  {{ product.price | currency:'INR' }}
+                </span>
+                <span class="current-price">
+                  {{ (product.offerprice > 0 ? product.offerprice : product.price) | currency:'INR' }}
+                </span>
+              </div>
             </div>
           </div>
         </div>
