@@ -68,7 +68,7 @@ export class ViewofficewearComponent {
   startImageRotation() {
     this.interval = setInterval(() => {
       this.currentIndex = (this.currentIndex + 1) % this.itemData.imageUrl.length;
-    }, 5000); // Slide every 5 seconds
+    }, 2000); // Slide every 5 seconds
   }
 
   ngOnDestroy() {
