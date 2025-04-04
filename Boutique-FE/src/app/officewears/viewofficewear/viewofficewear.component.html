@@ -21,7 +21,7 @@
       <div class="slider-wrapper" [ngStyle]="{'transform': 'translateX(-' + (currentIndex * 100) + '%)'}">
         <img 
           *ngFor="let img of itemData?.imageUrl" 
-          [src]="url + img" 
+          [src]="img" 
           alt="Gallery Image" 
           class="featured-img"
         />
