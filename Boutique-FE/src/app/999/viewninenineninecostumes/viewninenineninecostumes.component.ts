@@ -26,7 +26,7 @@ export class ViewninenineninecostumesComponent {
 
   size: string = 'M';
   @Input() imageUrls: string[] = [];
-  constructor(private customTextService: customizationTextService, private router: Router, private cartService: CartService, private http: HttpService, private cdr: ChangeDetectorRef, private route: ActivatedRoute, private httpClient: HttpClient,) {
+  constructor(private toastService: ToastrService,private customTextService: customizationTextService, private router: Router, private cartService: CartService, private http: HttpService, private cdr: ChangeDetectorRef, private route: ActivatedRoute, private httpClient: HttpClient,) {
 
   }
   ngOnInit(): void {
@@ -181,6 +181,16 @@ export class ViewninenineninecostumesComponent {
 
   addToCart(): void {
     localStorage.setItem('customData', JSON.stringify(this.customText));
+    if (this.itemData?.isPattern === 'true' && !this.selectedSize) {
+      this.toastService.error('Please select a size before adding to cart');
+      return;
+    }
+    
+    // Validate pattern/color selection if required
+    if (this.itemData?.isColor === 'true' && !this.selectedPattern) {
+      this.toastService.error('Please select a pattern/color before adding to cart');
+      return;
+    }
 
 
     console.log("Im in add to cart function");
@@ -238,6 +248,16 @@ export class ViewninenineninecostumesComponent {
 
   buyNow() {
     localStorage.setItem('customData', JSON.stringify(this.customText));
+    if (this.itemData?.isPattern === 'true' && !this.selectedSize) {
+      this.toastService.error('Please select a size before adding to cart');
+      return;
+    }
+    
+    // Validate pattern/color selection if required
+    if (this.itemData?.isColor === 'true' && !this.selectedPattern) {
+      this.toastService.error('Please select a pattern/color before adding to cart');
+      return;
+    }
 
     // Buy now logic
     const productId = this.itemData.id;

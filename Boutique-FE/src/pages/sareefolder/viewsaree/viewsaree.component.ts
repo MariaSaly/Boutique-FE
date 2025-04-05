@@ -8,6 +8,7 @@ import { environment } from '../../../environment';
 import { HttpClient } from '@angular/common/http';
 import { user } from '@angular/fire/auth';
 import { customizationTextService } from '../../../service/customizationtextService';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-viewsaree',
@@ -26,7 +27,7 @@ export class ViewsareeComponent implements OnInit {
   isSleeveChecked: boolean = false;
 
   @Input() imageUrls: string[] = [];
-  constructor(private customTextService:customizationTextService, private router:Router,private cartService:CartService , private http:HttpService  ,private cdr: ChangeDetectorRef, private route:ActivatedRoute , private httpClient:HttpClient , ){
+  constructor(private toastService: ToastrService,private customTextService:customizationTextService, private router:Router,private cartService:CartService , private http:HttpService  ,private cdr: ChangeDetectorRef, private route:ActivatedRoute , private httpClient:HttpClient , ){
 
   }
   ngOnInit(): void {
@@ -179,6 +180,16 @@ onSleeveCheckboxChange(event: any): void {
 
   addToCart( ): void {
     localStorage.setItem('customData',JSON.stringify(this.customText));
+    if (this.itemData?.isPattern === 'true' && !this.selectedSize) {
+      this.toastService.error('Please select a size before adding to cart');
+      return;
+    }
+    
+    // Validate pattern/color selection if required
+    if (this.itemData?.isColor === 'true' && !this.selectedPattern) {
+      this.toastService.error('Please select a pattern/color before adding to cart');
+      return;
+    }
     
    
     console.log("Im in add to cart function");
@@ -235,6 +246,16 @@ onSleeveCheckboxChange(event: any): void {
 
   buyNow() {
     localStorage.setItem('customData',JSON.stringify(this.customText));
+    if (this.itemData?.isPattern === 'true' && !this.selectedSize) {
+      this.toastService.error('Please select a size before adding to cart');
+      return;
+    }
+    
+    // Validate pattern/color selection if required
+    if (this.itemData?.isColor === 'true' && !this.selectedPattern) {
+      this.toastService.error('Please select a pattern/color before adding to cart');
+      return;
+    }
     
     // Buy now logic
     const productId = this.itemData.id;
