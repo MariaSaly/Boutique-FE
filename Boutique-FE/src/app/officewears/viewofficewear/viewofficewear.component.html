@@ -34,7 +34,8 @@
         <div 
           *ngFor="let img of itemData?.imageUrl; let i = index" 
           class="indicator-bar" 
-          [ngClass]="{'active': i === currentIndex}">
+          [class.active]="i === currentIndex"  
+          (click)="selectImage(i)">  <!-- Optional: Click to navigate -->
         </div>
       </div>
     </div>

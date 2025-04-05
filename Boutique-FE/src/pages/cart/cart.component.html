@@ -22,7 +22,12 @@
             <a href="javascript:void(0)" class="remove-link" (click)="deleteItem(item.productId)">Remove</a>
           </div>
           <div class="cart-item-price">
-            <p class="price">₹<strong>{{ item.price }}</strong></p>
+            <p class="price" *ngIf="item.offerprice; else showRegularPrice">
+              ₹<strong>{{ item.offerprice }}</strong>
+            </p>
+            <ng-template #showRegularPrice>
+              <p class="price">₹<strong>{{ item.price }}</strong></p>
+            </ng-template>
           </div>
         </div>
         <hr class="section-divider">
@@ -52,17 +57,18 @@
         </div>
         <div class="summary-row">
           <span class="icon-text1">
+            <i class="fas fa-truck"></i> Shipping Charge (Inside TamilNadu)
+          </span>
+          <span class="summary-value">₹100</span>
+        </div>
+        <div class="summary-row">
+          <span class="icon-text1">
             <i class="fas fa-rupee-sign"></i>
             Total Price
           </span>
           <span class="summary-value">₹{{ totalPrice }}</span>
         </div>
-        <div class="summary-row">
-          <span class="icon-text1">
-            <i class="fas fa-truck"></i> Shipping Charge (Inside TamilNadu)
-          </span>
-          <span class="summary-value">₹100</span>
-        </div>
+        
       </div>
       <div class="order-notes">
         <p class="note-title">Important Notes</p>

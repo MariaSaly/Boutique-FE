@@ -61,6 +61,12 @@ export class ViewninenineninecostumesComponent {
 
     })
   }
+  startAutoSlide() {
+    setInterval(() => {
+      this.currentIndex = (this.currentIndex + 1) % this.itemData.imageUrl.length;
+    }, 3000); // Change slide every 3s
+  }
+  
   startImageRotation() {
     this.interval = setInterval(() => {
       this.currentIndex = (this.currentIndex + 1) % this.itemData.imageUrl.length;

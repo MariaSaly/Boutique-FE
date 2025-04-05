@@ -41,7 +41,12 @@ export class ViewofficewearComponent {
     return Math.round(((originalPrice - offerPrice) / originalPrice) * 100);
   }
 
-
+// Auto-slide logic
+startAutoSlide() {
+  setInterval(() => {
+    this.currentIndex = (this.currentIndex + 1) % this.itemData.imageUrl.length;
+  }, 3000); // Change slide every 3s
+}
   getItemByID() {
     this.http.get(`${this.url}/api/items/getItemById/${this.itemId}`).subscribe(data => {
       console.log("data:", data);

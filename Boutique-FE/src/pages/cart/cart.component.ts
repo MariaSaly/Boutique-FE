@@ -249,16 +249,22 @@ increaseQty(item:any){
 
 
 }
-calculateCartItems(){
+calculateCartItems() {
   console.log("cartitems:", this.cartItems);
   this.cartCount = this.cartItems.length;
   console.log("cartCount:", this.cartCount);
-  this.totalQuantity = this.cartItems.reduce((acc:any,current:any)=>{
-    return acc+current.quantity;
-   },0)
-   this.totalPrice = this.cartItems.reduce((acc:any,current:any)=>{
-   return acc + (current.price * current.quantity) + 0
-   },0)
+
+  this.totalQuantity = this.cartItems.reduce((acc: any, current: any) => {
+    return acc + current.quantity;
+  }, 0);
+
+  this.totalPrice = this.cartItems.reduce((acc: any, current: any) => {
+    // Use offerprice if available, otherwise fall back to price
+    const itemPrice = current.offerprice ? current.offerprice : current.price;
+    return acc + (itemPrice * current.quantity) + 100;
+  }, 0);
+
+  console.log("Total Price:", this.totalPrice);
 }
 goToShop(){
   this.router.navigate(['/home']);

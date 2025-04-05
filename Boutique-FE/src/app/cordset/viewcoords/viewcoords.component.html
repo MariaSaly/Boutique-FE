@@ -1,140 +1,126 @@
 <div class="route-display" style="margin-bottom: 10px;">
   <p>
-     <a [routerLink]="'/home'" class="home-link" style="cursor: pointer;">
-       Home/ 
+    <a [routerLink]="'/home'" class="home-link" style="cursor: pointer;">
+      Home/
     </a>
     <a [routerLink]="'/coords'" class="home-link" style="cursor: pointer;">
       Coords
-   </a>
+    </a>
   </p>
-  
-  
+
+
 </div>
-<div class="boutique-container" >
+<div class="boutique-container">
 
   <div class="image-gallery">
     <!-- Large Display Image -->
     <div class="featured-image">
-      <div class="share-icon" (click)="shareImage()" >
-        <i class="fas fa-share-alt"></i> 
+      <div class="share-icon" (click)="shareImage()">
+        <i class="fas fa-share-alt"></i>
       </div>
       <div class="slider-wrapper" [ngStyle]="{'transform': 'translateX(-' + (currentIndex * 100) + '%)'}">
-        <img 
-          *ngFor="let img of itemData?.imageUrl" 
-          [src]=" img" 
-          alt="Gallery Image" 
-          class="featured-img"
-        />
+        <img *ngFor="let img of itemData?.imageUrl" [src]=" img" alt="Gallery Image" class="featured-img" />
       </div>
-    
-      <a class="hover-link"  href="{{ itemData.vedioLink }}"  target="_blank">{{itemData.vedioLink}}</a>
-    
+
+      <a class="hover-link" href="{{ itemData.vedioLink }}" target="_blank">{{itemData.vedioLink}}</a>
+
       <!-- Indicator Dots -->
+
+
+
+
       <div class="indicator-container">
-        <div 
-          *ngFor="let img of itemData?.imageUrl; let i = index" 
-          class="indicator-bar" 
-          [ngClass]="{'active': i === currentIndex}">
+        <div *ngFor="let img of itemData?.imageUrl; let i = index" class="indicator-bar"
+          [class.active]="i === currentIndex" (click)="selectImage(i)"> <!-- Optional: Click to navigate -->
         </div>
       </div>
     </div>
-  
-  
+
+
   </div>
-  
-    <!-- Right Side: Product Details -->
-    <div class="product-details">
-      <!-- Product Info -->
-      <h1 class="product-title">{{ itemData.name}}</h1>
-      <p class="product-description">{{ itemData.description }}</p>
-      <div class="price-display">
-        <span *ngIf="itemData.offerprice > 0" class="original-price">
-          {{ itemData.price | currency:'INR' }}
-        </span>
-        <span class="current-price">
-          {{ (itemData.offerprice > 0 ? itemData.offerprice : itemData.price) | currency:'INR' }}
-        </span>
-        <span *ngIf="itemData.offerprice > 0" class="discount-percentage">
-          ({{ calculateDiscount(itemData.price, itemData.offerprice) }}% OFF)
-        </span>
+
+  <!-- Right Side: Product Details -->
+  <div class="product-details">
+    <!-- Product Info -->
+    <h1 class="product-title">{{ itemData.name}}</h1>
+    <p class="product-description">{{ itemData.description }}</p>
+    <div class="price-display">
+      <span *ngIf="itemData.offerprice > 0" class="original-price">
+        {{ itemData.price | currency:'INR' }}
+      </span>
+      <span class="current-price">
+        {{ (itemData.offerprice > 0 ? itemData.offerprice : itemData.price) | currency:'INR' }}
+      </span>
+      <span *ngIf="itemData.offerprice > 0" class="discount-percentage">
+        ({{ calculateDiscount(itemData.price, itemData.offerprice) }}% OFF)
+      </span>
+    </div>
+    <div class="sizeguide" *ngIf="selectedProduct.stock > 0 && itemData?.isPattern === 'true'">
+      <button class="sizeguide-btn" (click)="openSizeGuide()">
+        <h3>Size Guide</h3>
+      </button>
+    </div>
+
+    <!-- Popup Modal -->
+    <div class="size-modal" *ngIf="isSizeGuideOpen">
+      <div class="size-modal-content">
+        <span class="close-btn" (click)="closeSizeGuide()">&times;</span>
+        <h2>Size Guide</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Size</th>
+              <th>Chest</th>
+              <th>Waist</th>
+              <th>Length</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let size of sizeGuide">
+              <td>{{ size.Size }}</td>
+              <td>{{ size.chest }}</td>
+              <td>{{ size.waist }}</td>
+              <td>{{ size.length }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="sizeguide" *ngIf="selectedProduct.stock > 0 && itemData?.isPattern === 'true'">
-        <button class="sizeguide-btn" (click)="openSizeGuide()">
-          <h3>Size Guide</h3>
+    </div>
+
+    <!-- Size Selection -->
+    <div class="size-options" *ngIf="itemData?.isPattern === 'true'">
+      <h3>Select Size</h3>
+      <div class="size-buttons">
+        <button *ngFor="let size of itemData.sizesArray" class="size-btn" [class.selected]="size === selectedSize"
+          (click)="selectSize(size)">
+          {{ size }}
         </button>
       </div>
-      
-      <!-- Popup Modal -->
-      <div class="size-modal" *ngIf="isSizeGuideOpen">
-        <div class="size-modal-content">
-          <span class="close-btn" (click)="closeSizeGuide()">&times;</span>
-          <h2>Size Guide</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Size</th>
-                <th>Chest</th>
-                <th>Waist</th>
-                <th>Length</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let size of sizeGuide">
-                <td>{{ size.Size }}</td>
-                <td>{{ size.chest }}</td>
-                <td>{{ size.waist }}</td>
-                <td>{{ size.length }}</td>
-              </tr>
-            </tbody>
-          </table>
+    </div>
+
+    <div class="pattern-options" *ngIf="itemData?.isColor === 'true'">
+      <h3>Patterns</h3>
+      <div class="pattern-list">
+        <div *ngFor="let pattern of splitPatterns(itemData.colorPattern)" class="pattern-box"
+          [ngClass]="{'selected': pattern === selectedPattern}" (click)="selectPattern(pattern)">
+          {{ pattern }}
         </div>
       </div>
-      
-      <!-- Size Selection -->
-      <div class="size-options" *ngIf="itemData?.isPattern === 'true'">
-        <h3>Select Size</h3>
-        <div class="size-buttons">
-          <button
-            *ngFor="let size of itemData.sizesArray"
-            class="size-btn"
-            [class.selected]="size === selectedSize"
-            (click)="selectSize(size)"
-          >
-            {{ size }}
-          </button>
-        </div>
-      </div>
-      
-      <div class="pattern-options" *ngIf="itemData?.isColor === 'true'">
-        <h3>Patterns</h3>
-        <div class="pattern-list">
-          <div 
-            *ngFor="let pattern of splitPatterns(itemData.colorPattern)" 
-            class="pattern-box" 
-            [ngClass]="{'selected': pattern === selectedPattern}" 
-            (click)="selectPattern(pattern)">
-            {{ pattern }}
-          </div>
-        </div>
-      </div>
-      
-      <div class="checkbox-container" *ngIf="itemData.isSleeve === 'true'" >
-        <label>
-          <input 
-            type="checkbox" 
-            name="sleeveType" 
-            [checked]="isSleeveChecked" 
-            (change)="onSleeveCheckboxChange($event)"
-          > Sleeve
-        </label>
-      </div>
-      
-      <div class="stock-status" *ngIf="itemData?.isStock === 'true'">
-        <p *ngIf="itemData.stock > 0" class="in-stock">  In Stock ({{ itemData.stock }}) </p>
-        <p *ngIf="itemData.stock === 0" class="out-of-stock">Out of Stock</p>
-      </div>
-      <!-- Customization -->
-      <!-- <div class="customization">
+    </div>
+
+    <div class="checkbox-container" *ngIf="itemData.isSleeve === 'true'">
+      <label>
+        <input type="checkbox" name="sleeveType" [checked]="isSleeveChecked" (change)="onSleeveCheckboxChange($event)">
+        Sleeve
+      </label>
+    </div>
+
+    <div class="stock-status" *ngIf="itemData?.isStock === 'true'">
+      <p *ngIf="itemData.stock > 0" class="in-stock"> In Stock ({{ itemData.stock }}) </p>
+      <p *ngIf="itemData.stock === 0" class="out-of-stock">Out of Stock</p>
+    </div>
+    <!-- Customization -->
+    <!-- <div class="customization">
         <h3>Customization</h3>
         <textarea
           [(ngModel)]="customText"
@@ -142,20 +128,19 @@
           placeholder="Enter customization details..."
         ></textarea>
       </div> -->
-     
-  
-      <!-- Quantity & Actions -->
-      <div class="actions">
-        <div class="quantity-control">
-          <button class="qty-btn" (click)="decreaseQuantity()">-</button>
-          <span>{{ quantity }}</span>
-          <button class="qty-btn" (click)="increaseQuantity()">+</button>
-        </div>
-        <div class="action-buttons">
-          <button class="btn add-to-cart" (click)="addToCart()" [disabled]="itemData.stock === 0">Add to Cart</button>
-          <button class="btn buy-now" (click)="buyNow()" [disabled]="itemData.stock === 0">Buy Now</button>
-        </div>
+
+
+    <!-- Quantity & Actions -->
+    <div class="actions">
+      <div class="quantity-control">
+        <button class="qty-btn" (click)="decreaseQuantity()">-</button>
+        <span>{{ quantity }}</span>
+        <button class="qty-btn" (click)="increaseQuantity()">+</button>
+      </div>
+      <div class="action-buttons">
+        <button class="btn add-to-cart" (click)="addToCart()" [disabled]="itemData.stock === 0">Add to Cart</button>
+        <button class="btn buy-now" (click)="buyNow()" [disabled]="itemData.stock === 0">Buy Now</button>
       </div>
     </div>
   </div>
-  
+</div>

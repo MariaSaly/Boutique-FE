@@ -62,6 +62,12 @@ export class ViewsareeComponent implements OnInit {
       this.currentIndex = (this.currentIndex + 1) % this.itemData.imageUrl.length;
     }, 2000); // Slide every 5 seconds
   }
+  startAutoSlide() {
+    setInterval(() => {
+      this.currentIndex = (this.currentIndex + 1) % this.itemData.imageUrl.length;
+    }, 3000); // Change slide every 3s
+  }
+  
 
   ngOnDestroy() {
     if (this.interval) {
