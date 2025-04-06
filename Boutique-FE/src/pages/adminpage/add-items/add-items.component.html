@@ -82,13 +82,17 @@
     </div>
 
     <!-- Subcategory Field -->
-    <div class="form-group">
-      <label for="subcategory">Subcategory</label>
-      <select id="subcategory" name="subcategory" [(ngModel)]="subcategory">
-        <option *ngFor="let cat of subcategoryList" [value]="cat">{{ cat }}</option>
-      </select>
-    </div>
-
+   <!-- Subcategory Field -->
+<div class="form-group">
+  <label for="subcategory">Subcategory</label>
+  <div class="subcategory-container">
+    <select id="subcategory" name="subcategory" [(ngModel)]="subcategory">
+      <option *ngFor="let cat of subcategoryList" [value]="cat">{{ cat }}</option>
+      <option value="">None</option> <!-- Add this option for empty selection -->
+    </select>
+    <button type="button" class="clear-btn" (click)="clearSubcategory()" [disabled]="!subcategory">Clear</button>
+  </div>
+</div>
     <!-- Stock Field -->
     <div class="form-group">
       <label for="stock">Stock</label>

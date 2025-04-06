@@ -37,8 +37,11 @@ export class ListItemsComponent implements OnInit {
     this.http.get<any>(`${this.url}/api/items/getItem`).subscribe({
       next: (response) => {
         console.log('data:', response);
-        this.items = response;
-        this.filteredItems = this.items.slice(0, 4); // Show the first 4 items initially
+        // Sort items by createdAt in descending order (newest first)
+        this.items = response.sort((a: any, b: any) => {
+          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        });
+        this.filteredItems = this.items
         this.showViewMore = this.items.length > 4;
       },
       error: (error) => {

@@ -258,13 +258,21 @@ calculateCartItems() {
     return acc + current.quantity;
   }, 0);
 
-  this.totalPrice = this.cartItems.reduce((acc: any, current: any) => {
+  // Calculate the subtotal without shipping
+  const subtotal = this.cartItems.reduce((acc: any, current: any) => {
     // Use offerprice if available, otherwise fall back to price
     const itemPrice = current.offerprice ? current.offerprice : current.price;
-    return acc + (itemPrice * current.quantity) + 100;
+    return acc + (itemPrice * current.quantity);
   }, 0);
 
+  // Add shipping only once for the entire cart
+  this.totalPrice = subtotal + 100;
+
   console.log("Total Price:", this.totalPrice);
+}
+calculateDiscount(originalPrice: number, offerPrice: number): number {
+  if (!originalPrice || !offerPrice || offerPrice <= 0) return 0;
+  return Math.round(((originalPrice - offerPrice) / originalPrice) * 100);
 }
 goToShop(){
   this.router.navigate(['/home']);
