@@ -20,7 +20,7 @@ padding-bottom: 0px; */
      align-items: center;
      gap: 10px;
   
-     content: url('../../assets/images/Miya1.png');
+     content: url('../../assets/images/samepinch.jpg');
      
      .logo {
        background :white;
@@ -43,7 +43,7 @@ padding-bottom: 0px; */
       gap: 10px;
       font-family: 'Poppins';
       .logo {
-        
+        content: url('../../assets/images/samepinch.jpg');
         width: auto;
         height: 100px;
         border-radius: 50%;
