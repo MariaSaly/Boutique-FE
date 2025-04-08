@@ -120,15 +120,30 @@
         </div>
       </div>
 
-      <div class="checkbox-container" *ngIf="itemData.isSleeve === 'true'" >
-        <label>
-          <input 
-            type="checkbox" 
-            name="sleeveType" 
-            [checked]="isSleeveChecked" 
-            (change)="onSleeveCheckboxChange($event)"
-          > Sleeve
-        </label>
+      <div class="checkbox-group" *ngIf="itemData.isSleeve === 'true' || itemData.isStitches === 'true'">
+        <!-- Sleeve Checkbox -->
+        <div class="checkbox-container" *ngIf="itemData.isSleeve === 'true'">
+          <label>
+            <input 
+              type="checkbox" 
+              name="sleeveType" 
+              [checked]="isSleeveChecked" 
+              (change)="onSleeveCheckboxChange($event)"
+            > Sleeve
+          </label>
+        </div>
+      
+        <!-- Stitches Checkbox -->
+        <div class="checkbox-container" *ngIf="itemData.isStitches === 'true'">
+          <label>
+            <input 
+              type="checkbox" 
+              name="stitchesType" 
+              [checked]="isStitchesChecked" 
+              (change)="onStitchesCheckboxChange($event)"
+            > Stitches
+          </label>
+        </div>
       </div>
 
       <div class="stock-status" *ngIf="itemData?.isStock === 'true'">

@@ -24,6 +24,7 @@ export class ViewcoordsComponent {
   itemData: any;
   size: string = '';
   isSleeveChecked: boolean = false;
+  isStitchesChecked: boolean = false;
 
   @Input() imageUrls: string[] = [];
   description: string = '';
@@ -185,7 +186,10 @@ export class ViewcoordsComponent {
       this.quantity--;
     }
   }
-
+  onStitchesCheckboxChange(event: Event) {
+    this.isStitchesChecked = (event.target as HTMLInputElement).checked;
+    // Add any additional logic you need when stitches checkbox changes
+  }
   addToCart( ): void {
     localStorage.setItem('customData',JSON.stringify(this.customText));
     if (this.itemData?.isPattern === 'true' && !this.selectedSize) {
@@ -209,6 +213,8 @@ export class ViewcoordsComponent {
     console.log("productId:", productId);
     const qty = this.quantity;
     const isSleeve = this.isSleeveChecked; 
+    const isStitched= this.isStitchesChecked; 
+
     const colorPattern = this.selectedPattern || '-'
 
 
@@ -220,7 +226,7 @@ export class ViewcoordsComponent {
       console.log("userid:", this.userId);
     
     
-    this.cartService.addToCart(this.userId,productId,this.selectedSize,qty,isSleeve,colorPattern).subscribe( data => {
+    this.cartService.addToCart(this.userId,productId,this.selectedSize,qty,isSleeve,isStitched,colorPattern).subscribe( data => {
       this.cartService.loadCart(this.userId)
       console.log("user added sucessfully !");
       this.router.navigate(['/cart']);
@@ -232,7 +238,7 @@ export class ViewcoordsComponent {
     const productId = this.itemData.id;
     const qty = this.quantity;
     
-    this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty,isSleeve,colorPattern).subscribe( data => {
+    this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty,isSleeve,isStitched,colorPattern).subscribe( data => {
       this.cartService.loadCart(guestId)
       console.log("user added sucessfully !");
       this.router.navigate(['/cart']);
@@ -273,6 +279,8 @@ export class ViewcoordsComponent {
     console.log("productId:", productId);
     const qty = this.quantity;
     const isSleeve = this.isSleeveChecked; 
+    const isStitched= this.isStitchesChecked; 
+
     const colorPattern = this.selectedPattern || '-'
 
 
@@ -283,7 +291,7 @@ export class ViewcoordsComponent {
       this.userId = userData.user_id;
       console.log("userid:", this.userId);
     
-    this.cartService.addToCart(this.userId,productId,this.selectedSize,qty,isSleeve,colorPattern).subscribe( data => {
+    this.cartService.addToCart(this.userId,productId,this.selectedSize,qty,isSleeve,isStitched,colorPattern).subscribe( data => {
       this.cartService.loadCart(this.userId)
       console.log("user added sucessfully !");
       this.router.navigate(['/cart']);
@@ -296,7 +304,7 @@ export class ViewcoordsComponent {
     const productId = this.itemData.id;
     const qty = this.quantity;
     
-    this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty,isSleeve,colorPattern).subscribe( data => {
+    this.cartService.addToCartGuestUser(guestId,productId,this.selectedSize,qty,isSleeve,isStitched,colorPattern).subscribe( data => {
       this.cartService.loadCart(guestId)
       console.log("user added sucessfully !");
       this.router.navigate(['/cart']);

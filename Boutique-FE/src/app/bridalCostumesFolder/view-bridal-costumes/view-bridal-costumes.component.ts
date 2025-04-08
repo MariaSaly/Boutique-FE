@@ -29,6 +29,7 @@ export class ViewBridalCostumesComponent {
 
   itemData: any;
   selectedPattern: any;
+  isStitchesChecked: any;
   constructor(private toastService: ToastrService
     , private router: Router, private cartService: CartService, private http: HttpService, private cdr: ChangeDetectorRef, private route: ActivatedRoute, private httpClient: HttpClient,) {
 
@@ -174,7 +175,10 @@ export class ViewBridalCostumesComponent {
     const productId = this.itemData.id;
     console.log("productId:", productId);
     const qty = this.quantity;
-    const isSleeve = this.isSleeveChecked; 
+    const isSleeve = this.isSleeveChecked;
+    const isStitched= this.isStitchesChecked; 
+
+ 
     const colorPattern = this.selectedPattern
 
     const data = localStorage.getItem('userData');
@@ -183,7 +187,7 @@ export class ViewBridalCostumesComponent {
       this.userId = userData.user_id;
       console.log("userid:", this.userId);
 
-      this.cartService.addToCart(this.userId, productId, this.selectedSize, qty,isSleeve,colorPattern).subscribe(data => {
+      this.cartService.addToCart(this.userId, productId, this.selectedSize, qty,isSleeve,isStitched,colorPattern).subscribe(data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
         this.toastService.success('Cart added Sucessfully!');
@@ -196,7 +200,7 @@ export class ViewBridalCostumesComponent {
       const productId = this.itemData.id;
       const qty = this.quantity;
 
-      this.cartService.addToCartGuestUser(guestId, productId, this.selectedSize, qty,isSleeve,colorPattern).subscribe(data => {
+      this.cartService.addToCartGuestUser(guestId, productId, this.selectedSize, qty,isSleeve,isStitched,colorPattern).subscribe(data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
         this.toastService.success('Cart added Sucessfully!');
@@ -223,6 +227,9 @@ export class ViewBridalCostumesComponent {
     console.log("productId:", productId);
     const qty = this.quantity;
     const isSleeve = this.isSleeveChecked; 
+    const isStitched= this.isStitchesChecked; 
+
+
     const colorPattern = this.selectedPattern
 
     const data = localStorage.getItem('userData');
@@ -231,7 +238,7 @@ export class ViewBridalCostumesComponent {
       this.userId = userData.user_id;
       console.log("userid:", this.userId);
 
-      this.cartService.addToCart(this.userId, productId, this.selectedSize, qty,isSleeve,colorPattern).subscribe(data => {
+      this.cartService.addToCart(this.userId, productId, this.selectedSize, qty,isSleeve,isStitched,colorPattern).subscribe(data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
@@ -244,7 +251,7 @@ export class ViewBridalCostumesComponent {
       const productId = this.itemData.id;
       const qty = this.quantity;
 
-      this.cartService.addToCartGuestUser(guestId, productId, this.selectedSize, qty,isSleeve,colorPattern).subscribe(data => {
+      this.cartService.addToCartGuestUser(guestId, productId, this.selectedSize, qty,isSleeve,isStitched,colorPattern).subscribe(data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);

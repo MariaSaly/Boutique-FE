@@ -290,3 +290,19 @@ body {
   color: #388e3c; /* Green color for discount */
   font-size: 1rem;
 }
+/* Add to your component's CSS */
+.summary-row i.fa-scissors {
+  color: #d4af37; /* Gold color to match your theme */
+  margin-right: 8px;
+}
+
+.order-notes li {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.order-notes i.fa-info-circle {
+  color: #d4af37;
+  margin-right: 8px;
+}

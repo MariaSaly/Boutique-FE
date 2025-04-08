@@ -11,6 +11,9 @@
             <h3 class="item-title">{{ item.name }}</h3>
             <p class="item-color">Color: {{ item.colorPattern }}</p>
             <p class="item-size">Size: {{ item.size }}</p>
+            <p class="item-stitching" *ngIf="item.isStitches">
+              <i class="fas fa-scissors"></i> Stitching Included (+₹700)
+            </p>
           </div>
           <div class="cart-item-quantity">
             <div class="quantity-controls">
@@ -58,12 +61,23 @@
           </span>
           <span class="summary-value">{{ totalQuantity }}</span>
         </div>
+        
+        <!-- Stitching charges row -->
+        <div class="summary-row" *ngIf="totalStitchingCharges > 0">
+          <span class="icon-text">
+            <i class="fas fa-scissors"></i>
+            Stitching Charges ({{ stitchedItemsCount }} items)
+          </span>
+          <span class="summary-value">₹{{ totalStitchingCharges }}</span>
+        </div>
+        
         <div class="summary-row">
           <span class="icon-text1">
-            <i class="fas fa-truck"></i> Shipping Charge (Inside TamilNadu)
+            <i class="fas fa-truck"></i> Shipping Charge
           </span>
           <span class="summary-value">₹100</span>
         </div>
+        
         <div class="summary-row">
           <span class="icon-text1">
             <i class="fas fa-rupee-sign"></i>
@@ -71,16 +85,20 @@
           </span>
           <span class="summary-value">₹{{ totalPrice }}</span>
         </div>
-        
       </div>
+      
       <div class="order-notes">
         <p class="note-title">Important Notes</p>
         <ul class="notes-list">
-          <!-- <li><i class="fas fa-info-circle"></i> Inside Tamil Nadu: Shipping charge is ₹100</li> -->
+          <li *ngIf="totalStitchingCharges > 0">
+            <i class="fas fa-info-circle"></i> 
+            Stitching charges: ₹700 per item ({{ stitchedItemsCount }} items selected)
+          </li>
           <li><i class="fas fa-info-circle"></i> Orders are non-refundable once placed.</li>
           <li><i class="fas fa-redo"></i> Reorder may require additional charges.</li>
         </ul>
       </div>
+      
       <button class="checkout-btn animated" (click)="openDeliveryAddressModel()">Proceed to Checkout</button>
     </div>
   </div>

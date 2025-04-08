@@ -23,6 +23,8 @@ export class ViewninenineninecostumesComponent {
   public url = environment.localUrl;
   itemData: any;
   isSleeveChecked: boolean = false;
+  isStitchesChecked: boolean = false;
+
 
   size: string = 'M';
   @Input() imageUrls: string[] = [];
@@ -202,6 +204,8 @@ export class ViewninenineninecostumesComponent {
     console.log("productId:", productId);
     const qty = this.quantity;
     const isSleeve = this.isSleeveChecked;
+    const isStitched= this.isStitchesChecked; 
+
     const colorPattern = this.selectedPattern || '-'
 
     const data = localStorage.getItem('userData');
@@ -211,7 +215,7 @@ export class ViewninenineninecostumesComponent {
       console.log("userid:", this.userId);
 
 
-      this.cartService.addToCart(this.userId, productId, this.selectedSize, qty, isSleeve, colorPattern).subscribe(data => {
+      this.cartService.addToCart(this.userId, productId, this.selectedSize, qty, isSleeve,isStitched, colorPattern).subscribe(data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
@@ -223,13 +227,17 @@ export class ViewninenineninecostumesComponent {
       const productId = this.itemData.id;
       const qty = this.quantity;
 
-      this.cartService.addToCartGuestUser(guestId, productId, this.selectedSize, qty, isSleeve, colorPattern).subscribe(data => {
+      this.cartService.addToCartGuestUser(guestId, productId, this.selectedSize, qty, isSleeve,isStitched, colorPattern).subscribe(data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
       })
       // alert('please login to addtoCart');
     }
+  }
+  onStitchesCheckboxChange(event: Event) {
+    this.isStitchesChecked = (event.target as HTMLInputElement).checked;
+    // Add any additional logic you need when stitches checkbox changes
   }
   // onCustomizationChange(){
   //   localStorage.setItem('customData',JSON.stringify(this.customText));
@@ -264,6 +272,8 @@ export class ViewninenineninecostumesComponent {
     console.log("productId:", productId);
     const qty = this.quantity;
     const isSleeve = this.isSleeveChecked;
+    const isStitched= this.isStitchesChecked; 
+
     const colorPattern = this.selectedPattern || '-'
 
     const data = localStorage.getItem('userData');
@@ -272,7 +282,7 @@ export class ViewninenineninecostumesComponent {
       this.userId = userData.user_id;
       console.log("userid:", this.userId);
 
-      this.cartService.addToCart(this.userId, productId, this.selectedSize, qty, isSleeve, colorPattern).subscribe(data => {
+      this.cartService.addToCart(this.userId, productId, this.selectedSize, qty, isSleeve,isStitched, colorPattern).subscribe(data => {
         this.cartService.loadCart(this.userId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);
@@ -285,7 +295,7 @@ export class ViewninenineninecostumesComponent {
       const productId = this.itemData.id;
       const qty = this.quantity;
 
-      this.cartService.addToCartGuestUser(guestId, productId, this.selectedSize, qty, isSleeve, colorPattern).subscribe(data => {
+      this.cartService.addToCartGuestUser(guestId, productId, this.selectedSize, qty, isSleeve,isStitched, colorPattern).subscribe(data => {
         this.cartService.loadCart(guestId)
         console.log("user added sucessfully !");
         this.router.navigate(['/cart']);

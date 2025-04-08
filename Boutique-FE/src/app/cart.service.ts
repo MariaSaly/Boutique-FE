@@ -46,15 +46,15 @@ export class CartService {
  }
 
   //create cart 
-  addToCart( userId:string,productId:string,size:string,quantity:number,isSleeve:boolean,colorPattern:string):Observable<any>{
-    return this.http.post(`${this.url}/api/cart/addCart`,{userId,productId,size,quantity,isSleeve,colorPattern})
+  addToCart( userId:string,productId:string,size:string,quantity:number,isSleeve:boolean,isStitched:boolean,colorPattern:string):Observable<any>{
+    return this.http.post(`${this.url}/api/cart/addCart`,{userId,productId,size,quantity,isSleeve,isStitched,colorPattern})
   }
-  addToCartGuestUser( userId:string,productId:string,size:string,quantity:number,isSleeve:boolean,colorPattern:string):Observable<any>{
-    return this.httpClient.post(`${this.url}/api/cart/addCart`,{userId,productId,size,quantity,isSleeve,colorPattern})
+  addToCartGuestUser( userId:string,productId:string,size:string,quantity:number,isSleeve:boolean,isStitched:boolean,colorPattern:string):Observable<any>{
+    return this.httpClient.post(`${this.url}/api/cart/addCart`,{userId,productId,size,quantity,isSleeve,isStitched,colorPattern})
   }
   //updateCart
-  updateCart(userId:string,productId:string,quantity:number):Observable<any>{
-    return this.http.patch(`${this.url}/api/cart/updateCart`,{userId,productId,quantity})
+  updateCart(userId:string,item:any):Observable<any>{
+    return this.http.patch(`${this.url}/api/cart/updateCart`,{userId,...item})
   }
   //deletecart
   deleteCart(userId:string,productId:string){

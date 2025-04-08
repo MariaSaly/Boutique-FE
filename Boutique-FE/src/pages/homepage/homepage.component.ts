@@ -150,6 +150,7 @@ getProductsBestseller(): void {
       })).sort((a:any, b:any) => this.firebaseTimestampToMillis(a.createdAt) - this.firebaseTimestampToMillis(b.createdAt));
       
       this.bestseller = [...this.items];
+      console.log("bestseller:",this.bestseller);
       this.currentIndexes = this.filteredData.map(() => 0);
     });
   
@@ -204,7 +205,7 @@ previousImage(cardIndex: number, images: string[]): void {
 
 selectCard(index: number): void {
   const selectedProduct = this.newarrivals[index];
-  this.router.navigate([`/bridalsquade/${selectedProduct.id}`]);
+  this.router.navigate([`/${selectedProduct.category}/${selectedProduct.id}`]);
 }
 
 setFlagFromLocalStorage() {

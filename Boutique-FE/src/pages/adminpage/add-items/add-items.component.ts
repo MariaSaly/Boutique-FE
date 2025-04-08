@@ -26,6 +26,7 @@ export class AddItemsComponent implements OnInit {
   description: string = '';
   isCustomizable: string = 'false';
   isSleeve: string = 'false';
+  isStitches: string = 'false';
   isStock: string = 'false'
   @ViewChild('submitBtn')
   submitButton!: ElementRef<HTMLButtonElement>;
@@ -86,6 +87,8 @@ export class AddItemsComponent implements OnInit {
         this.subcategory = items.subcategory;
         this.isColor=items.isColor;
         this.isSize= items.isSize;
+        this.isSleeve=items.isSleeve;
+        this.isStitches=items.isStitches;
         this.colorPattern = items.colorPattern
       })
     }
@@ -177,6 +180,7 @@ export class AddItemsComponent implements OnInit {
     formData.append('isColor', this.isColor);
     formData.append('isPattern', this.isSize);
     formData.append('isSleeve', this.isSleeve);
+    formData.append('isStitches', this.isStitches);
     formData.append('vedioLink', this.vedioUrl);
     formData.append('sizes', sizesString); // Append sizes as comma-separated string
     formData.append('colorPattern', this.colorPattern ? this.colorPattern.split(',').map(c => c.trim()).join(',') : '');
@@ -216,6 +220,7 @@ export class AddItemsComponent implements OnInit {
     formData.append('isColor', this.isColor);
     formData.append('isPattern', this.isSize);
     formData.append('isSleeve', this.isSleeve.toString());
+    formData.append('isStitches', this.isStitches.toString());
     formData.append('vedioLink', this.vedioUrl);
     formData.append('sizes', sizesString); // Append sizes as comma-separated string
     formData.append('colorPattern', this.colorPattern ? this.colorPattern.split(',').map(c => c.trim()).join(',') : '');

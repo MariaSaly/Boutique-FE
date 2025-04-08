@@ -207,10 +207,10 @@
           >
             <div class="card-image">
               <div *ngIf="product.imageUrl?.length > 1" class="carousel">
-                <img [src]="product.imageUrl[currentIndexes[i]]" class="product-image" alt="Product image" />
+                <img [src]="product.imageUrl?.[0]" class="product-image" alt="Product image" />
               </div>
               <div *ngIf="!product.imageUrl || product.imageUrl.length === 1">
-                <img [src]="(product.imageUrl?.[0] || product.imageUrl)" class="product-image" alt="Product image" />
+                <img [src]="product.imageUrl" class="product-image" alt="Product image" />
               </div>
             </div>
       
@@ -241,10 +241,10 @@
           >
             <div class="card-image">
               <div *ngIf="product.imageUrl?.length > 1" class="carousel">
-                <img [src]="product.imageUrl[currentIndexes[i]]" class="product-image" alt="Product image" />
+                <img [src]="product.imageUrl?.[0]" class="product-image" alt="Product image" />
               </div>
               <div *ngIf="!product.imageUrl || product.imageUrl.length === 1">
-                <img [src]="(product.imageUrl?.[0] || product.imageUrl)" class="product-image" alt="Product image" />
+                <img [src]="(product.imageUrl || product.imageUrl)" class="product-image" alt="Product image" />
               </div>
             </div>
       
