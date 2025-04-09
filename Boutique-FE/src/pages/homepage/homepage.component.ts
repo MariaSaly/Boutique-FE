@@ -127,33 +127,34 @@ scrollToBestSeller(retries = 10, delay = 500) {
   }
 }
 getProducts(): void {
- 
   this.httpService.get(`${this.url}/api/items/getItem?subcategory=newarrivals`).subscribe((data: any) => {
     this.items = data.map((item: any) => ({
       ...item,
       price: +item.price.toString().replace(/[^0-9.]/g, '') || 0,
       offerPrice: +item.offerPrice?.toString().replace(/[^0-9.]/g, '') || 0
-    })).sort((a:any, b:any) => this.firebaseTimestampToMillis(a.createdAt) - this.firebaseTimestampToMillis(b.createdAt));
+    })).sort((a: any, b: any) => 
+      this.firebaseTimestampToMillis(b.createdAt) - this.firebaseTimestampToMillis(a.createdAt) // Changed to descending
+    );
     
     this.newarrivals = [...this.items];
     this.currentIndexes = this.filteredData.map(() => 0);
   });
 }
-getProductsBestseller(): void {
-    
 
-    this.httpService.get(`${this.url}/api/items/getItem?subcategory=bestsellar`).subscribe((data: any) => {
-      this.items = data.map((item: any) => ({
-        ...item,
-        price: +item.price.toString().replace(/[^0-9.]/g, '') || 0,
-        offerPrice: +item.offerPrice?.toString().replace(/[^0-9.]/g, '') || 0
-      })).sort((a:any, b:any) => this.firebaseTimestampToMillis(a.createdAt) - this.firebaseTimestampToMillis(b.createdAt));
-      
-      this.bestseller = [...this.items];
-      console.log("bestseller:",this.bestseller);
-      this.currentIndexes = this.filteredData.map(() => 0);
-    });
-  
+getProductsBestseller(): void {
+  this.httpService.get(`${this.url}/api/items/getItem?subcategory=bestsellar`).subscribe((data: any) => {
+    this.items = data.map((item: any) => ({
+      ...item,
+      price: +item.price.toString().replace(/[^0-9.]/g, '') || 0,
+      offerPrice: +item.offerPrice?.toString().replace(/[^0-9.]/g, '') || 0
+    })).sort((a: any, b: any) => 
+      this.firebaseTimestampToMillis(b.createdAt) - this.firebaseTimestampToMillis(a.createdAt) // Changed to descending
+    );
+    
+    this.bestseller = [...this.items];
+    console.log("bestseller:", this.bestseller);
+    this.currentIndexes = this.filteredData.map(() => 0);
+  });
 }
 firebaseTimestampToMillis(timestamp: any): number {
   if (timestamp?.toDate) { // If it's a Firebase Timestamp object

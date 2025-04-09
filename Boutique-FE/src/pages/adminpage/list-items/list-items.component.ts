@@ -32,16 +32,18 @@ export class ListItemsComponent implements OnInit {
   ngOnInit(): void {
     this.getItem();
   }
-
   getItem() {
     this.http.get<any>(`${this.url}/api/items/getItem`).subscribe({
       next: (response) => {
         console.log('data:', response);
         // Sort items by createdAt in descending order (newest first)
         this.items = response.sort((a: any, b: any) => {
-          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+          // Convert Firebase Timestamp to milliseconds for comparison
+          const timeA = a.createdAt._seconds * 1000 + a.createdAt._nanoseconds / 1000000;
+          const timeB = b.createdAt._seconds * 1000 + b.createdAt._nanoseconds / 1000000;
+          return timeB - timeA; // Descending order (newest first)
         });
-        this.filteredItems = this.items
+        this.filteredItems = this.items; // Show first 4 items initially
         this.showViewMore = this.items.length > 4;
       },
       error: (error) => {
