@@ -234,7 +234,7 @@ export class CartComponent implements OnInit {
 
   }
   increaseQty(item: any) {
-
+    console.log("item:", item);
 
     let qty = item.quantity;
     console.log("qty:", qty);
@@ -250,7 +250,7 @@ export class CartComponent implements OnInit {
       const guestData = localStorage.getItem('guestId');
       userId = guestData || ''
     }
-
+    console.log("item:", item);
     this.cartService.updateCart(userId, {
       productId: item.productId,
       quantity: qty,
@@ -261,7 +261,7 @@ export class CartComponent implements OnInit {
     }).subscribe(() => {
       this.loadCart();
     });
-    
+
 
     //  this.cartService.updateCart(this.cartItems);
 
@@ -273,32 +273,41 @@ export class CartComponent implements OnInit {
   // Add to your CartComponent class
 
 
-// Update your calculateCartItems method
-calculateCartItems() {
-  console.log("cartitems:", this.cartItems);
-  this.cartCount = this.cartItems.length;
-  
-  this.totalQuantity = this.cartItems.reduce((acc, current) => acc + current.quantity, 0);
-  
-  // Calculate stitching-related values
-  this.stitchedItemsCount = this.cartItems
-    .filter(item => item.isStitches)
-    .reduce((acc, item) => acc + item.quantity, 0);
-  
-  this.totalStitchingCharges = this.stitchedItemsCount * this.stitchingChargePerItem;
+  // Update your calculateCartItems method
+  calculateCartItems() {
+    console.log("cartitems:", this.cartItems);
+    this.cartCount = this.cartItems.length;
 
-  // Calculate subtotal
-  const subtotal = this.cartItems.reduce((acc, current) => {
-    const itemPrice = current.offerprice || current.price;
-    return acc + (itemPrice * current.quantity);
-  }, 0);
+    this.totalQuantity = this.cartItems.reduce((acc, current) => acc + current.quantity, 0);
 
-  // Calculate total with shipping and stitching
-  this.totalPrice = subtotal + 100 + this.totalStitchingCharges;
-}
+    // Calculate stitching-related values - strict true check
+    this.stitchedItemsCount = this.cartItems
+      .filter(item => item.isStitches === true || item.isStitches === 'true') // Check both boolean true and string 'true'
+      .reduce((acc, item) => acc + item.quantity, 0);
+
+    this.totalStitchingCharges = this.stitchedItemsCount * this.stitchingChargePerItem;
+
+    // Calculate subtotal
+    const subtotal = this.cartItems.reduce((acc, current) => {
+      const itemPrice = current.offerprice || current.price;
+      return acc + (itemPrice * current.quantity);
+    }, 0);
+
+    // Calculate total with shipping and stitching
+    this.totalPrice = subtotal + 100 + this.totalStitchingCharges;
+
+    console.log("Stitching Calculation:", {
+      stitchedItems: this.cartItems.filter(item => item.isStitches === true || item.isStitches === 'true'),
+      stitchedItemsCount: this.stitchedItemsCount,
+      stitchingCharges: this.totalStitchingCharges
+    });
+  }
+  getCartOtems() {
+
+  }
   calculateDiscount(originalPrice: number, offerPrice: number): number {
     if (!originalPrice || !offerPrice || offerPrice <= 0) return 0;
-    return Math.round(((originalPrice - offerPrice) / originalPrice) * 100);
+    return Math.round(((originalPrice - offerPrice) / originalPrice) * 1);
   }
   goToShop() {
     this.router.navigate(['/home']);

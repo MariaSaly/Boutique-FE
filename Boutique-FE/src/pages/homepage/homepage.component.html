@@ -237,7 +237,7 @@
           <div
             class="arrivalcard"
             *ngFor="let product of bestseller; let i = index"
-            (click)="selectCard(i)"
+            (click)="selectCardBestSeller(i)"
           >
             <div class="card-image">
               <div *ngIf="product.imageUrl?.length > 1" class="carousel">

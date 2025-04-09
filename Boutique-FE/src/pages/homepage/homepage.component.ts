@@ -208,6 +208,10 @@ selectCard(index: number): void {
   const selectedProduct = this.newarrivals[index];
   this.router.navigate([`/${selectedProduct.category}/${selectedProduct.id}`]);
 }
+selectCardBestSeller(index: number): void {
+  const selectedProduct = this.bestseller[index];
+  this.router.navigate([`/${selectedProduct.category}/${selectedProduct.id}`]);
+}
 
 setFlagFromLocalStorage() {
   const selectedFlag = localStorage.getItem('selectedFlag');

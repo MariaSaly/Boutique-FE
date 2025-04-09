@@ -180,7 +180,7 @@ export class AddItemsComponent implements OnInit {
     formData.append('isColor', this.isColor);
     formData.append('isPattern', this.isSize);
     formData.append('isSleeve', this.isSleeve);
-    formData.append('isStitches', this.isStitches);
+    formData.append('isStitched', this.isStitches);
     formData.append('vedioLink', this.vedioUrl);
     formData.append('sizes', sizesString); // Append sizes as comma-separated string
     formData.append('colorPattern', this.colorPattern ? this.colorPattern.split(',').map(c => c.trim()).join(',') : '');
@@ -220,7 +220,7 @@ export class AddItemsComponent implements OnInit {
     formData.append('isColor', this.isColor);
     formData.append('isPattern', this.isSize);
     formData.append('isSleeve', this.isSleeve.toString());
-    formData.append('isStitches', this.isStitches.toString());
+    formData.append('isStitched', this.isStitches.toString());
     formData.append('vedioLink', this.vedioUrl);
     formData.append('sizes', sizesString); // Append sizes as comma-separated string
     formData.append('colorPattern', this.colorPattern ? this.colorPattern.split(',').map(c => c.trim()).join(',') : '');
