@@ -482,7 +482,9 @@
   gap: 10px;
   margin-bottom: 10px;
 }
-
+.checkbox-group{
+  margin-bottom: 10px !important;
+}
 
 .pattern-box {
   padding: 5px 5px;

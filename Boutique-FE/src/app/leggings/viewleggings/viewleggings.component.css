@@ -124,7 +124,9 @@ body {
     line-height: 1.6;
     color: #555;
   }
-  
+  .checkbox-group{
+    margin-bottom: 10px !important;
+  }
   .price {
     font-size: 1.5rem;
     color: #d9534f; /* Eye-catching price color */
