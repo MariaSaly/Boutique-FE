@@ -282,7 +282,7 @@ export class CartComponent implements OnInit {
 
     // Calculate stitching-related values - strict true check
     this.stitchedItemsCount = this.cartItems
-      .filter(item => item.isStitches === true || item.isStitches === 'true') // Check both boolean true and string 'true'
+      .filter(item =>  item.isStitches === 'true') // Check both boolean true and string 'true'
       .reduce((acc, item) => acc + item.quantity, 0);
 
     this.totalStitchingCharges = this.stitchedItemsCount * this.stitchingChargePerItem;
