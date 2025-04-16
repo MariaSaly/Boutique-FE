@@ -282,19 +282,25 @@ export class CartComponent implements OnInit {
 
     // Calculate stitching-related values - strict true check
     this.stitchedItemsCount = this.cartItems
-      .filter(item =>  item.isStitches === 'true') // Check both boolean true and string 'true'
+      .filter(item => item.isStitches === 'true') // Check both boolean true and string 'true'
       .reduce((acc, item) => acc + item.quantity, 0);
 
     this.totalStitchingCharges = this.stitchedItemsCount * this.stitchingChargePerItem;
-
+    console.log("totalStitchingCharges:", this.totalStitchingCharges);
     // Calculate subtotal
     const subtotal = this.cartItems.reduce((acc, current) => {
-      const itemPrice = current.offerprice || current.price;
+      console.log("cartItems:", this.cartItems);
+      const rawOfferPrice = current.offerprice;
+      const rawPrice = current.price;
+      const itemPrice = !isNaN(Number(rawOfferPrice)) ? Number(rawOfferPrice) : Number(rawPrice ?? 0);
+      console.log("itemPrice:", itemPrice);
       return acc + (itemPrice * current.quantity);
     }, 0);
-
+    console.log("subtotal:", subtotal);
     // Calculate total with shipping and stitching
     this.totalPrice = subtotal + 100 + this.totalStitchingCharges;
+
+    console.log("totalPrice:", this.totalPrice);
 
     console.log("Stitching Calculation:", {
       stitchedItems: this.cartItems.filter(item => item.isStitches === true || item.isStitches === 'true'),
