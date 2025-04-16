@@ -66,9 +66,9 @@ selectImage(image: string): void {
   this.selectedImage = image;
 }
 images: string[] = [
-  'https://i.pinimg.com/originals/02/cf/cf/02cfcffac595c832c514d58704cd82ce.jpg',
-  'https://i.pinimg.com/originals/ec/6a/19/ec6a19a588615a57fd006893f4599c05.jpg',
-  'https://i.pinimg.com/originals/02/cf/cf/02cfcffac595c832c514d58704cd82ce.jpg'
+  // 'https://i.pinimg.com/originals/02/cf/cf/02cfcffac595c832c514d58704cd82ce.jpg',
+  // 'https://i.pinimg.com/originals/ec/6a/19/ec6a19a588615a57fd006893f4599c05.jpg',
+  // 'https://i.pinimg.com/originals/02/cf/cf/02cfcffac595c832c514d58704cd82ce.jpg'
 ];
 // images: string[] = [
 //   '../../assets/images/bg2.png',
