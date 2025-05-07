@@ -298,7 +298,7 @@ export class CartComponent implements OnInit {
     }, 0);
     console.log("subtotal:", subtotal);
     // Calculate total with shipping and stitching
-    this.totalPrice = subtotal + 100 + this.totalStitchingCharges;
+    this.totalPrice = subtotal + 100+ this.totalStitchingCharges;
 
     console.log("totalPrice:", this.totalPrice);
 

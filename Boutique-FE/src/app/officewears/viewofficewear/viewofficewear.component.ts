@@ -206,7 +206,7 @@ startAutoSlide() {
     const isStitched= this.isStitchesChecked; 
 
     const colorPattern = this.selectedPattern || '-'
-
+     console.log("selectedcolorpattern:",colorPattern);
 
     const data = localStorage.getItem('userData');
     if (data) {

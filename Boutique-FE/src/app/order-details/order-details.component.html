@@ -28,13 +28,13 @@
     <h2>Items Ordered</h2>
     <ul>
       <li class="order-item">
-        <img [src]=" items.imageUrl" alt="Product Image">
+        <img [src]="(items.imageUrl)?.[0]" alt="Product Image">
         <div>
           <p><strong>Product Name:{{items.name}}</strong> </p>
           <p><strong>Quantity:{{items.quantity}}</strong> </p>
           <p><strong>Price:{{items.price}}</strong> </p>
           <p><strong>Size:{{items.size}}</strong> </p>
-          <p><strong>Color:{{items.colorPattern || '-'}}</strong> </p>
+          <p><strong>Color:{{items.color || '-'}}</strong> </p>
           <p>
             <strong>Sleeve: {{ items.isSleeve === 'true' ? 'Sleeve' : 'Non-Sleeve' }}</strong>
           </p>

@@ -81,7 +81,10 @@ export class OrderDetailsComponent implements OnInit {
         const fullItemData = {
           ...itemData,          // The fetched item data
           quantity: item.quantity,
-          size: item.size // Add the quantity from the cart item
+          size: item.size, // Add the quantity from the cart item
+          color:item.colorPattern,
+          sleeve:item.isSleeve,
+          stitches:item.isStitches
         };
 
         console.log("fullItemData:", fullItemData);
